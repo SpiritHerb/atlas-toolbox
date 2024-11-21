@@ -9,27 +9,61 @@
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
-    
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Margin="0 36 72 0">
+
+        <StackPanel Margin="0 36 72 0">
             <controls:SettingsExpander
                 x:Name="aiSettingsExpander"
                             VerticalAlignment="Top"
-                            Description="AIrelated features"
+                            Description="AI related features"
                             Header="AI Features"
                             HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Microsoft Copilot">
                         <ToggleSwitch x:Name="copilotSwitch" Toggled="toggleCopilot"/>
                     </controls:SettingsCard>
-                        <TextBlock x:Name="control1"/>
                     <controls:SettingsCard Header="Recal">
+                        <ToggleSwitch/>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+            </controls:SettingsExpander>
+            
+            <controls:SettingsCard Header="Automatic updates">
+                <ToggleSwitch x:Name="autoUpdateSwitch" Toggled="toggleCopilot"/>
+            </controls:SettingsCard>
+            <controls:SettingsCard Header="Background apps">
+                <ToggleSwitch x:Name="backgroundAppsSwitch" Toggled="toggleCopilot"/>
+            </controls:SettingsCard>
+            <controls:SettingsExpander
+                x:Name="cpuIdleSettingsExpander"
+                VerticalAlignment="Top"
+                Description="CPU Idle settings"
+                Header="CPU Idle"
+                HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
+                <controls:SettingsExpander.Items>
+                    <controls:SettingsCard Header="Enable Idle">
+                        <ToggleSwitch x:Name="cpuIdleSwitch" Toggled="toggleCopilot"/>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard Header="Desktop context menu Idle toggle">
+                        <ToggleSwitch/>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+            </controls:SettingsExpander>
+            <controls:SettingsCard Header="Delivery optimization">
+                <ToggleSwitch x:Name="deliveryOptimizationSwitch" Toggled="toggleCopilot"/>
+            </controls:SettingsCard>
+            <controls:SettingsExpander
+                    x:Name="fileSharingSettingsExpander"
+                    VerticalAlignment="Top"
+                    Description="File Sharing"
+                    Header="File sharing related settings"
+                    HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
+                <controls:SettingsExpander.Items>
+                    <controls:SettingsCard Header="Enable Idle">
+                        <ToggleSwitch x:Name="cpuIdleSwitch" Toggled="toggleCopilot"/>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard Header="Desktop context menu Idle toggle">
                         <ToggleSwitch/>
                     </controls:SettingsCard>
                 </controls:SettingsExpander.Items>

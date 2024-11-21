@@ -35,12 +35,10 @@ public sealed partial class GeneralConfig : Page
         {
             if (b.IsOn) {
                 Serialization.Serialize(1);
-                control1.Text = "test";
             }
             else
             {
                 Serialization.Serialize(0);
-                control1.Text = "womp womp";
             }
         }
     }

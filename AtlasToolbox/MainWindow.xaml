@@ -101,8 +101,12 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage" />
                 <NavigationViewItem Icon="Home" Content="General Configuration" Tag="AtlasToolbox.Views.GeneralConfig"/>
-                <!--" NavigationViewItem Icon="Home" Content="Config" SelectsOnInvoked="False">
-            </NavigationViewItem-->
+                <NavigationViewItem Icon="Home" Content="Interface Tweaks" Tag="AtlasToolbox.Views.InterfaceTweaks"/>
+                <NavigationViewItem Icon="Home" Content="Windows Settings" Tag="AtlasToolbox.Views.WindowsSettings"/>
+                <NavigationViewItem Icon="Home" Content="Advanced Config" Tag="AtlasToolbox.Views.AdvancedConfig"/>
+                <NavigationViewItem Icon="Home" Content="Security" Tag="AtlasToolbox.Views.Security"/>
+                <NavigationViewItem Icon="Home" Content="Troubleshooting" Tag="AtlasToolbox.Views.Troubleshooting"/>
+                
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" Padding="55,10,0,0"/>
         </NavigationView>

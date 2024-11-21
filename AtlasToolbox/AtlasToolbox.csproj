@@ -14,7 +14,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="MainWindow.xaml" />
+    <None Remove="Views\AdvancedConfig.xaml" />
     <None Remove="Views\GeneralConfig.xaml" />
+    <None Remove="Views\InterfaceTweaks.xaml" />
+    <None Remove="Views\Security.xaml" />
+    <None Remove="Views\Troubleshooting.xaml" />
+    <None Remove="Views\WindowsSettings.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +37,31 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Troubleshooting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Security.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\AdvancedConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\WindowsSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\InterfaceTweaks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\GeneralConfig.xaml">
