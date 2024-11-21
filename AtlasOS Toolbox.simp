@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="14.70" multi-file="no" uid="simp50c5e3b78ad541768bf2da5192bb54de" creation-date="11/20/2024 10:59:24">
+  <meta>
+    <name>AtlasOS Toolbox</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type-id="ui-window" type="Window" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-panel" type="Panel" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-tree" type="Tree" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-toolbar" type="Toolbar" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-menu" type="Menu" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-field-list" type="Field List" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-button" type="Button" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-label" type="Label" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-area" type="Area" />
+        <value>1</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-on-off" type="On Off Box" />
+        <value>1</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type-id="ui-window" type="Window" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-panel" type="Panel" />
+        <value>7</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-tree" type="Tree" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-toolbar" type="Toolbar" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-menu" type="Menu" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-field-list" type="Field List" />
+        <value>5</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-button" type="Button" />
+        <value>2</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-label" type="Label" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-area" type="Area" />
+        <value>8</value>
+      </counter>
+      <counter>
+        <item-type type-id="ui-on-off" type="On Off Box" />
+        <value>9</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.Wireframing.UserInterfaceDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields />
+  </counters>
+  <alias-groups />
+  <management uid="md-ff87064eda824c828c6fcb47ba3e9a8e" name="" task-id-sequence="0">
+    <persons>
+      <person id="">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <teams />
+    <sprints />
+    <projects />
+    <modules />
+    <tasks />
+    <to-dos />
+  </management>
+  <glossary id="glsr-be20b94b7e16478686c44ec06a6ee29e" name="" order-index="-1" />
+  <types default="UML">
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <parameters />
+      <types />
+    </custom-types>
+  </types>
+  <items>
+    <item id="215deeac42ca405c8acb394db06eef73" cid="BTN001" type="ui-button" name="General Configuration" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+    <item id="9bf1c211d18a466a97f2d4c7c77d9af7" cid="BTN001" type="ui-button" name="Drivers" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+    <item id="53678abd0e1f4cc7812f596d16655a45" cid="BTN001" type="ui-button" name="Windows  Settings" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+    <item id="53cd822d15dc409190fdc4f18acaccbf" cid="BTN001" type="ui-button" name="Troubleshooting" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+    <item id="61d7db2f712a491f86552f16eeeba23d" cid="BTN001" type="ui-button" name="Advanced configuration" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+    <item id="8e68f096cc9b4909b68ef2716a8b66a8" cid="BTN001" type="ui-button" name="Security" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+    <item id="c7d87884b89d401ebcb497ff15a6a4fb" cid="BTN001" type="ui-button" name="Interface tweaks" owner="8a94ef3cff8743949d8d0ec902324bfe" creation-date="11/20/2024 11:02:08">
+      <button />
+    </item>
+  </items>
+  <models>
+    <model id="pf603bffa649841efb5442519d9f8ed13_204366853" name="Model1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>11/20/2024 11:01:00</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="user-interface" id="p8527c6ec02fb40f6966b04dc50d53a1f_418700302" name="UserInterfaceDiagram1" order-index="1" uid="" name-style="" auto-routed-paths="false" default-line-style="default" view-location="0,45" zoom="0.9">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>11/20/2024 11:01:00</creation-date>
+          <change-date>11/20/2024 11:06:56</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="077ee97609574051bad6f7323c011e57" cid="ELEM001" type="ui-panel" name="Panel1" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:01:12" />
+          <item id="40bed5a623394ae4a7f7b06f188ac915" cid="LBL001" type="ui-label" name="Install Edge" owner="3196a19525d14af68714dc78b7b7b788" creator="" creation-date="11/20/2024 11:04:33" />
+          <item id="ce661fcbe17d4f04b085610423dca574" cid="ELEM008" type="ui-on-off" name="OnOffBox1" owner="3196a19525d14af68714dc78b7b7b788" creator="" creation-date="11/20/2024 11:06:43">
+            <on-off is-on="false" />
+          </item>
+          <item id="3196a19525d14af68714dc78b7b7b788" cid="ELEM006" type="ui-panel" name="Panel3" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:04:27">
+            <owned-items />
+          </item>
+          <item id="2052f7e021ee417fbf9c95e18aae1279" cid="ELEM002" type="ui-tree" name="Tree1" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:01:18">
+            <tree>
+              <node uid="tn2236a18b89d143a1bc7677aafd884003638676972789599035" name="Root">
+                <sub-nodes>
+                  <node uid="tn4a469303c52e4d49994379ac4be66f0b638676972789599595" name="Node 1" />
+                  <node uid="tn5dca92039b6a4532aff7aa608350e3bf638676972789600375" name="Node 2">
+                    <sub-nodes>
+                      <node uid="tn03976f0ee9c7450b87d42fa5b6e87f16638676972789600426" name="Subnode 2.1" />
+                      <node uid="tn5b820236b33040ba941e1bc3e256f59f638676972789600431" name="Subnode 2.2" />
+                      <node uid="tn5728a15d05304695ad639fa0048dd00c638676972789600433" name="Subnode 2.3" />
+                    </sub-nodes>
+                  </node>
+                  <node uid="tn8fadff2656874d278bc757dff6bdddad638676972789600435" name="Node 3">
+                    <sub-nodes>
+                      <node uid="tn4e5f6e55c40e43ab93ffff47c2c2a3e1638676972789600438" name="Subnode 3.1" />
+                      <node uid="tna42f92bafc084e44a263b2cad3d5fb1a638676972789600440" name="Subnode 3.2" />
+                      <node uid="tne67e88ff0a0d4dd9908159e9ad720003638676972789600447" name="Subnode 3.3" />
+                    </sub-nodes>
+                  </node>
+                </sub-nodes>
+              </node>
+            </tree>
+          </item>
+          <item id="e9b2461f1e634ae6825fc44dc988f4ef" cid="ELEM004" type="ui-field-list" name="FieldList1" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:01:50">
+            <field-list />
+          </item>
+          <item id="ce1d58580feb4ae7ad86f4b0a19ed700" cid="WND001" type="ui-window" name="Window1" creator="" creation-date="11/20/2024 11:01:09">
+            <owned-items />
+            <window show-min-button="true" show-max-button="true" show-close-button="true" show-size-grip="false" />
+          </item>
+          <item id="8a94ef3cff8743949d8d0ec902324bfe" cid="ELEM005" type="ui-panel" name="Panel2" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:02:02">
+            <owned-items />
+          </item>
+          <item id="f8bcf04abb92479c890e8f7175728639" cid="ELEM007" type="ui-area" name="AI Features" owner="3196a19525d14af68714dc78b7b7b788" creator="" creation-date="11/20/2024 11:05:59" />
+          <item id="0402bed0279b422f95566de5882940d8" cid="LBL003" type="ui-label" name="Microsoft Copilot" owner="3196a19525d14af68714dc78b7b7b788" creator="" creation-date="11/20/2024 11:06:56" />
+          <item id="351f4ce7f1294a33bf00cd7b85bae1b2" cid="ELEM003" type="ui-toolbar" name="Toolbar1" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:01:33" />
+          <item id="bf213f2b28c14aaf8fe8fa0da9ce7d24" cid="BTN001" type="ui-button" name="Software" owner="8a94ef3cff8743949d8d0ec902324bfe" creator="" creation-date="11/20/2024 11:02:08">
+            <button />
+          </item>
+          <item id="21fd3061c6a84992b974e0b90cbd66ab" cid="MNU001" type="ui-menu" name="Menu1" owner="ce1d58580feb4ae7ad86f4b0a19ed700" creator="" creation-date="11/20/2024 11:01:43">
+            <menu>
+              <menu-item uid="mi1564b5ab081245418163dfd32d61d823638676973036219682" name="File">
+                <sub-items>
+                  <menu-item uid="mi50fd397d59be4245b2ebbc0c1397c1f7638676973036224507" name="New" />
+                  <menu-item uid="mi53076ebce9bb46709796f2d34451a164638676973036224893" name="Open" />
+                  <menu-item uid="miaac7bec7e9a249aa96fe382f0ea634fc638676973036224901" name="-" />
+                  <menu-item uid="mi019214fdbd754aff812a32eb7e6e0e72638676973036224904" name="Save" />
+                  <menu-item uid="mibbada0ae68cd4a55a7bb19d562a6bbaf638676973036224911" name="-" />
+                  <menu-item uid="mia0502f3d63fe4d9ab5eec0f3f2c81d5a638676973036224917" name="Exit" />
+                </sub-items>
+              </menu-item>
+              <menu-item uid="mi09a0b0878fbb4626ae2b9f5493570c73638676973036224920" name="Edit" />
+              <menu-item uid="mi4f3b644c050f4afd83277d8ed7d15f9d638676973036225107" name="Window" />
+              <menu-item uid="mid6406616d54442349a58f3337780a04d638676973036225118" name="Help" />
+            </menu>
+          </item>
+        </abstract-items>
+        <layer id="f82cd651be134241adfa2cea5632d29e" name="Default" visible="true" enabled="true" locked="false">
+          <item id="ce1d58580feb4ae7ad86f4b0a19ed700" iid="0bd8aeb6ee1b42439e240d8169df22b8" creation-date="11/20/2024 11:01:09" order-index="0" type="ui-window">
+            <layout ax="187" ay="134" awidth="1165" aheight="637" x="187" y="134" width="1165" height="637" expanded="187,134,1165,637" collapsed="0,0,0,0" container-layout="simple">
+              <container-layout padding="10,10,10,10" />
+            </layout>
+          </item>
+          <item id="3196a19525d14af68714dc78b7b7b788" iid="8decb0f0c0044433a29402ba20aab5e3" container="ce1d58580feb4ae7ad86f4b0a19ed700" container-iid="0bd8aeb6ee1b42439e240d8169df22b8" creation-date="11/20/2024 11:04:27" order-index="3" type="ui-panel">
+            <layout ax="440" ay="184" awidth="885" aheight="559" x="440" y="184" width="885" height="559" expanded="440,184,885,559" collapsed="0,0,0,0" />
+          </item>
+          <item id="8a94ef3cff8743949d8d0ec902324bfe" iid="b69d228974114e88996210ec5e6850c6" container="ce1d58580feb4ae7ad86f4b0a19ed700" container-iid="0bd8aeb6ee1b42439e240d8169df22b8" creation-date="11/20/2024 11:02:02" order-index="1" type="ui-panel">
+            <layout ax="202" ay="175" awidth="216" aheight="573" x="202" y="175" width="216" height="573" expanded="202,175,216,573" collapsed="0,0,0,0" />
+          </item>
+          <item id="0402bed0279b422f95566de5882940d8" iid="5f38355d4d5045a9be832ab3806f2198" container="3196a19525d14af68714dc78b7b7b788" container-iid="8decb0f0c0044433a29402ba20aab5e3" creation-date="11/20/2024 11:06:56" order-index="5" type="ui-label">
+            <layout ax="472" ay="251" awidth="150" aheight="26" x="472" y="251" width="150" height="20" />
+          </item>
+          <item id="ce661fcbe17d4f04b085610423dca574" iid="c7d233841477465b9d409b92dbd04505" container="3196a19525d14af68714dc78b7b7b788" container-iid="8decb0f0c0044433a29402ba20aab5e3" creation-date="11/20/2024 11:06:43" order-index="4" type="ui-on-off">
+            <layout ax="632" ay="251" awidth="68" aheight="26" x="632" y="251" width="68" height="26" />
+          </item>
+          <item id="bf213f2b28c14aaf8fe8fa0da9ce7d24" iid="ed4298ad25fb4175abbf64ac935ee6fc" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="2" type="ui-button">
+            <layout ax="220" ay="205" awidth="176" aheight="30" x="220" y="205" width="176" height="30" />
+          </item>
+          <item id="215deeac42ca405c8acb394db06eef73" iid="523a12f4f4ce4e7b831dd94e3b6e3ca1" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="220" ay="287" awidth="176" aheight="36" x="220" y="287" width="100" height="30" />
+          </item>
+          <item id="c7d87884b89d401ebcb497ff15a6a4fb" iid="38ce2573096b476ca05c7c211397fb0c" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="220" ay="334" awidth="176" aheight="36" x="220" y="334" width="100" height="30" />
+          </item>
+          <item id="53678abd0e1f4cc7812f596d16655a45" iid="5d0a12a5fcc94e119ff30814da1524e8" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="220" ay="381" awidth="176" aheight="36" x="220" y="381" width="100" height="30" />
+          </item>
+          <item id="61d7db2f712a491f86552f16eeeba23d" iid="dbba7ef174a04216995e4d899428f02e" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="228" ay="428" awidth="190" aheight="36" x="228" y="428" width="100" height="30" />
+          </item>
+          <item id="8e68f096cc9b4909b68ef2716a8b66a8" iid="ec524666e10743b19eba7623ed96bfab" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="213" ay="475" awidth="190" aheight="36" x="213" y="475" width="100" height="30" />
+          </item>
+          <item id="53cd822d15dc409190fdc4f18acaccbf" iid="46ffb1f63cb740e9a7b1ff4953a6babc" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="213" ay="534" awidth="190" aheight="36" x="213" y="534" width="100" height="30" />
+          </item>
+          <item id="9bf1c211d18a466a97f2d4c7c77d9af7" iid="950cd697dc9c4c8eb92b2143b6ef398d" container="8a94ef3cff8743949d8d0ec902324bfe" container-iid="b69d228974114e88996210ec5e6850c6" creation-date="11/20/2024 11:02:08" order-index="0" type="ui-button">
+            <layout ax="220" ay="246" awidth="176" aheight="30" x="220" y="246" width="176" height="30" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+</sim-project>
