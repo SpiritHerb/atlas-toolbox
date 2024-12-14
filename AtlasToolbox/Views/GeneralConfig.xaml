@@ -21,7 +21,7 @@
                             HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Microsoft Copilot">
-                        <ToggleSwitch x:Name="copilotSwitch" Toggled="toggleCopilot"/>
+                        <ToggleSwitch x:Name="copilotSwitch" Toggled="ToggleCopilot"/>
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Recal">
                         <ToggleSwitch/>
@@ -30,10 +30,10 @@
             </controls:SettingsExpander>
             
             <controls:SettingsCard Header="Automatic updates">
-                <ToggleSwitch x:Name="autoUpdateSwitch" Toggled="toggleCopilot"/>
+                <ToggleSwitch x:Name="autoUpdateSwitch" Toggled="ToggleCopilot"/>
             </controls:SettingsCard>
             <controls:SettingsCard Header="Background apps">
-                <ToggleSwitch x:Name="backgroundAppsSwitch" Toggled="toggleCopilot"/>
+                <ToggleSwitch x:Name="backgroundAppsSwitch" Toggled="ToggleCopilot"/>
             </controls:SettingsCard>
             <controls:SettingsExpander
                 x:Name="cpuIdleSettingsExpander"
@@ -43,7 +43,7 @@
                 HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Enable Idle">
-                        <ToggleSwitch x:Name="cpuIdleSwitch" Toggled="toggleCopilot"/>
+                        <!--<ToggleSwitch x:Name="cpuIdleSwitch" Toggled="ToggleCopilot"/>-->
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Desktop context menu Idle toggle">
                         <ToggleSwitch/>
@@ -51,7 +51,7 @@
                 </controls:SettingsExpander.Items>
             </controls:SettingsExpander>
             <controls:SettingsCard Header="Delivery optimization">
-                <ToggleSwitch x:Name="deliveryOptimizationSwitch" Toggled="toggleCopilot"/>
+                <ToggleSwitch x:Name="deliveryOptimizationSwitch" Toggled="ToggleCopilot"/>
             </controls:SettingsCard>
             <controls:SettingsExpander
                     x:Name="fileSharingSettingsExpander"
@@ -61,7 +61,7 @@
                     HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Enable Idle">
-                        <ToggleSwitch x:Name="cpuIdleSwitch" Toggled="toggleCopilot"/>
+                        <ToggleSwitch x:Name="desktopIdleSwitch" Toggled="ToggleCopilot"/>
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Desktop context menu Idle toggle">
                         <ToggleSwitch/>
