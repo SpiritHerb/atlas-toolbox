@@ -14,6 +14,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="MainWindow.xaml" />
+    <None Remove="Ressources\ConfigurationItemTemplate.xaml" />
     <None Remove="Views\AdvancedConfig.xaml" />
     <None Remove="Views\GeneralConfig.xaml" />
     <None Remove="Views\InterfaceTweaks.xaml" />
@@ -25,8 +26,12 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240916" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+    <PackageReference Include="MVVMEssentials.WPF" Version="1.0.3" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -76,8 +81,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
+    <Page Update="Ressource\ConfigurationItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!--

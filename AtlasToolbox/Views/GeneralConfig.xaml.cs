@@ -28,19 +28,4 @@ public sealed partial class GeneralConfig : Page
     {
         this.InitializeComponent();
     }
-
-    private void ToggleCopilot(object sender, RoutedEventArgs e)
-    {
-        if (sender is ToggleSwitch b)
-        {
-            if (b.IsOn)
-            {
-                Serialization.Serialize(1, "copilot");
-            }
-            else
-            {
-                Serialization.Serialize(0, "copilot");
-            }
-        }
-    }
 }

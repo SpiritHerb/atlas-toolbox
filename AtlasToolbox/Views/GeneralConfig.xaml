@@ -8,11 +8,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
+    d:DataContext="{d:DesignInstance Type=viewmodel:GeneralConfigViewModel}"
     mc:Ignorable="d">
 
     <Grid>
+        <ItemsControl
+            ItemTemplate="{StaticResource ConfigurationItemTemplate}"
+            ItemsSource="{Binding ConfigurationItemViewModels}"/>
 
-        <StackPanel Margin="0 36 72 0">
+        <!--<StackPanel Margin="0 36 72 0">
             <controls:SettingsExpander
                 x:Name="aiSettingsExpander"
                             VerticalAlignment="Top"
@@ -21,7 +26,7 @@
                             HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Microsoft Copilot">
-                        <ToggleSwitch x:Name="copilotSwitch" Toggled="ToggleCopilot"/>
+                        <ToggleSwitch x:Name="copilotSwitch"/>
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Recal">
                         <ToggleSwitch/>
@@ -30,10 +35,10 @@
             </controls:SettingsExpander>
             
             <controls:SettingsCard Header="Automatic updates">
-                <ToggleSwitch x:Name="autoUpdateSwitch" Toggled="ToggleCopilot"/>
+                <ToggleSwitch x:Name="autoUpdateSwitch" />
             </controls:SettingsCard>
             <controls:SettingsCard Header="Background apps">
-                <ToggleSwitch x:Name="backgroundAppsSwitch" Toggled="ToggleCopilot"/>
+                <ToggleSwitch x:Name="backgroundAppsSwitch"/>
             </controls:SettingsCard>
             <controls:SettingsExpander
                 x:Name="cpuIdleSettingsExpander"
@@ -43,7 +48,7 @@
                 HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Enable Idle">
-                        <!--<ToggleSwitch x:Name="cpuIdleSwitch" Toggled="ToggleCopilot"/>-->
+                        <ToggleSwitch x:Name="cpuIdleSwitch" />
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Desktop context menu Idle toggle">
                         <ToggleSwitch/>
@@ -51,7 +56,7 @@
                 </controls:SettingsExpander.Items>
             </controls:SettingsExpander>
             <controls:SettingsCard Header="Delivery optimization">
-                <ToggleSwitch x:Name="deliveryOptimizationSwitch" Toggled="ToggleCopilot"/>
+                <ToggleSwitch x:Name="deliveryOptimizationSwitch" />
             </controls:SettingsCard>
             <controls:SettingsExpander
                     x:Name="fileSharingSettingsExpander"
@@ -61,13 +66,13 @@
                     HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Enable Idle">
-                        <ToggleSwitch x:Name="desktopIdleSwitch" Toggled="ToggleCopilot"/>
+                        <ToggleSwitch x:Name="desktopIdleSwitch" />
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Desktop context menu Idle toggle">
                         <ToggleSwitch/>
                     </controls:SettingsCard>
                 </controls:SettingsExpander.Items>
             </controls:SettingsExpander>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>

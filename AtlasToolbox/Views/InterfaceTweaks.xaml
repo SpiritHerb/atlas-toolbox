@@ -26,7 +26,7 @@
                         HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
                 <controls:SettingsExpander.Items>
                     <controls:SettingsCard Header="Microsoft Copilot">
-                        <!--<ToggleSwitch x:Name="copilotSwitch" Toggled="toggleCopilot"/>-->
+                        <!--<ToggleSwitch x:Name="copilotSwitch" />-->
                     </controls:SettingsCard>
                     <controls:SettingsCard Header="Recal">
                         <ToggleSwitch/>

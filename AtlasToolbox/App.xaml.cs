@@ -1,22 +1,11 @@
 ﻿using AtlasToolbox;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
-using Microsoft.Windows.AppLifecycle;
+using AtlasToolbox.HostBuilder;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using AtlasToolbox.Models;
+using System.Diagnostics;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -28,14 +17,19 @@ namespace AtlasToolbox
     /// </summary>
     public partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
+        private readonly IHost _host;
         public App()
         {
+            _host = CreateHostBuilder().Build();
+            _host.Start();
             this.InitializeComponent();
         }
+
+        private static IHostBuilder CreateHostBuilder() =>
+            Host.CreateDefaultBuilder()
+                .AddStores()
+                .AddServices()
+                .AddViewModels();
 
         /// <summary>
         /// Invoked when the application is launched.
