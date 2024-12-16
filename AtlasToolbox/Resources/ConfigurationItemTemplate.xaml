@@ -7,8 +7,7 @@
 
     <DataTemplate x:Key="ConfigurationItemTemplate">
         <controls:SettingsCard Header="{Binding Name}">
-            <ToggleSwitch x:Name="{Binding Name}" Toggled="{Binding ConfigurationItem.CurrentSetting}"/>
+            <ToggleSwitch x:Name="ToggleSwitch" IsOn="{Binding CurrentSetting}"/>
         </controls:SettingsCard>
     </DataTemplate>
-
 </ResourceDictionary>

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AtlasToolbox.Commands;
+using MVVMEssentials.Services;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -42,6 +44,7 @@ namespace AtlasToolbox.ViewModels
             }
         }
 
+        public ICommand SaveConfigurationCommand { get; }
         public ICommand NavigateConfigurationItemMenuCommand { get; }
 
         public ConfigurationItemViewModel(
@@ -54,11 +57,15 @@ namespace AtlasToolbox.ViewModels
             _configurationStore = configurationStore;
             _configurationService = configurationService;
 
+
+            _currentSetting = FetchCurrentSetting();
             _configurationStore.CurrentSettingChanged += ConfigurationStore_CurrentSettingChanged;
+
+            SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
 
         }
 
-        public void FetchCurrentSetting()
+        public bool FetchCurrentSetting()
         {
             IsBusy = true;
 
@@ -66,6 +73,7 @@ namespace AtlasToolbox.ViewModels
             {
                 bool currentSetting = _configurationService.IsEnabled();
                 _configurationStore.CurrentSetting = currentSetting;
+                return currentSetting;
             }
             finally
             {

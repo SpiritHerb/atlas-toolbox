@@ -13,6 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Animation";
         private const string STATE_VALUE_NAME = "state";
 
+
         private const string DWM_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\DWM";
         private const string WINDOW_METRICS_KEY_NAME = @"HKCU\Control Panel\Desktop\WindowMetrics";
         private const string ADVANCED_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced";
@@ -44,19 +45,19 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Disable()
         {
-            RegistryHelper.SetValue(DESKTOP_KEY_NAME, FONT_SMOOTHING_VALUE_NAME, 2, Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(DESKTOP_KEY_NAME, USER_PREFERENCES_MASK_VALUE_NAME,
-                Convert.FromHexString("9012038010000000"), Microsoft.Win32.RegistryValueKind.Binary);
-            RegistryHelper.SetValue(DESKTOP_KEY_NAME, DRAG_FULL_WINDOWS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(WINDOW_METRICS_KEY_NAME, MIN_ANIMATE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, LIST_VIEW_ALPHA_SELECT_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ICONS_ONLY_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, TASKBAR_ANIMATIONS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, LISTVIEW_SHADOW_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(VISUAL_EFFECTS_KEY_NAME, VISUAL_FX_SETTING_VALUE_NAME, 3, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(DWM_KEY_NAME, ENABLE_AERO_PEEK_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            //RegistryHelper.SetValue(DESKTOP_KEY_NAME, FONT_SMOOTHING_VALUE_NAME, 2, Microsoft.Win32.RegistryValueKind.String);
+            //RegistryHelper.SetValue(DESKTOP_KEY_NAME, USER_PREFERENCES_MASK_VALUE_NAME,
+            //    Convert.FromHexString("9012038010000000"), Microsoft.Win32.RegistryValueKind.Binary);
+            //RegistryHelper.SetValue(DESKTOP_KEY_NAME, DRAG_FULL_WINDOWS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.String);
+            //RegistryHelper.SetValue(WINDOW_METRICS_KEY_NAME, MIN_ANIMATE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.String);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, LIST_VIEW_ALPHA_SELECT_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, ICONS_ONLY_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, TASKBAR_ANIMATIONS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, LISTVIEW_SHADOW_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(VISUAL_EFFECTS_KEY_NAME, VISUAL_FX_SETTING_VALUE_NAME, 3, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(DWM_KEY_NAME, ENABLE_AERO_PEEK_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
 
             //ComputerStateHelper.LogOffCommandWindow();
 
@@ -65,18 +66,18 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Enable()
         {
-            RegistryHelper.SetValue(DESKTOP_KEY_NAME, FONT_SMOOTHING_VALUE_NAME, 2, Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(DESKTOP_KEY_NAME, USER_PREFERENCES_MASK_VALUE_NAME,
-                Convert.FromHexString("9E1E078012000000"), Microsoft.Win32.RegistryValueKind.Binary);
-            RegistryHelper.SetValue(DESKTOP_KEY_NAME, DRAG_FULL_WINDOWS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(WINDOW_METRICS_KEY_NAME, MIN_ANIMATE_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, LIST_VIEW_ALPHA_SELECT_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ICONS_ONLY_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, TASKBAR_ANIMATIONS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, LISTVIEW_SHADOW_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(VISUAL_EFFECTS_KEY_NAME, VISUAL_FX_SETTING_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(DWM_KEY_NAME, ENABLE_AERO_PEEK_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(DESKTOP_KEY_NAME, FONT_SMOOTHING_VALUE_NAME, 2, Microsoft.Win32.RegistryValueKind.String);
+            //RegistryHelper.SetValue(DESKTOP_KEY_NAME, USER_PREFERENCES_MASK_VALUE_NAME,
+            //    Convert.FromHexString("9E1E078012000000"), Microsoft.Win32.RegistryValueKind.Binary);
+            //RegistryHelper.SetValue(DESKTOP_KEY_NAME, DRAG_FULL_WINDOWS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.String);
+            //RegistryHelper.SetValue(WINDOW_METRICS_KEY_NAME, MIN_ANIMATE_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.String);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, LIST_VIEW_ALPHA_SELECT_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, ICONS_ONLY_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, TASKBAR_ANIMATIONS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(ADVANCED_KEY_NAME, LISTVIEW_SHADOW_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(VISUAL_EFFECTS_KEY_NAME, VISUAL_FX_SETTING_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(DWM_KEY_NAME, ENABLE_AERO_PEEK_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
            //ComputerStateHelper.LogOffCommandWindow();
@@ -86,12 +87,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public bool IsEnabled()
         {
-            bool[] checks =
-            {
-                RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1)
-            };
-
-            return checks.All(x => x);
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

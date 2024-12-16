@@ -16,6 +16,6 @@ namespace AtlasToolbox.Stores
             }
         }
 
-        public event Action? CurrentSettingChanged;
+        public event Action CurrentSettingChanged;
     }
 }

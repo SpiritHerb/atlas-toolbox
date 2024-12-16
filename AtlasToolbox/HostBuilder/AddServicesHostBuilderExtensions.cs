@@ -30,6 +30,7 @@ namespace AtlasToolbox.HostBuilder
             host.ConfigureServices((_, services) =>
             {
                 services.AddKeyedTransient<IConfigurationService, AnimationsConfigurationService>("Animations");
+                //services.AddKeyedTransient<IConfigurationService, AppStoreArchivingConfigurationService>("AppStoreArchiving");
                 //services.AddKeyedTransient<IConfigurationService, BluetoothConfigurationService>("Bluetooth");
                 //services.AddKeyedTransient<IConfigurationService, FsoAndGameBarConfigurationService>("FsoAndGameBar");
                 //services.AddKeyedTransient<IConfigurationService, WindowsFirewallConfigurationService>("WindowsFirewall");

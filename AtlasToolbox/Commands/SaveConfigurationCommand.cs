@@ -1,0 +1,50 @@
+﻿using AtlasToolbox.Services.ConfigurationServices;
+using AtlasToolbox.Stores;
+using AtlasToolbox.ViewModels;
+using MVVMEssentials.Commands;
+using MVVMEssentials.Services;
+using System.Threading.Tasks;
+
+namespace AtlasToolbox.Commands
+{
+    public class SaveConfigurationCommand : AsyncCommandBase
+    {
+        private readonly ConfigurationItemViewModel _configurationItemViewModel;
+        private readonly ConfigurationStore _configurationStore;
+        private readonly IConfigurationService _configurationService;
+
+        public SaveConfigurationCommand(
+            ConfigurationItemViewModel configurationItemViewModel,
+            ConfigurationStore configurationStore,
+            IConfigurationService configurationService)
+        {
+            _configurationItemViewModel = configurationItemViewModel;
+            _configurationStore = configurationStore;
+            _configurationService = configurationService;
+        }
+
+        protected override async Task ExecuteAsync(object parameter)
+        {
+            bool currentSetting = _configurationStore.CurrentSetting;
+            bool selectedSetting = (bool)parameter;
+
+            if (selectedSetting == currentSetting)
+            {
+                return;
+            }
+
+            _configurationItemViewModel.IsBusy = true;
+
+            try
+            {
+                await Task.Run(selectedSetting
+                    ? _configurationService.Enable
+                    : _configurationService.Disable);
+            }
+            finally
+            {
+                _configurationItemViewModel.IsBusy = false;
+            }
+        }
+    }
+}
