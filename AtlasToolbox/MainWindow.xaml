@@ -106,7 +106,6 @@
                 <NavigationViewItem Icon="Home" Content="Advanced Config" Tag="AtlasToolbox.Views.AdvancedConfig"/>
                 <NavigationViewItem Icon="Home" Content="Security" Tag="AtlasToolbox.Views.Security"/>
                 <NavigationViewItem Icon="Home" Content="Troubleshooting" Tag="AtlasToolbox.Views.Troubleshooting"/>
-                
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" Padding="55,10,0,0"/>
         </NavigationView>

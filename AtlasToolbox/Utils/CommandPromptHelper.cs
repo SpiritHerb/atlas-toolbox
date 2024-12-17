@@ -42,5 +42,21 @@ namespace AtlasToolbox.Utils
             startExplorer.Start();
             startExplorer.WaitForExit();
         }
+
+        public static string ReturnRunCommand(string command)
+        {
+            Process commandPrompt = new Process();
+            commandPrompt.StartInfo.FileName = "cmd.exe";
+            commandPrompt.StartInfo.Arguments = $"/c {command}";
+            commandPrompt.StartInfo.CreateNoWindow = true;
+            commandPrompt.StartInfo.UseShellExecute = false;
+            commandPrompt.StartInfo.RedirectStandardOutput = true;
+
+            commandPrompt.Start();
+            string output = commandPrompt.StandardOutput.ReadToEnd();
+            commandPrompt.WaitForExit();
+            return output;
+
+        }
     }
 }

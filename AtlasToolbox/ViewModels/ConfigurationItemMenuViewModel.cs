@@ -21,6 +21,5 @@ namespace AtlasToolbox.ViewModels
             _configurationItems = configurationItems;
             _configurationMenu = configurationMenu;
         }
-
     }
 }

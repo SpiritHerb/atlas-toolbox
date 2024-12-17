@@ -6,21 +6,21 @@ namespace AtlasToolbox.Utils
 {
     public class RegistryHelper
     {
-        public static object? GetValue(string keyPath, string? valueName)
-        {
-            using RegistryKey? key = OpenKey(keyPath);
-            return key?.GetValue(valueName, null);
+        public static object GetValue(string keyPath, string valueName)
+        {   
+            using RegistryKey key = OpenKey(keyPath);
+            return key?.GetValue(valueName);
         }
 
-        public static void SetValue(string keyPath, string? valueName, object value)
+        public static void SetValue(string keyPath, string valueName, object value)
         {
-            using RegistryKey? key = OpenKey(keyPath, true);
+            using RegistryKey key = OpenKey(keyPath, true);
             key?.SetValue(valueName, value);
         }
 
-        public static void SetValue(string keyPath, string? valueName, object value, RegistryValueKind valueKind)
+        public static void SetValue(string keyPath, string valueName, object value, RegistryValueKind valueKind)
         {
-            using RegistryKey? key = OpenKey(keyPath, true);
+            using RegistryKey key = OpenKey(keyPath, true);
 
             value = value switch
             {
@@ -34,11 +34,11 @@ namespace AtlasToolbox.Utils
 
         public static void DeleteValue(string keyPath, string valueName)
         {
-            using RegistryKey? key = OpenKey(keyPath, true);
+            using RegistryKey key = OpenKey(keyPath, true);
             key?.DeleteValue(valueName, false);
         }
 
-        public static bool IsMatch(string keyPath, string? valueName, object? data)
+        public static bool IsMatch(string keyPath, string valueName, object data)
         {
             if (keyPath is null)
             {
@@ -52,14 +52,14 @@ namespace AtlasToolbox.Utils
                 _ => data
             };
 
-            object? registryData = GetValue(keyPath, valueName);
+            object registryData = GetValue(keyPath, valueName);
 
             return registryData is byte[] byteArrayData && data is byte[] byteArray
                 ? byteArrayData.SequenceEqual(byteArray)
                 : registryData?.Equals(data) ?? data is null;
         }
 
-        private static RegistryKey? OpenKey(string keyPath, bool writable = false)
+        private static RegistryKey OpenKey(string keyPath, bool writable = false)
         {
             string[] split = keyPath.Split('\\');
 
@@ -73,7 +73,11 @@ namespace AtlasToolbox.Utils
 
             string keyName = string.Join('\\', split[1..]);
 
-            RegistryKey baseKey = RegistryKey.OpenBaseKey(hive, RegistryView.Default);
+            RegistryKey baseKey;
+            if (Environment.Is64BitOperatingSystem)
+                baseKey = RegistryKey.OpenBaseKey(hive, RegistryView.Registry64);
+            else
+                baseKey = RegistryKey.OpenBaseKey(hive, RegistryView.Registry32);
 
             return writable
                 ? baseKey.CreateSubKey(keyName)
@@ -87,13 +91,13 @@ namespace AtlasToolbox.Utils
             string parentKeyPath = string.Join('\\', split[..^1]);
             string targetKeyName = split[^1];
 
-            using RegistryKey? key = OpenKey(parentKeyPath, true);
+            using RegistryKey key = OpenKey(parentKeyPath, true);
             key?.DeleteSubKeyTree(targetKeyName, false);
         }
 
         public static bool KeyExists(string keyPath)
         {
-            using RegistryKey? key = OpenKey(keyPath);
+            using RegistryKey key = OpenKey(keyPath);
             return key is not null;
         }
     }

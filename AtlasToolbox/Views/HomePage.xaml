@@ -9,5 +9,14 @@
 
     <Grid>
         <TextBlock Text="Home"/>
+        <ContentDialog x:Name="myContentDialog" 
+               Title="Example Dialog"
+               PrimaryButtonText="OK"
+               SecondaryButtonText="Cancel">
+            <StackPanel>
+                <TextBlock Text="This is a sample ContentDialog." />
+            </StackPanel>
+        </ContentDialog>
+
     </Grid>
 </Page>

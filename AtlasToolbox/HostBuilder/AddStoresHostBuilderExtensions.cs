@@ -72,6 +72,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("Widgets");
                 services.AddKeyedSingleton<ConfigurationStore>("WindowsSpotlight");
                 services.AddKeyedSingleton<ConfigurationStore>("ExtractContextMenu");
+                services.AddKeyedSingleton<ConfigurationStore>("AppStoreArchiving");
             });
 
             return host;
