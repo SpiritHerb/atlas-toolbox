@@ -1,8 +1,7 @@
 {
   "profiles": {
     "AtlasToolbox (Package)": {
-      "commandName": "MsixPackage",
-      "nativeDebugging": true
+      "commandName": "MsixPackage"
     },
     "AtlasToolbox (Unpackaged)": {
       "commandName": "Project"

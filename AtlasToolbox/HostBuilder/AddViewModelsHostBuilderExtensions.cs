@@ -2,6 +2,7 @@
 using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
 using AtlasToolbox.Services;
+using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Stores;
 using AtlasToolbox.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,9 +13,6 @@ using MVVMEssentials.ViewModels;
 using System;
 using System.Collections.Generic;
 using Windows.Services.Maps;
-using Windows.Security.Cryptography.Core;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
 
 namespace AtlasToolbox.HostBuilder
 {
@@ -22,6 +20,7 @@ namespace AtlasToolbox.HostBuilder
     {
         public static IHostBuilder AddViewModels(this IHostBuilder host)
         {
+
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<MainViewModel>();
@@ -113,7 +112,6 @@ namespace AtlasToolbox.HostBuilder
                 //["Widgets"] = new("Desktop widgets", ConfigurationType.Customization),
                 //["WindowsSpotlight"] = new("Windows Spotlight", ConfigurationType.Customization),
                 //["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenu),
-                //["AppStoreArchiving"] = new("AppStoreArchiving", ConfigurationType.General),
 
             };
 
@@ -127,6 +125,7 @@ namespace AtlasToolbox.HostBuilder
                     {
                         ConfigurationItemViewModel viewModel = CreateConfigurationItemViewModel(provider, item.Key, item.Value);
                         viewModels.Add(viewModel);
+
                     }
                     return viewModels;
                 });
@@ -136,7 +135,7 @@ namespace AtlasToolbox.HostBuilder
         }
 
         private static ConfigurationItemViewModel CreateConfigurationItemViewModel(
-            IServiceProvider serviceProvider, object key, Configuration configuration)
+            IServiceProvider serviceProvider, object? key, Configuration configuration)
         {
                 ConfigurationStore configurationStore = serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key);
                 IConfigurationService configurationService = serviceProvider.GetRequiredKeyedService<IConfigurationService>(key);
@@ -185,7 +184,7 @@ namespace AtlasToolbox.HostBuilder
         //            CreateNoInternetNavigationService(serviceProvider, softwareNavigationService));
         //}
 
-        public static ConfigurationItemMenuViewModel CreateConfigurationItemMenuViewModel(IServiceProvider serviceProvider, object key)
+        public static ConfigurationItemMenuViewModel CreateConfigurationItemMenuViewModel(IServiceProvider serviceProvider, object? key)
         {
             return new(
                 serviceProvider.GetRequiredKeyedService<IConfigurationMenu>(key),

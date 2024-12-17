@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Principal;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 

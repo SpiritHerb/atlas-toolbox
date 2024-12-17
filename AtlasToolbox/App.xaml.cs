@@ -6,8 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using AtlasToolbox.Models;
 using System.Diagnostics;
 using System;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -19,9 +17,7 @@ namespace AtlasToolbox
     /// </summary>
     public partial class App : Application
     {
-        public static IHost _host { get; set; }
-
-
+        private readonly IHost _host;
         public App()
         {
             _host = CreateHostBuilder().Build();
