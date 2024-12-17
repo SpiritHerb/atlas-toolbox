@@ -4,11 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AtlasToolbox"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" >
+
+    <Style x:Key="SubMenuTemplate" TargetType="controls:SettingsExpander">
+        <Setter Property="Header" Value="{Binding Name}"/>
+    </Style>
+
+
     <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
         <Setter Property="Header" Value="{Binding Name}" />
         <Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>
        </Style>
 
+    
     <Style x:Key="ConfigurationSubMenu" TargetType="controls:SettingsExpander">
         <Setter Property="Header" Value="{Binding Name}" />
     </Style>

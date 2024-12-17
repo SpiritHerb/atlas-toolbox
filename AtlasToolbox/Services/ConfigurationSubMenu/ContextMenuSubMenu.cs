@@ -3,7 +3,7 @@ using AtlasToolbox.Stores;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
-namespace AtlasToolbox.Services.ConfigurationServicesParent
+namespace AtlasToolbox.Services.ConfigurationSubMenu
 {
     public class ContextMenuSubMenu : IConfigurationSubMenu
     {

@@ -1,4 +1,4 @@
-﻿namespace AtlasToolbox.Services.ConfigurationServices
+﻿namespace AtlasToolbox.Services.ConfigurationSubMenu
 {
     public interface IConfigurationSubMenu
     {

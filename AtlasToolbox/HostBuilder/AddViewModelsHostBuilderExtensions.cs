@@ -1,4 +1,5 @@
 ﻿using AtlasToolbox.Services.ConfigurationServices;
+using AtlasToolbox.Services.ConfigurationSubMenu;
 using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
 using AtlasToolbox.Services;
@@ -15,11 +16,14 @@ using Windows.Services.Maps;
 using Windows.Security.Cryptography.Core;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace AtlasToolbox.HostBuilder
 {
     public static class AddViewModelsHostBuilderExtensions
     {
+        private static List<ConfigurationItemViewModel> subMenuOnlyItems = new List<ConfigurationItemViewModel>();
         public static IHostBuilder AddViewModels(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>
@@ -29,7 +33,7 @@ namespace AtlasToolbox.HostBuilder
             });
 
             host.AddConfigurationItemViewModels();
-            //host.AddConfigurationMenuItemsViewModels(); 
+            host.AddConfigurationSubMenu();
 
             return host;
         }
@@ -39,17 +43,27 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
-                ["ContextMenu"] = new("Context Menu", ConfigurationSubMenuTypes.ContextMenu)
+                ["ContextMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.General)
             };
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<IEnumerable<ConfigurationSubMenuViewModel>>(provider =>
                 {
                     List<ConfigurationSubMenuViewModel> viewModels = new();
+                    List<ConfigurationItemViewModel> itemViewModels = new();
+                    IEnumerable<ConfigurationItemViewModel> items;
 
                     foreach (KeyValuePair<string, ConfigurationSubMenu> item in configurationDictionary)
                     {
-                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, item.Key, item.Value);
+                        foreach (ConfigurationItemViewModel configurationItemViewModel in subMenuOnlyItems)
+                        {
+                            if (configurationItemViewModel.Type.ToString() == item.Key)
+                            {
+                                itemViewModels.Add(configurationItemViewModel);
+                            }
+                        }
+                        items = itemViewModels;
+                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, items, item.Key, item.Value);
                         viewModels.Add(viewModel);
                     }
                     return viewModels;
@@ -125,8 +139,22 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
                     {
-                        ConfigurationItemViewModel viewModel = CreateConfigurationItemViewModel(provider, item.Key, item.Value);
-                        viewModels.Add(viewModel);
+                        if (
+                        item.Value.Type != ConfigurationType.General &&
+                        item.Value.Type != ConfigurationType.Interface &&
+                        item.Value.Type != ConfigurationType.Security &&
+                        item.Value.Type != ConfigurationType.Performance &&
+                        item.Value.Type != ConfigurationType.Privacy &&
+                        item.Value.Type != ConfigurationType.Customization &&
+                        item.Value.Type != ConfigurationType.Advanced &&
+                        item.Value.Type != ConfigurationType.Other)
+                        {
+                            subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
+                        }else
+                        {
+                            ConfigurationItemViewModel viewModel = CreateConfigurationItemViewModel(provider, item.Key, item.Value);
+                            viewModels.Add(viewModel);
+                        }
                     }
                     return viewModels;
                 });
@@ -146,6 +174,7 @@ namespace AtlasToolbox.HostBuilder
 
                 return viewModel;
         }
+
         private static GeneralConfigViewModel CreateConfigurationViewModel(IServiceProvider serviceProvider)
         {
             return GeneralConfigViewModel.LoadViewModel(
@@ -154,13 +183,12 @@ namespace AtlasToolbox.HostBuilder
         }
 
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
-            IServiceProvider serviceProvider, object? key, ConfigurationSubMenu configuration)
+          IServiceProvider serviceProvider, IEnumerable<ConfigurationItemViewModel> configurationItemViewModels, object? key, ConfigurationSubMenu configuration)
         {
-            IEnumerable<ConfigurationItemViewModel> configurationSubMenu = serviceProvider.GetRequiredKeyedService<IEnumerable<ConfigurationItemViewModel>>(key);
-            IConfigurationSubMenu configurationServices = serviceProvider.GetRequiredKeyedService<IConfigurationSubMenu>(key);
+            ConfigurationStoreSubMenu configurationStoreSubMenu = serviceProvider.GetRequiredKeyedService<ConfigurationStoreSubMenu>(key);
 
             ConfigurationSubMenuViewModel  viewModel = new(
-               configuration, configurationServices, configurationSubMenu);
+               configuration, configurationStoreSubMenu, configurationItemViewModels);
 
             return viewModel;
         }

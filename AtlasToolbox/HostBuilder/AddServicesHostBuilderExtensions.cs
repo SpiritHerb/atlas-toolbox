@@ -1,6 +1,6 @@
 ﻿using AtlasToolbox.Services;
 using AtlasToolbox.Services.ConfigurationServices;
-using AtlasToolbox.Services.ConfigurationServicesParent;
+using AtlasToolbox.Services.ConfigurationSubMenu;
 using AtlasToolbox.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,7 +30,7 @@ namespace AtlasToolbox.HostBuilder
             host.ConfigureServices((_, services) =>
             {
                 services.AddKeyedTransient<IConfigurationService, AnimationsConfigurationService>("Animations");
-                //services.AddKeyedTransient<IConfigurationService, AppStoreArchivingConfigurationService>("AppStoreArchiving");
+                services.AddKeyedTransient<IConfigurationService, AppStoreArchivingConfigurationService>("AppStoreArchiving");
                 //services.AddKeyedTransient<IConfigurationService, BluetoothConfigurationService>("Bluetooth");
                 //services.AddKeyedTransient<IConfigurationService, FsoAndGameBarConfigurationService>("FsoAndGameBar");
                 //services.AddKeyedTransient<IConfigurationService, WindowsFirewallConfigurationService>("WindowsFirewall");

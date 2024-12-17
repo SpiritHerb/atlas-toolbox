@@ -11,11 +11,13 @@ namespace AtlasToolbox.Models
     public class ConfigurationSubMenu
     {
         public string Name { get; set; }
-        public ConfigurationSubMenuTypes Type { get; set; }
+        public string Description { get; set; }
+        public ConfigurationType Type { get; set; }
 
-        public ConfigurationSubMenu(string name, ConfigurationSubMenuTypes type)
+        public ConfigurationSubMenu(string name, string description, ConfigurationType type)
         {
             Name = name;
+            Description = description;
             Type = type;
         }
     }

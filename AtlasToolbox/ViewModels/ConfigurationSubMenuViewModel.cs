@@ -1,6 +1,7 @@
 ﻿using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
 using AtlasToolbox.Services.ConfigurationServices;
+using AtlasToolbox.Services.ConfigurationSubMenu;
 using AtlasToolbox.Stores;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -13,21 +14,23 @@ namespace AtlasToolbox.ViewModels
 {
     public class ConfigurationSubMenuViewModel
     {
-        private readonly IConfigurationSubMenu _iConfigurationSubMenu;
-        private readonly IEnumerable<ConfigurationItemViewModel> _configurationItems;
+        private readonly ConfigurationStoreSubMenu _configurationStoreSubMenu;
+
+        public IEnumerable<ConfigurationItemViewModel> _configurationItems { get; set; }
 
         public ConfigurationSubMenu _configurationSubMenu { get; set; }
         public string Name => _configurationSubMenu.Name;
-        public ConfigurationSubMenuTypes Type => _configurationSubMenu.Type;
+        public string Description => _configurationSubMenu.Description;
+        public ConfigurationType Type => _configurationSubMenu.Type;
 
         public ConfigurationSubMenuViewModel(
             ConfigurationSubMenu configurationSubMenu,
-            IConfigurationSubMenu iConfigurationSubMenu, 
+            ConfigurationStoreSubMenu configurationStoreSubMenu,
             IEnumerable<ConfigurationItemViewModel> configurationItems)
         {
             _configurationSubMenu = configurationSubMenu;
             _configurationItems = configurationItems;
-            _iConfigurationSubMenu = iConfigurationSubMenu;
+            _configurationStoreSubMenu = configurationStoreSubMenu;
         }
     }
 }
