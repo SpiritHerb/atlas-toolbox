@@ -87,7 +87,7 @@ namespace AtlasToolbox.HostBuilder
         {
             host.ConfigureServices((_,services) =>
             {
-                services.AddKeyedTransient<IConfigurationMenu, ContextMenuConfigurationServiceParent>("ContextMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, ContextMenuSubMenu>("ContextMenu");
             });
 
             return host;

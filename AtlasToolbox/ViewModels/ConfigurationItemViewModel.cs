@@ -30,6 +30,7 @@ namespace AtlasToolbox.ViewModels
             set
             {
                 _currentSetting = value;
+                _configurationStore.CurrentSetting = CurrentSetting;
             }
         }
 
@@ -45,7 +46,6 @@ namespace AtlasToolbox.ViewModels
         }
 
         public ICommand SaveConfigurationCommand { get; }
-        public ICommand NavigateConfigurationItemMenuCommand { get; }
 
         public ConfigurationItemViewModel(
             Configuration configuration,
@@ -59,7 +59,6 @@ namespace AtlasToolbox.ViewModels
 
 
             _currentSetting = FetchCurrentSetting();
-            _configurationStore.CurrentSettingChanged += ConfigurationStore_CurrentSettingChanged;
 
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
 
@@ -79,11 +78,6 @@ namespace AtlasToolbox.ViewModels
             {
                 IsBusy = false;
             }
-        }
-
-        private void ConfigurationStore_CurrentSettingChanged()
-        {
-            CurrentSetting = _configurationStore.CurrentSetting;
         }
     }
 }

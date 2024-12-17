@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AtlasToolbox.Enums;
+using AtlasToolbox.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MVVMEssentials.Services;
@@ -13,21 +15,22 @@ namespace AtlasToolbox.ViewModels
     {
         public IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
 
-        public IEnumerable<ConfigurationItemMenuViewModel> ConfigurationItemMenuViewModel { get; }
+        public IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModel { get; }
 
         public GeneralConfigViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels, 
-            IEnumerable<ConfigurationItemMenuViewModel> configurationItemMenuViewModel)
+            IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
         {
+             
             ConfigurationItemViewModels = configurationItemViewModels;
-            ConfigurationItemMenuViewModel = configurationItemMenuViewModel;
+            ConfigurationSubMenuViewModel = configurationSubMenuViewModel;
         }
 
         public static GeneralConfigViewModel LoadViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
-            IEnumerable<ConfigurationItemMenuViewModel> configurationMenuItemsViewModels)
+            IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModels)
         {
-            GeneralConfigViewModel viewModel = new(configurationItemViewModels, configurationMenuItemsViewModels);
+            GeneralConfigViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels);
 
             return viewModel;
         }

@@ -4,19 +4,19 @@ using System.Collections.Generic;
 
 namespace AtlasToolbox.Stores
 {
-    public class ConfigurationMenu
+    public class ConfigurationStoreSubMenu
     {
-        private List<string> _configurationStores;
+        private List<string> _configurationServices;
 
         public List<string> ConfigurationStores
         {
             get
             {
-                return _configurationStores;
+                return _configurationServices;
             }
             set
             {
-                _configurationStores = value;
+                _configurationServices = value;
             }
         }
     }

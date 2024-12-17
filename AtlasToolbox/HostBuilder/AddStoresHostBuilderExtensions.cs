@@ -82,7 +82,7 @@ namespace AtlasToolbox.HostBuilder
         {
             host.ConfigureServices((_, services) =>
             {
-                services.AddKeyedSingleton<ConfigurationMenu>("ContextMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("ContextMenu");
             });
 
             return host;

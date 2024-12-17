@@ -13,9 +13,48 @@
     mc:Ignorable="d">
 
     <Grid>
-        <ItemsControl
+        <!--<ItemsControl
             ItemTemplate="{StaticResource ConfigurationItemTemplate}"
-            ItemsSource="{Binding ConfigurationItemViewModels}"/>
+            ItemsSource="{Binding ConfigurationItemViewModels}"/>-->
+        <ItemsControl ItemsSource="{Binding ConfigurationItemViewModels}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:SettingsCard Header="{Binding Name}">
+                        <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
+                    </controls:SettingsCard>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <ItemsControl ItemsSource="{Binding ConfigurationSubMenuViewModel}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:SettingsExpander Header="{Binding Name}">
+                        <controls:SettingsExpander.Items>
+                            <controls:SettingsCard Header="{Binding Name}">
+                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
+                            </controls:SettingsCard>
+                        </controls:SettingsExpander.Items>
+                    </controls:SettingsExpander>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <!--<controls:SettingsExpander
+                x:Name="aiSettingsExpander"
+                VerticalAlignment="Top"
+                Description="AI related features"
+                Header="AI Features"
+                HeaderIcon="{ui:FontIcon Glyph=&#xE91B;}">
+            <controls:SettingsExpander.Items>
+                <controls:SettingsCard Header="Microsoft Copilot">
+                    <ToggleSwitch x:Name="copilotSwitch"/>
+                </controls:SettingsCard>
+                <controls:SettingsCard Header="Recal">
+                    <ToggleSwitch/>
+                </controls:SettingsCard>
+            </controls:SettingsExpander.Items>
+        </controls:SettingsExpander>-->
 
         <!--<StackPanel Margin="0 36 72 0">
             <controls:SettingsExpander

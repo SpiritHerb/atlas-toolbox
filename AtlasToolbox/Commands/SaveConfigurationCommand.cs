@@ -26,18 +26,12 @@ namespace AtlasToolbox.Commands
         protected override async Task ExecuteAsync(object parameter)
         {
             bool currentSetting = _configurationStore.CurrentSetting;
-            bool selectedSetting = (bool)parameter;
-
-            if (selectedSetting == currentSetting)
-            {
-                return;
-            }
 
             _configurationItemViewModel.IsBusy = true;
 
             try
             {
-                await Task.Run(selectedSetting
+                await Task.Run(currentSetting
                     ? _configurationService.Enable
                     : _configurationService.Disable);
             }

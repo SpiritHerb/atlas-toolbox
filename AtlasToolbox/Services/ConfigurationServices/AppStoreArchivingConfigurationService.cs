@@ -15,7 +15,6 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         private readonly ConfigurationStore _appStoreArchivingConfigurationService;
 
-        public AppStoreArchivingConfigurationService() { }
         public AppStoreArchivingConfigurationService(
             [FromKeyedServices("AppStoreArchiving")] ConfigurationStore appStoreArchivingConfigurationStore)
         {

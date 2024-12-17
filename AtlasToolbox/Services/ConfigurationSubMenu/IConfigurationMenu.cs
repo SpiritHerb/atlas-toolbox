@@ -1,6 +1,6 @@
 ﻿namespace AtlasToolbox.Services.ConfigurationServices
 {
-    public interface IConfigurationMenu
+    public interface IConfigurationSubMenu
     {
         void AddConfigurationService();
     }

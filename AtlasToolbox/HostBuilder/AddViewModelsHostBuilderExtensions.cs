@@ -34,30 +34,30 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
-        //private static IHostBuilder AddConfigurationMenuItemsViewModels(this IHostBuilder host)
-        //{
-        //    // TODO: Change configuration types
-        //    Dictionary<string, Configuration> configurationDictionary = new()
-        //    {
-        //        ["AppStoreArchiving"] = new("App Store Archiving", new AppStoreArchivingConfigurationService(), ConfigurationType.General),
-        //    };
-        //    host.ConfigureServices((_, services) =>
-        //    {
-        //        services.AddSingleton<IEnumerable<ConfigurationMenuItemsViewModel>>(provider =>
-        //        {
-        //            List<ConfigurationMenuItemsViewModel> viewModels = new();
+        private static IHostBuilder AddConfigurationSubMenu(this IHostBuilder host)
+        {
+            // TODO: Change configuration types
+            Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
+            {
+                ["ContextMenu"] = new("Context Menu", ConfigurationSubMenuTypes.ContextMenu)
+            };
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<ConfigurationSubMenuViewModel>>(provider =>
+                {
+                    List<ConfigurationSubMenuViewModel> viewModels = new();
 
-        //            foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
-        //            {
-        //                ConfigurationMenuItemsViewModel viewModel = CreateConfigurationMenuItemsViewModel(provider, item.Key, item.Value);
-        //                viewModels.Add(viewModel);
-        //            }
-        //            return viewModels;
-        //        });
-        //    });
+                    foreach (KeyValuePair<string, ConfigurationSubMenu> item in configurationDictionary)
+                    {
+                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, item.Key, item.Value);
+                        viewModels.Add(viewModel);
+                    }
+                    return viewModels;
+                });
+            });
 
-        //    return host;
-        //}
+            return host;
+        }
 
         private static IHostBuilder AddConfigurationItemViewModels(this IHostBuilder host)
         {
@@ -113,7 +113,7 @@ namespace AtlasToolbox.HostBuilder
                 //["Widgets"] = new("Desktop widgets", ConfigurationType.Customization),
                 //["WindowsSpotlight"] = new("Windows Spotlight", ConfigurationType.Customization),
                 //["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenu),
-                //["AppStoreArchiving"] = new("AppStoreArchiving", ConfigurationType.General),
+                ["AppStoreArchiving"] = new("AppStoreArchiving", ConfigurationType.ContextMenu),
 
             };
 
@@ -150,20 +150,20 @@ namespace AtlasToolbox.HostBuilder
         {
             return GeneralConfigViewModel.LoadViewModel(
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationItemMenuViewModel>());
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
         }
 
-        //private static ConfigurationMenuItemsViewModel CreateConfigurationMenuItemsViewModel(
-        //    IServiceProvider serviceProvider, object? key, Configuration configuration)
-        //{
-        //    ConfigurationMenu configurationMenu = serviceProvider.GetRequiredKeyedService<ConfigurationMenu>(key);
-        //    IConfigurationMenu configurationService = serviceProvider.GetRequiredKeyedService<IConfigurationMenu>(key);
+        private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
+            IServiceProvider serviceProvider, object? key, ConfigurationSubMenu configuration)
+        {
+            IEnumerable<ConfigurationItemViewModel> configurationSubMenu = serviceProvider.GetRequiredKeyedService<IEnumerable<ConfigurationItemViewModel>>(key);
+            IConfigurationSubMenu configurationServices = serviceProvider.GetRequiredKeyedService<IConfigurationSubMenu>(key);
 
-        //    ConfigurationMenuItemsViewModel viewModel = new(
-        //        configuration, configurationMenu, configurationService);
+            ConfigurationSubMenuViewModel  viewModel = new(
+               configuration, configurationServices, configurationSubMenu);
 
-        //    return viewModel;
-        //}
+            return viewModel;
+        }
 
         //public static ConfigurationMenuItemsMenuViewModel CreateConfigurationMenuItemsMenuViewModel(IServiceProvider serviceProvider, object? key)
         //{
@@ -185,11 +185,11 @@ namespace AtlasToolbox.HostBuilder
         //            CreateNoInternetNavigationService(serviceProvider, softwareNavigationService));
         //}
 
-        public static ConfigurationItemMenuViewModel CreateConfigurationItemMenuViewModel(IServiceProvider serviceProvider, object key)
-        {
-            return new(
-                serviceProvider.GetRequiredKeyedService<IConfigurationMenu>(key),
-                serviceProvider.GetRequiredKeyedService<IEnumerable<ConfigurationItemViewModel>>(key));
-        }
+        //public static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(IServiceProvider serviceProvider, object key)
+        //{
+        //    return new(
+        //        serviceProvider.GetRequiredKeyedService<IConfigurationSubMenu>(key),
+        //        serviceProvider.GetRequiredKeyedService<IEnumerable<ConfigurationItemViewModel>>(key));
+        //}
     }
 }

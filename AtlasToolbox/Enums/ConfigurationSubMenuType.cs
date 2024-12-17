@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AtlasToolbox.Enums
 {
-    enum ConfigurationMenuTypes
+    public enum ConfigurationSubMenuTypes
     {
         ContextMenu,
     }
