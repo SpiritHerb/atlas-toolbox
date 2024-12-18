@@ -11,6 +11,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class AnimationsConfigurationService : IConfigurationService
     {
+        //ComputerStateHelper computerStateHelper = new ComputerStateHelper();
+
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Animation";
         private const string STATE_VALUE_NAME = "state";
 
@@ -60,7 +62,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
 
-            //ComputerStateHelper.LogOffCommandWindow();
+            //computerStateHelper.LogOffCommandWindow();
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -81,8 +83,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
-            //ComputerStateHelper.LogOffCommandWindow();
-
+            //computerStateHelper.LogOffCommandWindow();
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }

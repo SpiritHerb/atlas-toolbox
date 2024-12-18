@@ -8,6 +8,7 @@
     <Style x:Key="SubMenuTemplate" TargetType="controls:SettingsExpander">
         <Setter Property="Header" Value="{Binding Name}"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="0,0,36,5" />
     </Style>
 
 
