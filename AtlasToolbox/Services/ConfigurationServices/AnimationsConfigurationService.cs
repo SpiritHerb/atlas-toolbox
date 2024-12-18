@@ -2,6 +2,7 @@
 using AtlasToolbox.Utils;
 using AtlasToolbox.Views;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using System;
 using System.Linq;
 using System.Threading;
@@ -80,7 +81,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
-           //ComputerStateHelper.LogOffCommandWindow();
+            //ComputerStateHelper.LogOffCommandWindow();
+
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }

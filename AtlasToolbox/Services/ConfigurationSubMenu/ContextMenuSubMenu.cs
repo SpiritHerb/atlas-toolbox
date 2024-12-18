@@ -7,10 +7,6 @@ namespace AtlasToolbox.Services.ConfigurationSubMenu
 {
     public class ContextMenuSubMenu : IConfigurationSubMenu
     {
-
-        private readonly List<string> _configurationKeyedServices;
-
-
         private readonly ConfigurationStoreSubMenu _contextMenuConfigurationSubMenu;
 
         public ContextMenuSubMenu(

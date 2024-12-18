@@ -10,6 +10,18 @@ namespace AtlasToolbox.Utils
 {
     public class CommandPromptHelper
     {
+
+        public static void RunCustomFile(string command)
+        {
+            Process commandPrompt = new Process();
+            commandPrompt.StartInfo.FileName = command;
+            commandPrompt.StartInfo.CreateNoWindow = true;
+            commandPrompt.StartInfo.UseShellExecute = false;
+
+            commandPrompt.Start();
+            commandPrompt.WaitForExit();
+        }
+        
         public static void RunCommand(string command)
         {
             Process commandPrompt = new Process();

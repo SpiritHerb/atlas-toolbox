@@ -20,8 +20,8 @@
             <ItemsControl ItemsSource="{Binding ConfigurationItemViewModels}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <controls:SettingsCard Header="{Binding Name}">
-                            <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
+                        <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}">
+                            <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
                         </controls:SettingsCard>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -30,7 +30,7 @@
             <ItemsControl ItemsSource="{Binding ConfigurationSubMenuViewModel}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <controls:SettingsExpander Style="{StaticResource SubMenuTemplate}" Header="{Binding Name}">
+                        <controls:SettingsExpander Style="{StaticResource SubMenuTemplate}" Header="{Binding Name}" Description="{Binding Description}">
                             <controls:SettingsExpander.Items>
                                 <ItemsControl ItemsSource="{Binding _configurationItems}">
                                     <ItemsControl.ItemTemplate>

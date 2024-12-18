@@ -7,16 +7,19 @@
 
     <Style x:Key="SubMenuTemplate" TargetType="controls:SettingsExpander">
         <Setter Property="Header" Value="{Binding Name}"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
 
     <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
         <Setter Property="Header" Value="{Binding Name}" />
         <Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>
-       </Style>
+        <Setter Property="Margin" Value="0,0,-75,0"/>
+    </Style>
 
-    
-    <Style x:Key="ConfigurationSubMenu" TargetType="controls:SettingsExpander">
+
+    <Style x:Key="ConfigurationSettingsCardTemplate" TargetType="controls:SettingsCard">
         <Setter Property="Header" Value="{Binding Name}" />
+        <Setter Property="Margin" Value="0,26,36,5" />
     </Style>
 </ResourceDictionary>

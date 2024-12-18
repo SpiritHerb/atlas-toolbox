@@ -33,6 +33,7 @@ namespace AtlasToolbox
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
+
         }
 
         public string GetAppTitleFromSystem()

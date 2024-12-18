@@ -8,6 +8,9 @@ using System.Diagnostics;
 using System;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using System.Runtime.CompilerServices;
+using AtlasToolbox.Utils;
+using Windows.Media.Protection.PlayReady;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -21,7 +24,6 @@ namespace AtlasToolbox
     {
         public static IHost _host { get; set; }
 
-
         public App()
         {
             _host = CreateHostBuilder().Build();
@@ -34,7 +36,6 @@ namespace AtlasToolbox
                 .AddStores()
                 .AddServices()
                 .AddViewModels();
-
         /// <summary>
         /// Invoked when the application is launched.
         /// </summary>

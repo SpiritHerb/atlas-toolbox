@@ -25,6 +25,9 @@
     <None Remove="Views\Troubleshooting.xaml" />
     <None Remove="Views\WindowsSettings.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Views\ContentDialog.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
@@ -46,6 +49,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\ContentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Troubleshooting.xaml">

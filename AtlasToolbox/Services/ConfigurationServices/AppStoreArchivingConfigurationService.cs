@@ -9,7 +9,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AppStoreArchiving";
         private const string STATE_VALUE_NAME = "state";
 
-        private const string APPX_KEY_NAME = @"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Appx";
+        private const string APPX_KEY_NAME = @"HKLM\Software\Policies\Microsoft\Windows\Appx";
 
         private const string ALLOW_AUTOMATIC_APP_ARCHIVING_VALUE_NAME = "AllowAutomaticAppArchiving";
 

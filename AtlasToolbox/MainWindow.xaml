@@ -14,28 +14,6 @@
 
 
     <Grid>
-       <!--<Border
-        x:Name="AppTitleBar"
-        Height="48"
-        Margin="48,0,0,0"
-        VerticalAlignment="Top"
-        Padding="0">
-            <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
-                <Image
-                   x:Name="AppFontIcon"
-                   Width="16"
-                   Height="16"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Source="/Assets/Square44x44Logo.png" />
-                <TextBlock
-                   Margin="12,0,0,0"
-                   Grid.Column="1"
-                   VerticalAlignment="Center"
-                   Style="{StaticResource CaptionTextBlockStyle}"
-                   Text="{x:Bind GetAppTitleFromSystem()}"/>
-            </StackPanel>
-        </Border>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
@@ -59,15 +37,13 @@
                 <Image Width="18" VerticalAlignment="Center" Source="ms-appx:///Assets/Tiles/TitlebarLogo.png" />
                 <TextBlock
                     x:Name="AppTitle"
-                    Margin="12,0,0,0"
+                    Margin="12,15,0,0"
                     VerticalAlignment="Center"
                     Style="{StaticResource CaptionTextBlockStyle}"
-                    Text="Test" />
+                    Text="AtlasOS Toolbox" />
                 <TextBox x:Name="AppTitleBarTextBox" MinWidth="300" Height="40" Margin="16,0,0,0" Visibility="Collapsed"  PlaceholderText="Enter any text" />
             </StackPanel>
         </Border>
-
-
         <NavigationView
                 x:Name="NavigationViewControl"
                 Grid.RowSpan="2"
@@ -78,6 +54,16 @@
                 IsTabStop="False" 
                 BackRequested="NavigationViewControl_BackRequested" 
                 ItemInvoked="NavigationViewControl_ItemInvoked">
+
+            <NavigationView.Resources>
+                <!--  This top margin is the height of the custom titleBar  -->
+                <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
+                <Thickness x:Key="NavigationViewMinimalContentMargin">0,48,0,0</Thickness>
+                <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
+                <!--  This is the rounded corner on the Top left of the L Pattern  -->
+                <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
+            </NavigationView.Resources>
+
             <NavigationView.HeaderTemplate>
                 <DataTemplate>
                     <Grid Margin="0,-10,0,0">
@@ -109,5 +95,7 @@
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" Padding="55,10,0,0"/>
         </NavigationView>
+
+
     </Grid>
 </Window>
