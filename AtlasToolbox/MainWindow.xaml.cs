@@ -7,6 +7,8 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Composition.SystemBackdrops;
 using System.Security.Principal;
 using Windows.UI.Popups;
+using AtlasToolbox.Utils;
+using Microsoft.Extensions.DependencyInjection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -21,6 +23,11 @@ namespace AtlasToolbox
         public MainWindow()
         {
             this.InitializeComponent();
+            //var dialogService = App._host?.Services.GetRequiredService<IDialogService>() as DialogService; 
+            //if (dialogService != null) 
+            //{
+            //    this.Loaded += (sender, e) => dialogService.SetXamlRoot(this.Content.XamlRoot); 
+            //}
             NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
             ContentFrame.Navigate(
                        typeof(Views.HomePage),
@@ -34,6 +41,16 @@ namespace AtlasToolbox
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
 
+        }
+
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var dialogService = App._host?.Services.GetRequiredService<IDialogService>() as DialogService;
+            if (dialogService != null)
+            {
+                dialogService.SetXamlRoot(this.Content.XamlRoot);
+            }
         }
 
         public string GetAppTitleFromSystem()
@@ -82,6 +99,11 @@ namespace AtlasToolbox
             }
 
             NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

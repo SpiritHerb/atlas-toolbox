@@ -27,9 +27,7 @@ namespace AtlasToolbox.ViewModels
         {
 
             ConfigurationItemViewModels = configurationItemViewModels;
-            ConfigurationSubMenuViewModel = configurationSubMenuViewModel;
-    
-            
+            ConfigurationSubMenuViewModel = configurationSubMenuViewModel;            
         }
 
         public static GeneralConfigViewModel LoadViewModel(

@@ -126,8 +126,8 @@ namespace AtlasToolbox.HostBuilder
                 //["WebSearch"] = new("Start Menu Web Search", ConfigurationType.Advanced),
                 //["Widgets"] = new("Desktop widgets", ConfigurationType.Customization),
                 //["WindowsSpotlight"] = new("Windows Spotlight", ConfigurationType.Customization),
-                ["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenu),
-                ["AppStoreArchiving"] = new("AppStoreArchiving", ConfigurationType.General),
+                //["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenu),
+                ["AppStoreArchiving"] = new("AppStoreArchiving", ConfigurationType.ContextMenu),
 
             };
 

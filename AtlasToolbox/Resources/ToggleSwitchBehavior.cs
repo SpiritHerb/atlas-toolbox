@@ -12,17 +12,18 @@ namespace AtlasToolbox
                 typeof(bool),
                 typeof(ToggleSwitchBehavior),
                 new PropertyMetadata(false, OnCurrentSettingChanged));
-    
+
+        private static bool _isInitialized = false;
         public static bool GetCurrentSetting(DependencyObject obj)
         {
             return (bool)obj.GetValue(CurrentSettingProperty);
         }
-    
+
         public static void SetCurrentSetting(DependencyObject obj, bool value)
         {
             obj.SetValue(CurrentSettingProperty, value);
         }
-    
+
         private static void OnCurrentSettingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is ToggleSwitch toggleSwitch)
@@ -37,23 +38,28 @@ namespace AtlasToolbox
                 }
             }
         }
-    
+
         private static void OnToggled(object sender, RoutedEventArgs e)
         {
-            if (sender is ToggleSwitch toggleSwitch)
+            if (_isInitialized)
             {
-                var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
-                if (toggleSwitch.IsOn)
+                if (sender is ToggleSwitch toggleSwitch)
                 {
-                    item.CurrentSetting = true;
-                    item.SaveConfigurationCommand.Execute(toggleSwitch);
-                }
-                else
-                {
-                    item.CurrentSetting = false;
-                    item.SaveConfigurationCommand.Execute(toggleSwitch);
+                    var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
+                    if (toggleSwitch.IsOn)
+                    {
+                        item.CurrentSetting = true;
+                        item.SaveConfigurationCommand.Execute(toggleSwitch);
+                    }
+                    else
+                    {
+                        item.CurrentSetting = false;
+                        item.SaveConfigurationCommand.Execute(toggleSwitch);
+                    }
                 }
             }
+            _isInitialized = true;
+           
         }
     }
 }

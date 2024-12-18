@@ -14,6 +14,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         //ComputerStateHelper computerStateHelper = new ComputerStateHelper();
 
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Animation";
+        private const string test = @"HKLM\SOFTWARE\AtlasOS\Test";
         private const string STATE_VALUE_NAME = "state";
 
 
@@ -34,16 +35,18 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string USER_PREFERENCES_MASK_VALUE_NAME = "UserPreferencesMask";
         private const string FONT_SMOOTHING_VALUE_NAME = "FontSmoothing";
         private const string DRAG_FULL_WINDOWS_VALUE_NAME = "DragFullWindows";
-        
 
 
 
+        private readonly IDialogService _dialogService;
         private readonly ConfigurationStore _animationsConfigurationStore;
 
         public AnimationsConfigurationService(
-            [FromKeyedServices("Animations")] ConfigurationStore animationsConfigurationStore)
+            [FromKeyedServices("Animations")] ConfigurationStore animationsConfigurationStore,
+            IDialogService dialogService)
         {
             _animationsConfigurationStore = animationsConfigurationStore;
+            _dialogService = dialogService;
         }
 
         public void Disable()
@@ -62,7 +65,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
 
-            //computerStateHelper.LogOffCommandWindow();
+            _dialogService.ShowMessageDialog("Title", "test");
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -82,8 +85,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.SetValue(DWM_KEY_NAME, ENABLE_AERO_PEEK_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             //RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(test, STATE_VALUE_NAME, 1);
 
-            //computerStateHelper.LogOffCommandWindow();
+            _dialogService.ShowMessageDialog("Title", "test");
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }

@@ -13,7 +13,7 @@
     </Window.SystemBackdrop>
 
 
-    <Grid>
+    <Grid Loaded="OnLoaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />

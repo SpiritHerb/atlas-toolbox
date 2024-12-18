@@ -6,69 +6,84 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using AtlasToolbox.Views;
+using CommunityToolkit.WinUI;
+using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Windows.ApplicationModel.Core;
 
 namespace AtlasToolbox.Utils
 {
-    public class ComputerStateHelper
+    public class DialogService : IDialogService
     {
-        public void RestartCommandWindow()
+        private XamlRoot _xamlRoot;
+
+        public void SetXamlRoot(XamlRoot xamlRoot)
         {
-            //string msgtext = "Would you like to restart to apply the changes?";
-            //string txt = "Restart to apply changes";
-            //MessageBoxButton button = MessageBoxButton.YesNo;
-            //MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
-
-            //switch (result)
-            //{
-            //    case MessageBoxResult.Yes:
-            //        CommandPromptHelper.RunCommand("logoff");
-            //        break;
-            //    case MessageBoxResult.No:
-
-            //        break;
-            //}
-            //Thread restartWindowThread = new Thread(new ThreadStart(() =>
-            //{
-            //    RestartComputerView restartComputerView = new RestartComputerView();
-
-            //    restartComputerView.ShowDialog();
-
-            //    System.Windows.Threading.Dispatcher.Run();
-            //}));
-            //restartWindowThread.SetApartmentState(ApartmentState.STA);
-            //restartWindowThread.IsBackground = false;
-            //restartWindowThread.Start();
+            _xamlRoot = xamlRoot;
         }
 
-        public static void LogOffCommandWindow()
+        public async void ShowMessageDialog(string title, string message)
         {
-            //string msgtext = "Would you like to logout to apply the changes?";
-            //string txt = "Logout to apply changes";
-            //MessageBoxButton button = MessageBoxButton.YesNo;
-            //MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
+            if (_xamlRoot == null)
+            {
+                throw new InvalidOperationException("XamlRoot is not set.");
+            }
 
-            //switch (result)
-            //{
-            //    case MessageBoxResult.Yes:
-            //        CommandPromptHelper.RunCommand("logoff");
-            //        break;
-            //    case MessageBoxResult.No:
+            //ContentDialog dialog = new ContentDialog();
+            //dialog.XamlRoot = _xamlRoot;
+            //dialog.Title = title;
+            //dialog.Content = message;
+            //dialog.PrimaryButtonText = "OK";
+            //await dialog.ShowAsync(); 
 
-            //        break;
-            //}
-            //Thread logOffWindowThread = new Thread(new ThreadStart(() =>
-            //{
-            //    LogOffComputerView logOffComputerView = new LogOffComputerView();
-
-            //    logOffComputerView.ShowDialog();
-
-            //    System.Windows.Threading.Dispatcher.Run();
-            //}));
-
-            //logOffWindowThread.SetApartmentState(ApartmentState.STA);
-            //logOffWindowThread.IsBackground = false;
-            //logOffWindowThread.Start();
+            //var dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            //if (dispatcherQueue == null) { throw new InvalidOperationException("Dispatcherquue is not available."); }
+            //dispatcherQueue.TryEnqueue(async () => {
+            //    try
+            //    { 
+            //        ContentDialog dialog = new ContentDialog 
+            //        { 
+            //            XamlRoot = _xamlRoot,
+            //            Title = title,
+            //            Content = message, 
+            //            PrimaryButtonText = "OK" 
+            //        };
+            //        await dialog.ShowAsync(); 
+            //    }
+            //    catch (System.Runtime.InteropServices.COMException ex)
+            //    {   System.Diagnostics.Debug.WriteLine($"COMException Error Code: {ex.ErrorCode}"); 
+            //        System.Diagnostics.Debug.WriteLine($"COMException Message: {ex.Message}"); 
+            //        throw; 
+            //    } 
+            //    catch (Exception ex) 
+            //    { // Log other exceptions
+            //      System.Diagnostics.Debug.WriteLine($"Error showing dialog: {ex.Message}"); throw; } 
+            //});if (_xamlRoot == null) { throw new InvalidOperationException("XamlRoot is not set."); }
+            //var dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            //if (dispatcherQueue == null) { throw new InvalidOperationException("Dispatcherquue is not available."); }
+            //dispatcherQueue.TryEnqueue(async () => {
+            //    try
+            //    { 
+            //        ContentDialog dialog = new ContentDialog 
+            //        { 
+            //            XamlRoot = _xamlRoot,
+            //            Title = title,
+            //            Content = message, 
+            //            PrimaryButtonText = "OK" 
+            //        };
+            //        await dialog.ShowAsync(); 
+            //    }
+            //    catch (System.Runtime.InteropServices.COMException ex)
+            //    {   System.Diagnostics.Debug.WriteLine($"COMException Error Code: {ex.ErrorCode}"); 
+            //        System.Diagnostics.Debug.WriteLine($"COMException Message: {ex.Message}"); 
+            //        throw; 
+            //    } 
+            //    catch (Exception ex) 
+            //    { // Log other exceptions
+            //      System.Diagnostics.Debug.WriteLine($"Error showing dialog: {ex.Message}"); throw; } 
+            //});
         }
+
     }
 }
