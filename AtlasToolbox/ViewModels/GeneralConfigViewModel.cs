@@ -10,40 +10,40 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MVVMEssentials.Services;
 using Microsoft.UI.Xaml.Data;
+using System.Collections.ObjectModel;
 
 namespace AtlasToolbox.ViewModels
 {
-    class GeneralConfigViewModel
+    class GeneralConfigViewModel : ObservableObject
     {
-        public IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
+        private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
 
-        public IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModel { get; }
+        private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
 
-        public List<Object> ConfigurationItems { get; }
-        public List<Object> ConfigurationItemSubMenu { get; }
+        
+        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
 
-        public ICollectionView FilteredTestModels { get; }
+        public ObservableCollection<ConfigurationSubMenuViewModel> ConfigurationItemSubMenu { get; set; }
 
-        public ConfigurationType? FilterType = ConfigurationType.General;
         public GeneralConfigViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels, 
             IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
         {
 
             ConfigurationItemViewModels = configurationItemViewModels;
-            ConfigurationSubMenuViewModel = configurationSubMenuViewModel;
+            ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
 
-            ConfigurationItems = new List<object>();
-            ConfigurationItemSubMenu = new List<object>();
+            ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>();
+            ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>();
 
-            foreach (var configurationItem in ConfigurationItemViewModels)
+            foreach (ConfigurationItemViewModel configurationItem in ConfigurationItemViewModels)
             {
                 if (configurationItem.Type == ConfigurationType.General)
                 {
-                    ConfigurationItems.Add(configurationItem);
+                    ConfigurationItem.Add(configurationItem);
                 }
             }
-            foreach (var configurationSubMenuItem in ConfigurationSubMenuViewModel)
+            foreach (ConfigurationSubMenuViewModel configurationSubMenuItem in ConfigurationSubMenuViewModels)
             {
                 if (configurationSubMenuItem.Type == ConfigurationType.General)
                 {

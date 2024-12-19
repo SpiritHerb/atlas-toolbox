@@ -3,6 +3,7 @@ using AtlasToolbox.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Microsoft.UI.Xaml;
+using CommunityToolkit.WinUI.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -15,10 +16,21 @@ namespace AtlasToolbox.Views;
 public sealed partial class GeneralConfig : Page
 {
     private readonly GeneralConfigViewModel _viewModel;
+
     public GeneralConfig()
     {
         this.InitializeComponent();
         _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
         this.DataContext = _viewModel;
+    }
+
+    private void OnCardClicked(object sender, RoutedEventArgs e)
+    {
+        var settingCard = sender as SettingsCard; 
+        var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+
+        var template = ItemsControl.ItemTemplate;
+
+        Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
     }
 }

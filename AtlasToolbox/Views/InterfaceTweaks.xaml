@@ -13,36 +13,46 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel>
-            <ItemsControl ItemsSource="{Binding ConfigurationItems}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}">
-                            <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
-                        </controls:SettingsCard>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <ScrollViewer>
+            <StackPanel>
+                <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding ConfigurationItemSubMenu}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Click="OnCardClicked" IsClickEnabled="True"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-            <ItemsControl ItemsSource="{Binding ConfigurationItemSubMenu}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:SettingsExpander Style="{StaticResource SubMenuTemplate}" Header="{Binding Name}" Description="{Binding Description}">
-                            <controls:SettingsExpander.Items>
-                                <ItemsControl ItemsSource="{Binding _configurationItems}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <controls:SettingsCard Header="{Binding Name}">
-                                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
-                                            </controls:SettingsCard>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </controls:SettingsExpander.Items>
-                        </controls:SettingsExpander>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+                <!--<ItemsControl ItemsSource="{Binding ConfigurationItemSubMenu}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsExpander Style="{StaticResource SubMenuTemplate}" Header="{Binding Name}"  Description="{Binding Description}">
+                                <controls:SettingsExpander.Items>
+                                    <ItemsControl ItemsSource="{Binding ConfigurationItems}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <controls:SettingsCard Style="{StaticResource ConfigurationSubSetting}" Header="{Binding Name}">
+                                                    <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
+                                                </controls:SettingsCard>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </controls:SettingsExpander.Items>
+                            </controls:SettingsExpander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+
+                <ItemsControl ItemsSource="{Binding ConfigurationItem}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}">
+                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationSubSettingItemTemplate}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

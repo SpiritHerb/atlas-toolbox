@@ -16,7 +16,15 @@
     <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
         <Setter Property="Header" Value="{Binding Name}" />
         <Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>
-        <Setter Property="Margin" Value="0,-7,-75,0"/>
+        <Setter Property="Margin" Value="0,0,-75,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ConfigurationSubSettingItemTemplate" TargetType="ToggleSwitch">
+        <Setter Property="Header" Value="{Binding Name}" />
+        <Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>
+        <Setter Property="Margin" Value="0,-5,-75,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
 
@@ -31,5 +39,7 @@
         <Setter Property="MinHeight" Value="60"/>
         <Setter Property="Height" Value="60"/>
         <Setter Property="BorderBrush" Value="#0DFFFFFF"/>
+        <Setter Property="Margin" Value="0,1,0,0"/>
     </Style>
+
 </ResourceDictionary>

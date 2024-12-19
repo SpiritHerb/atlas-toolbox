@@ -14,6 +14,7 @@
     <UseWPF>False</UseWPF>
     <WindowsPackageType>None</WindowsPackageType>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="MainWindow.xaml" />
@@ -65,6 +66,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\SubSection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Views\ContentDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>

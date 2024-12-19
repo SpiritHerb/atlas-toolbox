@@ -10,6 +10,12 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <ResourceDictionary Source="Resources\ConfigurationItemTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="DetailTemplate">
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}" FontSize="24" />
+                    <TextBlock Text="{Binding Description}" FontSize="14" />
+                </StackPanel>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

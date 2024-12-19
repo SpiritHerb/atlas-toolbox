@@ -15,13 +15,13 @@ namespace AtlasToolbox.Services
 
         public void DeleteElement(string objectId, uint elementType)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.DeleteElement(elementType);
         }
 
-        public object? GetElementValue(string objectId, uint elementType)
+        public object GetElementValue(string objectId, uint elementType)
         {
-            using BcdObject? obj = _store.OpenObject(objectId);
+            using BcdObject obj = _store.OpenObject(objectId);
 
             if (obj is null)
             {
@@ -37,7 +37,7 @@ namespace AtlasToolbox.Services
 
             using BcdElement element = obj.GetElement(elementType)!;
 
-            object? value = element switch
+            object value = element switch
             {
                 BcdBooleanElement booleanElement => booleanElement.Boolean,
                 BcdIntegerElement integerElement => integerElement.Integer,
@@ -53,37 +53,37 @@ namespace AtlasToolbox.Services
 
         public void SetBooleanElement(string objectId, uint elementType, bool value)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.SetBooleanElement(elementType, value);
         }
 
         public void SetIntegerElement(string objectId, uint elementType, ulong value)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.SetIntegerElement(elementType, value);
         }
 
         public void SetIntegerListElement(string objectId, uint elementType, IEnumerable<ulong> value)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.SetIntegerListElement(elementType, value);
         }
 
         public void SetObjectElement(string objectId, uint elementType, string value)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.SetObjectElement(elementType, value);
         }
 
         public void SetObjectListElement(string objectId, uint elementType, IEnumerable<string> value)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.SetObjectListElement(elementType, value);
         }
 
         public void SetStringElement(string objectId, uint elementType, string value)
         {
-            using BcdObject? @object = _store.OpenObject(objectId);
+            using BcdObject @object = _store.OpenObject(objectId);
             @object?.SetStringElement(elementType, value);
         }
     }

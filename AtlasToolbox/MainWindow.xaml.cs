@@ -5,10 +5,8 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Composition.SystemBackdrops;
-using System.Security.Principal;
-using Windows.UI.Popups;
-using AtlasToolbox.Utils;
-using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
+using AtlasToolbox.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -40,7 +38,6 @@ namespace AtlasToolbox
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
-
         }
 
         public string GetAppTitleFromSystem()
@@ -66,8 +63,7 @@ namespace AtlasToolbox
             }
         }
 
-
-    private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (ContentFrame.CanGoBack) ContentFrame.GoBack();
         }
@@ -81,7 +77,7 @@ namespace AtlasToolbox
                 // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
             }
-            else if (ContentFrame.SourcePageType != null)
+            else if (ContentFrame.SourcePageType != null && ContentFrame.SourcePageType != typeof(Views.SubSection))
             {
                 NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
                     .OfType<NavigationViewItem>()
@@ -89,11 +85,6 @@ namespace AtlasToolbox
             }
 
             NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

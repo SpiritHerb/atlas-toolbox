@@ -3,12 +3,7 @@ using AtlasToolbox.Models;
 using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Services.ConfigurationSubMenu;
 using AtlasToolbox.Stores;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -16,20 +11,22 @@ namespace AtlasToolbox.ViewModels
     {
         private readonly ConfigurationStoreSubMenu _configurationStoreSubMenu;
 
-        public IEnumerable<ConfigurationItemViewModel> _configurationItems { get; set; }
+        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItems { get; set; }
 
         public ConfigurationSubMenu _configurationSubMenu { get; set; }
         public string Name => _configurationSubMenu.Name;
         public string Description => _configurationSubMenu.Description;
         public ConfigurationType Type => _configurationSubMenu.Type;
 
+        public ConfigurationSubMenuViewModel() { }
+
         public ConfigurationSubMenuViewModel(
             ConfigurationSubMenu configurationSubMenu,
             ConfigurationStoreSubMenu configurationStoreSubMenu,
-            IEnumerable<ConfigurationItemViewModel> configurationItems)
+            ObservableCollection<ConfigurationItemViewModel> configurationItems)
         {
             _configurationSubMenu = configurationSubMenu;
-            _configurationItems = configurationItems;
+            ConfigurationItems = configurationItems;
             _configurationStoreSubMenu = configurationStoreSubMenu;
         }
     }

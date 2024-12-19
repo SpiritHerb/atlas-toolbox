@@ -1,4 +1,5 @@
 using AtlasToolbox.ViewModels;
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -32,6 +33,16 @@ namespace AtlasToolbox.Views
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService < InterfaceTweaksViewModel>();
             this.DataContext = _viewModel;
+        }
+
+        private void OnCardClicked(object sender, RoutedEventArgs e)
+        {
+            var settingCard = sender as SettingsCard;
+            var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+
+            var template = ItemsControl.ItemTemplate;
+
+            Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
         }
     }
 }
