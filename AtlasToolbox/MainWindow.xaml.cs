@@ -43,16 +43,6 @@ namespace AtlasToolbox
 
         }
 
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            var dialogService = App._host?.Services.GetRequiredService<IDialogService>() as DialogService;
-            if (dialogService != null)
-            {
-                dialogService.SetXamlRoot(this.Content.XamlRoot);
-            }
-        }
-
         public string GetAppTitleFromSystem()
         {
             return Windows.ApplicationModel.Package.Current.DisplayName;

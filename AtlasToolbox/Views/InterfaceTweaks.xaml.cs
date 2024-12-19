@@ -1,3 +1,5 @@
+using AtlasToolbox.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,9 +25,13 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class InterfaceTweaks : Page
     {
+        private readonly InterfaceTweaksViewModel _viewModel;
+
         public InterfaceTweaks()
         {
             this.InitializeComponent();
+            _viewModel = App._host.Services.GetRequiredService < InterfaceTweaksViewModel>();
+            this.DataContext = _viewModel;
         }
     }
 }

@@ -9,6 +9,7 @@ using AtlasToolbox.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MVVMEssentials.Services;
+using Microsoft.UI.Xaml.Data;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -18,7 +19,10 @@ namespace AtlasToolbox.ViewModels
 
         public IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModel { get; }
 
-        public ICommand FilterCommand { get; }
+        public List<Object> ConfigurationItems { get; }
+        public List<Object> ConfigurationItemSubMenu { get; }
+
+        public ICollectionView FilteredTestModels { get; }
 
         public ConfigurationType? FilterType = ConfigurationType.General;
         public GeneralConfigViewModel(
@@ -27,7 +31,25 @@ namespace AtlasToolbox.ViewModels
         {
 
             ConfigurationItemViewModels = configurationItemViewModels;
-            ConfigurationSubMenuViewModel = configurationSubMenuViewModel;            
+            ConfigurationSubMenuViewModel = configurationSubMenuViewModel;
+
+            ConfigurationItems = new List<object>();
+            ConfigurationItemSubMenu = new List<object>();
+
+            foreach (var configurationItem in ConfigurationItemViewModels)
+            {
+                if (configurationItem.Type == ConfigurationType.General)
+                {
+                    ConfigurationItems.Add(configurationItem);
+                }
+            }
+            foreach (var configurationSubMenuItem in ConfigurationSubMenuViewModel)
+            {
+                if (configurationSubMenuItem.Type == ConfigurationType.General)
+                {
+                    ConfigurationItemSubMenu.Add(configurationSubMenuItem);
+                }
+            }
         }
 
         public static GeneralConfigViewModel LoadViewModel(

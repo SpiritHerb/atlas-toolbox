@@ -13,9 +13,13 @@ namespace AtlasToolbox.Enums
         Security,
         Performance,
         Privacy,
-        Customization,
         Advanced,
-        Other,
-        ContextMenu,
+        Troubleshooting,
+        ContextMenuSubMenu,
+        AiSubMenu,
+        ServicesSubMenu,
+        CpuIdleSubMenu,
+        BootConfigurationSubMenu,
+        FileExplorerSubMenu,
     }
 }

@@ -32,16 +32,30 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240916" />
+    <PackageReference Include="Microsoft.Dism" Version="3.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.241114004-experimental1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageReference Include="MVVMEssentials.WPF" Version="1.0.3" />
+    <PackageReference Include="System.Management" Version="7.0.2" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="7.0.1" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="BcdSharp">
+      <HintPath>..\lib\BcdSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharpBCDLib">
+      <HintPath>..\..\..\..\Downloads\CSharpBCDLib-master\CSharpBCDLib\bin\Release\CSharpBCDLib.dll</HintPath>
+    </Reference>
+    <Reference Include="WmiPnp">
+      <HintPath>..\..\..\..\Downloads\WmiPnp-master\WmiPnp\bin\Release\net6.0-windows\WmiPnp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <!--
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
     Tools extension to be activated for this project even if the Windows App SDK Nuget

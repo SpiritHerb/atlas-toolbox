@@ -29,7 +29,8 @@ namespace AtlasToolbox.HostBuilder
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<MainViewModel>();
-                services.AddTransient(CreateConfigurationViewModel);
+                services.AddTransient(CreateGeneralConfigViewModel);
+                services.AddTransient(CreateInterfaceTweaksViewModel);
             });
 
             host.AddConfigurationItemViewModels();
@@ -43,7 +44,12 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
-                ["ContextMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.General)
+                ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.General),
+                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.General),
+                ["ServicesSubMenu"] = new("Services", "Everything related to services in Windows", ConfigurationType.Advanced),
+                ["CPUIdleSubMenu"] = new("CPU idle", "Everything related to CPU idling in Windows", ConfigurationType.General),
+                ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
+                ["FileExplorerSubMenu"] = new("File Explorer customization", "Everything related to customizing the Windows File Explorer", ConfigurationType.Interface),
             };
             host.ConfigureServices((_, services) =>
             {
@@ -78,56 +84,56 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, Configuration> configurationDictionary = new()
             {
-                ["Animations"] = new ("Animations", ConfigurationType.General),
-                //["Bluetooth"] = new("Bluetooth", ConfigurationType.Performance),
-                //["FsoAndGameBar"] = new("FSO and Game Bar", ConfigurationType.Performance),
+                ["Animations"] = new ("Animations", ConfigurationType.Interface),
+                ["Bluetooth"] = new("Bluetooth", ConfigurationType.ServicesSubMenu),
+                ["FsoAndGameBar"] = new("FSO and Game Bar", ConfigurationType.General),
                 //["WindowsFirewall"] = new("Firewall", ConfigurationType.Privacy),
                 //["GameMode"] = new("Game Mode", ConfigurationType.Performance),
                 //["Hags"] = new("HAGS", ConfigurationType.Advanced),
-                //["LanmanWorkstation"] = new("Lanman Workstation (SMB)", ConfigurationType.Customization),
+                ["LanmanWorkstation"] = new("Lanman Workstation (SMB)", ConfigurationType.ServicesSubMenu),
                 //["MicrosoftStore"] = new("Microsoft Store", ConfigurationType.Customization),
-                //["NetworkDiscovery"] = new("Network Discovery", ConfigurationType.Customization),
+                ["NetworkDiscovery"] = new("Network Discovery", ConfigurationType.ServicesSubMenu),
                 //["Notifications"] = new("Notifications", ConfigurationType.Customization),
-                //["Printing"] = new("Printing", ConfigurationType.Customization),
-                //["SearchIndexing"] = new("Search Indexing", ConfigurationType.Customization),
-                //["Troubleshooting"] = new("Troubleshooting", ConfigurationType.Customization),
+                ["Printing"] = new("Printing", ConfigurationType.ServicesSubMenu),
+                ["SearchIndexing"] = new("Search Indexing", ConfigurationType.General),
+                ["Troubleshooting"] = new("Troubleshooting", ConfigurationType.Troubleshooting),
                 //["Uwp"] = new("UWP", ConfigurationType.Customization),
                 //["Vpn"] = new("VPN", ConfigurationType.Customization),
                 //["ModernAltTab"] = new("Modern Alt-Tab", ConfigurationType.Customization),
-                //["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", ConfigurationType.Customization),
+                ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", ConfigurationType.CpuIdleSubMenu),
                 //["DarkTitlebars"] = new("Dark Titlebars", ConfigurationType.Customization),
-                //["LockScreen"] = new("Lock Screen", ConfigurationType.Customization),
+                ["LockScreen"] = new("Lock Screen", ConfigurationType.Interface),
                 //["ModernVolumeFlyout"] = new("Modern Volume Flyout", ConfigurationType.Customization),
-                //["RunWithPriorityContextMenu"] = new("Run With Priority in context menu", ConfigurationType.Customization),
-                //["ShortcutText"] = new("Shortcut Text", ConfigurationType.Customization),
-                //["BootLogo"] = new("Boot Logo", ConfigurationType.Advanced),
-                //["BootMessages"] = new("Boot Messages", ConfigurationType.Advanced),
-                //["NewBootMenu"] = new("New Boot Menu", ConfigurationType.Advanced),
-                //["SpinningAnimation"] = new("Spinning Animation", ConfigurationType.Advanced),
-                //["AdvancedBootOptions"] = new("Advanced Boot Options on Startup", ConfigurationType.Advanced),
-                //["AutomaticRepair"] = new("Automatic Repair", ConfigurationType.Advanced),
-                //["KernelParameters"] = new("Kernel Parameters on Startup", ConfigurationType.Advanced),
-                //["HighestMode"] = new("Highest Mode", ConfigurationType.Advanced),
-                //["CompactView"] = new("Compact View", ConfigurationType.Advanced),
+                ["RunWithPriorityContextMenu"] = new("Run With Priority in context menu", ConfigurationType.ContextMenuSubMenu),
+                ["ShortcutText"] = new("Shortcut Text", ConfigurationType.Interface),
+                ["BootLogo"] = new("Boot Logo", ConfigurationType.BootConfigurationSubMenu),
+                ["BootMessages"] = new("Boot Messages", ConfigurationType.BootConfigurationSubMenu),
+                ["NewBootMenu"] = new("New Boot Menu", ConfigurationType.BootConfigurationSubMenu),
+                ["SpinningAnimation"] = new("Spinning Animation", ConfigurationType.BootConfigurationSubMenu),
+                ["AdvancedBootOptions"] = new("Advanced Boot Options on Startup", ConfigurationType.BootConfigurationSubMenu),
+                ["AutomaticRepair"] = new("Automatic Repair", ConfigurationType.BootConfigurationSubMenu),
+                ["KernelParameters"] = new("Kernel Parameters on Startup", ConfigurationType.BootConfigurationSubMenu),
+                ["HighestMode"] = new("Highest Mode", ConfigurationType.BootConfigurationSubMenu),
+                ["CompactView"] = new("Compact View", ConfigurationType.FileExplorerSubMenu),
                 //["QuickAccess"] = new("Quick Access", ConfigurationType.Advanced),
-                //["RemovableDrivesInSidebar"] = new("Removable Drives in Sidebar", ConfigurationType.Advanced),
-                ////["Copilot"] = new("Copilot feature", ConfigurationType.Privacy),
-                //["AutomaticUpdates"] = new("Automatic updates", ConfigurationType.Advanced),
-                //["BackgroundApps"] = new("Background apps", ConfigurationType.Advanced),
-                //["DeliveryOptimization"] = new("Delivery optimization", ConfigurationType.Advanced),
-                //["Hibernation"] = new("Hibernation", ConfigurationType.Advanced),
-                //["Location"] = new("Location", ConfigurationType.Privacy),
-                //["PhoneLink"] = new("Phone link and mobile devices", ConfigurationType.Privacy),
-                //["PowerSaving"] = new("Power saving", ConfigurationType.Performance),
-                //["Sleep"] = new("Sleep", ConfigurationType.Performance),
-                //["AppStoreArchiving"] = new("Microsoft Store Archiving", ConfigurationType.Performance),
-                //["SystemRestore"] = new("System Restore", ConfigurationType.Performance),
-                //["UpdateNotifications"] = new("Update Notifications", ConfigurationType.Performance),
-                //["WebSearch"] = new("Start Menu Web Search", ConfigurationType.Advanced),
-                //["Widgets"] = new("Desktop widgets", ConfigurationType.Customization),
-                //["WindowsSpotlight"] = new("Windows Spotlight", ConfigurationType.Customization),
-                //["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenu),
-                ["AppStoreArchiving"] = new("AppStoreArchiving", ConfigurationType.ContextMenu),
+                ["RemovableDrivesInSidebar"] = new("Removable Drives in Sidebar", ConfigurationType.FileExplorerSubMenu),
+                //["Copilot"] = new("Copilot feature", ConfigurationType.Privacy),
+                ["AutomaticUpdates"] = new("Automatic updates", ConfigurationType.General),
+                ["BackgroundApps"] = new("Background apps", ConfigurationType.FileExplorerSubMenu),
+                ["DeliveryOptimisation"] = new("Delivery optimisation", ConfigurationType.General),
+                ["Hibernation"] = new("Hibernation", ConfigurationType.General),
+                ["Location"] = new("Location", ConfigurationType.General),
+                ["PhoneLink"] = new("Phone link and mobile devices", ConfigurationType.General),
+                ["PowerSaving"] = new("Power saving", ConfigurationType.General),
+                ["Sleep"] = new("Sleep", ConfigurationType.General),
+                ["AppStoreArchiving"] = new("Microsoft Store Archiving", ConfigurationType.General),
+                ["SystemRestore"] = new("System Restore", ConfigurationType.General),
+                ["UpdateNotifications"] = new("Update Notifications", ConfigurationType.General),
+                ["WebSearch"] = new("Start Menu Web Search", ConfigurationType.General),
+                ["Widgets"] = new("Desktop widgets", ConfigurationType.General),
+                ["WindowsSpotlight"] = new("Windows Spotlight", ConfigurationType.General),
+                ["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenuSubMenu),
+                ["AppStoreArchiving"] = new("Microsoft Store archiving", ConfigurationType.General),
 
             };
 
@@ -145,9 +151,7 @@ namespace AtlasToolbox.HostBuilder
                         item.Value.Type != ConfigurationType.Security &&
                         item.Value.Type != ConfigurationType.Performance &&
                         item.Value.Type != ConfigurationType.Privacy &&
-                        item.Value.Type != ConfigurationType.Customization &&
-                        item.Value.Type != ConfigurationType.Advanced &&
-                        item.Value.Type != ConfigurationType.Other)
+                        item.Value.Type != ConfigurationType.Advanced)
                         {
                             subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                         }else
@@ -175,15 +179,24 @@ namespace AtlasToolbox.HostBuilder
                 return viewModel;
         }
 
-        private static GeneralConfigViewModel CreateConfigurationViewModel(IServiceProvider serviceProvider)
+        #region Create ViewModels
+        private static GeneralConfigViewModel CreateGeneralConfigViewModel(IServiceProvider serviceProvider)
         {
             return GeneralConfigViewModel.LoadViewModel(
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
                 serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
         }
 
+        private static InterfaceTweaksViewModel CreateInterfaceTweaksViewModel(IServiceProvider serviceProvider)
+        {
+            return InterfaceTweaksViewModel.LoadViewModel(
+                serviceProvider.GetServices<ConfigurationItemViewModel>(),
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+        }
+        #endregion Create ViewModels
+
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
-          IServiceProvider serviceProvider, IEnumerable<ConfigurationItemViewModel> configurationItemViewModels, object? key, ConfigurationSubMenu configuration)
+          IServiceProvider serviceProvider, IEnumerable<ConfigurationItemViewModel> configurationItemViewModels, object key, ConfigurationSubMenu configuration)
         {
             ConfigurationStoreSubMenu configurationStoreSubMenu = serviceProvider.GetRequiredKeyedService<ConfigurationStoreSubMenu>(key);
 
@@ -192,32 +205,5 @@ namespace AtlasToolbox.HostBuilder
 
             return viewModel;
         }
-
-        //public static ConfigurationMenuItemsMenuViewModel CreateConfigurationMenuItemsMenuViewModel(IServiceProvider serviceProvider, object? key)
-        //{
-        //    return ConfigurationMenuItemsMenuViewModel.LoadViewModel(
-        //         serviceProvider.GetServices<ConfigurationItemViewModel>(),
-        //         serviceProvider.GetServices<ConfigurationMenuItemsViewModel>(),
-        //         serviceProvider.GetRequiredService<CloseModalNavigationService>());
-        //}
-
-        //private static HomeViewModel CreateHomeViewModel(IServiceProvider serviceProvider)
-        //{
-        //    INavigationService softwareNavigationService =
-        //        CreateNavigationService<SoftwareViewModel>(serviceProvider);
-
-        //    return new(
-        //        softwareNavigationService,
-        //        CreateNavigationService<DriversViewModel>(serviceProvider),
-        //        CreateNavigationService<ConfigurationViewModel>(serviceProvider),
-        //            CreateNoInternetNavigationService(serviceProvider, softwareNavigationService));
-        //}
-
-        //public static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(IServiceProvider serviceProvider, object key)
-        //{
-        //    return new(
-        //        serviceProvider.GetRequiredKeyedService<IConfigurationSubMenu>(key),
-        //        serviceProvider.GetRequiredKeyedService<IEnumerable<ConfigurationItemViewModel>>(key));
-        //}
     }
 }

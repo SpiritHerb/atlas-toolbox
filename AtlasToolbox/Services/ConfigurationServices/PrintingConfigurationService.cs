@@ -1,0 +1,83 @@
+﻿using AtlasToolbox.Stores;
+using AtlasToolbox.Utils;
+using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceProcess;
+
+namespace AtlasToolbox.Services.ConfigurationServices
+{
+    public class PrintingConfigurationService : IConfigurationService
+    {
+        private const string PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME = "ProgrammaticAccessOnly";
+
+        private const string SPOOLER_SERVICE_NAME = "Spooler";
+
+        private readonly ConfigurationStore _printingConfigurationStore;
+        private readonly IEnumerable<string> _keyNames;
+
+        public PrintingConfigurationService(
+            [FromKeyedServices("Printing")] ConfigurationStore printingConfigurationStore)
+        {
+            _printingConfigurationStore = printingConfigurationStore;
+
+            _keyNames = new[]
+            {
+                @"HKCR\SystemFileAssociations\image\shell\print",
+                @"HKCR\batfile\shell\print",
+                @"HKCR\cmdfile\shell\print",
+                @"HKCR\docxfile\shell\print",
+                @"HKCR\fonfile\shell\print",
+                @"HKCR\htmlfile\shell\print",
+                @"HKCR\inffile\shell\print",
+                @"HKCR\inifile\shell\print",
+                @"HKCR\JSEFile\shell\print",
+                @"HKCR\otffile\shell\print",
+                @"HKCR\pfmfile\shell\print",
+                @"HKCR\regfile\shell\print",
+                @"HKCR\rtffile\shell\print",
+                @"HKCR\ttcfile\shell\print",
+                @"HKCR\ttffile\shell\print",
+                @"HKCR\txtfile\shell\print",
+                @"HKCR\VBEFile\shell\print",
+                @"HKCR\VBSFile\shell\print",
+                @"HKCR\WSFFile\shell\print",
+            };
+        }
+
+        public void Disable()
+        {
+            foreach (string keyName in _keyNames)
+            {
+                RegistryHelper.DeleteValue(keyName, PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME);
+            }
+
+            ServiceHelper.SetStartupType(SPOOLER_SERVICE_NAME, ServiceStartMode.Disabled);
+
+            _printingConfigurationStore.CurrentSetting = IsEnabled();
+        }
+
+        public void Enable()
+        {
+            foreach (string keyName in _keyNames)
+            {
+                RegistryHelper.SetValue(keyName, PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME, string.Empty);
+            }
+
+            ServiceHelper.SetStartupType(SPOOLER_SERVICE_NAME, ServiceStartMode.Automatic);
+
+            _printingConfigurationStore.CurrentSetting = IsEnabled();
+        }
+
+        public bool IsEnabled()
+        {
+            bool[] checks =
+            {
+                _keyNames.All(x => RegistryHelper.IsMatch(x, PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME, string.Empty)),
+                ServiceHelper.IsStartupTypeMatch(SPOOLER_SERVICE_NAME, ServiceStartMode.Automatic)
+            };
+
+            return checks.All(x => x);
+        }
+    }
+}

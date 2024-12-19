@@ -10,10 +10,6 @@ namespace AtlasToolbox.HostBuilder
     {
         public static IHostBuilder AddStores(this IHostBuilder host)
         {
-            host.ConfigureServices((_,services) =>
-            {
-            });
-
             host.AddConfigurationStores();
             host.AddConfigurationMenu();
 
@@ -59,7 +55,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("RemovableDrivesInSidebar");
                 services.AddKeyedSingleton<ConfigurationStore>("AutomaticUpdates");
                 services.AddKeyedSingleton<ConfigurationStore>("BackgroundApps");
-                services.AddKeyedSingleton<ConfigurationStore>("DeliveryOptimization");
+                services.AddKeyedSingleton<ConfigurationStore>("DeliveryOptimisation");
                 services.AddKeyedSingleton<ConfigurationStore>("Hibernation");
                 services.AddKeyedSingleton<ConfigurationStore>("Location");
                 services.AddKeyedSingleton<ConfigurationStore>("PhoneLink");
@@ -82,7 +78,12 @@ namespace AtlasToolbox.HostBuilder
         {
             host.ConfigureServices((_, services) =>
             {
-                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("ContextMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("ContextMenuSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("AiSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("ServicesSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("CPUIdleSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigurationSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("FileExplorerSubMenu");
             });
 
             return host;

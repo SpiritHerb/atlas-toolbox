@@ -13,6 +13,13 @@ namespace AtlasToolbox
                 typeof(ToggleSwitchBehavior),
                 new PropertyMetadata(false, OnCurrentSettingChanged));
 
+        private static readonly DependencyProperty IsInitializedProperty =
+            DependencyProperty.RegisterAttached(
+                "IsInitialized",
+                typeof(bool),
+                typeof(ToggleSwitchBehavior),
+                new PropertyMetadata(false));
+
         private static bool _isInitialized = false;
         public static bool GetCurrentSetting(DependencyObject obj)
         {
@@ -22,6 +29,16 @@ namespace AtlasToolbox
         public static void SetCurrentSetting(DependencyObject obj, bool value)
         {
             obj.SetValue(CurrentSettingProperty, value);
+        }
+
+        private static bool GetIsInitialized(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsInitializedProperty);
+        }
+
+        private static void SetIsInitialized(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsInitializedProperty, value);
         }
 
         private static void OnCurrentSettingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -36,6 +53,7 @@ namespace AtlasToolbox
                 {
                     toggleSwitch.Toggled -= OnToggled;
                 }
+                SetIsInitialized(toggleSwitch, false); 
             }
         }
 
@@ -45,7 +63,11 @@ namespace AtlasToolbox
             {
                 if (sender is ToggleSwitch toggleSwitch)
                 {
-                    var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
+                    if (!GetIsInitialized(toggleSwitch))
+                    {
+                        SetIsInitialized(toggleSwitch, true); return; // Skip the first toggle event
+                    }
+                        var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
                     if (toggleSwitch.IsOn)
                     {
                         item.CurrentSetting = true;
