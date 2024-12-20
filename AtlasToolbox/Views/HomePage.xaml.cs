@@ -28,5 +28,18 @@ namespace AtlasToolbox.Views
         {
             this.InitializeComponent();
         }
+
+        private Window loadingWindow;
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            loadingWindow = new LoadingWindow();
+            loadingWindow.Activate();
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            loadingWindow.Close();
+        }
     }
 }

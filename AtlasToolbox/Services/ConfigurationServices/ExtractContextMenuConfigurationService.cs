@@ -5,6 +5,8 @@ using AtlasToolbox.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 
@@ -16,20 +18,32 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AutomaticUpdates";
         private const string STATE_VALUE_NAME = "state";
 
-        private const string AU_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU";
+        private const string BLOCKED_KEY_NAME = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked";
 
-        private const string AU_OPTIONS_VALUE_NAME = "AUOptions";
+        private IEnumerable<string> _valueNames;
 
         private readonly ConfigurationStore _extractContextMenuConfigurationService;
         public ExtractContextMenuConfigurationService(
             [FromKeyedServices("ExtractContextMenu")] ConfigurationStore extractContextMenuConfigurationService)
         {
             _extractContextMenuConfigurationService = extractContextMenuConfigurationService;
+
+            _valueNames = new[]
+            {
+                "{b8cdcb65-b1bf-4b42-9428-1dfdb7ee92af}",
+                "{BD472F60-27FA-11cf-B8B4-444553540000}",
+                "{EE07CEF5-3441-4CFB-870A-4002C724783A}",
+                "{D12E3394-DE4B-4777-93E9-DF0AC88F8584}",
+                "{D12E3394-DE4B-4777-93E9-DF0AC88F8584}"
+            };
         }
 
         public void Disable()
         {
-            RegistryHelper.SetValue(AU_KEY_NAME, AU_OPTIONS_VALUE_NAME, 2, Microsoft.Win32.RegistryValueKind.DWord);
+            foreach (string value in _valueNames)
+            {
+                RegistryHelper.SetValue(BLOCKED_KEY_NAME, value, "");
+            }
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
 
             _extractContextMenuConfigurationService.CurrentSetting = IsEnabled();
@@ -37,7 +51,10 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Enable()
         {
-            RegistryHelper.DeleteValue(AU_KEY_NAME, AU_OPTIONS_VALUE_NAME);
+            foreach (string value in _valueNames)
+            {
+                RegistryHelper.DeleteValue(BLOCKED_KEY_NAME, value);
+            }
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _extractContextMenuConfigurationService.CurrentSetting = IsEnabled();
@@ -45,12 +62,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public bool IsEnabled()
         {
-            bool[] checks =
-            {
-                RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1)
-            };
-
-            return checks.All(x => x);
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

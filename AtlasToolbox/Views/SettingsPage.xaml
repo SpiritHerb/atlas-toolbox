@@ -1,13 +1,23 @@
-﻿<Page
+<?xml version="1.0" encoding="utf-8"?>
+<Page
     x:Class="AtlasToolbox.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AtlasToolbox.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
 
     <Grid>
-        <TextBlock Text="Settings"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock>Behavior</TextBlock>
+        <controls:SettingsCard Header="Open the app at startup">
+            <ToggleSwitch IsOn="{x:Bind ToggleSwitch_IsToggled}" Toggled=""/>
+        </controls:SettingsCard>
     </Grid>
 </Page>

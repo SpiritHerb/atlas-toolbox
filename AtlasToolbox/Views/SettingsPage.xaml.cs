@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+using AtlasToolbox.Utils;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -23,9 +24,34 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        private bool _toggleSwitchIsOn;
+        public bool ToggleSwitch_IsOn
+        {
+            get => _toggleSwitchIsOn;
+            set
+            {
+                if (_toggleSwitchIsOn != value)
+                {
+                    _toggleSwitchIsOn = value;
+                    OnToggleSwitchChanged();
+                }
+            }
+        }
         public SettingsPage()
         {
             this.InitializeComponent();
+        }
+
+        private void OnToggleSwitchChanged()
+        { 
+            if (_toggleSwitchIsOn) 
+            {
+                RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1);
+            }
+            else 
+            {
+                RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 0);
+            }
         }
     }
 }

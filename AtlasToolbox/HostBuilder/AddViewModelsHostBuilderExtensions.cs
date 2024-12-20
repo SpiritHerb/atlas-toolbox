@@ -34,6 +34,10 @@ namespace AtlasToolbox.HostBuilder
                 services.AddSingleton<MainViewModel>();
                 services.AddTransient(CreateGeneralConfigViewModel);
                 services.AddTransient(CreateInterfaceTweaksViewModel);
+                services.AddTransient(CreateAdvancedConfigViewModel);
+                services.AddTransient(CreateSecurityConfigViewModel);
+                services.AddTransient(CreateWindowsSettingsViewModel);
+                services.AddTransient(CreateTroubleshootingViewModel);
             });
 
              host.AddConfigurationItemViewModels();
@@ -48,7 +52,7 @@ namespace AtlasToolbox.HostBuilder
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
-                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.General),
+                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.Windows),
                 ["ServicesSubMenu"] = new("Services", "Everything related to services in Windows", ConfigurationType.Advanced),
                 ["CPUIdleSubMenu"] = new("CPU idle", "Everything related to CPU idling in Windows", ConfigurationType.Advanced),
                 ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
@@ -120,6 +124,7 @@ namespace AtlasToolbox.HostBuilder
                 ["Widgets"] = new("Desktop widgets", ConfigurationType.General),
                 ["WindowsSpotlight"] = new("Windows Spotlight", ConfigurationType.General),
                 ["AppStoreArchiving"] = new("Microsoft Store archiving", ConfigurationType.General),
+                ["RunWithPriority"] = new("Adds run with priority options in the context menu", ConfigurationType.ContextMenuSubMenu),
 
             };
 
@@ -132,7 +137,7 @@ namespace AtlasToolbox.HostBuilder
                     foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
                     {
                         if (
-                        item.Value.Type >= (ConfigurationType)6)
+                        item.Value.Type >= (ConfigurationType)7)
                         {
                             subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                         }else
@@ -171,6 +176,32 @@ namespace AtlasToolbox.HostBuilder
         private static InterfaceTweaksViewModel CreateInterfaceTweaksViewModel(IServiceProvider serviceProvider)
         {
             return InterfaceTweaksViewModel.LoadViewModel(
+                serviceProvider.GetServices<ConfigurationItemViewModel>(),
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+        }
+
+        private static WindowsSettingsViewModel CreateWindowsSettingsViewModel(IServiceProvider serviceProvider)
+        {
+            return WindowsSettingsViewModel.LoadViewModel(
+                serviceProvider.GetServices<ConfigurationItemViewModel>(),
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+        }
+
+        private static AdvancedConfigViewModel CreateAdvancedConfigViewModel(IServiceProvider serviceProvider)
+        {
+            return AdvancedConfigViewModel.LoadViewModel(
+                serviceProvider.GetServices<ConfigurationItemViewModel>(),
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+        }
+        private static SecurityConfigViewModel CreateSecurityConfigViewModel(IServiceProvider serviceProvider)
+        {
+            return SecurityConfigViewModel.LoadViewModel(
+                serviceProvider.GetServices<ConfigurationItemViewModel>(),
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+        }
+        private static TroubleshootingViewModel CreateTroubleshootingViewModel(IServiceProvider serviceProvider)
+        {
+            return TroubleshootingViewModel.LoadViewModel(
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
                 serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
         }

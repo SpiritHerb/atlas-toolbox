@@ -32,14 +32,14 @@ namespace AtlasToolbox.ViewModels
 
             foreach (ConfigurationItemViewModel configurationItem in ConfigurationItemViewModels)
             {
-                if (configurationItem.Type == ConfigurationType.Troubleshooting)
+                if (configurationItem.Type == ConfigurationType.Windows)
                 {
                     ConfigurationItem.Add(configurationItem);
                 }
             }
             foreach (ConfigurationSubMenuViewModel configurationSubMenuItem in ConfigurationSubMenuViewModels)
             {
-                if (configurationSubMenuItem.Type == ConfigurationType.Troubleshooting)
+                if (configurationSubMenuItem.Type == ConfigurationType.Windows)
                 {
                     ConfigurationItemSubMenu.Add(configurationSubMenuItem);
                 }

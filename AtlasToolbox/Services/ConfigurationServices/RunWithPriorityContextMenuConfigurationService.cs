@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private readonly ConfigurationStore _runWithPriorityContextMenuConfigurationStore;
 
         public RunWithPriorityContextMenuConfigurationService(
-            [FromKeyedServices("RunWithPriorityContextMenu")] ConfigurationStore runWithPriorityContextMenuConfigurationStore)
+            [FromKeyedServices("RunWithPriority")] ConfigurationStore runWithPriorityContextMenuConfigurationStore)
         {
             _runWithPriorityContextMenuConfigurationStore = runWithPriorityContextMenuConfigurationStore;
         }

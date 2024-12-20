@@ -14,8 +14,7 @@
             SelectionMode="None"
             Margin="-60, -50, 0, 0"
             HorizontalAlignment="Left"
-            Width="2000"
-            Height="1000">
+            Width="2000">
             <GridView.Header>
                 <Grid x:Name="HeaderGrid" Margin="0,50,0,0">
                     <Grid.RowDefinitions>

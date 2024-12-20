@@ -15,6 +15,7 @@ namespace AtlasToolbox.Enums
         Privacy,
         Advanced,
         Troubleshooting,
+        Windows,
         ContextMenuSubMenu,
         AiSubMenu,
         ServicesSubMenu,

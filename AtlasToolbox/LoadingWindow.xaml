@@ -14,36 +14,6 @@
     </Window.SystemBackdrop>
 
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            --><!--  TitleBar  --><!--
-            <RowDefinition Height="*" />
-            --><!--  NavView  --><!--
-        </Grid.RowDefinitions>
-        <Border
-            x:Name="AppTitleBar"
-            Grid.Column="1"
-            Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
-            Margin="48,0,0,0"
-            VerticalAlignment="Stretch"
-            AutomationProperties.AutomationId="AppTitleBar"
-            Canvas.ZIndex="1"
-            IsHitTestVisible="True">
-            <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
-                <Image Width="18" VerticalAlignment="Center" Source="ms-appx:///Assets/Tiles/TitlebarLogo.png" />
-                <TextBlock
-                x:Name="AppTitle"
-                Margin="12,-1,0,0"
-                VerticalAlignment="Center"
-                Style="{StaticResource CaptionTextBlockStyle}"
-                Text="AtlasOS Toolbox" />
-                <TextBox x:Name="AppTitleBarTextBox" MinWidth="300" Height="40" Margin="16,0,0,0" Visibility="Collapsed"  PlaceholderText="Enter any text" />
-            </StackPanel>
-        </Border>-->
         <ProgressRing IsActive="True" />
     </Grid>
 </Window>

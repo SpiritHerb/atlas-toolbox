@@ -87,6 +87,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, WidgetsConfigurationService>("Widgets");
                 services.AddKeyedTransient<IConfigurationService, WindowsSpotlightConfigurationService>("WindowsSpotlight");
                 services.AddKeyedTransient<IConfigurationService, ExtractContextMenuConfigurationService>("ExtractContextMenu");
+                services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriority");
             });
 
             return host;
