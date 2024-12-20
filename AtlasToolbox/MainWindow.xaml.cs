@@ -12,6 +12,7 @@ using Microsoft.UI;
 using Windows.Graphics;
 using Microsoft.UI.Xaml.Interop;
 using WinUIEx;
+using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -76,7 +77,7 @@ namespace AtlasToolbox
         {
             if (args.IsSettingsInvoked == true)
             {
-                ContentFrame.Navigate(typeof(Views.SettingsPage), null, args.RecommendedNavigationTransitionInfo);
+                ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
             else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null))
             {
@@ -84,11 +85,9 @@ namespace AtlasToolbox
                 ContentFrame.Navigate(
                        newPage,
                        null,
-                       args.RecommendedNavigationTransitionInfo
+                       new DrillInNavigationTransitionInfo()
                        );
             }
-
-
         }
 
         private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
