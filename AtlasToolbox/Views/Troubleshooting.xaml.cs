@@ -1,3 +1,6 @@
+using AtlasToolbox.ViewModels;
+using CommunityToolkit.WinUI.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,9 +26,21 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class Troubleshooting : Page
     {
+        private readonly TroubleshootingViewModel _viewModel;
         public Troubleshooting()
         {
             this.InitializeComponent();
+            _viewModel = App._host.Services.GetRequiredService<TroubleshootingViewModel>();
+            this.DataContext = _viewModel;
+        }
+        private void OnCardClicked(object sender, RoutedEventArgs e)
+        {
+            var settingCard = sender as SettingsCard;
+            var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+
+            var template = ItemsControl.ItemTemplate;
+
+            Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
         }
     }
 }

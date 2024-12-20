@@ -9,36 +9,12 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel>
-            <ItemsControl ItemsSource="{Binding ConfigurationItemViewModels}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}">
-                            <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
-                        </controls:SettingsCard>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-            <ItemsControl ItemsSource="{Binding ConfigurationSubMenuViewModel}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:SettingsExpander Style="{StaticResource SubMenuTemplate}" Header="{Binding Name}" Description="{Binding Description}">
-                            <controls:SettingsExpander.Items>
-                                <ItemsControl ItemsSource="{Binding _configurationItems}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <controls:SettingsCard Header="{Binding Name}">
-                                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
-                                            </controls:SettingsCard>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </controls:SettingsExpander.Items>
-                        </controls:SettingsExpander>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+       
     </Grid>
 </Page>
+

@@ -22,27 +22,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-                <!--<ItemsControl ItemsSource="{Binding ConfigurationItemSubMenu}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:SettingsExpander Style="{StaticResource SubMenuTemplate}" Header="{Binding Name}"  Description="{Binding Description}">
-                                <controls:SettingsExpander.Items>
-                                    <ItemsControl ItemsSource="{Binding ConfigurationItems}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <controls:SettingsCard Style="{StaticResource ConfigurationSubSetting}" Header="{Binding Name}">
-                                                    <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" />
-                                                </controls:SettingsCard>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </controls:SettingsExpander.Items>
-                            </controls:SettingsExpander>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
-
+                
                 <ItemsControl ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

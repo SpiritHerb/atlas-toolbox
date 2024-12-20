@@ -66,33 +66,35 @@
 
             <NavigationView.HeaderTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,-10,0,36">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid x:Name="pageTitle"
-                        Background="Transparent"
-                        Height="44"
-                        VerticalAlignment="Top">
-                            <TextBlock x:Name="title" 
-                            Style="{StaticResource TitleTextBlockStyle}"
-                            FontSize="24"
-                            VerticalAlignment="Center"
-                            Text="{Binding}"/>
-                        </Grid>
+                    <Grid x:Name="HeaderGrid" CornerRadius="8,0,0,0">
+                        <controls:HomePageHeaderImage
+                            Grid.RowSpan="2"
+                            Height="200"
+                            VerticalAlignment="Top" />
+
+                        <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
+                        <TextBlock
+                        x:Name="smallHeaderText"
+                        Margin="36,0,0,0"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource TitleTextBlockStyle}"
+                        Text="{StaticResource ControlsName}" />
                     </Grid>
                 </DataTemplate>
             </NavigationView.HeaderTemplate>
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage" />
+                <NavigationViewItem
+                     x:Name="Home"
+                     AutomationProperties.AutomationId="Home"
+                     Content="Home"
+                     Icon="Home" />
+                <!--<NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage" />-->
                 <NavigationViewItem Icon="Home" Content="General Configuration" Tag="AtlasToolbox.Views.GeneralConfig"/>
                 <NavigationViewItem Icon="Home" Content="Interface Tweaks" Tag="AtlasToolbox.Views.InterfaceTweaks"/>
                 <NavigationViewItem Icon="Home" Content="Windows Settings" Tag="AtlasToolbox.Views.WindowsSettings"/>
                 <NavigationViewItem Icon="Home" Content="Advanced Config" Tag="AtlasToolbox.Views.AdvancedConfig"/>
                 <NavigationViewItem Icon="Home" Content="Security" Tag="AtlasToolbox.Views.Security"/>
                 <NavigationViewItem Icon="Home" Content="Troubleshooting" Tag="AtlasToolbox.Views.Troubleshooting"/>
-                <!--<NavigationViewItem Content="{Binding}" Visibility="Collapsed" Tag="AtlasToolbox.Views.SubSection"/>-->
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" Padding="55,10,0,0"/>
         </NavigationView>

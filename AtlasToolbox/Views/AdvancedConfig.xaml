@@ -7,9 +7,31 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels" 
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    d:DataContext="{d:DesignInstance Type=viewmodel:AdvancedConfigViewModel}">
 
     <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding ConfigurationItemSubMenu}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Click="OnCardClicked" IsClickEnabled="True"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
+                <ItemsControl ItemsSource="{Binding ConfigurationItem}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}">
+                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationSubSettingItemTemplate}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

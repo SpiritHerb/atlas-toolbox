@@ -1,5 +1,4 @@
 ﻿using AtlasToolbox.Enums;
-using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AtlasToolbox.ViewModels
 {
-    class GeneralConfigViewModel : ObservableObject
+    public class AdvancedConfigViewModel
     {
         private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
 
@@ -20,7 +19,7 @@ namespace AtlasToolbox.ViewModels
 
         public ObservableCollection<ConfigurationSubMenuViewModel> ConfigurationItemSubMenu { get; set; }
 
-        public GeneralConfigViewModel(
+        public AdvancedConfigViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
             IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
         {
@@ -33,25 +32,25 @@ namespace AtlasToolbox.ViewModels
 
             foreach (ConfigurationItemViewModel configurationItem in ConfigurationItemViewModels)
             {
-                if (configurationItem.Type == ConfigurationType.General)
+                if (configurationItem.Type == ConfigurationType.Advanced)
                 {
                     ConfigurationItem.Add(configurationItem);
                 }
             }
             foreach (ConfigurationSubMenuViewModel configurationSubMenuItem in ConfigurationSubMenuViewModels)
             {
-                if (configurationSubMenuItem.Type == ConfigurationType.General)
+                if (configurationSubMenuItem.Type == ConfigurationType.Advanced)
                 {
                     ConfigurationItemSubMenu.Add(configurationSubMenuItem);
                 }
             }
         }
 
-        public static GeneralConfigViewModel LoadViewModel(
+        public static AdvancedConfigViewModel LoadViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
             IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModels)
         {
-            GeneralConfigViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels);
+            AdvancedConfigViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels);
 
             return viewModel;
         }

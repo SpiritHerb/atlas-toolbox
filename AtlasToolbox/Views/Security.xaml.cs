@@ -1,3 +1,6 @@
+using AtlasToolbox.ViewModels;
+using CommunityToolkit.WinUI.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -18,14 +21,24 @@ using Windows.Foundation.Collections;
 
 namespace AtlasToolbox.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class Security : Page
     {
+        private readonly SecurityConfigViewModel _viewModel;
         public Security()
         {
             this.InitializeComponent();
+            _viewModel = App._host.Services.GetRequiredService<SecurityConfigViewModel>();
+            this.DataContext = _viewModel;
+        }
+        private void OnCardClicked(object sender, RoutedEventArgs e)
+        {
+            var settingCard = sender as SettingsCard;
+            var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+
+            var template = ItemsControl.ItemTemplate;
+
+            Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
         }
     }
 }
