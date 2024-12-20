@@ -6,13 +6,8 @@
     xmlns:local="using:AtlasToolbox"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:AtlasToolbox.Controls"
     mc:Ignorable="d">
-
-    <Window.SystemBackdrop>
-        <MicaBackdrop Kind="Base"/>
-    </Window.SystemBackdrop>
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -55,6 +50,7 @@
                 BackRequested="NavigationViewControl_BackRequested" 
                 ItemInvoked="NavigationViewControl_ItemInvoked">
 
+
             <NavigationView.Resources>
                 <!--  This top margin is the height of the custom titleBar  -->
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
@@ -63,32 +59,10 @@
                 <!--  This is the rounded corner on the Top left of the L Pattern  -->
                 <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
             </NavigationView.Resources>
-
-            <NavigationView.HeaderTemplate>
-                <DataTemplate>
-                    <Grid x:Name="HeaderGrid" CornerRadius="8,0,0,0">
-                        <controls:HomePageHeaderImage
-                            Grid.RowSpan="2"
-                            Height="200"
-                            VerticalAlignment="Top" />
-
-                        <TextBlock AutomationProperties.AutomationId="__ClickableAreaTextBlock" />
-                        <TextBlock
-                        x:Name="smallHeaderText"
-                        Margin="36,0,0,0"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource TitleTextBlockStyle}"
-                        Text="{StaticResource ControlsName}" />
-                    </Grid>
-                </DataTemplate>
-            </NavigationView.HeaderTemplate>
+            
             <NavigationView.MenuItems>
-                <NavigationViewItem
-                     x:Name="Home"
-                     AutomationProperties.AutomationId="Home"
-                     Content="Home"
-                     Icon="Home" />
-                <!--<NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage" />-->
+
+                <NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage" />
                 <NavigationViewItem Icon="Home" Content="General Configuration" Tag="AtlasToolbox.Views.GeneralConfig"/>
                 <NavigationViewItem Icon="Home" Content="Interface Tweaks" Tag="AtlasToolbox.Views.InterfaceTweaks"/>
                 <NavigationViewItem Icon="Home" Content="Windows Settings" Tag="AtlasToolbox.Views.WindowsSettings"/>

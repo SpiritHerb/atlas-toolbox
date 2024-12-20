@@ -1,5 +1,4 @@
 ﻿using AtlasToolbox.Services.ConfigurationServices;
-using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
 using AtlasToolbox.Stores;
 using System;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AtlasToolbox.Commands;
 using MVVMEssentials.Services;
+using AtlasToolbox.Enums;
 
 namespace AtlasToolbox.ViewModels
 {

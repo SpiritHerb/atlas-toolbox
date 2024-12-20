@@ -16,9 +16,9 @@
   <mp:PhoneIdentity PhoneProductId="98ae3a68-e43b-4f70-9b72-db68291392f3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>AtlasToolbox</DisplayName>
-    <PublisherDisplayName>TheyCreeper</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <DisplayName>Atlas Toolbox</DisplayName>
+    <PublisherDisplayName>AtlasOS</PublisherDisplayName>
+    <Logo>Assets\Atlas-logo.png</Logo>
   </Properties>
 
   <Dependencies>

@@ -1,6 +1,5 @@
 ﻿using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Services.ConfigurationSubMenu;
-using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
 using AtlasToolbox.Services;
 using AtlasToolbox.Stores;
@@ -21,6 +20,7 @@ using System.Linq;
 using Microsoft.UI.Xaml;
 using System.Reflection.Metadata.Ecma335;
 using System.Collections.ObjectModel;
+using AtlasToolbox.Enums;
 
 namespace AtlasToolbox.HostBuilder
 {
