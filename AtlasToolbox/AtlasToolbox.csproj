@@ -19,7 +19,9 @@
   <ItemGroup>
     <None Remove="Controls\HeaderTile.xaml" />
     <None Remove="Controls\HomePageHeaderImage.xaml" />
+    <None Remove="Controls\LoadingScreen.xaml" />
     <None Remove="Controls\TileGallery.xaml" />
+    <None Remove="LoadingWindow.xaml" />
     <None Remove="MainWindow.xaml" />
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
@@ -69,6 +71,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\LoadingScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\HeaderTemplates.xaml">
@@ -133,6 +140,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\HeaderTile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="LoadingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

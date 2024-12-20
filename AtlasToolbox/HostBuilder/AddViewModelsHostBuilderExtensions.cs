@@ -36,8 +36,8 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateInterfaceTweaksViewModel);
             });
 
-            host.AddConfigurationItemViewModels();
-            host.AddConfigurationSubMenu();
+             host.AddConfigurationItemViewModels();
+             host.AddConfigurationSubMenu();
 
             return host;
         }
@@ -132,13 +132,7 @@ namespace AtlasToolbox.HostBuilder
                     foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
                     {
                         if (
-                        item.Value.Type != ConfigurationType.General &&
-                        item.Value.Type != ConfigurationType.Interface &&
-                        item.Value.Type != ConfigurationType.Security &&
-                        item.Value.Type != ConfigurationType.Performance &&
-                        item.Value.Type != ConfigurationType.Privacy &&
-                        item.Value.Type != ConfigurationType.Advanced &&
-                        item.Value.Type != ConfigurationType.Troubleshooting)
+                        item.Value.Type >= (ConfigurationType)6)
                         {
                             subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                         }else
