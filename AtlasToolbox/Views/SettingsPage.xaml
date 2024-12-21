@@ -17,7 +17,7 @@
 
         <TextBlock>Behavior</TextBlock>
         <controls:SettingsCard Header="Open the app at startup">
-            <ToggleSwitch IsOn="{x:Bind ToggleSwitch_IsToggled}" Toggled=""/>
+            <ToggleSwitch IsOn="{x:Bind ToggleSwitch_IsOn}"/>
         </controls:SettingsCard>
     </Grid>
 </Page>

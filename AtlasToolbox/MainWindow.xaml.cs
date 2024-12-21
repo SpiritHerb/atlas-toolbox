@@ -56,7 +56,15 @@ namespace AtlasToolbox
                        new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo()
                        );
             SetTitleBar(AppTitleBar);
+            this.Closed += OnCloseRequested;
         }
+
+        private void OnCloseRequested(object sender, WindowEventArgs e)
+        {
+            e.Handled = true;
+            this.Hide();
+        }
+
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
