@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <TextBlock>Behavior</TextBlock>
-        <controls:SettingsCard Header="Open the app at startup">
-            <ToggleSwitch IsOn="{x:Bind ToggleSwitch_IsOn}"/>
+        <controls:SettingsCard Header="Keep the Toolbox in the background">
+            <ToggleSwitch Toggled="ToggleSwitch_Toggled" IsOn="{x:Bind ToggleSwitch_IsOn}"/>
         </controls:SettingsCard>
     </Grid>
 </Page>

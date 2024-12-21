@@ -17,6 +17,7 @@ using AtlasToolbox.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using AtlasToolbox.Utils;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -56,13 +57,24 @@ namespace AtlasToolbox
                        new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo()
                        );
             SetTitleBar(AppTitleBar);
-            this.Closed += OnCloseRequested;
+
+            if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1))
+            {
+                this.Closed += HideApp;
+            }else
+            {
+                this.Closed += CloseApp;
+            }
         }
 
-        private void OnCloseRequested(object sender, WindowEventArgs e)
+        public void HideApp(object sender, WindowEventArgs e)
         {
             e.Handled = true;
             this.Hide();
+        }
+        public void CloseApp(object sender, WindowEventArgs e)
+        {
+            App.Current.Exit();
         }
 
         private void NavigationViewControl_ItemInvoked(NavigationView sender,

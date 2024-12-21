@@ -35,7 +35,6 @@ namespace AtlasToolbox
             _host = CreateHostBuilder().Build();
             _host.Start();
             this.InitializeComponent();
-            //CheckForExistingInstance();            
         }
 
         private static IHostBuilder CreateHostBuilder() =>
@@ -126,7 +125,6 @@ namespace AtlasToolbox
                             });
                         }
                     }
-                    //server.Disconnect();
                 }
             }
         }
