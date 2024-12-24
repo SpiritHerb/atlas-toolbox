@@ -89,6 +89,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, ExtractContextMenuConfigurationService>("ExtractContextMenu");
                 services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriority");
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
+                services.AddKeyedTransient<IConfigurationService, TestConfigurationService>("TestConfig");
             });
 
             return host;

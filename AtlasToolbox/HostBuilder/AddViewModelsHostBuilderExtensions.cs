@@ -86,6 +86,7 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, Configuration> configurationDictionary = new()
             {
+                ["TestConfig"] = new ("TestConfig", ConfigurationType.General, RiskRating.LowRisk),
                 ["Animations"] = new ("Animations", ConfigurationType.AiSubMenu, RiskRating.LowRisk),
                 ["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["RunWithPriorityContextMenu"] = new("Run With Priority in context menu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),

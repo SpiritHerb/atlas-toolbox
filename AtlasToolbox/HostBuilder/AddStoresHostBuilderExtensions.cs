@@ -71,6 +71,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("AppStoreArchiving");
                 services.AddKeyedSingleton<ConfigurationStore>("RunWithPriority");
                 services.AddKeyedSingleton<ConfigurationStore>("TakeOwnership");
+                services.AddKeyedSingleton<ConfigurationStore>("TestConfig");
             });
 
             return host;
