@@ -70,6 +70,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("ExtractContextMenu");
                 services.AddKeyedSingleton<ConfigurationStore>("AppStoreArchiving");
                 services.AddKeyedSingleton<ConfigurationStore>("RunWithPriority");
+                services.AddKeyedSingleton<ConfigurationStore>("TakeOwnership");
             });
 
             return host;

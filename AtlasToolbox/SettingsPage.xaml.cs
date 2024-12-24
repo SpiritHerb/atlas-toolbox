@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Windows.Storage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,17 +44,20 @@ namespace AtlasToolbox.Views
 
         private void OnToggleSwitchChanged()
         {
+            MainWindow mainWindow = (MainWindow)App.m_window;
             if (_toggleSwitchIsOn)
             {
                 RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1);
-                App.m_window.Closed -= CloseApp;
-                App.m_window.Closed += HideApp;
+                mainWindow.Closed -= CloseApp;
+                mainWindow.Closed += HideApp;
+                App.m_window = mainWindow;
             }
             else
             {
                 RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 0);
-                App.m_window.Closed -= HideApp;
-                App.m_window.Closed += CloseApp;
+                mainWindow.Closed -= HideApp;
+                mainWindow.Closed += CloseApp;
+                App.m_window = mainWindow;
             }
         }
 

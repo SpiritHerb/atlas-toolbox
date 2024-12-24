@@ -10,6 +10,7 @@ using System.Windows.Input;
 using AtlasToolbox.Commands;
 using MVVMEssentials.Services;
 using AtlasToolbox.Enums;
+using AtlasToolbox.Services.ConfigurationSubMenu;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -21,6 +22,7 @@ namespace AtlasToolbox.ViewModels
         public Configuration Configuration { get; set; }
         public string Name => Configuration.Name;
         public ConfigurationType Type => Configuration.Type;
+        public string RiskRating => Configuration.RiskRating.ToString();
 
         private bool _currentSetting;
 

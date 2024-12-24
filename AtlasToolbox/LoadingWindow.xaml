@@ -15,5 +15,6 @@
 
     <Grid>
         <ProgressRing IsActive="True" />
+        <TextBlock TextAlignment="Center" Margin="0,175,0,0" Text="Reticulating Splines..."/>
     </Grid>
 </Window>
