@@ -22,10 +22,18 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
+                <!--<ItemsControl
+                    ItemTemplate="{StaticResource ConfigurationItem}"
+                    ItemsSource="{Binding ConfigurationItem}"/>-->
                 <ItemsControl ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                    x:Key="TextFillColorSecondaryBrush"
+                                    Color="{Binding Path=TextColor}" />
+                                </controls:SettingsCard.Resources>
                                 <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
                             </controls:SettingsCard>
                         </DataTemplate>

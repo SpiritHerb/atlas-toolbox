@@ -12,7 +12,14 @@
     mc:Ignorable="d">
 
     <Grid>
-        
+        <ListView
+        x:Name="BaseExample"
+        BorderThickness="1"
+        BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+        Width="350"
+        Margin="0 0 0 50"
+        HorizontalAlignment="Left"/>
+
     </Grid>
 </Page>
 

@@ -11,6 +11,13 @@ using AtlasToolbox.Commands;
 using MVVMEssentials.Services;
 using AtlasToolbox.Enums;
 using AtlasToolbox.Services.ConfigurationSubMenu;
+using System.Drawing;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Dispatching;
+using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
+using System.CodeDom;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -22,7 +29,11 @@ namespace AtlasToolbox.ViewModels
         public Configuration Configuration { get; set; }
         public string Name => Configuration.Name;
         public ConfigurationType Type => Configuration.Type;
-        public string RiskRating => Configuration.RiskRating.ToString();
+        public RiskRating RiskRating => Configuration.RiskRating;
+
+        public SolidColorBrush TextColor { get; set; }
+
+        public string RiskRatingString => Configuration.RiskRating.ToString();
 
         private bool _currentSetting;
 
@@ -47,7 +58,20 @@ namespace AtlasToolbox.ViewModels
             }
         }
 
+
         public ICommand SaveConfigurationCommand { get; }
+
+        public SolidColorBrush SetColor()
+        {    
+                SolidColorBrush color = RiskRating.ToString() switch
+                {
+                    "MediumRisk" => new SolidColorBrush(Microsoft.UI.Colors.Yellow),
+                    "LowRisk" => new SolidColorBrush(Microsoft.UI.Colors.Green),
+                    "HighRisk" => new SolidColorBrush(Microsoft.UI.Colors.Red),
+                    _ => new SolidColorBrush(Microsoft.UI.Colors.Gray),
+                };
+                return color;
+        }
 
         public ConfigurationItemViewModel(
             Configuration configuration,
@@ -61,6 +85,8 @@ namespace AtlasToolbox.ViewModels
 
 
             _currentSetting = FetchCurrentSetting();
+
+            TextColor = SetColor();
 
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
 
