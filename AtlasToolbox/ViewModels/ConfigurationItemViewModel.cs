@@ -1,23 +1,12 @@
 ﻿using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Models;
 using AtlasToolbox.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using AtlasToolbox.Commands;
-using MVVMEssentials.Services;
 using AtlasToolbox.Enums;
-using AtlasToolbox.Services.ConfigurationSubMenu;
-using System.Drawing;
-using Microsoft.UI.Xaml;
+using Windows.UI;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Dispatching;
-using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-using System.CodeDom;
+//using System.Drawing;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -29,9 +18,10 @@ namespace AtlasToolbox.ViewModels
         public Configuration Configuration { get; set; }
         public string Name => Configuration.Name;
         public ConfigurationType Type => Configuration.Type;
-        public RiskRating RiskRating => Configuration.RiskRating;
 
-        public SolidColorBrush TextColor { get; set; }
+        //public Color Color { get; set; }
+
+        //public SolidColorBrush TextColor { get; set; }
 
         public string RiskRatingString => Configuration.RiskRating.ToString();
 
@@ -61,17 +51,19 @@ namespace AtlasToolbox.ViewModels
 
         public ICommand SaveConfigurationCommand { get; }
 
-        public SolidColorBrush SetColor()
-        {    
-                SolidColorBrush color = RiskRating.ToString() switch
-                {
-                    "MediumRisk" => new SolidColorBrush(Microsoft.UI.Colors.Yellow),
-                    "LowRisk" => new SolidColorBrush(Microsoft.UI.Colors.Green),
-                    "HighRisk" => new SolidColorBrush(Microsoft.UI.Colors.Red),
-                    _ => new SolidColorBrush(Microsoft.UI.Colors.Gray),
-                };
-                return color;
-        }
+        //public Color SetColor(RiskRating riskRating)
+        //{
+        //    switch (riskRating)
+        //    {
+        //        case RiskRating.HighRisk:
+        //            return Color.FromArgb(255,255,0,0);
+        //        case RiskRating.MediumRisk:
+        //            return Color.FromArgb(255, 255, 255, 0);
+        //        case RiskRating.LowRisk:
+        //            return Color.FromArgb(255, 0, 128, 0);
+        //    }
+        //    return Color.FromArgb(255, 0, 128, 0);
+        //}
 
         public ConfigurationItemViewModel(
             Configuration configuration,
@@ -86,7 +78,7 @@ namespace AtlasToolbox.ViewModels
 
             _currentSetting = FetchCurrentSetting();
 
-            TextColor = SetColor();
+            //Color = SetColor(Configuration.RiskRating);
 
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
 

@@ -71,7 +71,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
                 ServiceHelper.IsStartupTypeMatch(MRXSMB20_SERVICE_NAME, ServiceStartMode.Manual),
                 ServiceHelper.IsStartupTypeMatch(RDBSS_SERVICE_NAME, ServiceStartMode.System),
                 ServiceHelper.IsStartupTypeMatch(SRV2_SERVICE_NAME, ServiceStartMode.Manual),
-                _dismService.GetFeatureState(SMB_DIRECT_FEATURE_NAME) is DismPackageFeatureState.Staged or DismPackageFeatureState.Installed
+                //_dismService.GetFeatureState(SMB_DIRECT_FEATURE_NAME) is DismPackageFeatureState.Staged or DismPackageFeatureState.Installed
             };
 
             return checks.All(x => x);

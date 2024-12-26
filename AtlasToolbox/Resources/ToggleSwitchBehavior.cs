@@ -81,7 +81,6 @@ namespace AtlasToolbox
                 }
             }
             _isInitialized = true;
-           
         }
     }
 }
