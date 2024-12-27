@@ -20,27 +20,37 @@ using WinRT.AtlasToolboxVtableClasses;
 
 namespace AtlasToolbox.ViewModels
 {
-    public partial class HomePageViewModel : ObservableObject
+    public partial class HomePageViewModel : INotifyPropertyChanged
     {
-        private IEnumerable<Profiles> Profiles { get; }
+        private ObservableCollection<Profiles> _profiles;
 
-        public ObservableCollection<Profiles> ProfilesList;
+        public ObservableCollection<Profiles> ProfilesList
+        {
+            get => _profiles;
+            set
+            {
+                OnPropertyChanged();
+            }
+        }
 
-        [ObservableProperty]
-        public string _name;
+        public string Name;
 
         public Profiles profileSelected;
 
-        public HomePageViewModel(
-            IEnumerable<Profiles> profiles)
+        // Implement INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Profiles = profiles;
-            ProfilesList = new ObservableCollection<Profiles>();
-            foreach (Profiles profile in Profiles) { ProfilesList.Add(profile); }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public HomePageViewModel(
+            ObservableCollection<Profiles> profiles)
+        {
+            _profiles = profiles;
         }
 
         public static HomePageViewModel LoadViewModel(
-            IEnumerable<Profiles> profiles)
+            ObservableCollection<Profiles> profiles)
         {
             HomePageViewModel viewModel = new(profiles);
 

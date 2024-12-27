@@ -44,10 +44,10 @@ namespace AtlasToolbox.Views
         private void AddProfile(object sender, RoutedEventArgs e)
         {
             _viewModel.AddProfileCommand.Execute(null);
-            _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
-            this.DataContext = _viewModel;
+            //_viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
+            //this.DataContext = _viewModel;
 
-            ProfilesListView.ItemsSource = _viewModel.ProfilesList;
+            //ProfilesListView.ItemsSource = _viewModel.ProfilesList;
         }
 
         private async void DeleteProfile(object sender, RoutedEventArgs e)
