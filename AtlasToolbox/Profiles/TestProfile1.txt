@@ -1,0 +1,3 @@
+TestProfile1
+Lock Screen
+Search Indexing

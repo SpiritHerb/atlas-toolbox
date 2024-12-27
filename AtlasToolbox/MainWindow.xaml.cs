@@ -29,9 +29,6 @@ namespace AtlasToolbox
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private AppWindow _apw;
-        private OverlappedPresenter _presenter;
-
         public MainWindow()
         {
             this.InitializeComponent();

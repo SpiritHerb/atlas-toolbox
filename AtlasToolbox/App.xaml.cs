@@ -23,7 +23,6 @@ namespace AtlasToolbox
     public partial class App : Application
     {
         public static IHost _host { get; set; }
-        private bool _isLoading;
 
         public static Window m_window;
         public static Window s_window;
@@ -42,6 +41,21 @@ namespace AtlasToolbox
                 .AddStores()
                 .AddServices()
                 .AddViewModels();
+
+
+        public static async Task ReloadHost()
+        {
+            _host.StopAsync().Wait();
+
+            _host = CreateHostBuilder().Build();
+            _host.Start();
+
+            s_window = new LoadingWindow();
+            s_window.Activate();
+            await Task.Run(() => _host.Services.GetRequiredService<GeneralConfigViewModel>());
+            s_window.Close();
+
+        }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {

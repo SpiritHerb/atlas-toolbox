@@ -90,6 +90,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriority");
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
                 services.AddKeyedTransient<IConfigurationService, TestConfigurationService>("TestConfig");
+                services.AddKeyedTransient<IConfigurationService, OtherTestConfigurationService>("OtherTestConfig");
             });
 
             return host;

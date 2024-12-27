@@ -8,18 +8,47 @@
     xmlns:control="using:CommunityToolkit.WinUI.Controls"
     xmlns:controls="using:AtlasToolbox.Controls"
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
+    xmlns:model="using:AtlasToolbox.Models"
     d:DataContext="{d:DesignInstance Type=viewmodel:HomePageViewModel}"
     mc:Ignorable="d">
 
+    <!--<Page.Resources>
+        <DataTemplate x:Key="ContactListViewTemplate" x:DataType="local:">
+            <TextBlock Text="{x:Bind Name}" x:Phase="1" Margin="0,5,0,5"/>
+        </DataTemplate>
+    </Page.Resources>-->
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
         <ListView
-        x:Name="BaseExample"
+        x:Name="ProfilesListView"
         BorderThickness="1"
         BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+        SelectedItem="{Binding profileSelected}"
         Width="350"
-        Margin="0 0 0 50"
-        HorizontalAlignment="Left"/>
-
+        Height="225"
+        Margin="0 0 0 10"
+        HorizontalAlignment="Left"
+        Grid.Row="0"
+        Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Profiles">
+                    <TextBlock Text="{x:Bind Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <TextBox x:Name="ProfileNameTextBox" Width="210" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Name}" TextChanged="ProfileNameTextBox_TextChanged"/>
+            <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="AddProfile">New</Button>
+            <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="DeleteProfile">Delete</Button>
+        </StackPanel>
     </Grid>
 </Page>
-

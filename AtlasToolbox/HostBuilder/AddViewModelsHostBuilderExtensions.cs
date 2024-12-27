@@ -1,26 +1,18 @@
 ﻿using AtlasToolbox.Services.ConfigurationServices;
-using AtlasToolbox.Services.ConfigurationSubMenu;
 using AtlasToolbox.Models;
-using AtlasToolbox.Services;
 using AtlasToolbox.Stores;
 using AtlasToolbox.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MVVMEssentials.Services;
-using MVVMEssentials.Stores;
 using MVVMEssentials.ViewModels;
 using System;
 using System.Collections.Generic;
-using Windows.Services.Maps;
-using Windows.Security.Cryptography.Core;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Configuration;
-using System.Linq;
-using Microsoft.UI.Xaml;
-using System.Reflection.Metadata.Ecma335;
 using System.Collections.ObjectModel;
 using AtlasToolbox.Enums;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
+using Microsoft.Graphics.Canvas.Text;
 
 namespace AtlasToolbox.HostBuilder
 {
@@ -38,13 +30,53 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateSecurityConfigViewModel);
                 services.AddTransient(CreateWindowsSettingsViewModel);
                 services.AddTransient(CreateTroubleshootingViewModel);
+                services.AddTransient(CreateHomePageViewModel);
             });
 
              host.AddConfigurationItemViewModels();
              host.AddConfigurationSubMenu();
+             host.AddProfiles();
 
             return host;
         }
+
+
+        private static IHostBuilder AddProfiles(this IHostBuilder host)
+        {
+            List<Profiles> configurationDictionary = new List<Profiles>();
+
+            DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
+            FileInfo[] profileFile = profilesDirectory.GetFiles();
+
+            foreach (FileInfo file in profileFile)
+            {
+                bool loop = true;
+                List<string> keys = new List<string>();
+                string profileKeyname = file.Name;
+                string profileName;
+                using (StreamReader profile = new StreamReader(file.FullName, Encoding.UTF8))
+                {
+                    profileName = profile.ReadLine();
+                    while (loop)
+                    {
+                        //string configurationServiceKey = profile.ReadLine();
+                        string key = profile.ReadLine();
+                        if (key == null) { loop = false; }
+                        else { keys.Add(key); }
+                    }
+                }
+                configurationDictionary.Add(new(profileName, profileKeyname,keys));
+            };
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<Profiles>> (provider =>
+                {
+                    return configurationDictionary;
+                });
+            });
+            return host;
+        }
+
 
         private static IHostBuilder AddConfigurationSubMenu(this IHostBuilder host)
         {
@@ -87,6 +119,7 @@ namespace AtlasToolbox.HostBuilder
             Dictionary<string, Configuration> configurationDictionary = new()
             {
                 ["TestConfig"] = new ("TestConfig", ConfigurationType.General, RiskRating.HighRisk),
+                ["OtherTestConfig"] = new("Other test config", ConfigurationType.General, RiskRating.HighRisk),
                 ["Animations"] = new ("Animations", ConfigurationType.AiSubMenu, RiskRating.LowRisk),
                 ["ExtractContextMenu"] = new("Extract context menu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["RunWithPriorityContextMenu"] = new("Run With Priority in context menu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
@@ -206,6 +239,12 @@ namespace AtlasToolbox.HostBuilder
             return TroubleshootingViewModel.LoadViewModel(
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
                 serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+        }
+
+        private static HomePageViewModel CreateHomePageViewModel(IServiceProvider serviceProvider)
+        {
+            return HomePageViewModel.LoadViewModel(
+                serviceProvider.GetServices<Profiles>());
         }
         #endregion Create ViewModels
 
