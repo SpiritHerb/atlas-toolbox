@@ -1,5 +1,0 @@
-TestProfile3
-TestConfig
-Other test config
-Lock Screen
-Search Indexing

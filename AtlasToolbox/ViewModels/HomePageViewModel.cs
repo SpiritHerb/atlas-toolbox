@@ -16,41 +16,31 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Services.Maps;
 using WinRT.AtlasToolboxVtableClasses;
 
 namespace AtlasToolbox.ViewModels
 {
-    public partial class HomePageViewModel : INotifyPropertyChanged
+    public partial class HomePageViewModel : ObservableObject
     {
-        private ObservableCollection<Profiles> _profiles;
+        private IEnumerable<Profiles> _profiles;
 
-        public ObservableCollection<Profiles> ProfilesList
-        {
-            get => _profiles;
-            set
-            {
-                OnPropertyChanged();
-            }
-        }
+        [ObservableProperty]
+        public ObservableCollection<Profiles> _profilesList;
 
         public string Name;
 
         public Profiles profileSelected;
 
-        // Implement INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         public HomePageViewModel(
-            ObservableCollection<Profiles> profiles)
+            IEnumerable<Profiles> profiles)
         {
-            _profiles = profiles;
+            _profilesList = new();
+            foreach (Profiles profile in profiles) { ProfilesList.Add(profile); }
         }
 
         public static HomePageViewModel LoadViewModel(
-            ObservableCollection<Profiles> profiles)
+            IEnumerable<Profiles> profiles)
         {
             HomePageViewModel viewModel = new(profiles);
 
@@ -82,5 +72,16 @@ namespace AtlasToolbox.ViewModels
                 ProfilesList.Add(new(Name, Name.Trim(), configItemKeys));               
             }
         }
+
+        //[RelayCommand]
+        //private void DeleteProfile()
+        //{
+        //    if (profileSelected == null) return;
+
+        //    DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
+        //    FileInfo[] profileFile = profilesDirectory.GetFiles();
+
+            
+        //}
     }
 }

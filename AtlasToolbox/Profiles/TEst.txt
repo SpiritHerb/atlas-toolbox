@@ -1,4 +1,4 @@
-tp7
+Test
 TestConfig
 Other test config
 Lock Screen
