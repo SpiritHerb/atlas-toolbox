@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using AtlasToolbox.Views;
-using CommunityToolkit.WinUI;
-using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Windows.ApplicationModel.Core;
+using AtlasOSToolbox;
 
 namespace AtlasToolbox.Utils
 {
@@ -30,12 +21,32 @@ namespace AtlasToolbox.Utils
     //    }
 
     //}
-
     public static class ComputerStateHelper
     {
-        public static void LogOffComputer()
+        public static UIElement GetXamlRoot()
         {
-            CommandPromptHelper.RunCustomFile("C:\\Windows\\AtlasModules\\Scripts\\logoffPrompt.bat");
+            if (App.m_window.Content is UIElement rootFrame)
+            {
+                return rootFrame;
+            }
+            return null;
+        }
+        public async static void LogOffComputer()
+        {
+            //CommandPromptHelper.RunCustomFile("C:\\Windows\\AtlasModules\\Scripts\\logoffPrompt.bat");
+            UIElement rootElement = GetXamlRoot();
+
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = rootElement.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Do you really wish to delete this profile?";
+            dialog.PrimaryButtonText = "Yes";
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            var result = await dialog.ShowAsync();
         }
     }
 }

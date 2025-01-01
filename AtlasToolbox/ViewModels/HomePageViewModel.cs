@@ -1,5 +1,6 @@
 ﻿using ABI.System.Collections;
 using AtlasToolbox.Models;
+using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -24,25 +25,30 @@ namespace AtlasToolbox.ViewModels
     public partial class HomePageViewModel : ObservableObject
     {
         private IEnumerable<Profiles> _profiles;
+        private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
 
         [ObservableProperty]
         public ObservableCollection<Profiles> _profilesList;
 
         public string Name;
 
-        public Profiles profileSelected;
+        [ObservableProperty]
+        public Profiles _profileSelected;
 
         public HomePageViewModel(
-            IEnumerable<Profiles> profiles)
+            IEnumerable<Profiles> profiles,
+            IEnumerable<ConfigurationItemViewModel> configurationItemViewModels)
         {
+            ConfigurationItemViewModels = configurationItemViewModels;
             _profilesList = new();
             foreach (Profiles profile in profiles) { ProfilesList.Add(profile); }
         }
 
         public static HomePageViewModel LoadViewModel(
-            IEnumerable<Profiles> profiles)
+            IEnumerable<Profiles> profiles,
+            IEnumerable<ConfigurationItemViewModel> configurationItemViewModels)
         {
-            HomePageViewModel viewModel = new(profiles);
+            HomePageViewModel viewModel = new(profiles, configurationItemViewModels);
 
             return viewModel;
         }
@@ -65,23 +71,47 @@ namespace AtlasToolbox.ViewModels
                 {
                     if (configItemViewModel.CurrentSetting) 
                     {
-                        outputFile.WriteLine(configItemViewModel.Name);
-                        configItemKeys.Add(configItemViewModel.Name);
+                        outputFile.WriteLine(configItemViewModel.Key);
+                        configItemKeys.Add(configItemViewModel.Key);
                     }
                 }
                 ProfilesList.Add(new(Name, Name.Trim(), configItemKeys));               
             }
         }
 
-        //[RelayCommand]
-        //private void DeleteProfile()
-        //{
-        //    if (profileSelected == null) return;
+        [RelayCommand]
+        private void RemoveProfile() 
+        {
+            DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
+            FileInfo[] profileFile = profilesDirectory.GetFiles();
 
-        //    DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
-        //    FileInfo[] profileFile = profilesDirectory.GetFiles();
+            foreach (FileInfo file in profileFile.ToList())
+            {
+                if (ProfileSelected.Key + ".txt" == file.Name)
+                {
+                    File.Delete(file.FullName);
+                    break;
+                }
+            }
+            ProfilesList.Remove(ProfileSelected);
+        }
 
-            
-        //}
+        [RelayCommand]
+        private void SetProfile()
+        {
+            List<ConfigurationItemViewModel> configurationItemVMs = ConfigurationItemViewModels.ToList();
+            foreach (ConfigurationItemViewModel viewModel in configurationItemVMs)
+            {
+                if (ProfileSelected.ConfigurationServices.Contains(viewModel.Key))
+                {
+                    //ConfigurationItemViewModel config = App._host.Services.GetKeyedService<ConfigurationItemViewModel>(viewModel.Key);
+                    viewModel.CurrentSetting = true;
+                }
+                else
+                {
+                    viewModel.CurrentSetting = false;
+                }
+            }
+        }
     }
 }

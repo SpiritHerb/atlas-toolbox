@@ -43,6 +43,7 @@ namespace AtlasToolbox
 
         private static void OnCurrentSettingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            _isInitialized = false;
             if (d is ToggleSwitch toggleSwitch)
             {
                 if ((bool)e.NewValue)
@@ -53,7 +54,7 @@ namespace AtlasToolbox
                 {
                     toggleSwitch.Toggled -= OnToggled;
                 }
-                SetIsInitialized(toggleSwitch, false); 
+                SetIsInitialized(toggleSwitch, true); 
             }
         }
 
@@ -67,7 +68,7 @@ namespace AtlasToolbox
                     {
                         SetIsInitialized(toggleSwitch, true); return; // Skip the first toggle event
                     }
-                        var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
+                    var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
                     if (toggleSwitch.IsOn)
                     {
                         item.CurrentSetting = true;

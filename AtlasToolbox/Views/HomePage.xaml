@@ -32,7 +32,7 @@
         x:Name="ProfilesListView"
         BorderThickness="1"
         BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-        SelectedItem="{Binding profileSelected}"
+        SelectedItem="{Binding ProfileSelected, Mode=TwoWay}"
         Width="350"
         Height="225"
         Margin="0 0 0 10"
@@ -41,7 +41,14 @@
         Grid.Column="0">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Profiles">
-                    <TextBlock Text="{x:Bind Name}"/>
+                    <Grid>
+                        <Grid.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Set this profile" Click="ContactDeleteMenuyItem_Click"/>
+                            </MenuFlyout>
+                        </Grid.ContextFlyout>
+                        <TextBlock Text="{x:Bind Name}"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

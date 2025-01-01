@@ -8,9 +8,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
-    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels" xmlns:local1="using:AtlasToolbox.Utils"
     d:DataContext="{d:DesignInstance Type=viewmodel:InterfaceTweaksViewModel}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <local1:ItemTemplateSelector x:Key="ItemTemplateSelector" DetailTemplate="{StaticResource DetailTemplate}"/>
+    </Page.Resources>
 
     <Grid>
         <ScrollViewer>
@@ -22,8 +26,8 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-                <ItemsControl ItemsSource="{Binding ConfigurationItem}">
+                
+                <ItemsControl x:Name="DetailItemsControl" ItemTemplateSelector="{StaticResource ItemTemplateSelector}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
@@ -32,6 +36,16 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+                <!--<ItemsControl ItemsSource="{Binding ConfigurationItem}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
+                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

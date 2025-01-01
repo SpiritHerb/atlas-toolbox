@@ -39,15 +39,13 @@ namespace AtlasToolbox.Views
             this.DataContext = _viewModel;
 
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
+            ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }
 
         private void AddProfile(object sender, RoutedEventArgs e)
         {
             _viewModel.AddProfileCommand.Execute(null);
-            //_viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
-            //this.DataContext = _viewModel;
-
-            //ProfilesListView.ItemsSource = _viewModel.ProfilesList;
+            ProfileNameTextBox.Text = "";
         }
 
         private async void DeleteProfile(object sender, RoutedEventArgs e)
@@ -67,6 +65,7 @@ namespace AtlasToolbox.Views
                     dialog.PrimaryButtonText = "Yes";
                     dialog.CloseButtonText = "Cancel";
                     dialog.DefaultButton = ContentDialogButton.Primary;
+                    dialog.PrimaryButtonCommand = _viewModel.RemoveProfileCommand;
 
                     var result = await dialog.ShowAsync();
                 }
@@ -86,6 +85,22 @@ namespace AtlasToolbox.Views
             }
         }
 
+
+        private async void ContactDeleteMenuyItem_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Do you really wish to set this profile?";
+            dialog.PrimaryButtonText = "Yes";
+            dialog.CloseButtonText = "No";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.PrimaryButtonCommand = _viewModel.SetProfileCommand;
+
+            var result = await dialog.ShowAsync();
+        }
         private void ProfileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             _viewModel.Name = ProfileNameTextBox.Text;

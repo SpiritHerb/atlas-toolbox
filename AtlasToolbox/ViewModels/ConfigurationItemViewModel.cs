@@ -17,6 +17,7 @@ namespace AtlasToolbox.ViewModels
 
         public Configuration Configuration { get; set; }
         public string Name => Configuration.Name;
+        public string Key => Configuration.Key;
         public ConfigurationType Type => Configuration.Type;
 
         //public Color Color { get; set; }
