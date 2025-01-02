@@ -13,8 +13,14 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <local1:SolidColorBrushConverter x:Key="ColorToBrushConverter" />
-        <SolidColorBrush x:Key="DefaultBrush" Color="Gray" />
+        <!--<local1:SolidColorBrushConverter x:Key="ColorToBrushConverter" />
+        <SolidColorBrush x:Key="DefaultBrush" Color="Gray" />-->
+        <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
+            <Setter Property="Header" Value="{Binding Name}" />
+            <Setter Property="Margin" Value="0,0,-75,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <!--<Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>-->
+        </Style>
     </Page.Resources>
     
     <Grid>
@@ -40,7 +46,7 @@
                                     x:Key="TextFillColorSecondaryBrush"
                                     Color="{Binding TextColor, Converter={StaticResource ColorToBrushConverter} , ConverterParameter={Binding Color}}"/>-->
                                 </controls:SettingsCard.Resources>
-                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
+                                <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Toggled="ToggleSwitch_Toggled" Style="{StaticResource ConfigurationItemTemplate}"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

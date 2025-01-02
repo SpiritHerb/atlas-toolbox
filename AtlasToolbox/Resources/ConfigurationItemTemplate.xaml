@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AtlasToolbox"
-    xmlns:controls="using:CommunityToolkit.WinUI.Controls" >
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:local1="using:AtlasToolbox.ViewModels">
 
     <Style x:Key="SubMenuTemplate" TargetType="controls:SettingsExpander">
         <Setter Property="Header" Value="{Binding Name}"/>
@@ -15,9 +16,9 @@
 
     <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
         <Setter Property="Header" Value="{Binding Name}" />
+        <Setter Property="IsOn" Value="{Binding CurrentSetting}" />
         <Setter Property="Margin" Value="0,0,-75,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>
     </Style>
 
     <Style x:Key="RiskRatingTemplate" TargetType="TextBlock">

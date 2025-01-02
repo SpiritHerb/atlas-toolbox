@@ -38,6 +38,12 @@ public sealed partial class GeneralConfig : Page
         Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
     }
 
+    private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+    {
+        var ConfigSwitch = sender as ToggleSwitch;
+        ConfigSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+    }
+
     //public SolidColorBrush SelectColor(RiskRating value)
     //{
     //    switch (value) 
