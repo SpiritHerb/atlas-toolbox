@@ -45,7 +45,9 @@ namespace AtlasToolbox.HostBuilder
         {
             List<Profiles> configurationDictionary = new List<Profiles>();
 
-            DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
+            //DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
+            //This is a temporary fix for publishing and debugging, this is to be changed once the app is ready to ship
+            DirectoryInfo profilesDirectory = new DirectoryInfo($"C:\\Users\\TheyCreeper\\Documents\\Dev\\AtlasToolbox-WinUI3\\AtlasToolbox\\Profiles\\");
             FileInfo[] profileFile = profilesDirectory.GetFiles();
 
             foreach (FileInfo file in profileFile)

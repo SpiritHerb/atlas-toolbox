@@ -31,7 +31,7 @@
                 <ItemsControl ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationItemTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
                                 <controls:SettingsCard.Resources>
                                     <!--<SolidColorBrush
                                     x:Key="TextFillColorSecondaryBrush"

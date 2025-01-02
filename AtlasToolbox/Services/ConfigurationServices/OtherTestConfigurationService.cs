@@ -27,6 +27,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            ComputerStateHelper.LogOffComputer();
 
             _otherTestConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -34,6 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            ComputerStateHelper.LogOffComputer();
 
             _otherTestConfigurationService.CurrentSetting = IsEnabled();
         }

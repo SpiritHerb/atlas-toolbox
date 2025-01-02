@@ -11,6 +11,9 @@ using Windows.UI.Core;
 using WinUIEx;
 using Windows.ApplicationModel.Core;
 using System.Threading;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -22,6 +25,7 @@ namespace AtlasToolbox
     /// </summary>
     public partial class App : Application
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         public static IHost _host { get; set; }
 
         public static Window m_window;
@@ -31,9 +35,15 @@ namespace AtlasToolbox
 
         public App()
         {
+            ConfigureNLog();
+            logger.Info("App Started");
             _host = CreateHostBuilder().Build();
+            logger.Info("Building host");
             _host.Start();
+            logger.Info("Starting host");
             this.InitializeComponent();
+            logger.Info("Finished initializing components");
+            this.UnhandledException += OnAppUnhandledException;
         }
 
         private static IHostBuilder CreateHostBuilder() =>
@@ -42,6 +52,32 @@ namespace AtlasToolbox
                 .AddServices()
                 .AddViewModels();
 
+        private void ConfigureNLog()
+        {
+            //This is weird and there's probably a better way to do it, for now it works but is to change
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+            int hour = DateTime.Now.Hour;
+            int minutes = DateTime.Now.Minute;
+            int seconds = DateTime.Now.Second;
+
+            string name = $"logs/toolbox-log-{year}_{month}_{day}_{hour}_{minutes}_{seconds}.log";
+            var config = new LoggingConfiguration();
+            var logfile = new FileTarget("logfile")
+            {
+                FileName = name,
+                Layout = "${longdate} ${level}: ${message} ${exception}"
+            };
+            config.AddTarget(logfile); config.AddRuleForAllLevels(logfile);
+            LogManager.Configuration = config;
+        }
+
+        private void OnAppUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            logger.Error(e.Exception, "Unhandled exception occurred");
+            //e.Handled = true; 
+        }
 
         public static async Task ReloadHost()
         {
@@ -61,14 +97,13 @@ namespace AtlasToolbox
         {
            Task.Run(() => StartNamedPipeServer());
 
-            if (!_mutex.WaitOne(TimeSpan.Zero, true))
-            {
-                CheckForExistingInstance();
-                Environment.Exit(0);
-                return;
-            }
+           if (!_mutex.WaitOne(TimeSpan.Zero, true))
+           {
+               CheckForExistingInstance();
+               Environment.Exit(0);
+               return;
+           }
 
-            m_window = new MainWindow();
             string[] arguments = Environment.GetCommandLineArgs();
             bool wasRanWithArgs = false;
             foreach (var arg in arguments)
@@ -94,12 +129,13 @@ namespace AtlasToolbox
             }
 
             if (!wasRanWithArgs)
-                {
-                    s_window = new LoadingWindow();
-                    s_window.Activate();
+            {
+                logger.Info("Loading without args");
+                s_window = new LoadingWindow();
+                s_window.Activate();
 
-                    InitializeVMAsync();
-                }
+                InitializeVMAsync();
+            }
         }
 
         private void CheckForExistingInstance()
@@ -151,7 +187,9 @@ namespace AtlasToolbox
 
         private async void InitializeVMAsync()
         {
+            logger.Info("Loading configuration services");
             await Task.Run(() => _host.Services.GetRequiredService<GeneralConfigViewModel>());
+            logger.Info("Configuration services loaded");
             m_window = new MainWindow();
             m_window.Activate();
             s_window.Close();
