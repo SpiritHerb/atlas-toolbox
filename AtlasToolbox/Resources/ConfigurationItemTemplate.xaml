@@ -16,20 +16,12 @@
 
     <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
         <Setter Property="Header" Value="{Binding Name}" />
-        <Setter Property="IsOn" Value="{Binding CurrentSetting}" />
         <Setter Property="Margin" Value="0,0,-75,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
     <Style x:Key="RiskRatingTemplate" TargetType="TextBlock">
     </Style>
-
-    <!--<Style x:Key="ConfigurationSubSettingItemTemplate" TargetType="ToggleSwitch">
-        <Setter Property="Header" Value="{Binding Name}" />
-        <Setter Property="local:ToggleSwitchBehavior.CurrentSetting" Value="true"/>
-        <Setter Property="Margin" Value="0,-5,-75,0"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>-->
 
     <DataTemplate x:Key="ConfigurationItem">
             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">

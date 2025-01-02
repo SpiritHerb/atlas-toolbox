@@ -57,22 +57,22 @@ namespace AtlasToolbox
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1))
             {
-                this.Closed += HideApp;
+                this.Closed += AppBehaviorHelper.HideApp;
             }else
             {
-                this.Closed += CloseApp;
+                this.Closed += AppBehaviorHelper.CloseApp;
             }
         }
 
-        public void HideApp(object sender, WindowEventArgs e)
-        {
-            e.Handled = true;
-            this.Hide();
-        }
-        public void CloseApp(object sender, WindowEventArgs e)
-        {
-            App.Current.Exit();
-        }
+        //public void HideApp(object sender, WindowEventArgs e)
+        //{
+        //    e.Handled = true;
+        //    this.Hide();
+        //}
+        //public void CloseApp(object sender, WindowEventArgs e)
+        //{
+        //    App.Current.Exit();
+        //}
 
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)

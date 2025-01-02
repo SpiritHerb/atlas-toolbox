@@ -21,7 +21,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
-                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
+                                <ToggleSwitch IsOn="{Binding CurrentSetting}" Toggled="ToggleSwitch_Toggled" Style="{StaticResource ConfigurationItemTemplate}"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

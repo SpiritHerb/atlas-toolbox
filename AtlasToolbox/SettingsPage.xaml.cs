@@ -27,7 +27,7 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        private bool _toggleSwitchIsOn = RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1);
+        private bool _toggleSwitchIsOn = RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "KeepInBackground", 1);
         public bool ToggleSwitch_IsOn
         {
             get => _toggleSwitchIsOn;
@@ -44,20 +44,15 @@ namespace AtlasToolbox.Views
 
         private void OnToggleSwitchChanged()
         {
-            MainWindow mainWindow = (MainWindow)App.m_window;
             if (_toggleSwitchIsOn)
             {
-                RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1);
-                mainWindow.Closed -= CloseApp;
-                mainWindow.Closed += HideApp;
-                App.m_window = mainWindow;
+                RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "KeepInBackground", 1);
+                App.m_window.Closed += AppBehaviorHelper.HideApp;
             }
             else
             {
-                RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 0);
-                mainWindow.Closed -= HideApp;
-                mainWindow.Closed += CloseApp;
-                App.m_window = mainWindow;
+                RegistryHelper.DeleteValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "KeepInBackground");
+                App.m_window.Closed += AppBehaviorHelper.CloseApp;
             }
         }
 
@@ -68,14 +63,6 @@ namespace AtlasToolbox.Views
                 ToggleSwitch_IsOn = toggleSwitch.IsOn;
             }
         }
-        public void CloseApp(object sender, WindowEventArgs e)
-        {
-            App.Current.Exit();
-        }
-        public void HideApp(object sender, WindowEventArgs e)
-        {
-            e.Handled = true;
-            App.m_window.Hide();
-        }
+        
     }
 }
