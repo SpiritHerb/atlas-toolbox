@@ -18,6 +18,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using AtlasToolbox.Utils;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
+using ICSharpCode.Decompiler.CSharp.Syntax;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -62,6 +64,8 @@ namespace AtlasToolbox
             {
                 this.Closed += AppBehaviorHelper.CloseApp;
             }
+
+            //App.XamlRoot = this.Content.XamlRoot;
         }
 
         //public void HideApp(object sender, WindowEventArgs e)
@@ -72,6 +76,19 @@ namespace AtlasToolbox
         //public void CloseApp(object sender, WindowEventArgs e)
         //{
         //    App.Current.Exit();
+        //}
+
+        //public static async void Hello()
+        //{
+        //    ContentDialog contentDialog = new ContentDialog();
+
+        //    contentDialog.Title = "Do you really wish to delete this profile?";
+        //    contentDialog.PrimaryButtonText = "Yes";
+        //    contentDialog.CloseButtonText = "Cancel";
+        //    contentDialog.DefaultButton = ContentDialogButton.Primary;
+        //    contentDialog.XamlRoot = xamlRoot;
+
+        //    var result = await contentDialog.ShowAsync();
         //}
 
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
@@ -89,6 +106,7 @@ namespace AtlasToolbox
                        null,
                        new DrillInNavigationTransitionInfo()
                        );
+                App.XamlRoot = this.Content.XamlRoot;
             }
         }
 

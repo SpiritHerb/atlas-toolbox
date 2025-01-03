@@ -26,8 +26,13 @@ public sealed partial class GeneralConfig : Page
         this.InitializeComponent();
         _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
         this.DataContext = _viewModel;
-
+        //SetXamlRoot();
     }
+
+    //private void SetXamlRoot()
+    //{
+    //    App.OnNewTabLoaded(this.XamlRoot);
+    //}
 
     private void OnCardClicked(object sender, RoutedEventArgs e)
     {
@@ -43,6 +48,8 @@ public sealed partial class GeneralConfig : Page
     {
         var toggleSwitch = sender as ToggleSwitch;
         toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+        //App.OnNewTabLoaded(this.XamlRoot);
+        //App.XamlRoot = this.XamlRoot;
     }
 
     //private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
