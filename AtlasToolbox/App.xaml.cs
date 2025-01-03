@@ -130,10 +130,10 @@ namespace AtlasToolbox
                InitializeVMAsync();
            }
 
-            Task.Delay(100).ContinueWith(_ =>
-            {
-                LogOffComputer();
-            });
+            //Task.Delay(100).ContinueWith(_ =>
+            //{
+            //    LogOffComputer();
+            //});
         }
 
         //public static void OnNewTabLoaded(XamlRoot xamlRoot)

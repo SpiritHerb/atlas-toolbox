@@ -17,45 +17,83 @@
             <TextBlock Text="{x:Bind Name}" x:Phase="1" Margin="0,5,0,5"/>
         </DataTemplate>
     </Page.Resources>-->
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GridView
+                x:Name="itemGridView"
+                IsItemClickEnabled="True"
+                IsSwipeEnabled="False"
+                SelectionMode="None"
+                Margin="-40, -50, 0, 0"
+                HorizontalAlignment="Center"
+                Grid.Column="0"
+                Grid.Row="0">
+                <GridView.Header>
+                    <Grid x:Name="HeaderGrid" Margin="0,50,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="204" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <controls:HomePageHeaderImage
+                        Grid.RowSpan="2"
+                        Height="396"
+                        VerticalAlignment="Top" />
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-        <ListView
-        x:Name="ProfilesListView"
-        BorderThickness="1"
-        BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-        SelectedItem="{Binding ProfileSelected, Mode=TwoWay}"
-        Width="350"
-        Height="225"
-        Margin="0 0 0 10"
-        HorizontalAlignment="Left"
-        Grid.Row="0"
-        Grid.Column="0">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Profiles">
-                    <Grid>
-                        <Grid.ContextFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="Set this profile" Click="ContactDeleteMenuyItem_Click"/>
-                            </MenuFlyout>
-                        </Grid.ContextFlyout>
-                        <TextBlock Text="{x:Bind Name}"/>
+                        <StackPanel
+                        Margin="75,50,0,0"
+                        VerticalAlignment="Top"
+                        Orientation="Vertical">
+                            <TextBlock
+                                x:Name="subHeaderBlock"
+                                FontSize="18"
+                                Text="AtlasOS Toolbox" />
+                            <TextBlock
+                                x:Name="smallHeaderText"
+                                FontSize="52"
+                                Text="Home" />
+                        </StackPanel>
+                        <controls:TileGallery
+                            x:Name="headerTileGallery"
+                            Grid.Row="1"
+                            Margin="40,0,0,0"/>
                     </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-            <TextBox x:Name="ProfileNameTextBox" Width="210" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Name}" TextChanged="ProfileNameTextBox_TextChanged"/>
-            <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="AddProfile">New</Button>
-            <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="DeleteProfile">Delete</Button>
-        </StackPanel>
-    </Grid>
+                </GridView.Header>
+            </GridView>
+            <ListView
+                x:Name="ProfilesListView"
+                BorderThickness="1"
+                BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                SelectedItem="{Binding ProfileSelected, Mode=TwoWay}"
+                Width="350"
+                Height="225"
+                Margin="36 36 0 10"
+                HorizontalAlignment="Left"
+                Grid.Row="1"
+                Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Profiles">
+                        <Grid>
+                            <Grid.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Set this profile" Click="ContactDeleteMenuyItem_Click"/>
+                                </MenuFlyout>
+                            </Grid.ContextFlyout>
+                            <TextBlock Text="{x:Bind Name}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="36,0,0,24">
+                <TextBox x:Name="ProfileNameTextBox" Width="210" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Name}" TextChanged="ProfileNameTextBox_TextChanged"/>
+                <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="AddProfile">New</Button>
+                <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="DeleteProfile">Delete</Button>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+    
 </Page>

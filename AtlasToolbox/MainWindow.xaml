@@ -23,35 +23,35 @@
             <!--  NavView  -->
         </Grid.RowDefinitions>
         <Border
-                x:Name="AppTitleBar"
-                Grid.Column="1"
-                Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
-                Margin="48,0,0,0"
-                VerticalAlignment="Stretch"
-                AutomationProperties.AutomationId="AppTitleBar"
-                Canvas.ZIndex="1"
-                IsHitTestVisible="True">
+             x:Name="AppTitleBar"
+             Grid.Column="1"
+             Height="{Binding ElementName=NavigationViewControl, Path=CompactPaneLength}"
+             Margin="48,0,0,0"
+             VerticalAlignment="Stretch"
+             AutomationProperties.AutomationId="AppTitleBar"
+             Canvas.ZIndex="1"
+             IsHitTestVisible="True">
             <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
                 <Image Width="18" VerticalAlignment="Center" Source="ms-appx:///Assets/Tiles/TitlebarLogo.png" />
                 <TextBlock
-                    x:Name="AppTitle"
-                    Margin="12,-1,0,0"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource CaptionTextBlockStyle}"
-                    Text="AtlasOS Toolbox" />
+                 x:Name="AppTitle"
+                 Margin="12,-1,0,0"
+                 VerticalAlignment="Center"
+                 Style="{StaticResource CaptionTextBlockStyle}"
+                 Text="AtlasOS Toolbox" />
                 <TextBox x:Name="AppTitleBarTextBox" MinWidth="300" Height="40" Margin="16,0,0,0" Visibility="Collapsed"  PlaceholderText="Enter any text" />
             </StackPanel>
         </Border>
         <NavigationView
-                x:Name="NavigationViewControl"
-                Grid.RowSpan="2"
-                Grid.Column="1"
-                IsTitleBarAutoPaddingEnabled="False"
-                AlwaysShowHeader="True"
-                Header="Default Header"
-                IsTabStop="False" 
-                BackRequested="NavigationViewControl_BackRequested" 
-                ItemInvoked="NavigationViewControl_ItemInvoked">
+             x:Name="NavigationViewControl"
+             Grid.RowSpan="2"
+             Grid.Column="1"
+             IsTitleBarAutoPaddingEnabled="False"
+             AlwaysShowHeader="True"
+             Header="Default Header"
+             IsTabStop="False" 
+             BackRequested="NavigationViewControl_BackRequested" 
+             ItemInvoked="NavigationViewControl_ItemInvoked">
 
 
             <NavigationView.Resources>
@@ -62,7 +62,7 @@
                 <!--  This is the rounded corner on the Top left of the L Pattern  -->
                 <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
             </NavigationView.Resources>
-            
+
             <NavigationView.MenuItems>
 
                 <NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage" />
@@ -73,7 +73,9 @@
                 <NavigationViewItem Icon="Home" Content="Security" Tag="AtlasToolbox.Views.Security"/>
                 <NavigationViewItem Icon="Home" Content="Troubleshooting" Tag="AtlasToolbox.Views.Troubleshooting"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" Padding="55,10,0,0"/>
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
+            </ScrollViewer>
         </NavigationView>
 
 

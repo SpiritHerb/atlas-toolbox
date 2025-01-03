@@ -20,6 +20,8 @@ using System.Runtime.InteropServices;
 using AtlasToolbox.Utils;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
 using ICSharpCode.Decompiler.CSharp.Syntax;
+using WindowsDisplayAPI;
+using Windows.Management.Update;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,17 +37,20 @@ namespace AtlasToolbox
         {
             this.InitializeComponent();
 
-            IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this); // Assuming 'this' is your Window instance
+            int resolutionX = 0;
+            int resolutionY = 0;
 
-            var windowId = Win32Interop.GetWindowIdFromWindow(hwnd);
-
-            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+            foreach (Display display in Display.GetDisplays())
+            {
+                resolutionX = display.CurrentSetting.Resolution.Width;
+                resolutionY = display.CurrentSetting.Resolution.Height;
+            }
 
             //Window parameters
             WindowManager.Get(this).IsMaximizable = false;
             WindowManager.Get(this).IsResizable = false;
-            WindowManager.Get(this).Width = 1250;
-            WindowManager.Get(this).Height = 850;
+            WindowManager.Get(this).Width = resolutionX;
+            WindowManager.Get(this).Height = resolutionY;
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
 
@@ -57,39 +62,9 @@ namespace AtlasToolbox
                        );
             SetTitleBar(AppTitleBar);
 
-            if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1))
-            {
-                this.Closed += AppBehaviorHelper.HideApp;
-            }else
-            {
-                this.Closed += AppBehaviorHelper.CloseApp;
-            }
-
-            //App.XamlRoot = this.Content.XamlRoot;
+            if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
+            else this.Closed += AppBehaviorHelper.CloseApp;
         }
-
-        //public void HideApp(object sender, WindowEventArgs e)
-        //{
-        //    e.Handled = true;
-        //    this.Hide();
-        //}
-        //public void CloseApp(object sender, WindowEventArgs e)
-        //{
-        //    App.Current.Exit();
-        //}
-
-        //public static async void Hello()
-        //{
-        //    ContentDialog contentDialog = new ContentDialog();
-
-        //    contentDialog.Title = "Do you really wish to delete this profile?";
-        //    contentDialog.PrimaryButtonText = "Yes";
-        //    contentDialog.CloseButtonText = "Cancel";
-        //    contentDialog.DefaultButton = ContentDialogButton.Primary;
-        //    contentDialog.XamlRoot = xamlRoot;
-
-        //    var result = await contentDialog.ShowAsync();
-        //}
 
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
@@ -104,9 +79,8 @@ namespace AtlasToolbox
                 ContentFrame.Navigate(
                        newPage,
                        null,
-                       new DrillInNavigationTransitionInfo()
+                       new EntranceNavigationTransitionInfo()
                        );
-                App.XamlRoot = this.Content.XamlRoot;
             }
         }
 
@@ -124,10 +98,14 @@ namespace AtlasToolbox
                 // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
+                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }
             else if(ContentFrame.SourcePageType == typeof(Views.HomePage))
             {
-                NavigationViewControl.HeaderTemplate = Application.Current.Resources["HeaderHome"] as DataTemplate;
+                NavigationViewControl.HeaderTemplate = null;
+                NavigationViewControl.Header = null;
+                ContentFrame.Padding = new Thickness(0,0,0,0);
+                return;
             }
             else if (ContentFrame.SourcePageType != null && ContentFrame.SourcePageType != typeof(Views.SubSection))
             {
@@ -135,7 +113,7 @@ namespace AtlasToolbox
                     .OfType<NavigationViewItem>()
                     .First(n => n.Tag.Equals(ContentFrame.SourcePageType.FullName.ToString()));
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
-
+                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }
             NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
         }
