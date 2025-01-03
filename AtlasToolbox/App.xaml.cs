@@ -33,6 +33,8 @@ namespace AtlasToolbox
 
         private static Mutex _mutex = new Mutex(true, "{AtlasToolbox}");
 
+        public static bool IsInitializing { get; private set; }
+
         public App()
         {
             ConfigureNLog();
@@ -42,6 +44,7 @@ namespace AtlasToolbox
             _host.Start();
             logger.Info("Starting host");
             this.InitializeComponent();
+            IsInitializing = true;
             logger.Info("Finished initializing components");
             this.UnhandledException += OnAppUnhandledException;
         }
@@ -77,20 +80,6 @@ namespace AtlasToolbox
         {
             logger.Error(e.Exception, "Unhandled exception occurred");
             //e.Handled = true; 
-        }
-
-        public static async Task ReloadHost()
-        {
-            _host.StopAsync().Wait();
-
-            _host = CreateHostBuilder().Build();
-            _host.Start();
-
-            s_window = new LoadingWindow();
-            s_window.Activate();
-            await Task.Run(() => _host.Services.GetRequiredService<GeneralConfigViewModel>());
-            s_window.Close();
-
         }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -136,6 +125,7 @@ namespace AtlasToolbox
 
                 InitializeVMAsync();
             }
+            IsInitializing = false;
         }
 
         private void CheckForExistingInstance()
@@ -179,7 +169,6 @@ namespace AtlasToolbox
             }
         }
         
-
         private void InitializeVMAsyncSilent()
         {
             _host.Services.GetRequiredService<GeneralConfigViewModel>();

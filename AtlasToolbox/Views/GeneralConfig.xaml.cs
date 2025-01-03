@@ -7,6 +7,7 @@ using CommunityToolkit.WinUI.Controls;
 using System.Runtime.CompilerServices;
 using AtlasToolbox.Enums;
 using Microsoft.UI.Xaml.Media;
+using ICSharpCode.Decompiler.IL.ControlFlow;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,11 +39,22 @@ public sealed partial class GeneralConfig : Page
         Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
     }
 
-    private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+    private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
     {
-        var ConfigSwitch = sender as ToggleSwitch;
-        ConfigSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+        var toggleSwitch = sender as ToggleSwitch;
+        toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
     }
+
+    //private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+    //{
+
+    //    var ConfigSwitch = sender as ToggleSwitch;
+    //    var vm = ConfigSwitch.DataContext as ConfigurationItemViewModel;
+
+    //    ConfigSwitch.IsOn = vm.CurrentSetting;
+    //    ConfigSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+    //}
+
 
     //public SolidColorBrush SelectColor(RiskRating value)
     //{
