@@ -49,10 +49,10 @@ namespace AtlasToolbox.Views
             }
             
         }
-        private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
         {
-            var ConfigSwitch = sender as ToggleSwitch;
-            ConfigSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+            var toggleSwitch = sender as ToggleSwitch;
+            toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
         }
     }
 }
