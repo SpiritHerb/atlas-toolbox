@@ -14,6 +14,7 @@ using System.Threading;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using Microsoft.UI.Xaml.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,9 +32,8 @@ namespace AtlasToolbox
         public static Window m_window;
         public static Window s_window;
 
-        private static Mutex _mutex = new Mutex(true, "{AtlasToolbox}");
 
-        public static bool IsInitializing { get; private set; }
+        private static Mutex _mutex = new Mutex(true, "{AtlasToolbox}");
 
         public App()
         {
@@ -44,7 +44,6 @@ namespace AtlasToolbox
             _host.Start();
             logger.Info("Starting host");
             this.InitializeComponent();
-            IsInitializing = true;
             logger.Info("Finished initializing components");
             this.UnhandledException += OnAppUnhandledException;
         }
@@ -125,7 +124,6 @@ namespace AtlasToolbox
 
                 InitializeVMAsync();
             }
-            IsInitializing = false;
         }
 
         private void CheckForExistingInstance()
