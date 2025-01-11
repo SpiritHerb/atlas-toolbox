@@ -37,10 +37,10 @@
 
 
     <Style x:Key="ConfigurationSettingsCardTemplate" TargetType="controls:SettingsCard">
-        <Setter Property="Header" Value="{Binding Name}" />
+        <!--<Setter Property="Header" Value="{Binding Name}" />-->
         <Setter Property="Margin" Value="0,0,36,5" />
         <Setter Property="BorderBrush" Value="#0DFFFFFF"/>
-        <Setter Property="Description" Value="{Binding RiskRating}"/>
+        <!--<Setter Property="Description" Value="{Binding RiskRating}"/>-->
     </Style>
 
     <Style x:Key="ConfigurationSubSetting" TargetType="controls:SettingsCard">

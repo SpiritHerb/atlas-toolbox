@@ -11,7 +11,7 @@
   <Identity
     Name="AtlasOSToolbox-WinUI-3"
     Publisher="CN=TheyCreeper"
-    Version="1.0.0.0" />
+    Version="1.0.4.1" />
 
   <mp:PhoneIdentity PhoneProductId="98ae3a68-e43b-4f70-9b72-db68291392f3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

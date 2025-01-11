@@ -54,7 +54,7 @@ namespace AtlasToolbox
             this.InitializeComponent();
             logger.Info("Finished initializing components");
             this.UnhandledException += OnAppUnhandledException;
-        }
+            }
 
         private static IHostBuilder CreateHostBuilder() =>
             Host.CreateDefaultBuilder()

@@ -6,18 +6,27 @@
     xmlns:local="using:AtlasToolbox.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="CategoryTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0 0 0 10"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <TextBlock>Behavior</TextBlock>
-        <controls:SettingsCard Header="Keep the Toolbox in the background">
-            <ToggleSwitch Toggled="ToggleSwitch_Toggled" IsOn="{x:Bind ToggleSwitch_IsOn}"/>
-        </controls:SettingsCard>
+        
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource CategoryTitle}">Behavior</TextBlock>
+            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="Keep the Toolbox in the background">
+                <ToggleSwitch Toggled="KeepBackground_Toggled" IsOn="{x:Bind KeepBackground_State}"/>
+            </controls:SettingsCard>
+        </StackPanel>
     </Grid>
 </Page>
