@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using WinUIEx;
 
 namespace AtlasToolbox.Services.ConfigurationServices
 {
@@ -27,7 +28,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
-            App.LogOffComputer();
+            //App.LogOffComputer();
+            //App.m_window.CreateMessageDialog("Hello", "Test");
+            App.InitializeContentDialog("Restart computer");
 
             _otherTestConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -35,7 +38,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
-            App.LogOffComputer();
+            //App.LogOffComputer();
+            App.m_window.CreateMessageDialog("Hello", "Test");
+            App.InitializeContentDialog("Restart computer");
 
             _otherTestConfigurationService.CurrentSetting = IsEnabled();
         }

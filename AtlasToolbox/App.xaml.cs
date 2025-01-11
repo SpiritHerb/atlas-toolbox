@@ -18,6 +18,7 @@ using Microsoft.UI.Xaml.Controls;
 using AtlasToolbox.Utils;
 using Windows.Graphics.Imaging;
 using CommunityToolkit.WinUI;
+using AtlasToolbox.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,6 +35,7 @@ namespace AtlasToolbox
 
         public static Window m_window;
         public static Window s_window;
+        public static Window c_window;
 
         public static ContentDialog contentDialog { get; set; }
 
@@ -125,6 +127,7 @@ namespace AtlasToolbox
            {
                logger.Info("Loading without args");
                s_window = new LoadingWindow();
+                c_window = new ControlDialogWindowHelper();
                s_window.Activate();
 
                InitializeVMAsync();
@@ -198,65 +201,73 @@ namespace AtlasToolbox
             s_window.Close();
         }
 
-        public async static void LogOffComputer()
+        public static void InitializeContentDialog(string contentDialogType)
         {
-            if (m_window.Content is FrameworkElement frameworkElement)
-            {
-                await frameworkElement.DispatcherQueue.EnqueueAsync(() =>
-                {
-                    ContentDialog dialog = new ContentDialog()
-                    {
-                        Title = "Do you really wish to delete this profile?",
-                        PrimaryButtonText = "Yes",
-                        CloseButtonText = "Cancel",
-                        DefaultButton = ContentDialogButton.Primary,
-                        XamlRoot = frameworkElement.XamlRoot
-                    };
-
-                    return dialog.ShowAsync().AsTask();
-                });
-            }
-            else
-            {
-                // Handle the case where m_window.Content is not a FrameworkElement
-                throw new InvalidOperationException("m_window.Content is not a FrameworkElement");
-            }
-            //CommandPromptHelper.RunCustomFile("C:\\Windows\\AtlasModules\\Scripts\\logoffPrompt.bat");
-            //UIElement rootElement = GetXamlRoot();
-            //try
-            //{
-            //    //var test = m_window.Content.GetType;
-
-            //    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-            //    //xamlRoot = m_window.Content.XamlRoot;
-            //    //ContentDialog contentDialog = new ContentDialog();
-
-            //    //if (m_window.Content is FrameworkElement framework)
-            //    //{
-            //    //    ContentDialog contentDialog = new ContentDialog()
-            //    //    {
-            //    //        Title = "Do you really wish to delete this profile?",
-            //    //        PrimaryButtonText = "Yes",
-            //    //        CloseButtonText = "Cancel",
-            //    //        DefaultButton = ContentDialogButton.Primary,
-            //    //        XamlRoot = framework.XamlRoot
-            //    //    };
-            //    //    //var result = await App.contentDialog.ShowAsync();
-            //    //}
-
-            //    contentDialog.XamlRoot = XamlRoot;
-            //    contentDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            //    contentDialog.Title = "Do you really wish to delete this profile?";
-            //    contentDialog.PrimaryButtonText = "Yes";
-            //    contentDialog.CloseButtonText = "Cancel";
-            //    contentDialog.DefaultButton = ContentDialogButton.Primary;
-
-            //    var result = await contentDialog.ShowAsync();
-            //}
-            //catch (Exception ex)
-            //{
-            //    logger.Error($"Error on ContentDialog initialization: {ex.Message}");
-            //}
+            //c_window = new ControlDialogWindowHelper();
+            var contentDialogWindow = c_window.Content as ControlDialogView;
+            contentDialogWindow.ContentDialogHelper(contentDialogType);
+            c_window.Activate();
         }
+
+        //public async static void LogOffComputer()
+        //{
+        //    if (m_window.Content is FrameworkElement frameworkElement)
+        //    {
+        //        await frameworkElement.DispatcherQueue.EnqueueAsync(() =>
+        //        {
+        //            ContentDialog dialog = new ContentDialog()
+        //            {
+        //                Title = "Do you really wish to delete this profile?",
+        //                PrimaryButtonText = "Yes",
+        //                CloseButtonText = "Cancel",
+        //                DefaultButton = ContentDialogButton.Primary,
+        //                XamlRoot = frameworkElement.XamlRoot
+        //            };
+
+        //            return dialog.ShowAsync().AsTask();
+        //        });
+        //    }
+        //    else
+        //    {
+        //        // Handle the case where m_window.Content is not a FrameworkElement
+        //        throw new InvalidOperationException("m_window.Content is not a FrameworkElement");
+        //    }
+        //    //CommandPromptHelper.RunCustomFile("C:\\Windows\\AtlasModules\\Scripts\\logoffPrompt.bat");
+        //    //UIElement rootElement = GetXamlRoot();
+        //    //try
+        //    //{
+        //    //    //var test = m_window.Content.GetType;
+
+        //    //    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+        //    //    //xamlRoot = m_window.Content.XamlRoot;
+        //    //    //ContentDialog contentDialog = new ContentDialog();
+
+        //    //    //if (m_window.Content is FrameworkElement framework)
+        //    //    //{
+        //    //    //    ContentDialog contentDialog = new ContentDialog()
+        //    //    //    {
+        //    //    //        Title = "Do you really wish to delete this profile?",
+        //    //    //        PrimaryButtonText = "Yes",
+        //    //    //        CloseButtonText = "Cancel",
+        //    //    //        DefaultButton = ContentDialogButton.Primary,
+        //    //    //        XamlRoot = framework.XamlRoot
+        //    //    //    };
+        //    //    //    //var result = await App.contentDialog.ShowAsync();
+        //    //    //}
+
+        //    //    contentDialog.XamlRoot = XamlRoot;
+        //    //    contentDialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        //    //    contentDialog.Title = "Do you really wish to delete this profile?";
+        //    //    contentDialog.PrimaryButtonText = "Yes";
+        //    //    contentDialog.CloseButtonText = "Cancel";
+        //    //    contentDialog.DefaultButton = ContentDialogButton.Primary;
+
+        //    //    var result = await contentDialog.ShowAsync();
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    logger.Error($"Error on ContentDialog initialization: {ex.Message}");
+        //    //}
+        //}
     }
 }
