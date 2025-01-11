@@ -39,6 +39,7 @@ namespace AtlasToolbox.ViewModels
             IEnumerable<Profiles> profiles,
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels)
         {
+            Name = "";
             ConfigurationItemViewModels = configurationItemViewModels;
             _profilesList = new();
             foreach (Profiles profile in profiles) { ProfilesList.Add(profile); }

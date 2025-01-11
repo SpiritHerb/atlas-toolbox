@@ -66,8 +66,9 @@
             </GridView>
             <ListView
                 x:Name="ProfilesListView"
-                BorderThickness="1"
-                BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
+                CornerRadius="5"
+                BorderBrush="#36363e"
+                BorderThickness="2D"
                 SelectedItem="{Binding ProfileSelected, Mode=TwoWay}"
                 Width="350"
                 Height="225"
