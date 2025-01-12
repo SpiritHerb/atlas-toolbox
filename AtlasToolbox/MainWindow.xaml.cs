@@ -2,26 +2,11 @@ using System;
 using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Composition.SystemBackdrops;
-using System.Collections.ObjectModel;
-using AtlasToolbox.Views;
-using Microsoft.UI.Windowing;
-using Microsoft.UI;
-using Windows.Graphics;
-using Microsoft.UI.Xaml.Interop;
 using WinUIEx;
 using Microsoft.UI.Xaml.Media.Animation;
-using AtlasToolbox.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using AtlasToolbox.Utils;
-using Microsoft.WindowsAppSDK.Runtime.Packages;
-using ICSharpCode.Decompiler.CSharp.Syntax;
-using WindowsDisplayAPI;
-using Windows.Management.Update;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,20 +22,11 @@ namespace AtlasToolbox
         {
             this.InitializeComponent();
 
-            int resolutionX = 0;
-            int resolutionY = 0;
-
-            foreach (Display display in Display.GetDisplays())
-            {
-                resolutionX = display.CurrentSetting.Resolution.Width;
-                resolutionY = display.CurrentSetting.Resolution.Height;
-            }
-
             //Window parameters
             WindowManager.Get(this).IsMaximizable = false;
             WindowManager.Get(this).IsResizable = false;
-            WindowManager.Get(this).Width = resolutionX;
-            WindowManager.Get(this).Height = resolutionY;
+            WindowManager.Get(this).Width = 1250;
+            WindowManager.Get(this).Height = 850;
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
 
