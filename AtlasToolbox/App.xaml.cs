@@ -35,9 +35,8 @@ namespace AtlasToolbox
 
         public static Window m_window;
         public static Window s_window;
-        public static Window c_window;
 
-        public static ContentDialog contentDialog { get; set; }
+        //public static ContentDialog contentDialog { get; set; }
 
         public static XamlRoot XamlRoot { get; set; }
 
@@ -125,24 +124,13 @@ namespace AtlasToolbox
            }
            if (!wasRanWithArgs)
            {
-               logger.Info("Loading without args");
-               s_window = new LoadingWindow();
-                c_window = new ControlDialogWindowHelper();
-               s_window.Activate();
+                logger.Info("Loading without args");
+                s_window = new LoadingWindow();
+                s_window.Activate();
 
-               InitializeVMAsync();
+                InitializeVMAsync();
            }
-
-            //Task.Delay(100).ContinueWith(_ =>
-            //{
-            //    LogOffComputer();
-            //});
         }
-
-        //public static void OnNewTabLoaded(XamlRoot xamlRoot)
-        //{
-        //    xamlRoot = XamlRoot;
-        //}
 
         private void CheckForExistingInstance()
         {
@@ -189,7 +177,6 @@ namespace AtlasToolbox
         {
             _host.Services.GetRequiredService<GeneralConfigViewModel>();
         }
-
         private async void InitializeVMAsync()
         {
             logger.Info("Loading configuration services");
@@ -201,12 +188,10 @@ namespace AtlasToolbox
             s_window.Close();
         }
 
-        public static void InitializeContentDialog(string contentDialogType)
+        public static void ContentDialogCaller(string type) 
         {
-            //c_window = new ControlDialogWindowHelper();
-            var contentDialogWindow = c_window.Content as ControlDialogView;
-            contentDialogWindow.ContentDialogHelper(contentDialogType);
-            c_window.Activate();
+            var mainWindow = m_window as MainWindow;
+            mainWindow.ContentDialogContoller(type);
         }
 
         //public async static void LogOffComputer()

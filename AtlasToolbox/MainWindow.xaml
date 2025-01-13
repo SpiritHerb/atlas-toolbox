@@ -77,7 +77,19 @@
                 <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
             </ScrollViewer>
         </NavigationView>
-
-
+<!--#region CustomContentDialog-->
+        <StackPanel
+                x:Name="ContentDialogBasePanel"
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                Opacity="0.5"
+                Visibility="Collapsed" />
+        <StackPanel
+                x:Name="ContentDialogPanel"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Visibility="Collapsed">
+            <TextBlock Text="Some message." />
+        </StackPanel>
+<!--#endregion CustomContentDialog-->
     </Grid>
 </Window>

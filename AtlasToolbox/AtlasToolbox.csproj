@@ -15,10 +15,9 @@
     <WindowsPackageType>None</WindowsPackageType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>preview</LangVersion>
-    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="ControlDialogWindowHelper.xaml" />
     <None Remove="Controls\HeaderTile.xaml" />
     <None Remove="Controls\HomePageHeaderImage.xaml" />
     <None Remove="Controls\TileGallery.xaml" />
@@ -28,7 +27,6 @@
     <None Remove="Resources\HeaderTemplates.xaml" />
     <None Remove="Views\AdvancedConfig.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
-    <None Remove="Views\ControlDialogView.xaml" />
     <None Remove="Views\GeneralConfig.xaml" />
     <None Remove="Views\InterfaceTweaks.xaml" />
     <None Remove="Views\Security.xaml" />
@@ -149,16 +147,6 @@
   <ItemGroup>
     <Folder Include="Profiles\" />
     <Folder Include="Themes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\ControlDialogView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="ControlDialogWindowHelper.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\ContentDialogView.xaml">
