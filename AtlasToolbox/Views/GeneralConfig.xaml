@@ -8,15 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
-    xmlns:viewmodel="using:AtlasToolbox.ViewModels" xmlns:local1="using:AtlasToolbox.Converter"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodel:GeneralConfigViewModel}"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <local1:SolidColorBrushConverter x:Key="ColorToBrushConverter" />
-        <SolidColorBrush x:Key="DefaultBrush" Color="Gray" />
-    </Page.Resources>
-    
     <Grid>
         <ScrollViewer>
             <StackPanel>
@@ -33,9 +27,9 @@
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
                                 <controls:SettingsCard.Resources>
-                                    <!--<SolidColorBrush
+                                    <SolidColorBrush
                                     x:Key="TextFillColorSecondaryBrush"
-                                    Color="{Binding TextColor, Converter={StaticResource ColorToBrushConverter} , ConverterParameter={Binding Color}}"/>-->
+                                    Color="{Binding Color}"/>
                                 </controls:SettingsCard.Resources>
                                 <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>

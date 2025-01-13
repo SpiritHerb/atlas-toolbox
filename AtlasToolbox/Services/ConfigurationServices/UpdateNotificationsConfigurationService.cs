@@ -16,8 +16,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\UpdateNotifications";
         private const string STATE_VALUE_NAME = "state";
 
-        private const string WINDOWS_UPADTE_KEY_NAME = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate";
-        private const string UX_SETTINGS_KEY_NAME = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings";
+        private const string WINDOWS_UPADTE_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate";
+        private const string UX_SETTINGS_KEY_NAME = @"HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings";
 
         private const string SET_AUTO_RESTART_NOTIFICATION_DISABLE_VALUE_NAME = "SetAutoRestartNotificationDisable";
         private const string RESTART_NOTIFICATIONS_ALLOWED2 = "RestartNotificationsAllowed2";

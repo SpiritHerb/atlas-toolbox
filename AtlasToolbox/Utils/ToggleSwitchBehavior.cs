@@ -15,12 +15,12 @@ namespace AtlasToolbox
                if (toggleSwitch.IsOn)
                {
                    item.CurrentSetting = true;
-                   item.SaveConfigurationCommand.Execute(toggleSwitch);
+                   //item.SaveConfigurationCommand.Execute(toggleSwitch);
                }
                else
                {
                    item.CurrentSetting = false;
-                   item.SaveConfigurationCommand.Execute(toggleSwitch);
+                   //item.SaveConfigurationCommand.Execute(toggleSwitch);
                }
            }
         }

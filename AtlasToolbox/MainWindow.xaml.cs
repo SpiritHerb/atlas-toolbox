@@ -158,7 +158,12 @@ namespace AtlasToolbox
                 dialog.DefaultButton = ContentDialogButton.Primary;
                 dialog.PrimaryButtonCommand = command;
 
-                var result = dialog.ShowAsync();
+                try
+                {
+                    var result = dialog.ShowAsync();
+                }
+                catch
+                { App.logger.Error("Program tried to open more than one ContentDialog"); }
             });
         }
 

@@ -26,6 +26,11 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
                                 <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>
                         </DataTemplate>

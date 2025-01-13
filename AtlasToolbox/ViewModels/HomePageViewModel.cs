@@ -103,14 +103,20 @@ namespace AtlasToolbox.ViewModels
             List<ConfigurationItemViewModel> configurationItemVMs = ConfigurationItemViewModels.ToList();
             foreach (ConfigurationItemViewModel viewModel in configurationItemVMs)
             {
-                if (ProfileSelected.ConfigurationServices.Contains(viewModel.Key))
+                try
                 {
-                    //ConfigurationItemViewModel config = App._host.Services.GetKeyedService<ConfigurationItemViewModel>(viewModel.Key);
-                    viewModel.CurrentSetting = true;
-                }
-                else
+                    if (ProfileSelected.ConfigurationServices.Contains(viewModel.Key))
+                    {
+                        //ConfigurationItemViewModel config = App._host.Services.GetKeyedService<ConfigurationItemViewModel>(viewModel.Key);
+                        viewModel.CurrentSetting = true;
+                    }
+                    else if (viewModel.CurrentSetting == true)
+                    {
+                        viewModel.CurrentSetting = false;
+                    }
+                } catch (Exception e)
                 {
-                    viewModel.CurrentSetting = false;
+                    App.logger.Warn("Failed to set a profile due to not having a selected profile");
                 }
             }
         }

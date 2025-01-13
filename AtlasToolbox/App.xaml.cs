@@ -30,7 +30,7 @@ namespace AtlasToolbox
     /// </summary>
     public partial class App : Application
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        public static readonly Logger logger = LogManager.GetCurrentClassLogger();
         public static IHost _host { get; set; }
 
         public static Window m_window;

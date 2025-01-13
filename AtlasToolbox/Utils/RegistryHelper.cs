@@ -68,7 +68,7 @@ namespace AtlasToolbox.Utils
                 "HKCR" => RegistryHive.ClassesRoot,
                 "HKCU" => RegistryHive.CurrentUser,
                 "HKLM" => RegistryHive.LocalMachine,
-                _ => throw new NotImplementedException()
+                _ => throw new Exception("Hive was not found")
             };
 
             string keyName = string.Join('\\', split[1..]);
