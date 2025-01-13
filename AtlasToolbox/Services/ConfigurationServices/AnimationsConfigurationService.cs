@@ -56,7 +56,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
 
-            ComputerStateHelper.LogOffComputer();
+            App.ContentDialogCaller("logoff");
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -77,7 +77,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
-            ComputerStateHelper.LogOffComputer();
+            App.ContentDialogCaller("logoff");
 
             _animationsConfigurationStore.CurrentSetting = IsEnabled();
         }
