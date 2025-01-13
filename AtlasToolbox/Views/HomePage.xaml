@@ -45,8 +45,8 @@
                         VerticalAlignment="Top" />
 
                         <StackPanel
-                        Margin="75,50,0,0"
-                        VerticalAlignment="Top"
+                        Margin="75,0,0,0"
+                        VerticalAlignment="Center"
                         Orientation="Vertical">
                             <TextBlock
                                 x:Name="subHeaderBlock"
@@ -54,7 +54,8 @@
                                 Text="AtlasOS Toolbox" />
                             <TextBlock
                                 x:Name="smallHeaderText"
-                                FontSize="52"
+                                FontSize="45"
+                                FontWeight="SemiBold"
                                 Text="Home" />
                         </StackPanel>
                         <controls:TileGallery

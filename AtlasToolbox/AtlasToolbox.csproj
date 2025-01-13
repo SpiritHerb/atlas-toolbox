@@ -145,6 +145,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Fonts\" />
     <Folder Include="Profiles\" />
     <Folder Include="Themes\" />
   </ItemGroup>

@@ -12,10 +12,6 @@
     d:DataContext="{d:DesignInstance Type=viewmodel:InterfaceTweaksViewModel}"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <local1:ItemTemplateSelector x:Key="ItemTemplateSelector" DetailTemplate="{StaticResource DetailTemplate}"/>
-    </Page.Resources>
-
     <Grid>
         <ScrollViewer>
             <StackPanel>
