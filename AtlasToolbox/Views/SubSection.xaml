@@ -17,7 +17,7 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <ItemsControl x:Name="DetailItemsControl" ItemTemplateSelector="{StaticResource ItemTemplateSelector}" >
+                <ItemsControl x:Name="DetailItemsControl" ItemTemplateSelector="{StaticResource ItemTemplateSelector}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
