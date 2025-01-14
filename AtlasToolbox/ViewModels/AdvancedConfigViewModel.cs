@@ -14,7 +14,6 @@ namespace AtlasToolbox.ViewModels
 
         private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
 
-
         public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
 
         public ObservableCollection<ConfigurationSubMenuViewModel> ConfigurationItemSubMenu { get; set; }

@@ -9,6 +9,6 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public interface IMultiOptionConfigurationServices
     {
         void ChangeStatus(int status);
-        bool IsEnabled();
+        byte Status();
     }
 }
