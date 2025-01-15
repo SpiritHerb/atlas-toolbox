@@ -12,6 +12,7 @@ namespace AtlasToolbox.ViewModels
         private readonly ConfigurationStoreSubMenu _configurationStoreSubMenu;
 
         public ObservableCollection<ConfigurationItemViewModel> ConfigurationItems { get; set; }
+        public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItems { get; set; }
 
         public ConfigurationSubMenu _configurationSubMenu { get; set; }
         public string Name => _configurationSubMenu.Name;
@@ -23,11 +24,13 @@ namespace AtlasToolbox.ViewModels
         public ConfigurationSubMenuViewModel(
             ConfigurationSubMenu configurationSubMenu,
             ConfigurationStoreSubMenu configurationStoreSubMenu,
-            ObservableCollection<ConfigurationItemViewModel> configurationItems)
+            ObservableCollection<ConfigurationItemViewModel> configurationItems,
+            ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItems)
         {
             _configurationSubMenu = configurationSubMenu;
             ConfigurationItems = configurationItems;
             _configurationStoreSubMenu = configurationStoreSubMenu;
+            MultiOptionConfigurationItems = multiOptionConfigurationItems;
         }
     }
 }

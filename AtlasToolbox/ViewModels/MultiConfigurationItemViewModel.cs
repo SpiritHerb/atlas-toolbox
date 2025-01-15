@@ -5,33 +5,35 @@ using System.Windows.Input;
 using AtlasToolbox.Commands;
 using AtlasToolbox.Enums;
 using Windows.UI;
+using System.Collections.Generic;
 
 namespace AtlasToolbox.ViewModels
 {
-    public class MultiConfigurationItemViewModel
+    public class MultiOptionConfigurationItemViewModel
     {
-        private readonly ConfigurationStore _configurationStore;
-        private readonly IConfigurationService _configurationService;
+        private readonly MultiOptionConfigurationStore _configurationStore;
+        private readonly IMultiOptionConfigurationServices _configurationService;
 
-        public Configuration Configuration { get; set; }
+        public MultiOptionConfiguration Configuration { get; set; }
         public string Name => Configuration.Name;
-        public string Key => Configuration.Key;
         public ConfigurationType Type => Configuration.Type;
+
+        public List<string> Options => _configurationStore.Options; 
 
         public Color Color { get; set; }
 
         public string RiskRatingString { get; set; }
 
-        private byte _currentSetting;
+        private string _currentSetting;
 
-        public byte CurrentSetting
+        public string CurrentSetting
         {
             get => _currentSetting;
             set
             {
                 _currentSetting = value;
                 _configurationStore.CurrentSetting = CurrentSetting;
-                this.SaveConfigurationCommand.Execute(this);
+                this.MultiOptionSaveConfigurationCommand.Execute(this);
             }
         }
 
@@ -47,7 +49,7 @@ namespace AtlasToolbox.ViewModels
         }
 
 
-        public ICommand SaveConfigurationCommand { get; }
+        public ICommand MultiOptionSaveConfigurationCommand { get; }
 
         public Color SetColor(RiskRating riskRating)
         {
@@ -76,10 +78,10 @@ namespace AtlasToolbox.ViewModels
             };
         }
 
-        public ConfigurationItemViewModel(
-            Configuration configuration,
-            ConfigurationStore configurationStore,
-            IConfigurationService configurationService)
+        public MultiOptionConfigurationItemViewModel(
+            MultiOptionConfiguration configuration,
+            MultiOptionConfigurationStore configurationStore,
+            IMultiOptionConfigurationServices configurationService)
         {
             Configuration = configuration;
 
@@ -90,17 +92,16 @@ namespace AtlasToolbox.ViewModels
             Color = SetColor(Configuration.RiskRating);
             RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);
 
-            SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
-
+            MultiOptionSaveConfigurationCommand = new MultiOptionSaveConfigurationCommand(this, configurationStore, configurationService);
         }
 
-        public bool FetchCurrentSetting()
+        public string FetchCurrentSetting()
         {
             IsBusy = true;
 
             try
             {
-                bool currentSetting = _configurationService.IsEnabled();
+                string currentSetting = _configurationService.Status();
                 _configurationStore.CurrentSetting = currentSetting;
                 return currentSetting;
             }
@@ -110,5 +111,4 @@ namespace AtlasToolbox.ViewModels
             }
         }
     }
-}
 }

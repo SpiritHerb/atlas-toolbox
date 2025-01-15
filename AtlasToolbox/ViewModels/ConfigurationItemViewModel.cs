@@ -93,7 +93,6 @@ namespace AtlasToolbox.ViewModels
             RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);
 
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
-
         }
 
         public bool FetchCurrentSetting()

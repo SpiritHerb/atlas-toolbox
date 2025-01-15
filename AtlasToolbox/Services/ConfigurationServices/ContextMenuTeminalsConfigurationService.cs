@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
 using ICSharpCode.Decompiler.CSharp.Syntax;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AtlasToolbox.Services.ConfigurationServices
 {
@@ -16,26 +17,44 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ContextMenuTerminals";
         private const string STATE_VALUE_NAME = "state";
 
-        private readonly ConfigurationStore _contextMenuTeminalsConfigurationService;
+        private readonly MultiOptionConfigurationStore _contextMenuTeminalsConfigurationService;
 
-        private const string CONTEXT_MENU_REG_FILE_PATH = "C:\\Windows\\AtlasModules\\Scripts\\ConfigurationServices\\ContextMenuTerminals\\ContextMenuTerminals_";
-        public void ChangeStatus(int status)
+        private const string CONTEXT_MENU_REG_FILE_PATH = "C:\\Windows\\AtlasModues\\Scripts\\ConfigurationServices\\ContextMenuTerminals\\ContextMenuTerminals_";
+
+        private List<string> options = new List<string>()
         {
-            RegistryHelper.MergeRegFile(CONTEXT_MENU_REG_FILE_PATH + status.ToString());
+            "Add terminals",
+            "Add terminals (no Windows Terminal)",
+            "Remove terminals from the context menu",
+        };
 
-            if (status == 0)
-            {
-                RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
-            }
-            else
-            {
-                RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, status);
-            }
+        public ContextMenuTeminalsConfigurationService(
+            [FromKeyedServices("ContextMenuTerminals")] MultiOptionConfigurationStore contextMenuTeminalsConfigurationService)
+        {
+            _contextMenuTeminalsConfigurationService = contextMenuTeminalsConfigurationService;
+            _contextMenuTeminalsConfigurationService.Options = options;
         }
 
-        public byte Status()
+        public void ChangeStatus(int status)
         {
-            return (byte)RegistryHelper.GetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME);
+            RegistryHelper.MergeRegFile(CONTEXT_MENU_REG_FILE_PATH + status.ToString() + ".reg");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, status);
+
+            _contextMenuTeminalsConfigurationService.CurrentSetting = Status();
+        }
+
+        public string Status()
+        {
+            try
+            {
+                return options[((int)RegistryHelper.GetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME))];
+            }
+            catch (Exception ex)
+            {
+                ChangeStatus(0);
+                return options[((int)RegistryHelper.GetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME))];
+
+            }
         }
     }
 }

@@ -14,20 +14,26 @@ namespace AtlasToolbox.ViewModels
 
         private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
 
-        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
+        private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
 
+
+        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
         public ObservableCollection<ConfigurationSubMenuViewModel> ConfigurationItemSubMenu { get; set; }
+        public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItem { get; set; }
 
         public AdvancedConfigViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
-            IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
+            IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModel,
+            IEnumerable<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels)
         {
 
             ConfigurationItemViewModels = configurationItemViewModels;
             ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
+            MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
 
             ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>();
             ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>();
+            MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>();
 
             foreach (ConfigurationItemViewModel configurationItem in ConfigurationItemViewModels)
             {
@@ -43,13 +49,23 @@ namespace AtlasToolbox.ViewModels
                     ConfigurationItemSubMenu.Add(configurationSubMenuItem);
                 }
             }
+            foreach (MultiOptionConfigurationItemViewModel multiOptionConfigurationItemViewModel in MultiOptionConfigurationItemViewModels)
+            {
+                if (multiOptionConfigurationItemViewModel.Type == ConfigurationType.Advanced)
+                {
+                    MultiOptionConfigurationItem.Add(multiOptionConfigurationItemViewModel);
+                }
+            }
+
+            MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
         }
 
         public static AdvancedConfigViewModel LoadViewModel(
-            IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
+           IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
+            IEnumerable<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels,
             IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModels)
         {
-            AdvancedConfigViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels);
+            AdvancedConfigViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels, multiOptionConfigurationItemViewModels);
 
             return viewModel;
         }

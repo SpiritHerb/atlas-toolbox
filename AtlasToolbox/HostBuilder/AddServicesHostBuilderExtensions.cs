@@ -91,6 +91,8 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
                 services.AddKeyedTransient<IConfigurationService, TestConfigurationService>("TestConfig");
                 services.AddKeyedTransient<IConfigurationService, OtherTestConfigurationService>("OtherTestConfig");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, MultiOptionTestConfigurationService>("MultiOption");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, MultiOptionTestConfigurationService>("ContextMenuTerminals");
             });
 
             return host;

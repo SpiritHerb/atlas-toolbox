@@ -7,7 +7,7 @@ using AtlasToolbox.Enums;
 
 namespace AtlasToolbox.Models
 {
-    internal class MultiOptionConfiguration
+    public class MultiOptionConfiguration
     {
         public string Name { get; set; }
         public string Key { get; set; }

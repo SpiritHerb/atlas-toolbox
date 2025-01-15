@@ -8,9 +8,17 @@ namespace AtlasToolbox.Stores
 {
     public class MultiOptionConfigurationStore
     {
-        private byte _currentSetting;
+        private string _currentSetting;
 
-        public byte CurrentSetting
+        private List<string> options;
+
+        public List<string> Options
+        {
+            get { return options; }
+            set { options = value; }
+        }
+
+        public string CurrentSetting
         {
             get => _currentSetting;
             set

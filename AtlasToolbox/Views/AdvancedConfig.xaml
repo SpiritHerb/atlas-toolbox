@@ -22,6 +22,36 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
+                <ItemsControl ItemsSource="{Binding MultiOptionConfigurationItem}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
+                                <ComboBox x:Name="ConfigSwitch" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" Style="{StaticResource ConfigurationItemTemplate}" />
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl ItemsSource="{Binding MultiOptionConfigurationItem}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
+                                <ComboBox x:Name="ConfigSwitch" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" Style="{StaticResource ConfigurationItemTemplate}" />
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
                 <ItemsControl ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

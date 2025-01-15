@@ -39,13 +39,19 @@ namespace AtlasToolbox.Views
             {
                 var item = parameter.Item1;
 
-                List<ConfigurationItemViewModel> configurationItemViewModels = new List<ConfigurationItemViewModel>();
+                ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels = new ObservableCollection<ConfigurationItemViewModel>();
+                ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels = new ObservableCollection<MultiOptionConfigurationItemViewModel>();
                 foreach (ConfigurationItemViewModel configurationItemViewModel in item.ConfigurationItems) 
                 {
                     configurationItemViewModels.Add(configurationItemViewModel);
                 }
+                foreach (MultiOptionConfigurationItemViewModel configurationItemViewModel in item.MultiOptionConfigurationItems)
+                {
+                    multiOptionConfigurationItemViewModels.Add(configurationItemViewModel);
+                }
 
-                DetailItemsControl.ItemsSource = configurationItemViewModels;
+                MultiOptionItemsControl.ItemsSource = multiOptionConfigurationItemViewModels;
+                ItemsControl.ItemsSource = configurationItemViewModels;
             }
             
         }

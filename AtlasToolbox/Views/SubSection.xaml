@@ -10,17 +10,32 @@
     xmlns:local1="using:AtlasToolbox.Utils"
     mc:Ignorable="d">
 
-    <Page.Resources>
+    <!--<Page.Resources>
         <local1:ItemTemplateSelector x:Key="ItemTemplateSelector" DetailTemplate="{StaticResource DetailTemplate}"/>
-    </Page.Resources>
+    </Page.Resources>-->
     
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <ItemsControl x:Name="DetailItemsControl" ItemTemplateSelector="{StaticResource ItemTemplateSelector}">
+                <ItemsControl x:Name="MultiOptionItemsControl">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
+                                <ComboBox x:Name="ConfigSwitch" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" Style="{StaticResource ConfigurationItemTemplate}"  />
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl x:Name="ItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
                                 <controls:SettingsCard.Resources>
                                     <SolidColorBrush
                                         x:Key="TextFillColorSecondaryBrush"
