@@ -43,19 +43,4 @@ public sealed partial class GeneralConfig : Page
         var toggleSwitch = sender as ToggleSwitch;
         toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
     }
-
-    //public SolidColorBrush SelectColor(RiskRating value)
-    //{
-    //    switch (value) 
-    //    { 
-    //        case RiskRating.HighRisk: 
-    //            return new SolidColorBrush(Microsoft.UI.Colors.Red); 
-    //        case RiskRating.MediumRisk: 
-    //            return new SolidColorBrush(Microsoft.UI.Colors.Green);
-    //        case RiskRating.LowRisk:
-    //            return new SolidColorBrush(Microsoft.UI.Colors.Blue); 
-    //        default: 
-    //            return new SolidColorBrush(Microsoft.UI.Colors.Gray); 
-    //    }
-    //}
 }

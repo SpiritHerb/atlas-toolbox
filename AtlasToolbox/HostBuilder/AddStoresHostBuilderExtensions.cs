@@ -73,6 +73,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("TakeOwnership");
                 services.AddKeyedSingleton<ConfigurationStore>("TestConfig");
                 services.AddKeyedSingleton<ConfigurationStore>("OtherTestConfig");
+                services.AddKeyedSingleton<ConfigurationStore>("OldContextMenu");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("MultiOption");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
             });

@@ -207,7 +207,7 @@ namespace AtlasToolbox.HostBuilder
                 ["WindowsSpotlight"] = new("Windows Spotlight", "WindowsSpotlight", ConfigurationType.General, RiskRating.LowRisk),
                 ["AppStoreArchiving"] = new("Microsoft Store archiving", "AppStoreArchiving", ConfigurationType.General, RiskRating.LowRisk),
                 ["TakeOwnership"] = new("Add \"Take Ownership\" in the context menu", "TakeOwnership", ConfigurationType.ContextMenuSubMenu, RiskRating.HighRisk),
-
+                ["OldContextMenu"] = new("Legacy context menu (pre-Windows 11)", "OldContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_,services) =>
