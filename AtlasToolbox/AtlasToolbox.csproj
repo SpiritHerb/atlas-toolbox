@@ -16,6 +16,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>preview</LangVersion>
     <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
+    <UserSecretsId>b05b26c0-f62c-4dd3-b138-de1a5b0c1243</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\HeaderTile.xaml" />
@@ -25,6 +26,7 @@
     <None Remove="MainWindow.xaml" />
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
+    <None Remove="SoftwarePage.xaml" />
     <None Remove="Views\AdvancedConfig.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
     <None Remove="Views\GeneralConfig.xaml" />
@@ -38,6 +40,7 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Animations" Version="8.1.240916" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.1.240916" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240916" />
     <PackageReference Include="ICSharpCode.Decompiler" Version="8.2.0.7535" />
     <PackageReference Include="Microsoft.Dism" Version="3.3.0" />
@@ -149,6 +152,11 @@
     <Folder Include="Converter\" />
     <Folder Include="Profiles\" />
     <Folder Include="Themes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SoftwarePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\ContentDialogView.xaml">

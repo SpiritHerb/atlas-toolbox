@@ -14,7 +14,6 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                
                 <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding ConfigurationItemSubMenu}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

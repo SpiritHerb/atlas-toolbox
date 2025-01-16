@@ -123,18 +123,6 @@
                         <FontIcon Glyph="&#xE7BA;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
-                <!--Beta version message, to be removed at release-->
-                <!--
-                <InfoBar
-                    IsEnabled="False"
-                    Width="auto"
-                    Margin="0 220 0 0"
-                    IsOpen="True"
-                    IsIconVisible="True"
-                    IsClosable="False"
-                    Title="Beta Version"
-                    Message="This application is currently in a beta version. Bugs are expected, as well as unfinished features. If you find a bug and/or you think a feature is missing, please give feedback on Discord" />-->
             </NavigationView.MenuItems>
         </NavigationView>
 <!--#region CustomContentDialog-->

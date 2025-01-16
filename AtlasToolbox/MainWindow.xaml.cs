@@ -58,6 +58,18 @@ namespace AtlasToolbox
         {
             return this.Content.XamlRoot;
         }
+
+        public void GoToSoftwarePage()
+        {
+            ContentFrame.Navigate(
+                   new SoftwarePage().GetType(),
+                   null,
+                   new EntranceNavigationTransitionInfo()
+                   );
+            App.XamlRoot = this.Content.XamlRoot;
+            NavigationViewControl.Header = "Software downloading";
+        }
+
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
@@ -87,6 +99,13 @@ namespace AtlasToolbox
             NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
 
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
+            {
+                // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
+                NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
+                NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
+                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
+            }
+            if (ContentFrame.SourcePageType == typeof(SoftwarePage))
             {
                 // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;

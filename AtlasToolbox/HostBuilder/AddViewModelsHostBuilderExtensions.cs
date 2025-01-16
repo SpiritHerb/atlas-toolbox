@@ -32,13 +32,76 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateWindowsSettingsViewModel);
                 services.AddTransient(CreateTroubleshootingViewModel);
                 services.AddTransient(CreateHomePageViewModel);
+                services.AddTransient(CreateSoftwarePageViewModel);
             });
 
-             host.AddConfigurationItemViewModels();
-             host.AddMultiOptionConfigurationViewModels();
-             host.AddConfigurationSubMenu();
-             host.AddProfiles();
+            host.AddSoftwareItemsViewModels();
+            host.AddConfigurationItemViewModels();
+            host.AddMultiOptionConfigurationViewModels();
+            host.AddConfigurationSubMenu();
+            host.AddProfiles();
 
+            return host;
+        }
+
+        private static IHostBuilder AddSoftwareItemsViewModels(this IHostBuilder host)
+        {
+            Dictionary<string, SoftwareItem> configurationDictionary = new()
+            {
+                ["Ungoogled Chromium"] = new("Ungoogled Chromium", "eloston.ungoogled-chromium"),
+                ["Google Chrome"] = new("Google Chrome", "Google.Chrome"),
+                ["Mozilla Firefox"] = new("Mozilla Firefox", "Mozilla.Firefox"),
+                ["Waterfox"] = new("Waterfox", "Waterfox.Waterfox"),
+                ["Brave Browser"] = new("Brave Browser", "Brave.Brave"),
+                ["LibreWolf"] = new("LibreWolf", "LibreWolf.LibreWolf"),
+                ["Tor Browser"] = new("Tor Browser", "TorProject.TorBrowser"),
+                ["Discord"] = new("Discord", "Discord.Discord"),
+                ["Discord Canary"] = new("Discord Canary", "Discord.Discord.Canary"),
+                ["Steam"] = new("Steam", "Valve.Steam"),
+                ["Playnite"] = new("Playnite", "Playnite.Playnite"),
+                ["Heroic"] = new("Heroic", "HeroicGamesLauncher.HeroicGamesLauncher"),
+                ["Everything"] = new("Everything", "voidtools.Everything"),
+                ["Mozilla Thunderbird"] = new("Mozilla Thunderbird", "Mozilla.Thunderbird"),
+                ["IrfanView"] = new("IrfanView", "IrfanSkiljan.IrfanView"),
+                ["Git"] = new("Git", "Git.Git"),
+                ["VLC"] = new("VLC", "VideoLAN.VLC"),
+                ["PuTTY"] = new("PuTTY", "PuTTY.PuTTY"),
+                ["Ditto"] = new("Ditto", "Ditto.Ditto"),
+                ["7-Zip"] = new("7-Zip", "7zip.7zip"),
+                ["Teamspeak"] = new("Teamspeak", "TeamSpeakSystems.TeamSpeakClient"),
+                ["Spotify"] = new("Spotify", "Spotify.Spotify"),
+                ["OBS Studio"] = new("OBS Studio", "OBSProject.OBSStudio"),
+                ["MSI Afterburner"] = new("MSI Afterburner", "Guru3D.Afterburner"),
+                ["foobar2000"] = new("foobar2000", "PeterPawlowski.foobar2000"),
+                ["CPU-Z"] = new("CPU-Z", "CPUID.CPU-Z"),
+                ["GPU-Z"] = new("GPU-Z", "TechPowerUp.GPU-Z"),
+                ["Notepad++"] = new("Notepad++", "Notepad++.Notepad++"),
+                ["VSCode"] = new("VSCode", "Microsoft.VisualStudioCode"),
+                ["VSCodium"] = new("VSCodium", "VSCodium.VSCodium"),
+                ["BCUninstaller"] = new("BCUninstaller", "Klocman.BulkCrapUninstaller"),
+                ["HWiNFO"] = new("HWiNFO", "REALiX.HWiNFO"),
+                ["Lightshot"] = new("Lightshot", "Skillbrains.Lightshot"),
+                ["ShareX"] = new("ShareX", "ShareX.ShareX"),
+                ["Snipping Tool"] = new("Snipping Tool", "9MZ95KL8MR0L"),
+                ["ExplorerPatcher"] = new("ExplorerPatcher", "valinet.ExplorerPatcher"),
+                ["Powershell 7"] = new("Powershell 7", "Microsoft.PowerShell"),
+                ["UniGetUI"] = new("UniGetUI", "MartiCliment.UniGetUI"),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<SoftwareItemViewModel>>(provider =>
+                {
+                    List<SoftwareItemViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, SoftwareItem> item in configurationDictionary)
+                    {
+                        SoftwareItemViewModel viewModel = CreateSoftwareItemViewModel(item.Value);
+                        viewModels.Add(viewModel);
+                    }
+                    return viewModels;
+                });
+            });
             return host;
         }
 
@@ -234,6 +297,13 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        private static SoftwareItemViewModel CreateSoftwareItemViewModel(SoftwareItem softwareItem)
+        {
+            SoftwareItemViewModel viewModel = new(softwareItem);
+
+            return viewModel;
+        }
+
         private static MultiOptionConfigurationItemViewModel CreateMultiOptionConfigurationItemViewModel(
             IServiceProvider serviceProvider, object key, MultiOptionConfiguration configuration)
         {
@@ -310,6 +380,11 @@ namespace AtlasToolbox.HostBuilder
             return HomePageViewModel.LoadViewModel(
                 serviceProvider.GetServices<Profiles>(),
                 serviceProvider.GetServices<ConfigurationItemViewModel>());
+        }
+        private static SoftwarePageViewModel CreateSoftwarePageViewModel(IServiceProvider serviceProvider)
+        {
+            return SoftwarePageViewModel.LoadViewModel(
+                serviceProvider.GetServices<SoftwareItemViewModel>());
         }
         #endregion Create ViewModels
 
