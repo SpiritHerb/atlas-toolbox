@@ -204,22 +204,5 @@ namespace AtlasToolbox
         private const uint SWP_NOZORDER = 0x0004;
         private const uint SWP_NOACTIVATE = 0x0010;
 
-        #region Custom ContentDialog behavior
-        public void ShowContentDialog()
-        {
-            DispatcherQueue.EnqueueAsync(() =>
-            {
-                ContentDialogBasePanel.Visibility = Visibility.Visible;
-                ContentDialogPanel.Visibility = Visibility.Visible;
-            });
-        }
-
-        private void CloseContentDialog_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-        {
-            ContentDialogBasePanel.Visibility = Visibility.Collapsed;
-            ContentDialogPanel.Visibility = Visibility.Collapsed;
-        }
-        #endregion Custom ContentDialog behavior
-
     }
 }

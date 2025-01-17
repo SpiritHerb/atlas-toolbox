@@ -26,6 +26,10 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollView>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 36 40">Install</Button>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 40" x:Name="ProgressRingStackPanel" Orientation="Vertical" Visibility="Collapsed">
+            <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center"/>
+            <ProgressBar HorizontalAlignment="Left" Width="130" x:Name="DownloadingProgressBar"/>
+        </StackPanel>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 36 40" Click="Button_Click">Install</Button>
     </Grid>
 </Page>

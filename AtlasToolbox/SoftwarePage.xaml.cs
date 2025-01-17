@@ -14,6 +14,8 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using AtlasToolbox.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using AtlasToolbox.Utils;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -46,6 +48,26 @@ namespace AtlasToolbox
             var checkBox = sender as CheckBox;
 
             _viewModel.SelectedSoftwareItemViewModels.Remove((SoftwareItemViewModel)checkBox.DataContext);
+        }
+
+        private async void  Button_Click(object sender, RoutedEventArgs e)
+        {
+            //CurrentlyInstalling.Text += _viewModel.SelectedSoftwareItemViewModels[0];
+
+            //Task.Run(() => _viewModel.InstallSoftware());
+            //var softwarePage = App.m_window.Content as SoftwarePage;
+
+            int percentageCount = 100 / _viewModel.SelectedSoftwareItemViewModels.Count;
+
+            ProgressRingStackPanel.Visibility = Visibility.Visible;
+            foreach (SoftwareItemViewModel package in _viewModel.SelectedSoftwareItemViewModels)
+            {
+                DownloadingProgressBar.Value += percentageCount;
+                CurrentlyInstalling.Text = $"Currently Installing : {package.Name}";
+                await Task.Run(() => CommandPromptHelper.RunCommand($"winget install -e --id {package.Key} --accept-package-agreements --accept-source-agreements --disable-interactivity --force -h"));
+            }
+            ProgressRingStackPanel.Visibility = Visibility.Collapsed;
+            _viewModel.SelectedSoftwareItemViewModels.Clear();
         }
     }
 }
