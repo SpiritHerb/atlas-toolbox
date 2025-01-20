@@ -25,12 +25,7 @@ namespace AtlasToolbox.HostBuilder
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<MainViewModel>();
-                services.AddTransient(CreateGeneralConfigViewModel);
-                services.AddTransient(CreateInterfaceTweaksViewModel);
-                services.AddTransient(CreateAdvancedConfigViewModel);
-                services.AddTransient(CreateSecurityConfigViewModel);
-                services.AddTransient(CreateWindowsSettingsViewModel);
-                services.AddTransient(CreateTroubleshootingViewModel);
+                services.AddTransient(CreateConfigPageViewModel);
                 services.AddTransient(CreateHomePageViewModel);
                 services.AddTransient(CreateSoftwarePageViewModel);
             });
@@ -329,47 +324,10 @@ namespace AtlasToolbox.HostBuilder
         }
 
         #region Create ViewModels
-        private static GeneralConfigViewModel CreateGeneralConfigViewModel(IServiceProvider serviceProvider)
-        {
-            return GeneralConfigViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
 
-        private static InterfaceTweaksViewModel CreateInterfaceTweaksViewModel(IServiceProvider serviceProvider)
+        private static ConfigPageViewModel CreateConfigPageViewModel(IServiceProvider serviceProvider)
         {
-            return InterfaceTweaksViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-
-        private static WindowsSettingsViewModel CreateWindowsSettingsViewModel(IServiceProvider serviceProvider)
-        {
-            return WindowsSettingsViewModel.LoadViewModel(
-               serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-
-        private static AdvancedConfigViewModel CreateAdvancedConfigViewModel(IServiceProvider serviceProvider)
-        {
-            return AdvancedConfigViewModel.LoadViewModel(
-               serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-        private static SecurityConfigViewModel CreateSecurityConfigViewModel(IServiceProvider serviceProvider)
-        {
-            return SecurityConfigViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-        private static TroubleshootingViewModel CreateTroubleshootingViewModel(IServiceProvider serviceProvider)
-        {
-            return TroubleshootingViewModel.LoadViewModel(
+            return ConfigPageViewModel.LoadViewModel(
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
                 serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
                 serviceProvider.GetServices<ConfigurationSubMenuViewModel>());

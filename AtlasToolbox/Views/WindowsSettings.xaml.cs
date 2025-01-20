@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -26,20 +27,34 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class WindowsSettings : Page
     {
-        private readonly GeneralConfigViewModel _viewModel;
+        private readonly ConfigPageViewModel _viewModel;
+        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItemView { get; set; }
+        public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemView { get; set; }
+        public ObservableCollection<ConfigurationSubMenuViewModel> SubMenuConfigurationItemView { get; set; }
         public WindowsSettings()
         {
+            if (ConfigurationItemView is null)
+            {
+                _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
+                //_viewModel.ShowForType(Enums.ConfigurationType.Windows);
+                this.DataContext = _viewModel;
+
+                ConfigurationItemView = new ObservableCollection<ConfigurationItemViewModel>(_viewModel.ConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Windows));
+                MultiOptionConfigurationItemView = new ObservableCollection<MultiOptionConfigurationItemViewModel>(_viewModel.MultiOptionConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Windows));
+                SubMenuConfigurationItemView = new ObservableCollection<ConfigurationSubMenuViewModel>(_viewModel.ConfigurationItemSubMenu.Where(item => item.Type == Enums.ConfigurationType.General));
+
+            }
             this.InitializeComponent();
-            _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
-            _viewModel.ShowForType(Enums.ConfigurationType.Windows);
-            this.DataContext = _viewModel;
+            SubMenuItems.ItemsSource = SubMenuConfigurationItemView;
+            MultiOptionItems.ItemsSource = MultiOptionConfigurationItemView;
+            ConfigurationItems.ItemsSource = ConfigurationItemView;
         }
         private void OnCardClicked(object sender, RoutedEventArgs e)
         {
             var settingCard = sender as SettingsCard;
             var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
 
-            var template = ItemsControl.ItemTemplate;
+            var template = SubMenuItems.ItemTemplate;
 
             Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
         }

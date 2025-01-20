@@ -175,12 +175,12 @@ namespace AtlasToolbox
         
         private void InitializeVMAsyncSilent()
         {
-            _host.Services.GetRequiredService<GeneralConfigViewModel>();
+            _host.Services.GetRequiredService<ConfigPageViewModel>();
         }
         private async void InitializeVMAsync()
         {
             logger.Info("Loading configuration services");
-            await Task.Run(() => _host.Services.GetRequiredService<GeneralConfigViewModel>());
+            await Task.Run(() => _host.Services.GetRequiredService<ConfigPageViewModel>());
             logger.Info("Configuration services loaded");
             m_window = new MainWindow();
             m_window.Activate();

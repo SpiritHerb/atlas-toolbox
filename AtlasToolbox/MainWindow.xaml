@@ -53,7 +53,7 @@
              BackRequested="NavigationViewControl_BackRequested" 
              ItemInvoked="NavigationViewControl_ItemInvoked">
 
-           
+
             <NavigationView.Content>
                 <Grid>
                     <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated"/>
@@ -80,7 +80,7 @@
                         Message="This application is currently in an Alpha version. If you find bugs, or want to suggest a feature, please give feedback on the Discord. Features are subject to change." />
                 </StackPanel>
             </NavigationView.PaneFooter>
-            
+
             <NavigationView.Resources>
                 <!--  This top margin is the height of the custom titleBar  -->
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
@@ -113,7 +113,7 @@
                         <FontIcon Glyph="&#xEC7A;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Security" Tag="AtlasToolbox.Views.Security">
+                <NavigationViewItem Content="Security" Tag="AtlasToolbox.Views.SecurityConfig">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE83D;" />
                     </NavigationViewItem.Icon>
@@ -125,19 +125,5 @@
                 </NavigationViewItem>
             </NavigationView.MenuItems>
         </NavigationView>
-<!--#region CustomContentDialog-->
-        <StackPanel
-                x:Name="ContentDialogBasePanel"
-                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                Opacity="0.5"
-                Visibility="Collapsed" />
-        <StackPanel
-                x:Name="ContentDialogPanel"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Visibility="Collapsed">
-            <TextBlock Text="Some message." />
-        </StackPanel>
-<!--#endregion CustomContentDialog-->
     </Grid>
 </Window>

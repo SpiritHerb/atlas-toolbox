@@ -9,24 +9,12 @@
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
-    d:DataContext="{d:DesignInstance Type=viewmodel:GeneralConfigViewModel}"
+    d:DataContext="{d:DesignInstance Type=viewmodel:ConfigPageViewModel}"
     mc:Ignorable="d">
-    
-    <Page.Resources>
-        <DataTemplate x:Key="GeneralTemplate">
-            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
-                <controls:SettingsCard.Resources>
-                    <SolidColorBrush x:Key="TextFillColorSecondaryBrush" Color="{Binding Color}"/>
-                </controls:SettingsCard.Resources>
-                <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
-            </controls:SettingsCard>
-        </DataTemplate>
-    </Page.Resources>
-    
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <ItemsControl x:Name="ItemsControl" ItemsSource="{Binding ConfigurationItemSubMenu}">
+                <ItemsControl x:Name="SubMenuItems">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding Description}" Click="OnCardClicked" IsClickEnabled="True"/>
@@ -34,7 +22,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <!--<ItemsControl ItemsSource="{Binding MultiOptionConfigurationItem}">
+                <ItemsControl x:Name="MultiOptionItems">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
@@ -47,17 +35,9 @@
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
-
-                <ItemsControl ItemsSource="{Binding ConfigurationItem}">
-                    <ItemsControl.ItemTemplateSelector>
-                        <local:CustomDataTemplateSelector
-                            ConfigTemplate="{StaticResource GeneralTemplate}"/>
-                    </ItemsControl.ItemTemplateSelector>
                 </ItemsControl>
-
-
-                <ItemsControl ItemsSource="{Binding ConfigurationItem}">
+                
+                <ItemsControl x:Name="ConfigurationItems">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">

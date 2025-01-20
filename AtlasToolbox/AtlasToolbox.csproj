@@ -29,9 +29,7 @@
     <None Remove="SoftwarePage.xaml" />
     <None Remove="Views\AdvancedConfig.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
-    <None Remove="Views\GeneralConfig.xaml" />
     <None Remove="Views\InterfaceTweaks.xaml" />
-    <None Remove="Views\Security.xaml" />
     <None Remove="Views\SettingsPage.xaml" />
     <None Remove="Views\Troubleshooting.xaml" />
     <None Remove="Views\WindowsSettings.xaml" />
@@ -107,7 +105,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Security.xaml">
+    <Page Update="Views\SecurityConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
