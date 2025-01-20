@@ -26,11 +26,12 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class Troubleshooting : Page
     {
-        private readonly TroubleshootingViewModel _viewModel;
+        private readonly GeneralConfigViewModel _viewModel;
         public Troubleshooting()
         {
             this.InitializeComponent();
-            _viewModel = App._host.Services.GetRequiredService<TroubleshootingViewModel>();
+            _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
+            _viewModel.ShowForType(Enums.ConfigurationType.Troubleshooting);
             this.DataContext = _viewModel;
         }
         private void OnCardClicked(object sender, RoutedEventArgs e)

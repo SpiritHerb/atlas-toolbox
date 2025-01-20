@@ -26,12 +26,13 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class InterfaceTweaks : Page
     {
-        private readonly InterfaceTweaksViewModel _viewModel;
+        private readonly GeneralConfigViewModel _viewModel;
 
         public InterfaceTweaks()
         {
             this.InitializeComponent();
-            _viewModel = App._host.Services.GetRequiredService < InterfaceTweaksViewModel>();
+            _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
+            _viewModel.ShowForType(Enums.ConfigurationType.Interface);
             this.DataContext = _viewModel;
         }
 

@@ -26,11 +26,12 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class WindowsSettings : Page
     {
-        private readonly WindowsSettingsViewModel _viewModel;
+        private readonly GeneralConfigViewModel _viewModel;
         public WindowsSettings()
         {
             this.InitializeComponent();
-            _viewModel = App._host.Services.GetRequiredService<WindowsSettingsViewModel>();
+            _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
+            _viewModel.ShowForType(Enums.ConfigurationType.Windows);
             this.DataContext = _viewModel;
         }
         private void OnCardClicked(object sender, RoutedEventArgs e)

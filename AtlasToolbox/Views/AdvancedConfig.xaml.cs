@@ -1,3 +1,4 @@
+using AtlasToolbox.Enums;
 using AtlasToolbox.ViewModels;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,12 +27,13 @@ namespace AtlasToolbox.Views
     /// </summary>
     public sealed partial class AdvancedConfig : Page
     {
-        private readonly AdvancedConfigViewModel _viewModel;
+        private readonly GeneralConfigViewModel _viewModel;
 
         public AdvancedConfig()
         {
             this.InitializeComponent();
-            _viewModel = App._host.Services.GetRequiredService<AdvancedConfigViewModel>();
+            _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
+            _viewModel.ShowForType(ConfigurationType.Advanced);
             this.DataContext = _viewModel;
         }
 

@@ -11,6 +11,18 @@
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodel:GeneralConfigViewModel}"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="GeneralTemplate">
+            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                <controls:SettingsCard.Resources>
+                    <SolidColorBrush x:Key="TextFillColorSecondaryBrush" Color="{Binding Color}"/>
+                </controls:SettingsCard.Resources>
+                <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
+            </controls:SettingsCard>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Grid>
         <ScrollViewer>
             <StackPanel>
@@ -22,7 +34,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl ItemsSource="{Binding MultiOptionConfigurationItem}">
+                <!--<ItemsControl ItemsSource="{Binding MultiOptionConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
@@ -35,7 +47,15 @@
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+
+                <ItemsControl ItemsSource="{Binding ConfigurationItem}">
+                    <ItemsControl.ItemTemplateSelector>
+                        <local:CustomDataTemplateSelector
+                            ConfigTemplate="{StaticResource GeneralTemplate}"/>
+                    </ItemsControl.ItemTemplateSelector>
                 </ItemsControl>
+
 
                 <ItemsControl ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>

@@ -19,6 +19,7 @@ using AtlasToolbox.Utils;
 using Windows.Graphics.Imaging;
 using CommunityToolkit.WinUI;
 using AtlasToolbox.Views;
+using Windows.ApplicationModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,9 +36,6 @@ namespace AtlasToolbox
 
         public static Window m_window;
         public static Window s_window;
-
-        //public static ContentDialog contentDialog { get; set; }
-
         public static XamlRoot XamlRoot { get; set; }
 
         private static Mutex _mutex = new Mutex(true, "{AtlasToolbox}");
@@ -53,7 +51,9 @@ namespace AtlasToolbox
             this.InitializeComponent();
             logger.Info("Finished initializing components");
             this.UnhandledException += OnAppUnhandledException;
-            }
+            //var version = Package.Current.Id.Version;
+            //logger.Info($"AtlasToolbox v{version}");
+        }
 
         private static IHostBuilder CreateHostBuilder() =>
             Host.CreateDefaultBuilder()

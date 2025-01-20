@@ -24,11 +24,12 @@ namespace AtlasToolbox.Views
 
     public sealed partial class Security : Page
     {
-        private readonly SecurityConfigViewModel _viewModel;
+        private readonly GeneralConfigViewModel _viewModel;
         public Security()
         {
             this.InitializeComponent();
-            _viewModel = App._host.Services.GetRequiredService<SecurityConfigViewModel>();
+            _viewModel = App._host.Services.GetRequiredService<GeneralConfigViewModel>();
+            _viewModel.ShowForType(Enums.ConfigurationType.Security);
             this.DataContext = _viewModel;
         }
         private void OnCardClicked(object sender, RoutedEventArgs e)
