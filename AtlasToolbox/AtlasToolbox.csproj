@@ -32,6 +32,7 @@
     <None Remove="Controls\HeaderTile.xaml" />
     <None Remove="Controls\HomePageHeaderImage.xaml" />
     <None Remove="Controls\TileGallery.xaml" />
+    <None Remove="IncompatibleVersionWindow.xaml" />
     <None Remove="LoadingWindow.xaml" />
     <None Remove="MainWindow.xaml" />
     <None Remove="PlatformIncompatibleWindow.xaml" />
@@ -160,6 +161,11 @@
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
     <Folder Include="Profiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="IncompatibleVersionWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SoftwarePage.xaml">

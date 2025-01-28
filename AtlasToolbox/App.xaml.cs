@@ -7,28 +7,16 @@ using System.Threading.Tasks;
 using System;
 using System.IO.Pipes;
 using System.IO;
-using Windows.UI.Core;
 using WinUIEx;
-using Windows.ApplicationModel.Core;
 using System.Threading;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using Microsoft.UI.Xaml.Controls;
+using System.Configuration;
 using AtlasToolbox.Utils;
-using Windows.Graphics.Imaging;
-using CommunityToolkit.WinUI;
-using AtlasToolbox.Views;
-using Windows.ApplicationModel;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace AtlasToolbox
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
     public partial class App : Application
     {
         public static readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -88,47 +76,54 @@ namespace AtlasToolbox
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            CheckCompatibility();
-           Task.Run(() => StartNamedPipeServer());
+            if (CompatibilityHelper.IsCompatible())
+            {
+                Task.Run(() => StartNamedPipeServer());
 
-           if (!_mutex.WaitOne(TimeSpan.Zero, true))
-           {
-               CheckForExistingInstance();
-               Environment.Exit(0);
-               return;
-           }
+                if (!_mutex.WaitOne(TimeSpan.Zero, true))
+                {
+                    CheckForExistingInstance();
+                    Environment.Exit(0);
+                    return;
+                }
 
-           string[] arguments = Environment.GetCommandLineArgs();
-           bool wasRanWithArgs = false;
-           foreach (var arg in arguments)
-           {
-               if (arg.StartsWith("-"))
-               {
-                   switch (arg)
-                   {
-                       case "-silent":
-                           InitializeVMAsyncSilent();
-                           wasRanWithArgs = true;
-                           break;
-                       case "-toforeground":
-                           m_window.Show();
-                           wasRanWithArgs = true;
-                           break;
-                       case "-runEnabled":
-                           break;
-                       case "-runDefaults":
-                           break;
-                   }
-               }
-           }
-           if (!wasRanWithArgs)
-           {
-                logger.Info("Loading without args");
-                s_window = new LoadingWindow();
-                s_window.Activate();
+                string[] arguments = Environment.GetCommandLineArgs();
+                bool wasRanWithArgs = false;
+                foreach (var arg in arguments)
+                {
+                    if (arg.StartsWith("-"))
+                    {
+                        switch (arg)
+                        {
+                            case "-silent":
+                                InitializeVMAsyncSilent();
+                                wasRanWithArgs = true;
+                                break;
+                            case "-toforeground":
+                                m_window.Show();
+                                wasRanWithArgs = true;
+                                break;
+                            case "-runEnabled":
+                                break;
+                            case "-runDefaults":
+                                break;
+                        }
+                    }
+                }
+                if (!wasRanWithArgs)
+                {
+                    logger.Info("Loading without args");
+                    s_window = new LoadingWindow();
+                    s_window.Activate();
 
-                InitializeVMAsync();
-           }
+                    InitializeVMAsync();
+                }
+            }
+            else
+            {
+                m_window = new IncompatibleVersionWindow();
+                m_window.Activate();
+            }
         }
 
         private void CheckForExistingInstance()

@@ -130,17 +130,6 @@ namespace AtlasToolbox
             NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
         }
 
-        private void CenterWindowOnScreen()
-        {
-            var screenWidth = GetSystemMetrics(SM_CXSCREEN);
-            var screenHeight = GetSystemMetrics(SM_CYSCREEN);
-
-            double centerX = (screenWidth - this.Bounds.Width) / 2;
-            double centerY = (screenHeight - this.Bounds.Height) / 2;
-
-            this.MoveAndResize(centerX, centerY, this.Bounds.Width, this.Bounds.Height);
-        }
-
         public async void ContentDialogContoller(string type)
         {
             string title = "", desc = "", primBtnTxt = "";
@@ -185,6 +174,17 @@ namespace AtlasToolbox
                 { App.logger.Error("Program tried to open more than one ContentDialog"); }
             });
         }
+        private void CenterWindowOnScreen()
+        {
+            var screenWidth = GetSystemMetrics(SM_CXSCREEN);
+            var screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
+            double centerX = (screenWidth - this.Bounds.Width) / 2;
+            double centerY = (screenHeight - this.Bounds.Height) / 2;
+
+            this.MoveAndResize(centerX, centerY, this.Bounds.Width, this.Bounds.Height);
+        }
+
 
         private void MoveAndResize(double x, double y, double width, double height)
         {
