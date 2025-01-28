@@ -78,47 +78,54 @@ namespace AtlasToolbox
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            CompatibilityHelper.IsCompatible();
-           Task.Run(() => StartNamedPipeServer());
+            if (CompatibilityHelper.IsCompatible())
+            {
+                Task.Run(() => StartNamedPipeServer());
 
-           if (!_mutex.WaitOne(TimeSpan.Zero, true))
-           {
-               CheckForExistingInstance();
-               Environment.Exit(0);
-               return;
-           }
+                if (!_mutex.WaitOne(TimeSpan.Zero, true))
+                {
+                    CheckForExistingInstance();
+                    Environment.Exit(0);
+                    return;
+                }
 
-           string[] arguments = Environment.GetCommandLineArgs();
-           bool wasRanWithArgs = false;
-           foreach (var arg in arguments)
-           {
-               if (arg.StartsWith("-"))
-               {
-                   switch (arg)
-                   {
-                       case "-silent":
-                           InitializeVMAsyncSilent();
-                           wasRanWithArgs = true;
-                           break;
-                       case "-toforeground":
-                           m_window.Show();
-                           wasRanWithArgs = true;
-                           break;
-                       case "-runEnabled":
-                           break;
-                       case "-runDefaults":
-                           break;
-                   }
-               }
-           }
-           if (!wasRanWithArgs)
-           {
-                logger.Info("Loading without args");
-                s_window = new LoadingWindow();
-                s_window.Activate();
+                string[] arguments = Environment.GetCommandLineArgs();
+                bool wasRanWithArgs = false;
+                foreach (var arg in arguments)
+                {
+                    if (arg.StartsWith("-"))
+                    {
+                        switch (arg)
+                        {
+                            case "-silent":
+                                InitializeVMAsyncSilent();
+                                wasRanWithArgs = true;
+                                break;
+                            case "-toforeground":
+                                m_window.Show();
+                                wasRanWithArgs = true;
+                                break;
+                            case "-runEnabled":
+                                break;
+                            case "-runDefaults":
+                                break;
+                        }
+                    }
+                }
+                if (!wasRanWithArgs)
+                {
+                    logger.Info("Loading without args");
+                    s_window = new LoadingWindow();
+                    s_window.Activate();
 
-                InitializeVMAsync();
-           }
+                    InitializeVMAsync();
+                }
+            }
+            else
+            {
+                m_window = new IncompatibleVersionWindow();
+                m_window.Activate();
+            }
         }
 
         private void CheckForExistingInstance()

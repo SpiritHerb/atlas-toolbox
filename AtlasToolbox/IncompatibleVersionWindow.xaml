@@ -8,8 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="IncompatibleVersionWindow">
-
-    <Grid>
-
-    </Grid>
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/>
+    </Window.SystemBackdrop>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock FontSize="20">Current AtlasOS/Windows installation incompatible with this Toolbox version. Please upgrade to AtlasOS v0.4.1</TextBlock>
+        <HyperlinkButton HorizontalAlignment="Center" FontSize="20">https://docs.atlasos.net/getting-started/installation</HyperlinkButton>
+    </StackPanel>
 </Window>
