@@ -6,6 +6,7 @@
     xmlns:local="using:AtlasToolbox"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:headercontrols="using:WinUIGallery.DesktopWap.Controls"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"

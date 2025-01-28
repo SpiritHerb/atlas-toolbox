@@ -51,8 +51,6 @@ namespace AtlasToolbox
             this.InitializeComponent();
             logger.Info("Finished initializing components");
             this.UnhandledException += OnAppUnhandledException;
-            //var version = Package.Current.Id.Version;
-            //logger.Info($"AtlasToolbox v{version}");
         }
 
         private static IHostBuilder CreateHostBuilder() =>
@@ -90,6 +88,7 @@ namespace AtlasToolbox
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            CheckCompatibility();
            Task.Run(() => StartNamedPipeServer());
 
            if (!_mutex.WaitOne(TimeSpan.Zero, true))

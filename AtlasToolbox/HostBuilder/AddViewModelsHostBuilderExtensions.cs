@@ -302,11 +302,8 @@ namespace AtlasToolbox.HostBuilder
         private static MultiOptionConfigurationItemViewModel CreateMultiOptionConfigurationItemViewModel(
             IServiceProvider serviceProvider, object key, MultiOptionConfiguration configuration)
         {
-            MultiOptionConfigurationStore configurationStore = serviceProvider.GetRequiredKeyedService<MultiOptionConfigurationStore>(key);
-            IMultiOptionConfigurationServices configurationService = serviceProvider.GetRequiredKeyedService<IMultiOptionConfigurationServices>(key);
-
             MultiOptionConfigurationItemViewModel viewModel = new(
-                configuration, configurationStore, configurationService);
+                configuration, serviceProvider.GetRequiredKeyedService<MultiOptionConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IMultiOptionConfigurationServices>(key));
 
             return viewModel;
         }
@@ -314,11 +311,8 @@ namespace AtlasToolbox.HostBuilder
         private static ConfigurationItemViewModel CreateConfigurationItemViewModel(
             IServiceProvider serviceProvider, object key, Configuration configuration)
         {
-                ConfigurationStore configurationStore = serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key);
-                IConfigurationService configurationService = serviceProvider.GetRequiredKeyedService<IConfigurationService>(key);
-
                 ConfigurationItemViewModel viewModel = new(
-                    configuration, configurationStore, configurationService);
+                    configuration, serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IConfigurationService>(key));
 
                 return viewModel;
         }

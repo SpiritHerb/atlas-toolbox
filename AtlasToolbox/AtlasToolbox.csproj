@@ -19,11 +19,22 @@
     <UserSecretsId>b05b26c0-f62c-4dd3-b138-de1a5b0c1243</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Converter\**" />
+    <Compile Remove="Themes\**" />
+    <EmbeddedResource Remove="Converter\**" />
+    <EmbeddedResource Remove="Themes\**" />
+    <None Remove="Converter\**" />
+    <None Remove="Themes\**" />
+    <Page Remove="Converter\**" />
+    <Page Remove="Themes\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Controls\HeaderTile.xaml" />
     <None Remove="Controls\HomePageHeaderImage.xaml" />
     <None Remove="Controls\TileGallery.xaml" />
     <None Remove="LoadingWindow.xaml" />
     <None Remove="MainWindow.xaml" />
+    <None Remove="PlatformIncompatibleWindow.xaml" />
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
     <None Remove="SoftwarePage.xaml" />
@@ -51,6 +62,7 @@
     <PackageReference Include="MVVMEssentials.WPF" Version="1.0.3" />
     <PackageReference Include="NLog" Version="5.3.4" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.15" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
     <PackageReference Include="System.Management" Version="7.0.2" />
     <PackageReference Include="System.Private.Uri" Version="4.3.2" />
     <PackageReference Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
@@ -147,9 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Converter\" />
     <Folder Include="Profiles\" />
-    <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="SoftwarePage.xaml">
@@ -180,4 +190,15 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Remove="Converter\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Themes\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PlatformIncompatibleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>
