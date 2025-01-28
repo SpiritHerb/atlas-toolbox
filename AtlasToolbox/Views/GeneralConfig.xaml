@@ -14,7 +14,7 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <ItemsControl x:Name="SubMenuItems">
+                <ItemsControl x:Name="SubMenuItems" ItemsSource="{Binding ConfigurationItemSubMenu}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding Description}" Click="OnCardClicked" IsClickEnabled="True"/>
@@ -22,7 +22,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl x:Name="MultiOptionItems">
+                <ItemsControl x:Name="MultiOptionItems" ItemsSource="{Binding MultiOptionConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
@@ -36,8 +36,8 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
-                <ItemsControl x:Name="ConfigurationItems">
+
+                <ItemsControl x:Name="ConfigurationItems" ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">

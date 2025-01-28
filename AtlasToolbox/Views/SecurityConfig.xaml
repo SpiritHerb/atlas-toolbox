@@ -14,7 +14,7 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <ItemsControl x:Name="SubMenuItems">
+                <ItemsControl x:Name="SubMenuItems" ItemsSource="{Binding ConfigurationItemSubMenu}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding Description}" Click="OnCardClicked" IsClickEnabled="True"/>
@@ -22,14 +22,14 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl x:Name="MultiOptionItems">
+                <ItemsControl x:Name="MultiOptionItems" ItemsSource="{Binding MultiOptionConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
                                 <controls:SettingsCard.Resources>
                                     <SolidColorBrush
-                                         x:Key="TextFillColorSecondaryBrush"
-                                         Color="{Binding Color}"/>
+                                     x:Key="TextFillColorSecondaryBrush"
+                                     Color="{Binding Color}"/>
                                 </controls:SettingsCard.Resources>
                                 <ComboBox x:Name="ConfigSwitch" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" Style="{StaticResource ConfigurationItemTemplate}" />
                             </controls:SettingsCard>
@@ -37,14 +37,14 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl x:Name="ConfigurationItems">
+                <ItemsControl x:Name="ConfigurationItems" ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
                                 <controls:SettingsCard.Resources>
                                     <SolidColorBrush
-                                    x:Key="TextFillColorSecondaryBrush"
-                                    Color="{Binding Color}"/>
+                                x:Key="TextFillColorSecondaryBrush"
+                                Color="{Binding Color}"/>
                                 </controls:SettingsCard.Resources>
                                 <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>

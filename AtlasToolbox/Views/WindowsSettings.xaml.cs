@@ -28,26 +28,29 @@ namespace AtlasToolbox.Views
     public sealed partial class WindowsSettings : Page
     {
         private readonly ConfigPageViewModel _viewModel;
-        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItemView { get; set; }
-        public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemView { get; set; }
-        public ObservableCollection<ConfigurationSubMenuViewModel> SubMenuConfigurationItemView { get; set; }
+        //public ObservableCollection<ConfigurationItemViewModel> ConfigurationItemView { get; set; }
+        //public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemView { get; set; }
+        //public ObservableCollection<ConfigurationSubMenuViewModel> SubMenuConfigurationItemView { get; set; }
         public WindowsSettings()
         {
-            if (ConfigurationItemView is null)
-            {
-                _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
-                //_viewModel.ShowForType(Enums.ConfigurationType.Windows);
-                this.DataContext = _viewModel;
+            //if (ConfigurationItemView is null)
+            //{
+            //    _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
+            //    //_viewModel.ShowForType(Enums.ConfigurationType.Windows);
+            //    this.DataContext = _viewModel;
 
-                ConfigurationItemView = new ObservableCollection<ConfigurationItemViewModel>(_viewModel.ConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Windows));
-                MultiOptionConfigurationItemView = new ObservableCollection<MultiOptionConfigurationItemViewModel>(_viewModel.MultiOptionConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Windows));
-                SubMenuConfigurationItemView = new ObservableCollection<ConfigurationSubMenuViewModel>(_viewModel.ConfigurationItemSubMenu.Where(item => item.Type == Enums.ConfigurationType.General));
+            //    ConfigurationItemView = new ObservableCollection<ConfigurationItemViewModel>(_viewModel.ConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Windows));
+            //    MultiOptionConfigurationItemView = new ObservableCollection<MultiOptionConfigurationItemViewModel>(_viewModel.MultiOptionConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Windows));
+            //    SubMenuConfigurationItemView = new ObservableCollection<ConfigurationSubMenuViewModel>(_viewModel.ConfigurationItemSubMenu.Where(item => item.Type == Enums.ConfigurationType.General));
 
-            }
+            //}
             this.InitializeComponent();
-            SubMenuItems.ItemsSource = SubMenuConfigurationItemView;
-            MultiOptionItems.ItemsSource = MultiOptionConfigurationItemView;
-            ConfigurationItems.ItemsSource = ConfigurationItemView;
+            _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
+            _viewModel.ShowForType(Enums.ConfigurationType.Windows);
+            this.DataContext = _viewModel;
+            //SubMenuItems.ItemsSource = SubMenuConfigurationItemView;
+            //MultiOptionItems.ItemsSource = MultiOptionConfigurationItemView;
+            //ConfigurationItems.ItemsSource = ConfigurationItemView;
         }
         private void OnCardClicked(object sender, RoutedEventArgs e)
         {

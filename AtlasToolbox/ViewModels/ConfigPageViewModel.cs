@@ -10,9 +10,9 @@ namespace AtlasToolbox.ViewModels
 {
     class ConfigPageViewModel : ObservableObject
     {
-        //private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
-        //private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
-        //private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
+        private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
+        private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
+        private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
 
         public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
         public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItem { get; set; }
@@ -24,44 +24,21 @@ namespace AtlasToolbox.ViewModels
             IEnumerable<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels)
         {
 
-            //ConfigurationItemViewModels = configurationItemViewModels;
-            //MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
-            //ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
+            ConfigurationItemViewModels = configurationItemViewModels;
+            MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
+            ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
 
-            ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(configurationItemViewModels);
-            MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(multiOptionConfigurationItemViewModels);
-            ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(configurationSubMenuViewModel);
+            //ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(configurationItemViewModels);
+            //MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(multiOptionConfigurationItemViewModels);
+            //ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(configurationSubMenuViewModel);
         }
 
-        //public void ShowForType(ConfigurationType configurationType)
-        //{
-        //    ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(ConfigurationItem.Where(item => item.Type == configurationType));
-        //    //ConfigurationItem.Clear();
-        //    //ConfigurationItemSubMenu.Clear();
-        //    //MultiOptionConfigurationItem.Clear();
-
-        //    //foreach (ConfigurationItemViewModel configurationItem in ConfigurationItemViewModels)
-        //    //{
-        //    //    if (configurationItem.Type == configurationType)
-        //    //    {
-        //    //        ConfigurationItem.Add(configurationItem);
-        //    //    }
-        //    //}
-        //    //foreach (ConfigurationSubMenuViewModel configurationSubMenuItem in ConfigurationSubMenuViewModels)
-        //    //{
-        //    //    if (configurationSubMenuItem.Type == configurationType)
-        //    //    {
-        //    //        ConfigurationItemSubMenu.Add(configurationSubMenuItem);
-        //    //    }
-        //    //}
-        //    //foreach (MultiOptionConfigurationItemViewModel multiOptionConfigurationItemViewModel in MultiOptionConfigurationItemViewModels)
-        //    //{
-        //    //    if (multiOptionConfigurationItemViewModel.Type == configurationType)
-        //    //    {
-        //    //        MultiOptionConfigurationItem.Add(multiOptionConfigurationItemViewModel);
-        //    //    }
-        //    //}
-        //}
+        public void ShowForType(ConfigurationType configurationType)
+        {
+            ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(ConfigurationItemViewModels.Where(item => item.Type == configurationType));
+            MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(MultiOptionConfigurationItemViewModels.Where(item => item.Type == configurationType));
+            ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(ConfigurationSubMenuViewModels.Where(item => item.Type == configurationType));
+        }
 
         public static ConfigPageViewModel LoadViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
