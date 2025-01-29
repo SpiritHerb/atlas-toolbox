@@ -26,7 +26,7 @@ namespace AtlasToolbox
         public static Window s_window;
         public static XamlRoot XamlRoot { get; set; }
 
-        private static Mutex _mutex = new Mutex(true, "{AtlasToolbox}");
+        private static Mutex _mutex = new(true, "{AtlasToolbox}");
 
         public App()
         {
@@ -49,15 +49,7 @@ namespace AtlasToolbox
 
         private void ConfigureNLog()
         {
-            //This is weird and there's probably a better way to do it, for now it works but is to change
-            int year = DateTime.Now.Year;
-            int month = DateTime.Now.Month;
-            int day = DateTime.Now.Day;
-            int hour = DateTime.Now.Hour;
-            int minutes = DateTime.Now.Minute;
-            int seconds = DateTime.Now.Second;
-
-            string name = $"logs/toolbox-log-{year}_{month}_{day}_{hour}_{minutes}_{seconds}.log";
+            string name = $"logs/toolbox-log-{DateTime.Now.Year}_{DateTime.Now.Month}_{DateTime.Now.Day}_{DateTime.Now.Hour}_{DateTime.Now.Minute}_{DateTime.Now.Second}.log";
             var config = new LoggingConfiguration();
             var logfile = new FileTarget("logfile")
             {
@@ -71,7 +63,6 @@ namespace AtlasToolbox
         private void OnAppUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             logger.Error(e.Exception, "Unhandled exception occurred");
-            //e.Handled = true; 
         }
 
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
@@ -96,7 +87,7 @@ namespace AtlasToolbox
                         switch (arg)
                         {
                             case "-silent":
-                                InitializeVMAsyncSilent();
+                                InitializeVMSilent();
                                 wasRanWithArgs = true;
                                 break;
                             case "-toforeground":
@@ -154,8 +145,7 @@ namespace AtlasToolbox
                     server.WaitForConnection();
                     using (var reader = new StreamReader(server))
                     {
-                        string command = reader.ReadLine();
-                        if (command == "-toforeground")
+                        if (reader.ReadLine() == "-toforeground")
                         {
                             m_window.DispatcherQueue.TryEnqueue(() =>
                             {
@@ -167,7 +157,7 @@ namespace AtlasToolbox
             }
         }
         
-        private void InitializeVMAsyncSilent()
+        private void InitializeVMSilent()
         {
             _host.Services.GetRequiredService<ConfigPageViewModel>();
         }
@@ -176,6 +166,7 @@ namespace AtlasToolbox
             logger.Info("Loading configuration services");
             await Task.Run(() => _host.Services.GetRequiredService<ConfigPageViewModel>());
             logger.Info("Configuration services loaded");
+
             m_window = new MainWindow();
             m_window.Activate();
 

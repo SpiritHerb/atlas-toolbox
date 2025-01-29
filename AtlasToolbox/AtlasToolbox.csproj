@@ -35,7 +35,6 @@
     <None Remove="IncompatibleVersionWindow.xaml" />
     <None Remove="LoadingWindow.xaml" />
     <None Remove="MainWindow.xaml" />
-    <None Remove="PlatformIncompatibleWindow.xaml" />
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
     <None Remove="SoftwarePage.xaml" />
@@ -201,10 +200,5 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Remove="Themes\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="PlatformIncompatibleWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
 </Project>
