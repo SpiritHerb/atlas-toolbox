@@ -289,13 +289,12 @@ namespace AtlasToolbox.HostBuilder
                             }
                             else
                             {
-                                Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
-                                //viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
+                                //Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
+                                viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                             }
                         //});
 
                     }
-                    Task.WaitAll();
                     return viewModels;
                 });
             });
