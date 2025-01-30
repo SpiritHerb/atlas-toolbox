@@ -6,6 +6,7 @@ using AtlasToolbox.Commands;
 using AtlasToolbox.Enums;
 using Windows.UI;
 using Microsoft.UI.Xaml.Media;
+using System.Threading.Tasks;
 //using System.Drawing;
 
 namespace AtlasToolbox.ViewModels
@@ -83,16 +84,19 @@ namespace AtlasToolbox.ViewModels
             ConfigurationStore configurationStore,
             IConfigurationService configurationService)
         {
-            Configuration = configuration;
-
             _configurationStore = configurationStore;
             _configurationService = configurationService;
+            Configuration = configuration;
 
-            _currentSetting = FetchCurrentSetting();
-            Color = SetColor(Configuration.RiskRating);
-            RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);
+            Task.Run(() =>
+            {
 
+                Color = SetColor(Configuration.RiskRating);
+                _currentSetting = FetchCurrentSetting();
+                RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);
+            });
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
+            
         }
 
         public bool FetchCurrentSetting()

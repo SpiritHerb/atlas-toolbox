@@ -14,6 +14,7 @@ using System.Text;
 using System.Security.Cryptography;
 using Microsoft.Graphics.Canvas.Text;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AtlasToolbox.HostBuilder
 {
@@ -91,8 +92,10 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, SoftwareItem> item in configurationDictionary)
                     {
-                        SoftwareItemViewModel viewModel = CreateSoftwareItemViewModel(item.Value);
-                        viewModels.Add(viewModel);
+                        Task.Run(() =>
+                        {
+                            viewModels.Add(CreateSoftwareItemViewModel(item.Value));
+                        });
                     }
                     return viewModels;
                 });
@@ -210,8 +213,10 @@ namespace AtlasToolbox.HostBuilder
                         }
                         else
                         {
-                            MultiOptionConfigurationItemViewModel viewModel = CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value);
-                            viewModels.Add(viewModel);
+                            Task.Run(() =>
+                            {
+                                viewModels.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
+                            });
                         }
                     }
                     return viewModels;
@@ -276,15 +281,20 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
                     {
-                        if (
-                        item.Value.Type >= (ConfigurationType)7)
-                        {
-                            subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
-                        }else
-                        {
-                            ConfigurationItemViewModel viewModel = CreateConfigurationItemViewModel(provider, item.Key, item.Value);
-                            viewModels.Add(viewModel);
-                        }
+                         //Task.Run(() => {
+                            if (item.Value.Type >= (ConfigurationType)7)
+                            {
+                                subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
+                            }
+                            else
+                            {
+                                Task.Run(() =>
+                                {
+                                    viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
+                                });
+                            }
+                        //});
+                        
                     }
                     return viewModels;
                 });
