@@ -17,40 +17,17 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace AtlasToolbox.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class Troubleshooting : Page
     {
         private readonly ConfigPageViewModel _viewModel;
-        //public ObservableCollection<ConfigurationItemViewModel> ConfigurationItemView { get; set; }
-        //public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemView { get; set; }
-        //public ObservableCollection<ConfigurationSubMenuViewModel> SubMenuConfigurationItemView { get; set; }
         public Troubleshooting()
         {
-            //if (ConfigurationItemView is null)
-            //{
-            //    _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
-            //    //_viewModel.ShowForType(Enums.ConfigurationType.Troubleshooting);
-            //    this.DataContext = _viewModel;
-
-            //    ConfigurationItemView = new ObservableCollection<ConfigurationItemViewModel>(_viewModel.ConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Troubleshooting));
-            //    MultiOptionConfigurationItemView = new ObservableCollection<MultiOptionConfigurationItemViewModel>(_viewModel.MultiOptionConfigurationItem.Where(item => item.Type == Enums.ConfigurationType.Troubleshooting));
-            //    SubMenuConfigurationItemView = new ObservableCollection<ConfigurationSubMenuViewModel>(_viewModel.ConfigurationItemSubMenu.Where(item => item.Type == Enums.ConfigurationType.Troubleshooting));
-
-            //}
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
             _viewModel.ShowForType(Enums.ConfigurationType.Troubleshooting);
             this.DataContext = _viewModel;
-            //SubMenuItems.ItemsSource = SubMenuConfigurationItemView;
-            //MultiOptionItems.ItemsSource = MultiOptionConfigurationItemView;
-            //ConfigurationItems.ItemsSource = ConfigurationItemView;
         }
         private void OnCardClicked(object sender, RoutedEventArgs e)
         {
