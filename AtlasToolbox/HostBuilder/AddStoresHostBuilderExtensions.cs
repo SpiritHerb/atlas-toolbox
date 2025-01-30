@@ -74,6 +74,9 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("TestConfig");
                 services.AddKeyedSingleton<ConfigurationStore>("OtherTestConfig");
                 services.AddKeyedSingleton<ConfigurationStore>("OldContextMenu");
+                services.AddKeyedSingleton<ConfigurationStore>("EdgeSwipe");
+                services.AddKeyedSingleton<ConfigurationStore>("AppIconsThumbnail");
+                services.AddKeyedSingleton<ConfigurationStore>("AutomaticFolderDiscovery");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("MultiOption");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
             });

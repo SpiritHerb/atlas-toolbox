@@ -21,6 +21,7 @@ namespace AtlasToolbox.HostBuilder
     public static class AddViewModelsHostBuilderExtensions
     {
         private static List<Object> subMenuOnlyItems = new List<Object>();
+        private const int MAX_SUB_MENU_ONLY_ITEMS = 24;
         public static IHostBuilder AddViewModels(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>
@@ -32,8 +33,8 @@ namespace AtlasToolbox.HostBuilder
             });
 
             host.AddConfigurationItemViewModels();
-            host.AddMultiOptionConfigurationViewModels();
             host.AddConfigurationSubMenu();
+            host.AddMultiOptionConfigurationViewModels();
             host.AddSoftwareItemsViewModels();
             host.AddProfiles();
 
@@ -160,7 +161,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddSingleton<IEnumerable<ConfigurationSubMenuViewModel>>(provider =>
                 {
                     List<ConfigurationSubMenuViewModel> viewModels = new();
-
                     foreach (KeyValuePair<string, ConfigurationSubMenu> item in configurationDictionary)
                     {
                         ObservableCollection<ConfigurationItemViewModel> itemViewModels = new();
@@ -237,7 +237,7 @@ namespace AtlasToolbox.HostBuilder
                 ["NetworkDiscovery"] = new("Network Discovery", "NetworkDiscovery", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
                 ["Printing"] = new("Printing", "Printing", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
                 //["Troubleshooting"] = new("Troubleshooting", "Troubleshooting", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
-                ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", "CpuIdleContextMenu", ConfigurationType.CpuIdleSubMenu, RiskRating.LowRisk),
+                ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["LockScreen"] = new("Lock Screen", "LockScreen", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["ShortcutText"] = new("Shortcut Text", "ShortcutText", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["BootLogo"] = new("Boot Logo", "BootLogo", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
@@ -268,6 +268,9 @@ namespace AtlasToolbox.HostBuilder
                 ["AppStoreArchiving"] = new("Microsoft Store archiving", "AppStoreArchiving", ConfigurationType.General, RiskRating.LowRisk),
                 ["TakeOwnership"] = new("Add \"Take Ownership\" in the context menu", "TakeOwnership", ConfigurationType.ContextMenuSubMenu, RiskRating.HighRisk),
                 ["OldContextMenu"] = new("Legacy context menu (pre-Windows 11)", "OldContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["EdgeSwipe"] = new("Edge Swipe", "EdgeSwipe", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["AppIconsThumbnail"] = new("App icons on thumbnails", "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
+                ["AutomaticFolderDiscovery"] = new("Automatic folder discovery", "", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
             };
 
             host.ConfigureServices((_,services) =>
@@ -281,18 +284,18 @@ namespace AtlasToolbox.HostBuilder
                          //Task.Run(() => {
                             if (item.Value.Type >= (ConfigurationType)7)
                             {
-                                Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); }); 
+                                //Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
+                                subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                             }
                             else
                             {
-                                Task.Run(() =>
-                                {
-                                    viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
-                                });
+                                Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
+                                //viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                             }
                         //});
-                        
+
                     }
+                    Task.WaitAll();
                     return viewModels;
                 });
             });
