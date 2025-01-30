@@ -65,7 +65,7 @@ namespace AtlasToolbox
             logger.Error(e.Exception, "Unhandled exception occurred");
         }
 
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             if (CompatibilityHelper.IsCompatible())
             {

@@ -27,10 +27,6 @@ namespace AtlasToolbox.ViewModels
             ConfigurationItemViewModels = configurationItemViewModels;
             MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
             ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
-
-            //ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(configurationItemViewModels);
-            //MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(multiOptionConfigurationItemViewModels);
-            //ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(configurationSubMenuViewModel);
         }
 
         public void ShowForType(ConfigurationType configurationType)

@@ -213,10 +213,7 @@ namespace AtlasToolbox.HostBuilder
                         }
                         else
                         {
-                            Task.Run(() =>
-                            {
-                                viewModels.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
-                            });
+                            viewModels.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
                         }
                     }
                     return viewModels;
@@ -284,7 +281,7 @@ namespace AtlasToolbox.HostBuilder
                          //Task.Run(() => {
                             if (item.Value.Type >= (ConfigurationType)7)
                             {
-                                subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
+                                Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); }); 
                             }
                             else
                             {

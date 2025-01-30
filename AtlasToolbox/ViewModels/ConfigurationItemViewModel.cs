@@ -62,8 +62,9 @@ namespace AtlasToolbox.ViewModels
                     return Color.FromArgb(255, 255, 255, 0);
                 case RiskRating.LowRisk:
                     return Color.FromArgb(255, 0, 128, 0);
+                default:
+                    return Color.FromArgb(255, 0, 128, 0);
             }
-            return Color.FromArgb(255, 0, 128, 0);
         }
 
         public string RiskRatingFormatter(RiskRating riskRating)
@@ -90,7 +91,6 @@ namespace AtlasToolbox.ViewModels
 
             Task.Run(() =>
             {
-
                 Color = SetColor(Configuration.RiskRating);
                 _currentSetting = FetchCurrentSetting();
                 RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);

@@ -10,7 +10,6 @@ namespace AtlasToolbox.Enums
 {
     public enum RiskRating
     {
-        
         HighRisk,
         MediumRisk,
         LowRisk,
