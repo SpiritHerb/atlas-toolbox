@@ -26,7 +26,7 @@
                                         x:Key="TextFillColorSecondaryBrush"
                                         Color="{Binding Color}"/>
                                 </controls:SettingsCard.Resources>
-                                <ComboBox x:Name="ItemComboBox" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" Style="{StaticResource ConfigurationItemTemplate}"  />
+                                <ComboBox x:Name="ItemComboBox" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
