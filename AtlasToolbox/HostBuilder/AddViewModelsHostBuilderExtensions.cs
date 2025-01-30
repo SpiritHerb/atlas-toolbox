@@ -31,10 +31,10 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateSoftwarePageViewModel);
             });
 
-            host.AddSoftwareItemsViewModels();
             host.AddConfigurationItemViewModels();
             host.AddMultiOptionConfigurationViewModels();
             host.AddConfigurationSubMenu();
+            host.AddSoftwareItemsViewModels();
             host.AddProfiles();
 
             return host;
@@ -110,7 +110,7 @@ namespace AtlasToolbox.HostBuilder
 
             //DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
             //This is a temporary fix for publishing and debugging, this is to be changed once the app is ready to ship.
-            DirectoryInfo profilesDirectory = new DirectoryInfo($"C:\\Users\\TheyCreeper\\Documents\\Dev\\AtlasToolbox-WinUI3\\AtlasToolbox\\Profiles\\");
+            DirectoryInfo profilesDirectory = new DirectoryInfo($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles");
             FileInfo[] profileFile = profilesDirectory.GetFiles();
 
             foreach (FileInfo file in profileFile)

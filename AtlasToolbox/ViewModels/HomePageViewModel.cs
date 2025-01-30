@@ -60,7 +60,7 @@ namespace AtlasToolbox.ViewModels
             DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
             FileInfo[] profileFile = profilesDirectory.GetFiles();
 
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine("..\\..\\..\\..\\Profiles\\", Name.Trim() + ".txt")))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles", Name.Trim() + ".txt")))
             {
                 outputFile.WriteLine(Name);
 
