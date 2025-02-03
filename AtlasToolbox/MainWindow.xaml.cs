@@ -100,7 +100,6 @@ namespace AtlasToolbox
 
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
             {
-                // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
                 ContentFrame.Padding = new Thickness(55, 0, 0, 0);
@@ -108,7 +107,7 @@ namespace AtlasToolbox
             else if (ContentFrame.SourcePageType == typeof(SoftwarePage))
             {
                 // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
-                NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.MenuItems;
+                //NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.MenuItems;
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
                 ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }

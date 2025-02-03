@@ -31,10 +31,10 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateSoftwarePageViewModel);
             });
 
+            host.AddSoftwareItemsViewModels();
             host.AddConfigurationItemViewModels();
             host.AddConfigurationSubMenu();
             host.AddMultiOptionConfigurationViewModels();
-            host.AddSoftwareItemsViewModels();
             host.AddProfiles();
 
             return host;
@@ -92,10 +92,7 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, SoftwareItem> item in configurationDictionary)
                     {
-                        Task.Run(() =>
-                        {
-                            viewModels.Add(CreateSoftwareItemViewModel(item.Value));
-                        });
+                        viewModels.Add(CreateSoftwareItemViewModel(item.Value));
                     }
                     return viewModels;
                 });
@@ -195,6 +192,7 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["MultiOption"] = new("Multi option test configuration", "MultiOption", ConfigurationType.General, RiskRating.MediumRisk),
                 ["ContextMenuTerminals"] = new("Add or remove terminals from the context menu", "ContextMenuTerminals", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["ShortcutIcon"] = new("Change the icon from shortcuts", "ShortcutIcon", ConfigurationType.Interface, RiskRating.LowRisk),
             };
 
             host.ConfigureServices((_, services) =>
@@ -223,7 +221,7 @@ namespace AtlasToolbox.HostBuilder
 
         private static IHostBuilder AddConfigurationItemViewModels(this IHostBuilder host)
         {
-            // TODO: Change configuration types
+            // TODO: Change configuration types`
             Dictionary<string, Configuration> configurationDictionary = new()
             {
                 ["TestConfig"] = new ("TestConfig", "TestConfig", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
@@ -269,7 +267,8 @@ namespace AtlasToolbox.HostBuilder
                 ["OldContextMenu"] = new("Legacy context menu (pre-Windows 11)", "OldContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
                 ["EdgeSwipe"] = new("Edge Swipe", "EdgeSwipe", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["AppIconsThumbnail"] = new("App icons on thumbnails", "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
-                ["AutomaticFolderDiscovery"] = new("Automatic folder discovery", "", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["AutomaticFolderDiscovery"] = new("Automatic folder discovery", "AutomaticFolderDiscovery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["Gallery"] = new("Enable the gallery", "Gallery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
             };
 
             host.ConfigureServices((_,services) =>
