@@ -21,7 +21,6 @@ namespace AtlasToolbox.HostBuilder
     public static class AddViewModelsHostBuilderExtensions
     {
         private static List<Object> subMenuOnlyItems = new List<Object>();
-        private const int MAX_SUB_MENU_ONLY_ITEMS = 24;
         public static IHostBuilder AddViewModels(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>
