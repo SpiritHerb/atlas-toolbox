@@ -78,6 +78,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("AppIconsThumbnail");
                 services.AddKeyedSingleton<ConfigurationStore>("AutomaticFolderDiscovery");
                 services.AddKeyedSingleton<ConfigurationStore>("Gallery");
+                services.AddKeyedSingleton<ConfigurationStore>("SnapLayout");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("MultiOption");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");

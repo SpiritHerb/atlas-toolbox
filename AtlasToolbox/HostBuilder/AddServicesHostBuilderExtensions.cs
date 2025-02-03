@@ -99,6 +99,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, AppIconsThumbnailConfigurationService>("AppIconsThumbnail");
                 services.AddKeyedTransient<IConfigurationService, AutomaticFolderDiscoveryConfigurationService>("AutomaticFolderDiscovery");
                 services.AddKeyedTransient<IConfigurationService, GalleryConfigurationService>("Gallery");
+                services.AddKeyedTransient<IConfigurationService, SnapLayoutsConfigurationService>("SnapLayout");
             });
 
             return host;

@@ -105,8 +105,6 @@ namespace AtlasToolbox.HostBuilder
         {
             List<Profiles> configurationDictionary = new List<Profiles>();
 
-            //DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
-            //This is a temporary fix for publishing and debugging, this is to be changed once the app is ready to ship.
             DirectoryInfo profilesDirectory = new DirectoryInfo($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles");
             FileInfo[] profileFile = profilesDirectory.GetFiles();
 
@@ -269,6 +267,7 @@ namespace AtlasToolbox.HostBuilder
                 ["AppIconsThumbnail"] = new("App icons on thumbnails", "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
                 ["AutomaticFolderDiscovery"] = new("Automatic folder discovery", "AutomaticFolderDiscovery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
                 ["Gallery"] = new("Enable the gallery", "Gallery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["SnapLayout"] = new("Enable snap layouts for windows", "SnapLayout", ConfigurationType.Interface, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_,services) =>
