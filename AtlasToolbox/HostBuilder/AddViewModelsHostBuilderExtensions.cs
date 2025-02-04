@@ -110,6 +110,12 @@ namespace AtlasToolbox.HostBuilder
                 ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
                 ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
                 ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
+                ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", "Interface tweaks documentation", ConfigurationType.Interface),
+
+                ["ActivationPage"] = new (@"ms-settings:activation", "Windows activation status", ConfigurationType.Windows),
+                ["ColorsPage"] = new (@"ms-settings:personalization-colors", "Color personalisation settings", ConfigurationType.Windows),
+                ["DateAndTime"] = new (@"ms-settings:dateandtime", "Date and time settings", ConfigurationType.Windows),
+
             };
 
             host.ConfigureServices((_, services) =>

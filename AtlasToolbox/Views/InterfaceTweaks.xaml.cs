@@ -1,3 +1,4 @@
+using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,6 +51,10 @@ namespace AtlasToolbox.Views
             var linkCard = sender as SettingsCard;
             var linkVM = linkCard.DataContext as LinksViewModel;
             await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
+        }
+        private void RestartExplorerButton_Click(object sender, RoutedEventArgs e)
+        {
+            CommandPromptHelper.RestartExplorer();
         }
     }
 }

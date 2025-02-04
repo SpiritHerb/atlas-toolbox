@@ -43,8 +43,8 @@
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
                                 <controls:SettingsCard.Resources>
                                     <SolidColorBrush
-                                x:Key="TextFillColorSecondaryBrush"
-                                Color="{Binding Color}"/>
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
                                 </controls:SettingsCard.Resources>
                                 <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>
@@ -67,6 +67,10 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="Restart explorer.exe">
+                    <Button x:Name="RestartExplorerButton" Click="RestartExplorerButton_Click">Restart</Button>
+                </controls:SettingsCard>
             </StackPanel>
         </ScrollViewer>
     </Grid>
