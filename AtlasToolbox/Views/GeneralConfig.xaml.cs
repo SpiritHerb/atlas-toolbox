@@ -34,4 +34,11 @@ public sealed partial class GeneralConfig : Page
         var toggleSwitch = sender as ToggleSwitch;
         toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
     }
+
+    private async void LinkCard_Click(object sender, RoutedEventArgs e)
+    {
+        var linkCard = sender as SettingsCard;
+        var linkVM = linkCard.DataContext as LinksViewModel;
+        await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
+    }
 }

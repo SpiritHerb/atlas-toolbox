@@ -31,10 +31,11 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateSoftwarePageViewModel);
             });
 
+            host.AddLinksItemViewModels();
             host.AddSoftwareItemsViewModels();
+            host.AddMultiOptionConfigurationViewModels();
             host.AddConfigurationItemViewModels();
             host.AddConfigurationSubMenu();
-            host.AddMultiOptionConfigurationViewModels();
             host.AddProfiles();
 
             return host;
@@ -101,6 +102,41 @@ namespace AtlasToolbox.HostBuilder
         }
 
 
+        private static IHostBuilder AddLinksItemViewModels(this IHostBuilder host)
+        {
+            Dictionary<string, Links> configurationDictionary = new()
+            {
+                ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
+                ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
+                ["OpenShellTest"] = new (@"ms-settings:activation", "test cmd file", ConfigurationType.StartMenuSubMenu),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<LinksViewModel>>(provider =>
+                {
+                    List<LinksViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, Links> item in configurationDictionary)
+                    {
+                        //Task.Run(() => {
+                        if (item.Value.configurationType >= (ConfigurationType)7)
+                        {
+                            //Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
+                            subMenuOnlyItems.Add(CreateLinksViewModel(item.Value));
+                        }
+                        else
+                        {
+                            //Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
+                            viewModels.Add(CreateLinksViewModel(item.Value));
+                        }
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
+
         private static IHostBuilder AddProfiles(this IHostBuilder host)
         {
             List<Profiles> configurationDictionary = new List<Profiles>();
@@ -143,6 +179,7 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
+                ["StartMenuSubMenu"] = new("Start Menu", "Everything related to customizing the Windows Start Menu", ConfigurationType.Interface),
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
                 ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.Windows),
                 ["ServicesSubMenu"] = new("Services", "Everything related to services in Windows", ConfigurationType.Advanced),
@@ -159,6 +196,7 @@ namespace AtlasToolbox.HostBuilder
                     {
                         ObservableCollection<ConfigurationItemViewModel> itemViewModels = new();
                         ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionItemViewModels = new();
+                        ObservableCollection<LinksViewModel> linksViewModel = new();
                         foreach (ConfigurationItemViewModel configurationItemViewModel in subMenuOnlyItems.OfType<ConfigurationItemViewModel>())
                         {
                             if (configurationItemViewModel.Type.ToString() == item.Key)
@@ -173,7 +211,14 @@ namespace AtlasToolbox.HostBuilder
                                 multiOptionItemViewModels.Add(configurationItemViewModel);
                             }
                         }
-                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, item.Key, item.Value);
+                        foreach (LinksViewModel configurationItemViewModel in subMenuOnlyItems.OfType<LinksViewModel>())
+                        {
+                            if (configurationItemViewModel.ConfigurationType.ToString() == item.Key)
+                            {
+                                linksViewModel.Add(configurationItemViewModel);
+                            }
+                        }
+                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, linksViewModel, item.Key, item.Value);
                         viewModels.Add(viewModel);
                     }
                     return viewModels;
@@ -305,6 +350,13 @@ namespace AtlasToolbox.HostBuilder
             return viewModel;
         }
 
+        private static LinksViewModel CreateLinksViewModel(Links linksItem)
+        {
+            LinksViewModel viewModel = new(linksItem);
+
+            return viewModel;
+        }
+
         private static MultiOptionConfigurationItemViewModel CreateMultiOptionConfigurationItemViewModel(
             IServiceProvider serviceProvider, object key, MultiOptionConfiguration configuration)
         {
@@ -328,6 +380,7 @@ namespace AtlasToolbox.HostBuilder
         private static ConfigPageViewModel CreateConfigPageViewModel(IServiceProvider serviceProvider)
         {
             return ConfigPageViewModel.LoadViewModel(
+                serviceProvider.GetServices<LinksViewModel>(),
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
                 serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
                 serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
@@ -347,12 +400,12 @@ namespace AtlasToolbox.HostBuilder
         #endregion Create ViewModels
 
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
-          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, object key, ConfigurationSubMenu configuration)
+          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration)
         {
             ConfigurationStoreSubMenu configurationStoreSubMenu = serviceProvider.GetRequiredKeyedService<ConfigurationStoreSubMenu>(key);
 
             ConfigurationSubMenuViewModel  viewModel = new(
-               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel);
+               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel, linksViewModel);
 
             return viewModel;
         }

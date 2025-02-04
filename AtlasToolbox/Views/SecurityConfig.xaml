@@ -51,6 +51,22 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <ItemsControl x:Name="Links" ItemsSource="{Binding LinksItemViewModel}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard 
+                                x:Name="LinkCard" 
+                                Style="{StaticResource ConfigurationSettingsCardTemplate}" 
+                                Header="{Binding Name}"
+                                ActionIcon="{ui:FontIcon Glyph=&#xE8A7;}"
+                                Click="LinkCard_Click"
+                                IsClickEnabled="True"
+                                ActionIconToolTip="Open in new window"
+                                HeaderIcon="{ui:FontIcon Glyph=&#xE774;}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>

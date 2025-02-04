@@ -23,7 +23,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private readonly ConfigurationStore _snapLayoutsConfigurationService;
 
         public SnapLayoutsConfigurationService(
-            [FromKeyedServices("SnapLayouts")] ConfigurationStore snapLayoutsConfigurationService)
+            [FromKeyedServices("SnapLayout")] ConfigurationStore snapLayoutsConfigurationService)
         {
             _snapLayoutsConfigurationService = snapLayoutsConfigurationService;
         }

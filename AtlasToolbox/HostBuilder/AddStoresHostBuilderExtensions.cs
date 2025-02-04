@@ -97,6 +97,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("CPUIdleSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigurationSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("FileExplorerSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("StartMenuSubMenu");
             });
 
             return host;

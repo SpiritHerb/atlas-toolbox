@@ -6,7 +6,6 @@
     xmlns:local="using:AtlasToolbox"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:headercontrols="using:WinUIGallery.DesktopWap.Controls"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
@@ -49,6 +48,22 @@
                                 </controls:SettingsCard.Resources>
                                 <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl x:Name="Links" ItemsSource="{Binding LinksItemViewModel}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard 
+                                x:Name="LinkCard" 
+                                Style="{StaticResource ConfigurationSettingsCardTemplate}" 
+                                Header="{Binding Name}"
+                                ActionIcon="{ui:FontIcon Glyph=&#xE8A7;}"
+                                Click="LinkCard_Click"
+                                IsClickEnabled="True"
+                                ActionIconToolTip="Open in new window"
+                                HeaderIcon="{ui:FontIcon Glyph=&#xE774;}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

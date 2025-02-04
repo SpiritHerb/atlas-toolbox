@@ -20,7 +20,6 @@ namespace AtlasToolbox.ViewModels
         public SoftwareItemViewModel(SoftwareItem softwareItem)
         {
             SoftwareItem = softwareItem;
-            //Icon = $"https://api.winstall.app/icons/next/{Key}.webp";
             BitMapIcon = new BitmapIcon();
             BitMapIcon.UriSource = new Uri($"https://api.winstall.app/icons/next/{Key}.webp");
             BitMapIcon.ShowAsMonochrome = false;

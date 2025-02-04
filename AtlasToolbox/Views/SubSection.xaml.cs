@@ -1,5 +1,7 @@
 using AtlasToolbox.Models;
+using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -35,6 +37,7 @@ namespace AtlasToolbox.Views
 
                 ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels = new ObservableCollection<ConfigurationItemViewModel>();
                 ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels = new ObservableCollection<MultiOptionConfigurationItemViewModel>();
+                ObservableCollection<LinksViewModel> linksViewModels = new ObservableCollection<LinksViewModel>();
                 foreach (ConfigurationItemViewModel configurationItemViewModel in item.ConfigurationItems) 
                 {
                     configurationItemViewModels.Add(configurationItemViewModel);
@@ -43,9 +46,14 @@ namespace AtlasToolbox.Views
                 {
                     multiOptionConfigurationItemViewModels.Add(configurationItemViewModel);
                 }
+                foreach (LinksViewModel configurationItemViewModel in item.LinksViewModels)
+                {
+                    linksViewModels.Add(configurationItemViewModel);
+                }
 
                 MultiOptionItemsControl.ItemsSource = multiOptionConfigurationItemViewModels;
                 ItemsControl.ItemsSource = configurationItemViewModels;
+                Links.ItemsSource = linksViewModels;
             }
             
         }
@@ -53,6 +61,14 @@ namespace AtlasToolbox.Views
         {
             var toggleSwitch = sender as ToggleSwitch;
             toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+        }
+
+        private async void LinkCard_Click(object sender, RoutedEventArgs e)
+        {
+            var linkCard = sender as SettingsCard;
+            var linkVM = linkCard.DataContext as LinksViewModel;
+
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
         }
     }
 }
