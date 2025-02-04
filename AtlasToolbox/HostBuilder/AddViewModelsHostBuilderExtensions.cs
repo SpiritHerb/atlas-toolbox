@@ -108,7 +108,8 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
                 ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
-                ["OpenShellTest"] = new (@"ms-settings:activation", "test cmd file", ConfigurationType.StartMenuSubMenu),
+                ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
+                ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
             };
 
             host.ConfigureServices((_, services) =>
@@ -312,7 +313,9 @@ namespace AtlasToolbox.HostBuilder
                 ["AppIconsThumbnail"] = new("App icons on thumbnails", "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
                 ["AutomaticFolderDiscovery"] = new("Automatic folder discovery", "AutomaticFolderDiscovery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
                 ["Gallery"] = new("Enable the gallery", "Gallery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
-                ["SnapLayout"] = new("Enable snap layouts for windows", "SnapLayout", ConfigurationType.Interface, RiskRating.MediumRisk),
+                ["SnapLayout"] = new("Enables snap layouts for windows", "SnapLayout", ConfigurationType.Interface, RiskRating.MediumRisk),
+                ["RecentItems"] = new("Unlocks recent items on file explorer", "RecentItems", ConfigurationType.Interface, RiskRating.MediumRisk),
+                ["VerboseStatusMessage"] = new("Verbose status messages", "VerboseStatusMessage", ConfigurationType.Interface, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_,services) =>

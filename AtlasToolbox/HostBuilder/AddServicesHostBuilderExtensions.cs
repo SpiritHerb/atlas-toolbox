@@ -100,6 +100,8 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, AutomaticFolderDiscoveryConfigurationService>("AutomaticFolderDiscovery");
                 services.AddKeyedTransient<IConfigurationService, GalleryConfigurationService>("Gallery");
                 services.AddKeyedTransient<IConfigurationService, SnapLayoutsConfigurationService>("SnapLayout");
+                services.AddKeyedTransient<IConfigurationService, RecentItemsConfigurationService>("RecentItems");
+                services.AddKeyedTransient<IConfigurationService, VerboseStatusMessageConfiguarationServices>("VerboseStatusMessage");
             });
 
             return host;
