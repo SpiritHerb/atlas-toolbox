@@ -111,10 +111,16 @@ namespace AtlasToolbox.HostBuilder
                 ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
                 ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
                 ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", "Interface tweaks documentation", ConfigurationType.Interface),
-
                 ["ActivationPage"] = new (@"ms-settings:activation", "Windows activation status", ConfigurationType.Windows),
                 ["ColorsPage"] = new (@"ms-settings:personalization-colors", "Color personalisation settings", ConfigurationType.Windows),
                 ["DateAndTime"] = new (@"ms-settings:dateandtime", "Date and time settings", ConfigurationType.Windows),
+                ["DefaultApps"] = new (@"ms-settings:defaultapps", "Default Apps", ConfigurationType.Windows),
+                ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", "DefaultGraphicsSettings", ConfigurationType.Windows),
+                ["RegionLanguage"] = new (@"ms-settings:regionlanguage", "Region Properties", ConfigurationType.Windows),
+                ["Privacy"] = new (@"ms-settings:privacy", "Privacy Settings", ConfigurationType.Windows),
+                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", "RegionProperties", ConfigurationType.Windows),
+                ["Taskbar"] = new (@"ms-settings:taskbar", "Taskbar settings", ConfigurationType.Windows),
+                ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", "Windows Settings Documentation", ConfigurationType.Windows),
 
             };
 
@@ -127,7 +133,7 @@ namespace AtlasToolbox.HostBuilder
                     foreach (KeyValuePair<string, Links> item in configurationDictionary)
                     {
                         //Task.Run(() => {
-                        if (item.Value.configurationType >= (ConfigurationType)7)
+                        if (item.Value.configurationType >= (ConfigurationType)8)
                         {
                             //Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
                             subMenuOnlyItems.Add(CreateLinksViewModel(item.Value));
@@ -188,7 +194,7 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["StartMenuSubMenu"] = new("Start Menu", "Everything related to customizing the Windows Start Menu", ConfigurationType.Interface),
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
-                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.Windows),
+                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.General),
                 ["ServicesSubMenu"] = new("Services", "Everything related to services in Windows", ConfigurationType.Advanced),
                 ["CPUIdleSubMenu"] = new("CPU idle", "Everything related to CPU idling in Windows", ConfigurationType.Advanced),
                 ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
