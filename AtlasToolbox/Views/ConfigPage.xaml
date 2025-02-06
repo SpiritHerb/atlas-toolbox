@@ -68,6 +68,16 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
+                <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

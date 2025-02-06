@@ -15,6 +15,10 @@ using System.Security.Cryptography;
 using Microsoft.Graphics.Canvas.Text;
 using System.Linq;
 using System.Threading.Tasks;
+using AtlasToolbox.Commands;
+using System.Windows.Input;
+using Windows.Security.Cryptography.Core;
+using Windows.Devices.WiFi;
 
 namespace AtlasToolbox.HostBuilder
 {
@@ -31,6 +35,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddTransient(CreateSoftwarePageViewModel);
             });
 
+            host.AddConfigurationButtonItemViewModels();
             host.AddLinksItemViewModels();
             host.AddSoftwareItemsViewModels();
             host.AddMultiOptionConfigurationViewModels();
@@ -101,6 +106,29 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        private static IHostBuilder AddConfigurationButtonItemViewModels(this IHostBuilder host)
+        {
+            ICommand buttonCommand;
+            Dictionary<string, ConfigurationButton> configurationDictionary = new()
+            {
+                ["TestCommandButton"] = new(buttonCommand = new TestCommandButton(), "Test Command Button", "Test command button", ConfigurationType.Interface),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<ConfigurationButtonViewModel>>(provider =>
+                {
+                    List<ConfigurationButtonViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, ConfigurationButton> item in configurationDictionary)
+                    {
+                        viewModels.Add(CreateButtonViewModel(item.Value));
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
 
         private static IHostBuilder AddLinksItemViewModels(this IHostBuilder host)
         {
@@ -203,8 +231,9 @@ namespace AtlasToolbox.HostBuilder
                         ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionItemViewModels = new ObservableCollection<MultiOptionConfigurationItemViewModel>(provider.GetServices<MultiOptionConfigurationItemViewModel>().Where(item => item.Type.ToString() == subMenu.Key));
                         ObservableCollection<LinksViewModel> linksViewModel = new ObservableCollection<LinksViewModel>(provider.GetServices<LinksViewModel>().Where(item => item.ConfigurationType.ToString() == subMenu.Key));
                         ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModels = new ObservableCollection<ConfigurationSubMenuViewModel>(viewModels.Where(item => item.Type.ToString() == subMenu.Key));
+                        ObservableCollection<ConfigurationButtonViewModel> configurationButtonViewModels = new ObservableCollection<ConfigurationButtonViewModel>(provider.GetServices<ConfigurationButtonViewModel>().Where(item => item.Type.ToString() == subMenu.Key));
 
-                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, linksViewModel, subMenu.Key, subMenu.Value, configurationSubMenuViewModels);
+                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, linksViewModel, subMenu.Key, subMenu.Value, configurationSubMenuViewModels, configurationButtonViewModels);
                         viewModels.Add(viewModel);
                     }
                     return viewModels;
@@ -299,12 +328,14 @@ namespace AtlasToolbox.HostBuilder
             {
                 services.AddSingleton<IEnumerable<ConfigurationItemViewModel>>(provider =>
                 {
-                    List<ConfigurationItemViewModel> viewModels = new();
+                List<ConfigurationItemViewModel> viewModels = new();
 
-                    foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
-                    {
-                        viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
-                    }
+                foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
+                {
+                    //Could work, but needs to await for everything to be completed before returning viewModels
+                    //Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
+                    viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
+                }
                     return viewModels;
                 });
             });
@@ -314,6 +345,13 @@ namespace AtlasToolbox.HostBuilder
         private static SoftwareItemViewModel CreateSoftwareItemViewModel(SoftwareItem softwareItem)
         {
             SoftwareItemViewModel viewModel = new(softwareItem);
+
+            return viewModel;
+        }
+
+        private static ConfigurationButtonViewModel CreateButtonViewModel(ConfigurationButton configurationButtonViewModel)
+        {
+            ConfigurationButtonViewModel viewModel = new(configurationButtonViewModel);
 
             return viewModel;
         }
@@ -351,7 +389,8 @@ namespace AtlasToolbox.HostBuilder
                 serviceProvider.GetServices<LinksViewModel>(),
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
                 serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
+                serviceProvider.GetServices<ConfigurationSubMenuViewModel>(),
+                serviceProvider.GetServices<ConfigurationButtonViewModel>());
         }
 
         private static HomePageViewModel CreateHomePageViewModel(IServiceProvider serviceProvider)
@@ -368,12 +407,12 @@ namespace AtlasToolbox.HostBuilder
         #endregion Create ViewModels
 
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
-          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration, ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
+          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration, ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModel, ObservableCollection<ConfigurationButtonViewModel> configurationButtonViewModels)
         {
             ConfigurationStoreSubMenu configurationStoreSubMenu = serviceProvider.GetRequiredKeyedService<ConfigurationStoreSubMenu>(key);
 
             ConfigurationSubMenuViewModel  viewModel = new(
-               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel, linksViewModel, configurationSubMenuViewModel);
+               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel, linksViewModel, configurationSubMenuViewModel, configurationButtonViewModels);
 
             return viewModel;
         }

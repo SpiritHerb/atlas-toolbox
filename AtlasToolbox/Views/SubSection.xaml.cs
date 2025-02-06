@@ -39,6 +39,7 @@ namespace AtlasToolbox.Views
                 MultiOptionItemsControl.ItemsSource = item.MultiOptionConfigurationItems;
                 Links.ItemsSource = item.LinksViewModels;
                 SubMenuItems.ItemsSource = item.ConfigurationSubMenuViewModels;
+                ConfigurationButton.ItemsSource = item.ConfigurationButtonViewModels;
             }   
         }
 

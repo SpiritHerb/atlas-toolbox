@@ -72,6 +72,16 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 
+                <ItemsControl x:Name="ConfigurationButton">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <Button Content="{Binding }"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>
