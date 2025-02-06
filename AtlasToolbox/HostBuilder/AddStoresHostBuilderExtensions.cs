@@ -84,15 +84,9 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("NvidiaDispayContainer");
                 services.AddKeyedSingleton<ConfigurationStore>("AddNvidiaDisplayContainerContextMenu");
                 services.AddKeyedSingleton<ConfigurationStore>("SuperFetch");
-                services.AddKeyedSingleton<ConfigurationStore>("StaticIp");
-                services.AddKeyedSingleton<ConfigurationStore>("HideAppBrowserControl");
-                services.AddKeyedSingleton<ConfigurationStore>("SecurityHealthTray");
-                services.AddKeyedSingleton<ConfigurationStore>("FaultTolerantHeap");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("MultiOption");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
-                services.AddKeyedSingleton<MultiOptionConfigurationStore>("Mitigations");
-                services.AddKeyedSingleton<MultiOptionConfigurationStore>("SafeMode");
             });
 
             return host;
@@ -113,10 +107,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigBehavior");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("DriverConfigurationSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("NvidiaDisplayContainerSubMenu");
-                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("CoreIsolationSubMenu");
-                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("DefenderSubMenu");
-                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("MitigationsSubMenu");
-                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("TroubleshootingNetwork");
             });
 
             return host;

@@ -41,23 +41,17 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
-                                <!--<controls:SettingsCard.Resources>
-                                                <SolidColorBrush
-                                                x:Key="TextFillColorSecondaryBrush"
-                                                Color="{Binding Color}"/>
-                                                </controls:SettingsCard.Resources>-->
-                                <StackPanel Width="100">
-                                    <Line Stroke="SteelBlue"
-                                        X1="0" Y1="0"
-                                        X2="200" Y2="0"
-                                        StrokeThickness="5" Margin="0 0 0 0"/>
-                                    <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
-                                </StackPanel>
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                    x:Key="TextFillColorSecondaryBrush"
+                                    Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
+                                <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
+
                 <ItemsControl x:Name="Links" ItemsSource="{Binding LinksItemViewModel}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -77,8 +71,8 @@
                 <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}" Description="{Binding RiskRatingString}">
-                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}" Style="{StaticResource AccentButtonStyle}"/>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

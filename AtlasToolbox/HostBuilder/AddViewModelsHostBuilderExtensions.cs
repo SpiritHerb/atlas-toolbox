@@ -163,8 +163,6 @@ namespace AtlasToolbox.HostBuilder
                 ["Privacy"] = new (@"ms-settings:privacy", "Privacy Settings", ConfigurationType.Windows, "\uE713"),
                 ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", "RegionProperties", ConfigurationType.Windows, "\uE713"),
                 ["Taskbar"] = new (@"ms-settings:taskbar", "Taskbar settings", ConfigurationType.Windows, "\uE713"),
-                ["CoreIsolation"] = new (@"windowsdefender://coreisolation/", "Core Isolation - Windows Security", ConfigurationType.CoreIsolationSubMenu, "\uE83D"),
-
 
                 ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", "Windows Settings Documentation", ConfigurationType.Windows),
                 ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", "Explanations from Microsoft", ConfigurationType.BootConfigurationSubMenu),
@@ -174,9 +172,6 @@ namespace AtlasToolbox.HostBuilder
                 ["MSIUtilityV3"] = new (@"https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044", "MSI Utility V3", ConfigurationType.DriverConfigurationSubMenu),
                 ["ProcessExplorer"] = new (@"https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer", "Process Explorer", ConfigurationType.Advanced),
                 ["NvidiaDisplayContainerMustReadFirst"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/#nvidia-display-container", "Must read first", ConfigurationType.NvidiaDisplayContainerSubMenu),
-                ["AdvancedConfigMustRead"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/", "Must read first (Documentation)", ConfigurationType.Advanced),
-                ["SecurityDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/security/", "Security documentation", ConfigurationType.Security),
-                ["ResetPC"] = new (@"https://docs.atlasos.net/getting-started/reverting-atlas/", "Reset this PC (read first)", ConfigurationType.Troubleshooting),
             };
 
             host.ConfigureServices((_, services) =>
@@ -202,15 +197,6 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["RestartExplorerButton"] = new(buttonCommand = new RestartExplorerCommand(), "Restart Explorer.exe", "Some interface settings may require you to restart explorer.exe", ConfigurationType.Interface),
                 ["ViewCurrentSettingsBootConfig"] = new(buttonCommand = new ViewCurrentValuesCommand(), "View current values", "See boot configuration values", ConfigurationType.BootConfigurationSubMenu),
-                ["VBSCurrentConfig"] = new(buttonCommand = new CurrentVBSConfigurationCommand(), "VBS Current Configuration", "See the current VBS configuration", ConfigurationType.CoreIsolationSubMenu),
-                ["ToggleDefender"] = new(buttonCommand = new ToggleDefenderCommand(), "Toggle", "Toggle Windows Defender", ConfigurationType.DefenderSubMenu),
-                ["ResetFTH"] = new(buttonCommand = new ResetFTHCommand(), "Reset", "Reset FTH entries", ConfigurationType.MitigationsSubMenu),
-
-                ["FixErrors"] = new(buttonCommand = new FixErrorsCommand(), "Troubleshoot", "Fix Errors 2502 and 2503", ConfigurationType.Troubleshooting),
-                ["RepairWinComponent"] = new(buttonCommand = new RepairWindowsComponentsCommand(), "Troubleshoot", "Repair Windows Components", ConfigurationType.Troubleshooting),
-                ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), "Troubleshoot", "Telemetry Components", ConfigurationType.Troubleshooting),
-                ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), "Reset", "Reset Network to Atlas Defaults", ConfigurationType.TroubleshootingNetwork),
-                ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), "Reset", "Reset Network to Windows Defaults", ConfigurationType.TroubleshootingNetwork),
             };
 
             host.ConfigureServices((_, services) =>
@@ -246,10 +232,6 @@ namespace AtlasToolbox.HostBuilder
                 ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
                 ["FileExplorerSubMenu"] = new("File Explorer customization", "Everything related to customizing the Windows File Explorer", ConfigurationType.Interface),
                 ["DriverConfigurationSubMenu"] = new("Driver configuration", "Everything related to driver configuration", ConfigurationType.Advanced),
-                ["CoreIsolationSubMenu"] = new("Core Isolation (VBS)", "Everything related to core isolation", ConfigurationType.Security),
-                ["DefenderSubMenu"] = new("Defender", "Everything related to Windows Defender", ConfigurationType.Security),
-                ["MitigationsSubMenu"] = new("Mitigations", "Everything related to mitigations", ConfigurationType.Security),
-                ["TroubleshootingNetwork"] = new("Network", "Everything related to troubleshooting network", ConfigurationType.Troubleshooting),
             };
             host.ConfigureServices((_, services) =>
             {
@@ -282,8 +264,6 @@ namespace AtlasToolbox.HostBuilder
                 ["MultiOption"] = new("Multi option test configuration", "MultiOption", ConfigurationType.General, RiskRating.MediumRisk),
                 ["ContextMenuTerminals"] = new("Add or remove terminals from the context menu", "ContextMenuTerminals", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
                 ["ShortcutIcon"] = new("Change the icon from shortcuts", "ShortcutIcon", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["Mitigations"] = new("Change mitigations status", "Mitigations", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
-                ["SafeMode"] = new("Enter safe mode on startup", "SafeMode", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_, services) =>
@@ -358,10 +338,6 @@ namespace AtlasToolbox.HostBuilder
                 ["NvidiaDispayContainer"] = new("NVIDIA Display Container", "NvidiaDispayContainer", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.HighRisk),
                 ["AddNvidiaDisplayContainerContextMenu"] = new("NVIDIA Display Container in context menu", "AddNvidiaDisplayContainerContextMenu", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.LowRisk),
                 ["SuperFetch"] = new("SuperFetch", "SuperFetch", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
-                ["StaticIp"] = new("Automatically set static IP", "StaticIp", ConfigurationType.Advanced, RiskRating.MediumRisk),
-                ["HideAppBrowserControl"] = new("Automatically set static IP", "StaticIp", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
-                ["SecurityHealthTray"] = new("Automatically set static IP", "StaticIp", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
-                ["FaultTolerantHeap"] = new("Fault Tolerant Heap", "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_,services) =>
