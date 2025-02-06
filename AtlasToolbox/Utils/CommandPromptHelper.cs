@@ -47,7 +47,7 @@ namespace AtlasToolbox.Utils
 
             Process startExplorer = new Process();
             startExplorer.StartInfo.FileName = "cmd.exe";
-            startExplorer.StartInfo.Arguments = $"/c taskkill /f /im explorer.exe";
+            startExplorer.StartInfo.Arguments = $"/c explorer.exe";
             startExplorer.StartInfo.CreateNoWindow = true;
             startExplorer.StartInfo.UseShellExecute = false;
 

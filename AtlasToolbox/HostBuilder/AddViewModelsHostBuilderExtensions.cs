@@ -132,17 +132,7 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, Links> item in configurationDictionary)
                     {
-                        //Task.Run(() => {
-                        if (item.Value.configurationType >= (ConfigurationType)8)
-                        {
-                            //Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
-                            subMenuOnlyItems.Add(CreateLinksViewModel(item.Value));
-                        }
-                        else
-                        {
-                            //Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
-                            viewModels.Add(CreateLinksViewModel(item.Value));
-                        }
+                        viewModels.Add(CreateLinksViewModel(item.Value));
                     }
                     return viewModels;
                 });
@@ -159,8 +149,8 @@ namespace AtlasToolbox.HostBuilder
 
             foreach (FileInfo file in profileFile)
             {
-                bool loop = true;
                 List<string> keys = new List<string>();
+                bool loop = true;
                 string profileKeyname = file.Name;
                 string profileName;
                 using (StreamReader profile = new StreamReader(file.FullName, Encoding.UTF8))
@@ -168,7 +158,6 @@ namespace AtlasToolbox.HostBuilder
                     profileName = profile.ReadLine();
                     while (loop)
                     {
-                        //string configurationServiceKey = profile.ReadLine();
                         string key = profile.ReadLine();
                         if (key == null) { loop = false; }
                         else { keys.Add(key); }
@@ -192,6 +181,8 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
+                ["TestSubSubMenu"] = new("SubSub menu test", "Everything related to customizing the Windows File Explorer", ConfigurationType.BootConfigurationSubMenu),
+
                 ["StartMenuSubMenu"] = new("Start Menu", "Everything related to customizing the Windows Start Menu", ConfigurationType.Interface),
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
                 ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.General),
@@ -205,33 +196,14 @@ namespace AtlasToolbox.HostBuilder
                 services.AddSingleton<IEnumerable<ConfigurationSubMenuViewModel>>(provider =>
                 {
                     List<ConfigurationSubMenuViewModel> viewModels = new();
-                    foreach (KeyValuePair<string, ConfigurationSubMenu> item in configurationDictionary)
+                    foreach (KeyValuePair<string, ConfigurationSubMenu> subMenu in configurationDictionary)
                     {
-                        ObservableCollection<ConfigurationItemViewModel> itemViewModels = new();
-                        ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionItemViewModels = new();
-                        ObservableCollection<LinksViewModel> linksViewModel = new();
-                        foreach (ConfigurationItemViewModel configurationItemViewModel in subMenuOnlyItems.OfType<ConfigurationItemViewModel>())
-                        {
-                            if (configurationItemViewModel.Type.ToString() == item.Key)
-                            {
-                                itemViewModels.Add(configurationItemViewModel);
-                            }
-                        }
-                        foreach (MultiOptionConfigurationItemViewModel configurationItemViewModel in subMenuOnlyItems.OfType<MultiOptionConfigurationItemViewModel>())
-                        {
-                            if (configurationItemViewModel.Type.ToString() == item.Key)
-                            {
-                                multiOptionItemViewModels.Add(configurationItemViewModel);
-                            }
-                        }
-                        foreach (LinksViewModel configurationItemViewModel in subMenuOnlyItems.OfType<LinksViewModel>())
-                        {
-                            if (configurationItemViewModel.ConfigurationType.ToString() == item.Key)
-                            {
-                                linksViewModel.Add(configurationItemViewModel);
-                            }
-                        }
-                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, linksViewModel, item.Key, item.Value);
+                        ObservableCollection<ConfigurationItemViewModel> itemViewModels = new ObservableCollection<ConfigurationItemViewModel>(provider.GetServices<ConfigurationItemViewModel>().Where(item => item.Type.ToString() == subMenu.Key));
+                        ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionItemViewModels = new ObservableCollection<MultiOptionConfigurationItemViewModel>(provider.GetServices<MultiOptionConfigurationItemViewModel>().Where(item => item.Type.ToString() == subMenu.Key));
+                        ObservableCollection<LinksViewModel> linksViewModel = new ObservableCollection<LinksViewModel>(provider.GetServices<LinksViewModel>().Where(item => item.ConfigurationType.ToString() == subMenu.Key));
+                        ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModels = new ObservableCollection<ConfigurationSubMenuViewModel>(viewModels.Where(item => item.Type.ToString() == subMenu.Key));
+
+                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, linksViewModel, subMenu.Key, subMenu.Value, configurationSubMenuViewModels);
                         viewModels.Add(viewModel);
                     }
                     return viewModels;
@@ -259,15 +231,7 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, MultiOptionConfiguration> item in configurationDictionary)
                     {
-                        if (
-                        item.Value.Type >= (ConfigurationType)7)
-                        {
-                            subMenuOnlyItems.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
-                        }
-                        else
-                        {
-                            viewModels.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
-                        }
+                        viewModels.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
                     }
                     return viewModels;
                 });
@@ -338,19 +302,7 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
                     {
-                         //Task.Run(() => {
-                            if (item.Value.Type >= (ConfigurationType)7)
-                            {
-                                //Task.Run(() => { subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
-                                subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
-                            }
-                            else
-                            {
-                                //Task.Run(() => { viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value)); });
-                                viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
-                            }
-                        //});
-
+                        viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                     }
                     return viewModels;
                 });
@@ -415,12 +367,12 @@ namespace AtlasToolbox.HostBuilder
         #endregion Create ViewModels
 
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
-          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration)
+          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration, ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
         {
             ConfigurationStoreSubMenu configurationStoreSubMenu = serviceProvider.GetRequiredKeyedService<ConfigurationStoreSubMenu>(key);
 
             ConfigurationSubMenuViewModel  viewModel = new(
-               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel, linksViewModel);
+               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel, linksViewModel, configurationSubMenuViewModel);
 
             return viewModel;
         }

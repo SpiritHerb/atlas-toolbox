@@ -17,6 +17,15 @@
     <Grid>
         <ScrollViewer>
             <StackPanel>
+
+                <ItemsControl x:Name="SubMenuItems">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding Description}" Click="OnCardClicked" IsClickEnabled="True"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
                 <ItemsControl x:Name="MultiOptionItemsControl">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

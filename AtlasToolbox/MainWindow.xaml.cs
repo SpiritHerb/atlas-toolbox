@@ -73,6 +73,7 @@ namespace AtlasToolbox
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
+            var test = sender as NavigationView;
             if (args.IsSettingsInvoked == true)
             {
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
@@ -106,8 +107,6 @@ namespace AtlasToolbox
             }
             else if (ContentFrame.SourcePageType == typeof(SoftwarePage))
             {
-                // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
-                //NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.MenuItems;
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
                 ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }

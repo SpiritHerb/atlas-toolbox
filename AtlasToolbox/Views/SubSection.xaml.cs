@@ -35,28 +35,23 @@ namespace AtlasToolbox.Views
             {
                 var item = parameter.Item1;
 
-                ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels = new ObservableCollection<ConfigurationItemViewModel>();
-                ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels = new ObservableCollection<MultiOptionConfigurationItemViewModel>();
-                ObservableCollection<LinksViewModel> linksViewModels = new ObservableCollection<LinksViewModel>();
-                foreach (ConfigurationItemViewModel configurationItemViewModel in item.ConfigurationItems) 
-                {
-                    configurationItemViewModels.Add(configurationItemViewModel);
-                }
-                foreach (MultiOptionConfigurationItemViewModel configurationItemViewModel in item.MultiOptionConfigurationItems)
-                {
-                    multiOptionConfigurationItemViewModels.Add(configurationItemViewModel);
-                }
-                foreach (LinksViewModel configurationItemViewModel in item.LinksViewModels)
-                {
-                    linksViewModels.Add(configurationItemViewModel);
-                }
-
-                MultiOptionItemsControl.ItemsSource = multiOptionConfigurationItemViewModels;
-                ItemsControl.ItemsSource = configurationItemViewModels;
-                Links.ItemsSource = linksViewModels;
-            }
-            
+                ItemsControl.ItemsSource = item.ConfigurationItems;
+                MultiOptionItemsControl.ItemsSource = item.MultiOptionConfigurationItems;
+                Links.ItemsSource = item.LinksViewModels;
+                SubMenuItems.ItemsSource = item.ConfigurationSubMenuViewModels;
+            }   
         }
+
+        private void OnCardClicked(object sender, RoutedEventArgs e)
+        {
+            var settingCard = sender as SettingsCard;
+            var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+
+            var template = SubMenuItems.ItemTemplate;
+
+            Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
+        }
+
         private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
         {
             var toggleSwitch = sender as ToggleSwitch;
