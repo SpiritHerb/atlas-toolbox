@@ -18,10 +18,5 @@ namespace AtlasToolbox.Services.ConfigurationSubMenu
         {
             _bootConfigurationSubMenu = bootConfigurationSubMenu;
         }
-
-        public void AddConfigurationService()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

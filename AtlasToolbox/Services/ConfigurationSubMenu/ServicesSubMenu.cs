@@ -15,8 +15,5 @@ namespace AtlasToolbox.Services.ConfigurationSubMenu
         {
             _servicesSubMenu = servicesSubMenu;
         }
-        public void AddConfigurationService()
-        {
-        }
     }
 }

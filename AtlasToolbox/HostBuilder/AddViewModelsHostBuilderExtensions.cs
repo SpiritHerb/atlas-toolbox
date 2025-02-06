@@ -107,68 +107,7 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
-        private static IHostBuilder AddConfigurationButtonItemViewModels(this IHostBuilder host)
-        {
-            ICommand buttonCommand;
-            Dictionary<string, ConfigurationButton> configurationDictionary = new()
-            {
-                ["RestartExplorerButton"] = new(buttonCommand = new RestartExplorerCommand(), "Restart Explorer.exe", "Some interface settings may require you to restart explorer.exe", ConfigurationType.Interface),
-                ["ViewCurrentSettingsBootConfig"] = new(buttonCommand = new ViewCurretnValuesCommand(), "View current values", "See boot configuration values", ConfigurationType.BootConfigurationSubMenu),
-            };
 
-            host.ConfigureServices((_, services) =>
-            {
-                services.AddSingleton<IEnumerable<ConfigurationButtonViewModel>>(provider =>
-                {
-                    List<ConfigurationButtonViewModel> viewModels = new();
-
-                    foreach (KeyValuePair<string, ConfigurationButton> item in configurationDictionary)
-                    {
-                        viewModels.Add(CreateButtonViewModel(item.Value));
-                    }
-                    return viewModels;
-                });
-            });
-            return host;
-        }
-
-        private static IHostBuilder AddLinksItemViewModels(this IHostBuilder host)
-        {
-            Dictionary<string, Links> configurationDictionary = new()
-            {
-                ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
-                ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
-                ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
-                ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
-                ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", "Interface tweaks documentation", ConfigurationType.Interface),
-                ["ActivationPage"] = new (@"ms-settings:activation", "Windows activation status", ConfigurationType.Windows),
-                ["ColorsPage"] = new (@"ms-settings:personalization-colors", "Color personalisation settings", ConfigurationType.Windows),
-                ["DateAndTime"] = new (@"ms-settings:dateandtime", "Date and time settings", ConfigurationType.Windows),
-                ["DefaultApps"] = new (@"ms-settings:defaultapps", "Default Apps", ConfigurationType.Windows),
-                ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", "DefaultGraphicsSettings", ConfigurationType.Windows),
-                ["RegionLanguage"] = new (@"ms-settings:regionlanguage", "Region Properties", ConfigurationType.Windows),
-                ["Privacy"] = new (@"ms-settings:privacy", "Privacy Settings", ConfigurationType.Windows),
-                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", "RegionProperties", ConfigurationType.Windows),
-                ["Taskbar"] = new (@"ms-settings:taskbar", "Taskbar settings", ConfigurationType.Windows),
-                ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", "Windows Settings Documentation", ConfigurationType.Windows),
-                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", "Explanations from Microsoft", ConfigurationType.BootConfigurationSubMenu),
-            };
-
-            host.ConfigureServices((_, services) =>
-            {
-                services.AddSingleton<IEnumerable<LinksViewModel>>(provider =>
-                {
-                    List<LinksViewModel> viewModels = new();
-
-                    foreach (KeyValuePair<string, Links> item in configurationDictionary)
-                    {
-                        viewModels.Add(CreateLinksViewModel(item.Value));
-                    }
-                    return viewModels;
-                });
-            });
-            return host;
-        }
 
         private static IHostBuilder AddProfiles(this IHostBuilder host)
         {
@@ -205,6 +144,76 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        private static IHostBuilder AddLinksItemViewModels(this IHostBuilder host)
+        {
+            Dictionary<string, Links> configurationDictionary = new()
+            {
+                ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
+                ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
+                ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
+                ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
+                ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", "Interface tweaks documentation", ConfigurationType.Interface),
+                
+                ["ActivationPage"] = new (@"ms-settings:activation", "Windows activation status", ConfigurationType.Windows, "\uE713"),
+                ["ColorsPage"] = new (@"ms-settings:personalization-colors", "Color personalisation settings", ConfigurationType.Windows, "\uE713"),
+                ["DateAndTime"] = new (@"ms-settings:dateandtime", "Date and time settings", ConfigurationType.Windows, "\uE713"),
+                ["DefaultApps"] = new (@"ms-settings:defaultapps", "Default Apps", ConfigurationType.Windows, "\uE713"),
+                ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", "DefaultGraphicsSettings", ConfigurationType.Windows, "\uE713"),
+                ["RegionLanguage"] = new (@"ms-settings:regionlanguage", "Region Properties", ConfigurationType.Windows, "\uE713"),
+                ["Privacy"] = new (@"ms-settings:privacy", "Privacy Settings", ConfigurationType.Windows, "\uE713"),
+                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", "RegionProperties", ConfigurationType.Windows, "\uE713"),
+                ["Taskbar"] = new (@"ms-settings:taskbar", "Taskbar settings", ConfigurationType.Windows, "\uE713"),
+
+                ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", "Windows Settings Documentation", ConfigurationType.Windows),
+                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", "Explanations from Microsoft", ConfigurationType.BootConfigurationSubMenu),
+                ["AutoGpuAffinity"] = new (@"https://github.com/valleyofdoom/AutoGpuAffinity", "AutoGpuAffinity", ConfigurationType.DriverConfigurationSubMenu),
+                ["GoInterruptPolicy"] = new (@"https://github.com/spddl/GoInterruptPolicy", "GoInterruptPolicy", ConfigurationType.DriverConfigurationSubMenu),
+                ["InterrupAffinityTool"] = new (@"https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool", "Interrupt Affinity Tool", ConfigurationType.DriverConfigurationSubMenu),
+                ["MSIUtilityV3"] = new (@"https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044", "MSI Utility V3", ConfigurationType.DriverConfigurationSubMenu),
+                ["ProcessExplorer"] = new (@"https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer", "Process Explorer", ConfigurationType.Advanced),
+                ["NvidiaDisplayContainerMustReadFirst"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/#nvidia-display-container", "Must read first", ConfigurationType.NvidiaDisplayContainerSubMenu),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<LinksViewModel>>(provider =>
+                {
+                    List<LinksViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, Links> item in configurationDictionary)
+                    {
+                        viewModels.Add(CreateLinksViewModel(item.Value));
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
+
+        private static IHostBuilder AddConfigurationButtonItemViewModels(this IHostBuilder host)
+        {
+            ICommand buttonCommand;
+            Dictionary<string, ConfigurationButton> configurationDictionary = new()
+            {
+                ["RestartExplorerButton"] = new(buttonCommand = new RestartExplorerCommand(), "Restart Explorer.exe", "Some interface settings may require you to restart explorer.exe", ConfigurationType.Interface),
+                ["ViewCurrentSettingsBootConfig"] = new(buttonCommand = new ViewCurrentValuesCommand(), "View current values", "See boot configuration values", ConfigurationType.BootConfigurationSubMenu),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<ConfigurationButtonViewModel>>(provider =>
+                {
+                    List<ConfigurationButtonViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, ConfigurationButton> item in configurationDictionary)
+                    {
+                        viewModels.Add(CreateButtonViewModel(item.Value));
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
 
         private static IHostBuilder AddConfigurationSubMenu(this IHostBuilder host)
         {
@@ -213,6 +222,7 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["BootConfigAppearance"] = new("Boot configuration appearance", "Everything related to the appearance of booting Windows", ConfigurationType.BootConfigurationSubMenu),
                 ["BootConfigBehavior"] = new("Boot behavior", "Everything related to booting behavior", ConfigurationType.BootConfigurationSubMenu),
+                ["NvidiaDisplayContainerSubMenu"] = new("NVIDIA Display Container", "Everything related to the NVIDIA Display Container", ConfigurationType.ServicesSubMenu),
 
                 ["StartMenuSubMenu"] = new("Start Menu", "Everything related to customizing the Windows Start Menu", ConfigurationType.Interface),
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
@@ -221,6 +231,7 @@ namespace AtlasToolbox.HostBuilder
                 ["CPUIdleSubMenu"] = new("CPU idle", "Everything related to CPU idling in Windows", ConfigurationType.Advanced),
                 ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
                 ["FileExplorerSubMenu"] = new("File Explorer customization", "Everything related to customizing the Windows File Explorer", ConfigurationType.Interface),
+                ["DriverConfigurationSubMenu"] = new("Driver configuration", "Everything related to driver configuration", ConfigurationType.Advanced),
             };
             host.ConfigureServices((_, services) =>
             {
@@ -324,6 +335,9 @@ namespace AtlasToolbox.HostBuilder
                 ["SnapLayout"] = new("Enables snap layouts for windows", "SnapLayout", ConfigurationType.Interface, RiskRating.MediumRisk),
                 ["RecentItems"] = new("Unlocks recent items on file explorer", "RecentItems", ConfigurationType.Interface, RiskRating.MediumRisk),
                 ["VerboseStatusMessage"] = new("Verbose status messages", "VerboseStatusMessage", ConfigurationType.Interface, RiskRating.MediumRisk),
+                ["NvidiaDispayContainer"] = new("NVIDIA Display Container", "NvidiaDispayContainer", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.HighRisk),
+                ["AddNvidiaDisplayContainerContextMenu"] = new("NVIDIA Display Container in context menu", "AddNvidiaDisplayContainerContextMenu", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.LowRisk),
+                ["SuperFetch"] = new("SuperFetch", "SuperFetch", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>

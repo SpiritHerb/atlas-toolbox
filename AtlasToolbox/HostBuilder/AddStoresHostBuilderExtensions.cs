@@ -81,6 +81,9 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("SnapLayout");
                 services.AddKeyedSingleton<ConfigurationStore>("RecentItems");
                 services.AddKeyedSingleton<ConfigurationStore>("VerboseStatusMessage");
+                services.AddKeyedSingleton<ConfigurationStore>("NvidiaDispayContainer");
+                services.AddKeyedSingleton<ConfigurationStore>("AddNvidiaDisplayContainerContextMenu");
+                services.AddKeyedSingleton<ConfigurationStore>("SuperFetch");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("MultiOption");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
@@ -102,6 +105,8 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("StartMenuSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigAppearance");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigBehavior");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("DriverConfigurationSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("NvidiaDisplayContainerSubMenu");
             });
 
             return host;

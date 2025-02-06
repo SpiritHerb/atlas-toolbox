@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Notifications;
 
 namespace AtlasToolbox.Utils
 {
@@ -21,13 +22,25 @@ namespace AtlasToolbox.Utils
             commandPrompt.Start();
             commandPrompt.WaitForExit();
         }
-        
-        public static void RunCommand(string command)
+
+        //public static void RunCmdFile(string file)
+        //{
+        //    Process commandPrompt = new Process();
+        //    commandPrompt.StartInfo.FileName = "cmd.exe";
+        //    commandPrompt.StartInfo.Arguments = $"/c {file}";
+        //    commandPrompt.StartInfo.CreateNoWindow = false;
+        //    commandPrompt.StartInfo.UseShellExecute = false;
+
+        //    commandPrompt.Start();
+        //    commandPrompt.WaitForExit();
+        //}
+
+        public static void RunCommand(string command, bool noWindow= true)
         {
             Process commandPrompt = new Process();
             commandPrompt.StartInfo.FileName = "cmd.exe";
             commandPrompt.StartInfo.Arguments = $"/c {command}";
-            commandPrompt.StartInfo.CreateNoWindow = true;
+            commandPrompt.StartInfo.CreateNoWindow = noWindow;
             commandPrompt.StartInfo.UseShellExecute = false;
 
             commandPrompt.Start();

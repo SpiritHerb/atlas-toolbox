@@ -3,8 +3,5 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AtlasToolbox.Services.ConfigurationSubMenu
 {
-    public interface IConfigurationSubMenu
-    {
-        void AddConfigurationService();
-    }
+    public interface IConfigurationSubMenu { }
 }

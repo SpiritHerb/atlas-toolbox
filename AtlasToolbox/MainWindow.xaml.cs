@@ -20,6 +20,8 @@ using System.Windows.Input;
 using NLog.LayoutRenderers.Wrappers;
 using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
+using ICSharpCode.Decompiler.CSharp.Syntax;
+using AtlasToolbox.Commands.ConfigurationButtonsCommand;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

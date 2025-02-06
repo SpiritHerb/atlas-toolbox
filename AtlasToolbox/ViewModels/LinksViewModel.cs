@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
+using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -15,6 +16,7 @@ namespace AtlasToolbox.ViewModels
         public string Name => link.name;
         public string Link => link.link;
         public ConfigurationType ConfigurationType => link.configurationType;
+        public FontIcon fontIcon => link.Icon;
 
         public LinksViewModel(Links link)
         {

@@ -63,7 +63,7 @@
                                 Click="LinkCard_Click"
                                 IsClickEnabled="True"
                                 ActionIconToolTip="Open in new window"
-                                HeaderIcon="{ui:FontIcon Glyph=&#xE774;}"/>
+                                HeaderIcon="{Binding fontIcon}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

@@ -8,12 +8,12 @@ using MVVMEssentials.Commands;
 
 namespace AtlasToolbox.Commands.ConfigurationButtonsCommand
 {
-    public class ViewCurretnValuesCommand : AsyncCommandBase
+    public class ViewCurrentValuesCommand : AsyncCommandBase
     {
         protected override async Task ExecuteAsync(object parameter)
         {
             await Task.Run(() => {
-                CommandPromptHelper.RunCustomFile(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\viewBootValues.cmd");
+                CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\viewBootValues.cmd", false);
             });
         }
     }

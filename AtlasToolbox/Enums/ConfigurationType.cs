@@ -25,5 +25,7 @@ namespace AtlasToolbox.Enums
         StartMenuSubMenu,
         BootConfigAppearance,
         BootConfigBehavior,
+        DriverConfigurationSubMenu,
+        NvidiaDisplayContainerSubMenu,
     }
 }
