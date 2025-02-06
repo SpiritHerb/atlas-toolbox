@@ -8,15 +8,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AtlasToolbox.Services.ConfigurationSubMenu
 {
-    public class TestSubSubMenu : IConfigurationSubMenu
+    internal class BootConfigBehavior : IConfigurationSubMenu
     {
-        private readonly ConfigurationStoreSubMenu _testSubSubMenu;
+        private readonly ConfigurationStoreSubMenu _bootConfigBehavior;
 
-        public TestSubSubMenu(
-            [FromKeyedServices("TestSubSubMenu")] ConfigurationStoreSubMenu testSubSubMenu)
+
+        public BootConfigBehavior(
+            [FromKeyedServices("BootConfigBehavior")] ConfigurationStoreSubMenu bootConfigBehavior)
         {
-            _testSubSubMenu = testSubSubMenu;
+            _bootConfigBehavior = bootConfigBehavior;
         }
+
         public void AddConfigurationService()
         {
             throw new NotImplementedException();

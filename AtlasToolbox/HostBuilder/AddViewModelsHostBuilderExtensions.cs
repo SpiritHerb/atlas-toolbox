@@ -121,7 +121,7 @@ namespace AtlasToolbox.HostBuilder
                 ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", "RegionProperties", ConfigurationType.Windows),
                 ["Taskbar"] = new (@"ms-settings:taskbar", "Taskbar settings", ConfigurationType.Windows),
                 ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", "Windows Settings Documentation", ConfigurationType.Windows),
-
+                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", "Explanations from Microsoft", ConfigurationType.BootConfigurationSubMenu),
             };
 
             host.ConfigureServices((_, services) =>
@@ -181,7 +181,8 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
-                ["TestSubSubMenu"] = new("SubSub menu test", "Everything related to customizing the Windows File Explorer", ConfigurationType.BootConfigurationSubMenu),
+                ["BootConfigAppearance"] = new("Boot configuration appearance", "Everything related to the appearance of booting Windows", ConfigurationType.BootConfigurationSubMenu),
+                ["BootConfigBehavior"] = new("Boot behavior", "Everything related to booting behavior", ConfigurationType.BootConfigurationSubMenu),
 
                 ["StartMenuSubMenu"] = new("Start Menu", "Everything related to customizing the Windows Start Menu", ConfigurationType.Interface),
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
@@ -257,14 +258,14 @@ namespace AtlasToolbox.HostBuilder
                 ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["LockScreen"] = new("Lock Screen", "LockScreen", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["ShortcutText"] = new("Shortcut Text", "ShortcutText", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["BootLogo"] = new("Boot Logo", "BootLogo", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["BootMessages"] = new("Boot Messages", "BootMessages", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["NewBootMenu"] = new("New Boot Menu", "NewBootMenu", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["SpinningAnimation"] = new("Spinning Animation", "SpinningAnimations", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["AdvancedBootOptions"] = new("Advanced Boot Options on Startup", "AdvancedBootOptions", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["AutomaticRepair"] = new("Automatic Repair", "AutomaticRepair", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["KernelParameters"] = new("Kernel Parameters on Startup", "KernelParameters", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["HighestMode"] = new("Highest Mode", "HighestMode", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
+                ["BootLogo"] = new("Boot Logo", "BootLogo", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["BootMessages"] = new("Boot Messages", "BootMessages", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["NewBootMenu"] = new("New Boot Menu", "NewBootMenu", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["SpinningAnimation"] = new("Spinning Animation", "SpinningAnimations", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["AdvancedBootOptions"] = new("Advanced Boot Options on Startup", "AdvancedBootOptions", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["AutomaticRepair"] = new("Automatic Repair", "AutomaticRepair", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["KernelParameters"] = new("Kernel Parameters on Startup", "KernelParameters", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["HighestMode"] = new("Highest Mode", "HighestMode", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
                 ["CompactView"] = new("Compact View", "CompactView", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
                 ["RemovableDrivesInSidebar"] = new("Removable Drives in Sidebar", "RemovableDrivesInSidebar", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
                 ["BackgroundApps"] = new("Background apps", "BackgroundApps", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
