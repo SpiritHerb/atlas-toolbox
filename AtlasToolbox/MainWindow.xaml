@@ -93,32 +93,32 @@
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage"/>
-                <NavigationViewItem Content="General Configuration" Tag="AtlasToolbox.Views.GeneralConfig">
+                <NavigationViewItem Content="General Configuration" Tag="General">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xF259;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Interface Tweaks" Tag="AtlasToolbox.Views.InterfaceTweaks">
+                <NavigationViewItem Content="Interface Tweaks" Tag="Interface">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE932;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Windows Settings" Tag="AtlasToolbox.Views.WindowsSettings">
+                <NavigationViewItem Content="Windows Settings" Tag="Windows">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE977;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Advanced Config" Tag="AtlasToolbox.Views.AdvancedConfig">
+                <NavigationViewItem Content="Advanced Config" Tag="Advanced">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xEC7A;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Security" Tag="AtlasToolbox.Views.SecurityConfig">
+                <NavigationViewItem Content="Security" Tag="Security">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE83D;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Troubleshooting" Tag="AtlasToolbox.Views.Troubleshooting">
+                <NavigationViewItem Content="Troubleshooting" Tag="Troubleshooting">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7BA;" />
                     </NavigationViewItem.Icon>

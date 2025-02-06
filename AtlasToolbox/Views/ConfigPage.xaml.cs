@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using AtlasToolbox.Enums;
 using AtlasToolbox.ViewModels;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,14 +10,18 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.Views;
 
-public sealed partial class GeneralConfig : Page
+public sealed partial class ConfigPage : Page
 {
     private readonly ConfigPageViewModel _viewModel;
-    public GeneralConfig()
+    private object configType;
+
+    public ConfigPage()
     {
         this.InitializeComponent();
+
         _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
-        _viewModel.ShowForType(Enums.ConfigurationType.General);
+        Enum.TryParse(new ConfigurationType().GetType(), App.CurrentCategory, out configType);
+        _viewModel.ShowForType((ConfigurationType)configType);
         this.DataContext = _viewModel;
     }
     private void OnCardClicked(object sender, RoutedEventArgs e)

@@ -19,6 +19,7 @@ using NLog;
 using System.Windows.Input;
 using NLog.LayoutRenderers.Wrappers;
 using CommunityToolkit.Mvvm.Input;
+using AtlasToolbox.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -78,14 +79,22 @@ namespace AtlasToolbox
             {
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
-            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null))
+            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage"))
+            {
+                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
+                ContentFrame.Navigate(
+                       new ConfigPage().GetType(),
+                       null,
+                       new EntranceNavigationTransitionInfo());
+                App.XamlRoot = this.Content.XamlRoot;
+            }
+            else
             {
                 Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                 ContentFrame.Navigate(
                        newPage,
                        null,
-                       new EntranceNavigationTransitionInfo()
-                       );
+                       new EntranceNavigationTransitionInfo());
                 App.XamlRoot = this.Content.XamlRoot;
             }
         }
@@ -121,7 +130,7 @@ namespace AtlasToolbox
             {
                 NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
                     .OfType<NavigationViewItem>()
-                    .First(n => n.Tag.Equals(ContentFrame.SourcePageType.FullName.ToString()));
+                    .First(n => n.Tag.Equals(App.CurrentCategory));
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
                 ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }

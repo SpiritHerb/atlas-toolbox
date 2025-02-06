@@ -38,12 +38,7 @@
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
     <None Remove="SoftwarePage.xaml" />
-    <None Remove="Views\AdvancedConfig.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
-    <None Remove="Views\InterfaceTweaks.xaml" />
-    <None Remove="Views\SettingsPage.xaml" />
-    <None Remove="Views\Troubleshooting.xaml" />
-    <None Remove="Views\WindowsSettings.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -113,32 +108,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Troubleshooting.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\SecurityConfig.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\AdvancedConfig.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\WindowsSettings.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\InterfaceTweaks.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\GeneralConfig.xaml">
+    <Page Update="Views\ConfigPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
