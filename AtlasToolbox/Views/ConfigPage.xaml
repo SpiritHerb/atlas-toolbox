@@ -40,14 +40,18 @@
                 <ItemsControl x:Name="ConfigurationItems" ItemsSource="{Binding ConfigurationItem}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
-                                <controls:SettingsCard.Resources>
-                                    <SolidColorBrush
-                                    x:Key="TextFillColorSecondaryBrush"
-                                    Color="{Binding Color}"/>
-                                </controls:SettingsCard.Resources>
-                                <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
-                            </controls:SettingsCard>
+                            <Grid>
+                                <Border Background="{Binding Color}" Width="5" HorizontalAlignment="Left" CornerRadius="3 0 0 3" Margin="0 0 0 5"/>
+                                <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                    <controls:SettingsCard.Resources>
+                                        <SolidColorBrush
+                                         x:Key="TextFillColorSecondaryBrush"
+                                         Color="{Binding Color}"/>
+                                    </controls:SettingsCard.Resources>
+                                    <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
+                                </controls:SettingsCard>
+                            </Grid>
+                            
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

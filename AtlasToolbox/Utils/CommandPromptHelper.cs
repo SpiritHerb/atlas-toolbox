@@ -23,18 +23,6 @@ namespace AtlasToolbox.Utils
             commandPrompt.WaitForExit();
         }
 
-        //public static void RunCmdFile(string file)
-        //{
-        //    Process commandPrompt = new Process();
-        //    commandPrompt.StartInfo.FileName = "cmd.exe";
-        //    commandPrompt.StartInfo.Arguments = $"/c {file}";
-        //    commandPrompt.StartInfo.CreateNoWindow = false;
-        //    commandPrompt.StartInfo.UseShellExecute = false;
-
-        //    commandPrompt.Start();
-        //    commandPrompt.WaitForExit();
-        //}
-
         public static void RunCommand(string command, bool noWindow= true)
         {
             Process commandPrompt = new Process();
