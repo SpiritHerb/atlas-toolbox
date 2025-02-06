@@ -8,7 +8,7 @@ using MVVMEssentials.Commands;
 
 namespace AtlasToolbox.Commands
 {
-    public class TestCommandButton : AsyncCommandBase
+    public class RestartExplorerCommand : AsyncCommandBase
     {
         protected override async Task ExecuteAsync(object parameter)
         {

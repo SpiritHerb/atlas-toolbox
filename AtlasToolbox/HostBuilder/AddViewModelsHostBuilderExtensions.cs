@@ -19,6 +19,7 @@ using AtlasToolbox.Commands;
 using System.Windows.Input;
 using Windows.Security.Cryptography.Core;
 using Windows.Devices.WiFi;
+using AtlasToolbox.Commands.ConfigurationButtonsCommand;
 
 namespace AtlasToolbox.HostBuilder
 {
@@ -111,7 +112,8 @@ namespace AtlasToolbox.HostBuilder
             ICommand buttonCommand;
             Dictionary<string, ConfigurationButton> configurationDictionary = new()
             {
-                ["TestCommandButton"] = new(buttonCommand = new TestCommandButton(), "Test Command Button", "Test command button", ConfigurationType.Interface),
+                ["RestartExplorerButton"] = new(buttonCommand = new RestartExplorerCommand(), "Restart Explorer.exe", "Some interface settings may require you to restart explorer.exe", ConfigurationType.Interface),
+                ["ViewCurrentSettingsBootConfig"] = new(buttonCommand = new ViewCurretnValuesCommand(), "View current values", "See boot configuration values", ConfigurationType.BootConfigurationSubMenu),
             };
 
             host.ConfigureServices((_, services) =>
