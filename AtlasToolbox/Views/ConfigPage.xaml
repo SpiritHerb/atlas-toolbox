@@ -51,7 +51,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
+                
                 <ItemsControl x:Name="Links" ItemsSource="{Binding LinksItemViewModel}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -71,8 +71,8 @@
                 <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
-                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}"/>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}" Description="{Binding RiskRatingString}">
+                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}" Style="{StaticResource AccentButtonStyle}"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

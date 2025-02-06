@@ -75,7 +75,7 @@
                 <ItemsControl x:Name="ConfigurationButton">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}" Description="{Binding RiskRatingString}">
                                 <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}"/>
                             </controls:SettingsCard>
                         </DataTemplate>
