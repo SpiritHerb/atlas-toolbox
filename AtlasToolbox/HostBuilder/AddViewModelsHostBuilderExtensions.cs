@@ -13,47 +13,144 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 using Microsoft.Graphics.Canvas.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AtlasToolbox.HostBuilder
 {
     public static class AddViewModelsHostBuilderExtensions
     {
-        private static List<ConfigurationItemViewModel> subMenuOnlyItems = new List<ConfigurationItemViewModel>();
+        private static List<Object> subMenuOnlyItems = new List<Object>();
         public static IHostBuilder AddViewModels(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<MainViewModel>();
-                services.AddTransient(CreateGeneralConfigViewModel);
-                services.AddTransient(CreateInterfaceTweaksViewModel);
-                services.AddTransient(CreateAdvancedConfigViewModel);
-                services.AddTransient(CreateSecurityConfigViewModel);
-                services.AddTransient(CreateWindowsSettingsViewModel);
-                services.AddTransient(CreateTroubleshootingViewModel);
+                services.AddTransient(CreateConfigPageViewModel);
                 services.AddTransient(CreateHomePageViewModel);
+                services.AddTransient(CreateSoftwarePageViewModel);
             });
 
-             host.AddConfigurationItemViewModels();
-             host.AddConfigurationSubMenu();
-             host.AddProfiles();
+            host.AddLinksItemViewModels();
+            host.AddSoftwareItemsViewModels();
+            host.AddMultiOptionConfigurationViewModels();
+            host.AddConfigurationItemViewModels();
+            host.AddConfigurationSubMenu();
+            host.AddProfiles();
 
             return host;
         }
 
+        private static IHostBuilder AddSoftwareItemsViewModels(this IHostBuilder host)
+        {
+            Dictionary<string, SoftwareItem> configurationDictionary = new()
+            {
+                ["Ungoogled Chromium"] = new("Ungoogled Chromium", "eloston.ungoogled-chromium"),
+                ["Google Chrome"] = new("Google Chrome", "Google.Chrome"),
+                ["Mozilla Firefox"] = new("Mozilla Firefox", "Mozilla.Firefox"),
+                ["Waterfox"] = new("Waterfox", "Waterfox.Waterfox"),
+                ["Brave Browser"] = new("Brave Browser", "Brave.Brave"),
+                ["LibreWolf"] = new("LibreWolf", "LibreWolf.LibreWolf"),
+                ["Tor Browser"] = new("Tor Browser", "TorProject.TorBrowser"),
+                ["Discord"] = new("Discord", "Discord.Discord"),
+                ["Discord Canary"] = new("Discord Canary", "Discord.Discord.Canary"),
+                ["Steam"] = new("Steam", "Valve.Steam"),
+                ["Playnite"] = new("Playnite", "Playnite.Playnite"),
+                ["Heroic"] = new("Heroic", "HeroicGamesLauncher.HeroicGamesLauncher"),
+                ["Everything"] = new("Everything", "voidtools.Everything"),
+                ["Mozilla Thunderbird"] = new("Mozilla Thunderbird", "Mozilla.Thunderbird"),
+                ["IrfanView"] = new("IrfanView", "IrfanSkiljan.IrfanView"),
+                ["Git"] = new("Git", "Git.Git"),
+                ["VLC"] = new("VLC", "VideoLAN.VLC"),
+                ["PuTTY"] = new("PuTTY", "PuTTY.PuTTY"),
+                ["Ditto"] = new("Ditto", "Ditto.Ditto"),
+                ["7-Zip"] = new("7-Zip", "7zip.7zip"),
+                ["Teamspeak"] = new("Teamspeak", "TeamSpeakSystems.TeamSpeakClient"),
+                ["Spotify"] = new("Spotify", "Spotify.Spotify"),
+                ["OBS Studio"] = new("OBS Studio", "OBSProject.OBSStudio"),
+                ["MSI Afterburner"] = new("MSI Afterburner", "Guru3D.Afterburner"),
+                ["foobar2000"] = new("foobar2000", "PeterPawlowski.foobar2000"),
+                ["CPU-Z"] = new("CPU-Z", "CPUID.CPU-Z"),
+                ["GPU-Z"] = new("GPU-Z", "TechPowerUp.GPU-Z"),
+                ["Notepad++"] = new("Notepad++", "Notepad++.Notepad++"),
+                ["VSCode"] = new("VSCode", "Microsoft.VisualStudioCode"),
+                ["VSCodium"] = new("VSCodium", "VSCodium.VSCodium"),
+                ["BCUninstaller"] = new("BCUninstaller", "Klocman.BulkCrapUninstaller"),
+                ["HWiNFO"] = new("HWiNFO", "REALiX.HWiNFO"),
+                ["Lightshot"] = new("Lightshot", "Skillbrains.Lightshot"),
+                ["ShareX"] = new("ShareX", "ShareX.ShareX"),
+                ["Snipping Tool"] = new("Snipping Tool", "9MZ95KL8MR0L"),
+                ["ExplorerPatcher"] = new("ExplorerPatcher", "valinet.ExplorerPatcher"),
+                ["Powershell 7"] = new("Powershell 7", "Microsoft.PowerShell"),
+                ["UniGetUI"] = new("UniGetUI", "MartiCliment.UniGetUI"),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<SoftwareItemViewModel>>(provider =>
+                {
+                    List<SoftwareItemViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, SoftwareItem> item in configurationDictionary)
+                    {
+                        viewModels.Add(CreateSoftwareItemViewModel(item.Value));
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
+
+
+        private static IHostBuilder AddLinksItemViewModels(this IHostBuilder host)
+        {
+            Dictionary<string, Links> configurationDictionary = new()
+            {
+                ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
+                ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
+                ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
+                ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
+                ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", "Interface tweaks documentation", ConfigurationType.Interface),
+                ["ActivationPage"] = new (@"ms-settings:activation", "Windows activation status", ConfigurationType.Windows),
+                ["ColorsPage"] = new (@"ms-settings:personalization-colors", "Color personalisation settings", ConfigurationType.Windows),
+                ["DateAndTime"] = new (@"ms-settings:dateandtime", "Date and time settings", ConfigurationType.Windows),
+                ["DefaultApps"] = new (@"ms-settings:defaultapps", "Default Apps", ConfigurationType.Windows),
+                ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", "DefaultGraphicsSettings", ConfigurationType.Windows),
+                ["RegionLanguage"] = new (@"ms-settings:regionlanguage", "Region Properties", ConfigurationType.Windows),
+                ["Privacy"] = new (@"ms-settings:privacy", "Privacy Settings", ConfigurationType.Windows),
+                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", "RegionProperties", ConfigurationType.Windows),
+                ["Taskbar"] = new (@"ms-settings:taskbar", "Taskbar settings", ConfigurationType.Windows),
+                ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", "Windows Settings Documentation", ConfigurationType.Windows),
+                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", "Explanations from Microsoft", ConfigurationType.BootConfigurationSubMenu),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<LinksViewModel>>(provider =>
+                {
+                    List<LinksViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, Links> item in configurationDictionary)
+                    {
+                        viewModels.Add(CreateLinksViewModel(item.Value));
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
 
         private static IHostBuilder AddProfiles(this IHostBuilder host)
         {
             List<Profiles> configurationDictionary = new List<Profiles>();
 
-            //DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
-            //This is a temporary fix for publishing and debugging, this is to be changed once the app is ready to ship.
-            DirectoryInfo profilesDirectory = new DirectoryInfo($"C:\\Users\\TheyCreeper\\Documents\\Dev\\AtlasToolbox-WinUI3\\AtlasToolbox\\Profiles\\");
+            DirectoryInfo profilesDirectory = new DirectoryInfo($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles");
             FileInfo[] profileFile = profilesDirectory.GetFiles();
 
             foreach (FileInfo file in profileFile)
             {
-                bool loop = true;
                 List<string> keys = new List<string>();
+                bool loop = true;
                 string profileKeyname = file.Name;
                 string profileName;
                 using (StreamReader profile = new StreamReader(file.FullName, Encoding.UTF8))
@@ -61,7 +158,6 @@ namespace AtlasToolbox.HostBuilder
                     profileName = profile.ReadLine();
                     while (loop)
                     {
-                        //string configurationServiceKey = profile.ReadLine();
                         string key = profile.ReadLine();
                         if (key == null) { loop = false; }
                         else { keys.Add(key); }
@@ -85,8 +181,12 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
+                ["BootConfigAppearance"] = new("Boot configuration appearance", "Everything related to the appearance of booting Windows", ConfigurationType.BootConfigurationSubMenu),
+                ["BootConfigBehavior"] = new("Boot behavior", "Everything related to booting behavior", ConfigurationType.BootConfigurationSubMenu),
+
+                ["StartMenuSubMenu"] = new("Start Menu", "Everything related to customizing the Windows Start Menu", ConfigurationType.Interface),
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
-                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.Windows),
+                ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.General),
                 ["ServicesSubMenu"] = new("Services", "Everything related to services in Windows", ConfigurationType.Advanced),
                 ["CPUIdleSubMenu"] = new("CPU idle", "Everything related to CPU idling in Windows", ConfigurationType.Advanced),
                 ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
@@ -97,15 +197,14 @@ namespace AtlasToolbox.HostBuilder
                 services.AddSingleton<IEnumerable<ConfigurationSubMenuViewModel>>(provider =>
                 {
                     List<ConfigurationSubMenuViewModel> viewModels = new();
-
-                    foreach (KeyValuePair<string, ConfigurationSubMenu> item in configurationDictionary)
+                    foreach (KeyValuePair<string, ConfigurationSubMenu> subMenu in configurationDictionary)
                     {
-                        ObservableCollection<ConfigurationItemViewModel> itemViewModels = new();
-                        foreach (ConfigurationItemViewModel configurationItemViewModel in subMenuOnlyItems)
-                        {
-                            if (configurationItemViewModel.Type.ToString() == item.Key) itemViewModels.Add(configurationItemViewModel);
-                        }
-                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, item.Key, item.Value);
+                        ObservableCollection<ConfigurationItemViewModel> itemViewModels = new ObservableCollection<ConfigurationItemViewModel>(provider.GetServices<ConfigurationItemViewModel>().Where(item => item.Type.ToString() == subMenu.Key));
+                        ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionItemViewModels = new ObservableCollection<MultiOptionConfigurationItemViewModel>(provider.GetServices<MultiOptionConfigurationItemViewModel>().Where(item => item.Type.ToString() == subMenu.Key));
+                        ObservableCollection<LinksViewModel> linksViewModel = new ObservableCollection<LinksViewModel>(provider.GetServices<LinksViewModel>().Where(item => item.ConfigurationType.ToString() == subMenu.Key));
+                        ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModels = new ObservableCollection<ConfigurationSubMenuViewModel>(viewModels.Where(item => item.Type.ToString() == subMenu.Key));
+
+                        ConfigurationSubMenuViewModel viewModel = CreateConfigurationSubMenuViewModel(provider, itemViewModels, multiOptionItemViewModels, linksViewModel, subMenu.Key, subMenu.Value, configurationSubMenuViewModels);
                         viewModels.Add(viewModel);
                     }
                     return viewModels;
@@ -115,9 +214,35 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
-        private static IHostBuilder AddConfigurationItemViewModels(this IHostBuilder host)
+        private static IHostBuilder AddMultiOptionConfigurationViewModels(this IHostBuilder host)
         {
             // TODO: Change configuration types
+            Dictionary<string, MultiOptionConfiguration> configurationDictionary = new()
+            {
+                ["MultiOption"] = new("Multi option test configuration", "MultiOption", ConfigurationType.General, RiskRating.MediumRisk),
+                ["ContextMenuTerminals"] = new("Add or remove terminals from the context menu", "ContextMenuTerminals", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["ShortcutIcon"] = new("Change the icon from shortcuts", "ShortcutIcon", ConfigurationType.Interface, RiskRating.LowRisk),
+            };
+
+            host.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IEnumerable<MultiOptionConfigurationItemViewModel>>(provider =>
+                {
+                    List<MultiOptionConfigurationItemViewModel> viewModels = new();
+
+                    foreach (KeyValuePair<string, MultiOptionConfiguration> item in configurationDictionary)
+                    {
+                        viewModels.Add(CreateMultiOptionConfigurationItemViewModel(provider, item.Key, item.Value));
+                    }
+                    return viewModels;
+                });
+            });
+            return host;
+        }
+
+        private static IHostBuilder AddConfigurationItemViewModels(this IHostBuilder host)
+        {
+            // TODO: Change configuration types`
             Dictionary<string, Configuration> configurationDictionary = new()
             {
                 ["TestConfig"] = new ("TestConfig", "TestConfig", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
@@ -129,18 +254,18 @@ namespace AtlasToolbox.HostBuilder
                 ["LanmanWorkstation"] = new("Lanman Workstation (SMB)", "LanmanWorkstation", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
                 ["NetworkDiscovery"] = new("Network Discovery", "NetworkDiscovery", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
                 ["Printing"] = new("Printing", "Printing", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
-                ["Troubleshooting"] = new("Troubleshooting", "Troubleshooting", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
-                ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", "CpuIdleContextMenu", ConfigurationType.CpuIdleSubMenu, RiskRating.LowRisk),
+                //["Troubleshooting"] = new("Troubleshooting", "Troubleshooting", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
+                ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["LockScreen"] = new("Lock Screen", "LockScreen", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["ShortcutText"] = new("Shortcut Text", "ShortcutText", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["BootLogo"] = new("Boot Logo", "BootLogo", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["BootMessages"] = new("Boot Messages", "BootMessages", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["NewBootMenu"] = new("New Boot Menu", "NewBootMenu", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["SpinningAnimation"] = new("Spinning Animation", "SpinningAnimations", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["AdvancedBootOptions"] = new("Advanced Boot Options on Startup", "AdvancedBootOptions", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["AutomaticRepair"] = new("Automatic Repair", "AutomaticRepair", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["KernelParameters"] = new("Kernel Parameters on Startup", "KernelParameters", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
-                ["HighestMode"] = new("Highest Mode", "HighestMode", ConfigurationType.BootConfigurationSubMenu, RiskRating.LowRisk),
+                ["BootLogo"] = new("Boot Logo", "BootLogo", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["BootMessages"] = new("Boot Messages", "BootMessages", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["NewBootMenu"] = new("New Boot Menu", "NewBootMenu", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["SpinningAnimation"] = new("Spinning Animation", "SpinningAnimations", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["AdvancedBootOptions"] = new("Advanced Boot Options on Startup", "AdvancedBootOptions", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["AutomaticRepair"] = new("Automatic Repair", "AutomaticRepair", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["KernelParameters"] = new("Kernel Parameters on Startup", "KernelParameters", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["HighestMode"] = new("Highest Mode", "HighestMode", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
                 ["CompactView"] = new("Compact View", "CompactView", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
                 ["RemovableDrivesInSidebar"] = new("Removable Drives in Sidebar", "RemovableDrivesInSidebar", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
                 ["BackgroundApps"] = new("Background apps", "BackgroundApps", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
@@ -160,7 +285,14 @@ namespace AtlasToolbox.HostBuilder
                 ["WindowsSpotlight"] = new("Windows Spotlight", "WindowsSpotlight", ConfigurationType.General, RiskRating.LowRisk),
                 ["AppStoreArchiving"] = new("Microsoft Store archiving", "AppStoreArchiving", ConfigurationType.General, RiskRating.LowRisk),
                 ["TakeOwnership"] = new("Add \"Take Ownership\" in the context menu", "TakeOwnership", ConfigurationType.ContextMenuSubMenu, RiskRating.HighRisk),
-
+                ["OldContextMenu"] = new("Legacy context menu (pre-Windows 11)", "OldContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["EdgeSwipe"] = new("Edge Swipe", "EdgeSwipe", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["AppIconsThumbnail"] = new("App icons on thumbnails", "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
+                ["AutomaticFolderDiscovery"] = new("Automatic folder discovery", "AutomaticFolderDiscovery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["Gallery"] = new("Enable the gallery", "Gallery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["SnapLayout"] = new("Enables snap layouts for windows", "SnapLayout", ConfigurationType.Interface, RiskRating.MediumRisk),
+                ["RecentItems"] = new("Unlocks recent items on file explorer", "RecentItems", ConfigurationType.Interface, RiskRating.MediumRisk),
+                ["VerboseStatusMessage"] = new("Verbose status messages", "VerboseStatusMessage", ConfigurationType.Interface, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_,services) =>
@@ -171,73 +303,54 @@ namespace AtlasToolbox.HostBuilder
 
                     foreach (KeyValuePair<string, Configuration> item in configurationDictionary)
                     {
-                        if (
-                        item.Value.Type >= (ConfigurationType)7)
-                        {
-                            subMenuOnlyItems.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
-                        }else
-                        {
-                            ConfigurationItemViewModel viewModel = CreateConfigurationItemViewModel(provider, item.Key, item.Value);
-                            viewModels.Add(viewModel);
-                        }
+                        viewModels.Add(CreateConfigurationItemViewModel(provider, item.Key, item.Value));
                     }
                     return viewModels;
                 });
             });
-
             return host;
+        }
+
+        private static SoftwareItemViewModel CreateSoftwareItemViewModel(SoftwareItem softwareItem)
+        {
+            SoftwareItemViewModel viewModel = new(softwareItem);
+
+            return viewModel;
+        }
+
+        private static LinksViewModel CreateLinksViewModel(Links linksItem)
+        {
+            LinksViewModel viewModel = new(linksItem);
+
+            return viewModel;
+        }
+
+        private static MultiOptionConfigurationItemViewModel CreateMultiOptionConfigurationItemViewModel(
+            IServiceProvider serviceProvider, object key, MultiOptionConfiguration configuration)
+        {
+            MultiOptionConfigurationItemViewModel viewModel = new(
+                configuration, serviceProvider.GetRequiredKeyedService<MultiOptionConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IMultiOptionConfigurationServices>(key));
+
+            return viewModel;
         }
 
         private static ConfigurationItemViewModel CreateConfigurationItemViewModel(
             IServiceProvider serviceProvider, object key, Configuration configuration)
         {
-                ConfigurationStore configurationStore = serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key);
-                IConfigurationService configurationService = serviceProvider.GetRequiredKeyedService<IConfigurationService>(key);
-
                 ConfigurationItemViewModel viewModel = new(
-                    configuration, configurationStore, configurationService);
+                    configuration, serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IConfigurationService>(key));
 
                 return viewModel;
         }
 
         #region Create ViewModels
-        private static GeneralConfigViewModel CreateGeneralConfigViewModel(IServiceProvider serviceProvider)
-        {
-            return GeneralConfigViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
 
-        private static InterfaceTweaksViewModel CreateInterfaceTweaksViewModel(IServiceProvider serviceProvider)
+        private static ConfigPageViewModel CreateConfigPageViewModel(IServiceProvider serviceProvider)
         {
-            return InterfaceTweaksViewModel.LoadViewModel(
+            return ConfigPageViewModel.LoadViewModel(
+                serviceProvider.GetServices<LinksViewModel>(),
                 serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-
-        private static WindowsSettingsViewModel CreateWindowsSettingsViewModel(IServiceProvider serviceProvider)
-        {
-            return WindowsSettingsViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-
-        private static AdvancedConfigViewModel CreateAdvancedConfigViewModel(IServiceProvider serviceProvider)
-        {
-            return AdvancedConfigViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-        private static SecurityConfigViewModel CreateSecurityConfigViewModel(IServiceProvider serviceProvider)
-        {
-            return SecurityConfigViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
-                serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
-        }
-        private static TroubleshootingViewModel CreateTroubleshootingViewModel(IServiceProvider serviceProvider)
-        {
-            return TroubleshootingViewModel.LoadViewModel(
-                serviceProvider.GetServices<ConfigurationItemViewModel>(),
+                serviceProvider.GetServices<MultiOptionConfigurationItemViewModel>(),
                 serviceProvider.GetServices<ConfigurationSubMenuViewModel>());
         }
 
@@ -247,15 +360,20 @@ namespace AtlasToolbox.HostBuilder
                 serviceProvider.GetServices<Profiles>(),
                 serviceProvider.GetServices<ConfigurationItemViewModel>());
         }
+        private static SoftwarePageViewModel CreateSoftwarePageViewModel(IServiceProvider serviceProvider)
+        {
+            return SoftwarePageViewModel.LoadViewModel(
+                serviceProvider.GetServices<SoftwareItemViewModel>());
+        }
         #endregion Create ViewModels
 
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
-          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, object key, ConfigurationSubMenu configuration)
+          IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration, ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModel)
         {
             ConfigurationStoreSubMenu configurationStoreSubMenu = serviceProvider.GetRequiredKeyedService<ConfigurationStoreSubMenu>(key);
 
             ConfigurationSubMenuViewModel  viewModel = new(
-               configuration, configurationStoreSubMenu, configurationItemViewModels);
+               configuration, configurationStoreSubMenu, configurationItemViewModels, multiOptionConfigurationItemViewModel, linksViewModel, configurationSubMenuViewModel);
 
             return viewModel;
         }

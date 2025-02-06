@@ -91,6 +91,17 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
                 services.AddKeyedTransient<IConfigurationService, TestConfigurationService>("TestConfig");
                 services.AddKeyedTransient<IConfigurationService, OtherTestConfigurationService>("OtherTestConfig");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, MultiOptionTestConfigurationService>("MultiOption");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, ContextMenuTeminalsConfigurationService>("ContextMenuTerminals");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, ShortcutIconConfigurationService>("ShortcutIcon");
+                services.AddKeyedTransient<IConfigurationService, OldContextMenuConfigurationService>("OldContextMenu");
+                services.AddKeyedTransient<IConfigurationService, EdgeSwipeConfigurationService>("EdgeSwipe");
+                services.AddKeyedTransient<IConfigurationService, AppIconsThumbnailConfigurationService>("AppIconsThumbnail");
+                services.AddKeyedTransient<IConfigurationService, AutomaticFolderDiscoveryConfigurationService>("AutomaticFolderDiscovery");
+                services.AddKeyedTransient<IConfigurationService, GalleryConfigurationService>("Gallery");
+                services.AddKeyedTransient<IConfigurationService, SnapLayoutsConfigurationService>("SnapLayout");
+                services.AddKeyedTransient<IConfigurationService, RecentItemsConfigurationService>("RecentItems");
+                services.AddKeyedTransient<IConfigurationService, VerboseStatusMessageConfiguarationServices>("VerboseStatusMessage");
             });
 
             return host;
@@ -106,6 +117,9 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationSubMenu, ServicesSubMenu>("ServicesSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, BootConfigurationSubMenu>("BootConfigurationSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, FileExplorerSubMenu>("FileExplorerSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, StartMenuSubMenu>("StartMenuSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, BootMenuAppearance>("BootConfigAppearance");
+                services.AddKeyedTransient<IConfigurationSubMenu, BootConfigBehavior>("BootConfigBehavior");
             });
 
             return host;

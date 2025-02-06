@@ -22,5 +22,8 @@ namespace AtlasToolbox.Enums
         CpuIdleSubMenu,
         BootConfigurationSubMenu,
         FileExplorerSubMenu,
+        StartMenuSubMenu,
+        BootConfigAppearance,
+        BootConfigBehavior,
     }
 }

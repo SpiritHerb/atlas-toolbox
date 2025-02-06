@@ -27,7 +27,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
-            ComputerStateHelper.LogOffComputer();
+            //RegistryHelper.MergeRegFile("C:\\Users\\TheyCreeper\\Documents\\Dev\\AtlasToolbox-WinUI3\\AtlasToolbox\\RegTest\\TestRegDisabled.reg");
+            //App.ContentDialogCaller("restart");
 
             _testConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -35,7 +36,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
-            ComputerStateHelper.LogOffComputer();
+            //RegistryHelper.MergeRegFile("C:\\Users\\TheyCreeper\\Documents\\Dev\\AtlasToolbox-WinUI3\\AtlasToolbox\\RegTest\\TestRegEnabled.reg");
+            //App.ContentDialogCaller("restart");
 
             _testConfigurationService.CurrentSetting = IsEnabled();
         }

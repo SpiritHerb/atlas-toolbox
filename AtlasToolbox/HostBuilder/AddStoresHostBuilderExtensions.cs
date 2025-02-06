@@ -73,6 +73,17 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("TakeOwnership");
                 services.AddKeyedSingleton<ConfigurationStore>("TestConfig");
                 services.AddKeyedSingleton<ConfigurationStore>("OtherTestConfig");
+                services.AddKeyedSingleton<ConfigurationStore>("OldContextMenu");
+                services.AddKeyedSingleton<ConfigurationStore>("EdgeSwipe");
+                services.AddKeyedSingleton<ConfigurationStore>("AppIconsThumbnail");
+                services.AddKeyedSingleton<ConfigurationStore>("AutomaticFolderDiscovery");
+                services.AddKeyedSingleton<ConfigurationStore>("Gallery");
+                services.AddKeyedSingleton<ConfigurationStore>("SnapLayout");
+                services.AddKeyedSingleton<ConfigurationStore>("RecentItems");
+                services.AddKeyedSingleton<ConfigurationStore>("VerboseStatusMessage");
+                services.AddKeyedSingleton<MultiOptionConfigurationStore>("MultiOption");
+                services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
+                services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
             });
 
             return host;
@@ -88,6 +99,9 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("CPUIdleSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigurationSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("FileExplorerSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("StartMenuSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigAppearance");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("BootConfigBehavior");
             });
 
             return host;

@@ -30,7 +30,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
             //App.LogOffComputer();
             //App.m_window.CreateMessageDialog("Hello", "Test");
-            App.InitializeContentDialog("Restart computer");
+            App.ContentDialogCaller("logoff");
 
             _otherTestConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -39,8 +39,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
             //App.LogOffComputer();
-            App.m_window.CreateMessageDialog("Hello", "Test");
-            App.InitializeContentDialog("Restart computer");
+            App.ContentDialogCaller("logoff");
 
             _otherTestConfigurationService.CurrentSetting = IsEnabled();
         }

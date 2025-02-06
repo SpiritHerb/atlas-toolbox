@@ -6,6 +6,7 @@ using AtlasToolbox.Commands;
 using AtlasToolbox.Enums;
 using Windows.UI;
 using Microsoft.UI.Xaml.Media;
+using System.Threading.Tasks;
 //using System.Drawing;
 
 namespace AtlasToolbox.ViewModels
@@ -20,11 +21,9 @@ namespace AtlasToolbox.ViewModels
         public string Key => Configuration.Key;
         public ConfigurationType Type => Configuration.Type;
 
-        //public Color Color { get; set; }
+        public Color Color { get; set; }
 
-        //public SolidColorBrush TextColor { get; set; }
-
-        public string RiskRatingString => Configuration.RiskRating.ToString();
+        public string RiskRatingString { get; set; }
 
         private bool _currentSetting;
 
@@ -35,6 +34,7 @@ namespace AtlasToolbox.ViewModels
             {
                 _currentSetting = value;
                 _configurationStore.CurrentSetting = CurrentSetting;
+                this.SaveConfigurationCommand.Execute(this);
             }
         }
 
@@ -52,37 +52,51 @@ namespace AtlasToolbox.ViewModels
 
         public ICommand SaveConfigurationCommand { get; }
 
-        //public Color SetColor(RiskRating riskRating)
-        //{
-        //    switch (riskRating)
-        //    {
-        //        case RiskRating.HighRisk:
-        //            return Color.FromArgb(255,255,0,0);
-        //        case RiskRating.MediumRisk:
-        //            return Color.FromArgb(255, 255, 255, 0);
-        //        case RiskRating.LowRisk:
-        //            return Color.FromArgb(255, 0, 128, 0);
-        //    }
-        //    return Color.FromArgb(255, 0, 128, 0);
-        //}
+        public Color SetColor(RiskRating riskRating)
+        {
+            switch (riskRating)
+            {
+                case RiskRating.HighRisk:
+                    return Color.FromArgb(255, 255, 0, 0);
+                case RiskRating.MediumRisk:
+                    return Color.FromArgb(255, 255, 255, 0);
+                case RiskRating.LowRisk:
+                    return Color.FromArgb(255, 0, 128, 0);
+                default:
+                    return Color.FromArgb(255, 0, 128, 0);
+            }
+        }
+
+        public string RiskRatingFormatter(RiskRating riskRating)
+        {
+            string riskRatingString;
+
+            return riskRatingString = riskRating switch
+            {
+                RiskRating.HighRisk => "High risk",
+                RiskRating.MediumRisk => "Medium risk",
+                RiskRating.LowRisk => "Low risk",
+                _ => throw new System.Exception("Risk rating was not valid")
+            };
+        }
 
         public ConfigurationItemViewModel(
             Configuration configuration,
             ConfigurationStore configurationStore,
             IConfigurationService configurationService)
         {
-            Configuration = configuration;
-
             _configurationStore = configurationStore;
             _configurationService = configurationService;
+            Configuration = configuration;
 
-
-            _currentSetting = FetchCurrentSetting();
-
-            //Color = SetColor(Configuration.RiskRating);
-
+            Task.Run(() =>
+            {
+                Color = SetColor(Configuration.RiskRating);
+                _currentSetting = FetchCurrentSetting();
+                RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);
+            });
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
-
+            
         }
 
         public bool FetchCurrentSetting()

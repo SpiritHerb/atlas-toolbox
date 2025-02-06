@@ -7,25 +7,71 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
-    xmlns:local1="using:AtlasToolbox.Utils"
+    xmlns:local1="using:AtlasToolbox.Utils" xmlns:ui="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
 
-    <Page.Resources>
+    <!--<Page.Resources>
         <local1:ItemTemplateSelector x:Key="ItemTemplateSelector" DetailTemplate="{StaticResource DetailTemplate}"/>
-    </Page.Resources>
+    </Page.Resources>-->
     
     <Grid>
         <ScrollViewer>
             <StackPanel>
-                <ItemsControl x:Name="DetailItemsControl" ItemTemplateSelector="{StaticResource ItemTemplateSelector}" >
+
+                <ItemsControl x:Name="SubMenuItems">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding Description}" Click="OnCardClicked" IsClickEnabled="True"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl x:Name="MultiOptionItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
+                                <ComboBox x:Name="ItemComboBox" ItemsSource="{Binding Options}" SelectedItem="{Binding CurrentSetting, Mode=TwoWay}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ItemsControl x:Name="ItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRatingString}">
+                                <controls:SettingsCard.Resources>
+                                    <SolidColorBrush
+                                        x:Key="TextFillColorSecondaryBrush"
+                                        Color="{Binding Color}"/>
+                                </controls:SettingsCard.Resources>
                                 <ToggleSwitch x:Name="ConfigSwitch" IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}" Loaded="ToggleSwitch_Loaded"/>
                             </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+                
+                <ItemsControl x:Name="Links">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard 
+                                x:Name="LinkCard" 
+                                Style="{StaticResource ConfigurationSettingsCardTemplate}" 
+                                Header="{Binding Name}"
+                                ActionIcon="{ui:FontIcon Glyph=&#xE8A7;}"
+                                Click="LinkCard_Click"
+                                IsClickEnabled="True"
+                                ActionIconToolTip="Open in new window"
+                                HeaderIcon="{ui:FontIcon Glyph=&#xE774;}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
             </StackPanel>
         </ScrollViewer>
     </Grid>

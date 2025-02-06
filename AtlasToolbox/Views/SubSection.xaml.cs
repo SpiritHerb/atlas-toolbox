@@ -1,5 +1,7 @@
 using AtlasToolbox.Models;
+using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -17,14 +19,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace AtlasToolbox.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class SubSection : Page
     {
         public SubSection()
@@ -39,20 +35,35 @@ namespace AtlasToolbox.Views
             {
                 var item = parameter.Item1;
 
-                List<ConfigurationItemViewModel> configurationItemViewModels = new List<ConfigurationItemViewModel>();
-                foreach (ConfigurationItemViewModel configurationItemViewModel in item.ConfigurationItems) 
-                {
-                    configurationItemViewModels.Add(configurationItemViewModel);
-                }
-
-                DetailItemsControl.ItemsSource = configurationItemViewModels;
-            }
-            
+                ItemsControl.ItemsSource = item.ConfigurationItems;
+                MultiOptionItemsControl.ItemsSource = item.MultiOptionConfigurationItems;
+                Links.ItemsSource = item.LinksViewModels;
+                SubMenuItems.ItemsSource = item.ConfigurationSubMenuViewModels;
+            }   
         }
+
+        private void OnCardClicked(object sender, RoutedEventArgs e)
+        {
+            var settingCard = sender as SettingsCard;
+            var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+
+            var template = SubMenuItems.ItemTemplate;
+
+            Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
+        }
+
         private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
         {
             var toggleSwitch = sender as ToggleSwitch;
             toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+        }
+
+        private async void LinkCard_Click(object sender, RoutedEventArgs e)
+        {
+            var linkCard = sender as SettingsCard;
+            var linkVM = linkCard.DataContext as LinksViewModel;
+
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
         }
     }
 }

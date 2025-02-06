@@ -1,5 +1,7 @@
 ﻿using AtlasToolbox.Models;
+using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -20,14 +22,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT.AtlasToolboxVtableClasses;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace AtlasToolbox.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class HomePage : Page
     {
         private HomePageViewModel _viewModel;
@@ -40,6 +36,12 @@ namespace AtlasToolbox.Views
 
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
+        }
+        private void buttonclick(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = App.m_window as MainWindow;
+
+            mainWindow.GoToSoftwarePage();
         }
 
         private void AddProfile(object sender, RoutedEventArgs e)
@@ -100,7 +102,25 @@ namespace AtlasToolbox.Views
             dialog.PrimaryButtonCommand = _viewModel.SetProfileCommand;
 
             var result = await dialog.ShowAsync();
+            RestartPCPrompt();
         }
+
+        private async void RestartPCPrompt()
+        {
+            ContentDialog dialog = new ContentDialog();
+
+            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "To fully apply the changes, please restart your PC";
+            dialog.PrimaryButtonText = "Restart";
+            dialog.CloseButtonText = "Later";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.PrimaryButtonCommand = new RelayCommand(ComputerStateHelper.RestartComputer);
+
+            var result = await dialog.ShowAsync();
+        }
+
         private void ProfileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             _viewModel.Name = ProfileNameTextBox.Text;

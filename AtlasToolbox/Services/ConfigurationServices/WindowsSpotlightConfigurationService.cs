@@ -10,13 +10,13 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\WindowsSpotlight";
         private const string STATE_VALUE_NAME = "state";
 
-        private const string CLOUD_CONTENT_LOCAL_MACHINE_KEY_NAME = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent";
-        private const string CLOUD_CONTENT_CURRENT_USER_KEY_NAME = @"HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CloudContent";
-        private const string CONTENT_DELIVERY_MANGER_KEY_NAME = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager";
-        private const string NEW_START_PANEL_KEY_NAME = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel";
-        private const string BACKGROUND_ACCESS_APPLICATIONS_KEY_NAME = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications";
-        private const string APP_PRIVACY_KEY_NAME = @"HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\AppPrivacy";
-        private const string SEARCH_KEY_NAME = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search";
+        private const string CLOUD_CONTENT_LOCAL_MACHINE_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent";
+        private const string CLOUD_CONTENT_CURRENT_USER_KEY_NAME = @"HKCU\SOFTWARE\Policies\Microsoft\Windows\CloudContent";
+        private const string CONTENT_DELIVERY_MANGER_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager";
+        private const string NEW_START_PANEL_KEY_NAME = @"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel";
+        private const string BACKGROUND_ACCESS_APPLICATIONS_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications";
+        private const string APP_PRIVACY_KEY_NAME = @"HKLM\Software\Policies\Microsoft\Windows\AppPrivacy";
+        private const string SEARCH_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search";
 
         private const string DISABLE_CLOUD_OPTIMIZED_CONTENT_VALUE_NAME = "DisableCloudOptimizedContent";
         private const string DISABLE_WINDOWS_SPOTLIGHT_FEATURES_VALUE_NAME = "DisableWindowsSpotlightFeatures";

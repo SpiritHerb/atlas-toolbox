@@ -24,6 +24,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <GridView
                 x:Name="itemGridView"
                 IsItemClickEnabled="True"
@@ -32,7 +36,8 @@
                 Margin="-40, -50, 0, 0"
                 HorizontalAlignment="Center"
                 Grid.Column="0"
-                Grid.Row="0">
+                Grid.Row="0"
+                Grid.ColumnSpan="2">
                 <GridView.Header>
                     <Grid x:Name="HeaderGrid" Margin="0,50,0,0">
                         <Grid.RowDefinitions>
@@ -45,8 +50,8 @@
                         VerticalAlignment="Top" />
 
                         <StackPanel
-                        Margin="75,50,0,0"
-                        VerticalAlignment="Top"
+                        Margin="75,0,0,0"
+                        VerticalAlignment="Center"
                         Orientation="Vertical">
                             <TextBlock
                                 x:Name="subHeaderBlock"
@@ -54,7 +59,8 @@
                                 Text="AtlasOS Toolbox" />
                             <TextBlock
                                 x:Name="smallHeaderText"
-                                FontSize="52"
+                                FontSize="45"
+                                FontWeight="SemiBold"
                                 Text="Home" />
                         </StackPanel>
                         <controls:TileGallery
@@ -68,7 +74,7 @@
                 x:Name="ProfilesListView"
                 CornerRadius="5"
                 BorderBrush="#36363e"
-                BorderThickness="2D"
+                BorderThickness="2"
                 SelectedItem="{Binding ProfileSelected, Mode=TwoWay}"
                 Width="350"
                 Height="225"
@@ -94,6 +100,7 @@
                 <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="AddProfile">New</Button>
                 <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="DeleteProfile">Delete</Button>
             </StackPanel>
+            <Button Grid.Row="1" Grid.Column="1" Click="buttonclick">Go to software</Button>
         </Grid>
     </ScrollViewer>
     

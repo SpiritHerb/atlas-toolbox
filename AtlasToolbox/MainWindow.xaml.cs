@@ -7,6 +7,19 @@ using WinUIEx;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Runtime.InteropServices;
 using AtlasToolbox.Utils;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Windows.Graphics;
+using Windows.UI.Core;
+using CommunityToolkit.WinUI;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Windows.Media.Devices;
+using NLog;
+using System.Windows.Input;
+using NLog.LayoutRenderers.Wrappers;
+using CommunityToolkit.Mvvm.Input;
+using AtlasToolbox.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -42,21 +55,47 @@ namespace AtlasToolbox
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
 
+        public XamlRoot GetXamlRoot()
+        {
+            return this.Content.XamlRoot;
+        }
+
+        public void GoToSoftwarePage()
+        {
+            ContentFrame.Navigate(
+                   new SoftwarePage().GetType(),
+                   null,
+                   new EntranceNavigationTransitionInfo()
+                   );
+            App.XamlRoot = this.Content.XamlRoot;
+            NavigationViewControl.Header = "Software downloading";
+        }
+
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
+            var test = sender as NavigationView;
             if (args.IsSettingsInvoked == true)
             {
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
-            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null))
+            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage"))
+            {
+                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
+                ContentFrame.Navigate(
+                       new ConfigPage().GetType(),
+                       null,
+                       new EntranceNavigationTransitionInfo());
+                App.XamlRoot = this.Content.XamlRoot;
+            }
+            else
             {
                 Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                 ContentFrame.Navigate(
                        newPage,
                        null,
-                       new EntranceNavigationTransitionInfo()
-                       );
+                       new EntranceNavigationTransitionInfo());
+                App.XamlRoot = this.Content.XamlRoot;
             }
         }
 
@@ -71,8 +110,12 @@ namespace AtlasToolbox
 
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
             {
-                // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
+                NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
+                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
+            }
+            else if (ContentFrame.SourcePageType == typeof(SoftwarePage))
+            {
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
                 ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }
@@ -87,13 +130,57 @@ namespace AtlasToolbox
             {
                 NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
                     .OfType<NavigationViewItem>()
-                    .First(n => n.Tag.Equals(ContentFrame.SourcePageType.FullName.ToString()));
+                    .First(n => n.Tag.Equals(App.CurrentCategory));
                 NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
                 ContentFrame.Padding = new Thickness(55, 0, 0, 0);
             }
             NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
         }
 
+        public async void ContentDialogContoller(string type)
+        {
+            string title = "", desc = "", primBtnTxt = "";
+            ICommand command = null;
+
+            switch (type)
+            {
+                case "restart":
+                    title = "Restart your PC to apply.";
+                    desc = "To apply these changes, please restart your PC.";
+                    primBtnTxt = "Restart now";
+                    command = new RelayCommand(ComputerStateHelper.RestartComputer);
+                    break;
+                case "logoff":
+                    title = "Relog to apply";
+                    desc = "To apply these changes, please relog.";
+                    primBtnTxt = "Log off";
+                    command = new RelayCommand(ComputerStateHelper.LogOffComputer);
+                    break;
+                default:
+                    throw new Exception("ContentDialog type was not set or does not match any possible type");
+            }
+            await DispatcherQueue.EnqueueAsync(() =>
+            {
+                ContentDialog dialog = new ContentDialog();
+
+                // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+                dialog.XamlRoot = App.XamlRoot;
+                dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                dialog.Title = title;
+                dialog.Content = desc;
+                dialog.PrimaryButtonText = primBtnTxt;
+                dialog.CloseButtonText = "Later";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.PrimaryButtonCommand = command;
+
+                try
+                {
+                    var result = dialog.ShowAsync();
+                }
+                catch
+                { App.logger.Error("Program tried to open more than one ContentDialog"); }
+            });
+        }
         private void CenterWindowOnScreen()
         {
             var screenWidth = GetSystemMetrics(SM_CXSCREEN);
@@ -104,6 +191,7 @@ namespace AtlasToolbox
 
             this.MoveAndResize(centerX, centerY, this.Bounds.Width, this.Bounds.Height);
         }
+
 
         private void MoveAndResize(double x, double y, double width, double height)
         {
@@ -122,5 +210,6 @@ namespace AtlasToolbox
         private const int SM_CYSCREEN = 1;
         private const uint SWP_NOZORDER = 0x0004;
         private const uint SWP_NOACTIVATE = 0x0010;
+
     }
 }

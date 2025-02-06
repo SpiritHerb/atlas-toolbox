@@ -134,11 +134,12 @@
             <Grid x:Name="ContentGrid" Margin="36,0,36,0">
                 <StackPanel Orientation="Horizontal" Spacing="12">
                     <local:HeaderTile
-                    Title="Documentation"
-                    Description="Install AtlasOS, FAQ, and much more"
-                    Link="https://docs.atlasos.net">
+                        
+                        Title="Documentation"
+                        Description="Install AtlasOS, FAQ, and much more"
+                        Link="https://docs.atlasos.net">
                         <local:HeaderTile.Source>
-                            <Image Source="/Assets/HomeHeaderTiles/Header-WinUI.png" />
+                            <Image Source="..\Assets\Logo\Atlaslogo.png"/>
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                     <local:HeaderTile
@@ -146,12 +147,12 @@
                     Description="Explore AtlasOS' code and contribute"
                     Link="https://github.com/Atlas-OS/">
                         <local:HeaderTile.Source>
-                            <PathIcon Foreground="{ThemeResource TextFillColorPrimaryBrush}">
+                            <PathIcon Data="{StaticResource GitHubIconPath}" Foreground="{ThemeResource TextFillColorPrimaryBrush}">
                                 <PathIcon.RenderTransform>
                                     <CompositeTransform
-                                    ScaleX="2.05"
-                                    ScaleY="2.05"
-                                    TranslateX="-20" />
+                                        ScaleX="2.05"
+                                        ScaleY="2.05"
+                                        TranslateX="-20" />
                                 </PathIcon.RenderTransform>
                             </PathIcon>
                         </local:HeaderTile.Source>
@@ -161,7 +162,7 @@
                     Description="Ask for support and make friends !"
                     Link="https://discord.atlasos.net">
                         <local:HeaderTile.Source>
-                            <Image Source="/Assets/HomeHeaderTiles/Header-Toolkit.png" />
+                            <Image Source="..\Assets\Logo\discord-mark-blue.png"/>
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                     <local:HeaderTile
@@ -170,11 +171,7 @@
                     Description="Help us continue this project !"
                     Link="https://ko-fi.com/atlasos">
                         <local:HeaderTile.Source>
-                            <FontIcon
-                            Margin="0,8,0,0"
-                            FontSize="44"
-                            Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                            Glyph="&#xE943;" />
+                            <Image Source="..\Assets\Logo\kofi_symbol.png"/>
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                 </StackPanel>

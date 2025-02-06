@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace AtlasToolbox.Utils
@@ -68,7 +69,7 @@ namespace AtlasToolbox.Utils
                 "HKCR" => RegistryHive.ClassesRoot,
                 "HKCU" => RegistryHive.CurrentUser,
                 "HKLM" => RegistryHive.LocalMachine,
-                _ => throw new NotImplementedException()
+                _ => throw new Exception("Hive was not found")
             };
 
             string keyName = string.Join('\\', split[1..]);
@@ -100,5 +101,23 @@ namespace AtlasToolbox.Utils
             using RegistryKey key = OpenKey(keyPath);
             return key is not null;
         }
-    }
+
+        public static void MergeRegFile(string regFilePath)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            {
+                FileName = "regedit.exe",
+                Arguments = $"/s \"{regFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+        
+            using (Process process = Process.Start(processStartInfo))
+            {
+                process.WaitForExit();
+            }
+        }
+
+}
 }
