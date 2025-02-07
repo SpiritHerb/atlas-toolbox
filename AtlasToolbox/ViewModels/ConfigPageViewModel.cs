@@ -14,23 +14,27 @@ namespace AtlasToolbox.ViewModels
         private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
         private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
         private IEnumerable<LinksViewModel> LinksViewModels { get; }
+        private IEnumerable<ConfigurationButtonViewModel> ConfigurationButtonViewModels { get; }
 
         public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
         public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItem { get; set; }
         public ObservableCollection<ConfigurationSubMenuViewModel> ConfigurationItemSubMenu { get; set; }
         public ObservableCollection<LinksViewModel> LinksItemViewModel { get; set; }
+        public ObservableCollection<ConfigurationButtonViewModel> ConfigurationButtonViewModel { get; set; }
 
         public ConfigPageViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
             IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModel,
             IEnumerable<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels,
-            IEnumerable<LinksViewModel> linksViewModel)
+            IEnumerable<LinksViewModel> linksViewModel,
+            IEnumerable<ConfigurationButtonViewModel> configurationButtonViewModel)
         {
 
             ConfigurationItemViewModels = configurationItemViewModels;
             MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
             ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
             LinksViewModels = linksViewModel;
+            ConfigurationButtonViewModels = configurationButtonViewModel;
         }
 
         public void ShowForType(ConfigurationType configurationType)
@@ -39,15 +43,17 @@ namespace AtlasToolbox.ViewModels
             MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(MultiOptionConfigurationItemViewModels.Where(item => item.Type == configurationType));
             ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(ConfigurationSubMenuViewModels.Where(item => item.Type == configurationType));
             LinksItemViewModel = new ObservableCollection<LinksViewModel>(LinksViewModels.Where(item => item.ConfigurationType == configurationType));
+            ConfigurationButtonViewModel = new ObservableCollection<ConfigurationButtonViewModel>(ConfigurationButtonViewModels.Where(item => item.Type == configurationType));
         }
 
         public static ConfigPageViewModel LoadViewModel(
             IEnumerable<LinksViewModel> linksViewModels,
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
             IEnumerable<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModels,
-            IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModels)
+            IEnumerable<ConfigurationSubMenuViewModel> configurationSubMenuViewModels,
+            IEnumerable<ConfigurationButtonViewModel> configurationButtonViewModels)
         {
-            ConfigPageViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels, multiOptionConfigurationItemViewModels, linksViewModels);
+            ConfigPageViewModel viewModel = new(configurationItemViewModels, configurationSubMenuViewModels, multiOptionConfigurationItemViewModels, linksViewModels, configurationButtonViewModels);
 
             return viewModel;
         }

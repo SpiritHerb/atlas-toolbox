@@ -11,12 +11,6 @@
     xmlns:model="using:AtlasToolbox.Models"
     d:DataContext="{d:DesignInstance Type=viewmodel:HomePageViewModel}"
     mc:Ignorable="d">
-
-    <!--<Page.Resources>
-        <DataTemplate x:Key="ContactListViewTemplate" x:DataType="local:">
-            <TextBlock Text="{x:Bind Name}" x:Phase="1" Margin="0,5,0,5"/>
-        </DataTemplate>
-    </Page.Resources>-->
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>

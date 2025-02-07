@@ -25,5 +25,11 @@ namespace AtlasToolbox.Enums
         StartMenuSubMenu,
         BootConfigAppearance,
         BootConfigBehavior,
+        DriverConfigurationSubMenu,
+        NvidiaDisplayContainerSubMenu,
+        CoreIsolationSubMenu,
+        DefenderSubMenu,
+        MitigationsSubMenu,
+        TroubleshootingNetwork,
     }
 }

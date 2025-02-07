@@ -89,11 +89,10 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, ExtractContextMenuConfigurationService>("ExtractContextMenu");
                 services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriority");
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
-                services.AddKeyedTransient<IConfigurationService, TestConfigurationService>("TestConfig");
-                services.AddKeyedTransient<IConfigurationService, OtherTestConfigurationService>("OtherTestConfig");
-                services.AddKeyedTransient<IMultiOptionConfigurationServices, MultiOptionTestConfigurationService>("MultiOption");
                 services.AddKeyedTransient<IMultiOptionConfigurationServices, ContextMenuTeminalsConfigurationService>("ContextMenuTerminals");
                 services.AddKeyedTransient<IMultiOptionConfigurationServices, ShortcutIconConfigurationService>("ShortcutIcon");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, MitigationsConfigurationService>("Mitigations");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, SafeModeConfigurationService>("SafeMode");
                 services.AddKeyedTransient<IConfigurationService, OldContextMenuConfigurationService>("OldContextMenu");
                 services.AddKeyedTransient<IConfigurationService, EdgeSwipeConfigurationService>("EdgeSwipe");
                 services.AddKeyedTransient<IConfigurationService, AppIconsThumbnailConfigurationService>("AppIconsThumbnail");
@@ -102,6 +101,15 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, SnapLayoutsConfigurationService>("SnapLayout");
                 services.AddKeyedTransient<IConfigurationService, RecentItemsConfigurationService>("RecentItems");
                 services.AddKeyedTransient<IConfigurationService, VerboseStatusMessageConfiguarationServices>("VerboseStatusMessage");
+                services.AddKeyedTransient<IConfigurationService, NvidiaDispayContainerConfigurationService>("NvidiaDispayContainer");
+                services.AddKeyedTransient<IConfigurationService, AddNvidiaDisplayContainerContextMenuConfigurationService>("AddNvidiaDisplayContainerContextMenu");
+                services.AddKeyedTransient<IConfigurationService, SuperFetchConfigurationService>("SuperFetch");
+                services.AddKeyedTransient<IConfigurationService, StaticIPConfigurationService>("StaticIp");
+                services.AddKeyedTransient<IConfigurationService, HideAppBrowserControlConfigurationService>("HideAppBrowserControl");
+                services.AddKeyedTransient<IConfigurationService, SecurityHealthTrayConfigurationService>("SecurityHealthTray");
+                services.AddKeyedTransient<IConfigurationService, FaultTolerantHeapConfigurationService>("FaultTolerantHeap");
+                services.AddKeyedTransient<IConfigurationService, CopilotConfigurationService>("Copilot");
+                services.AddKeyedTransient<IConfigurationService, RecalSupportConfigurationService>("Recal");
             });
 
             return host;
@@ -113,13 +121,18 @@ namespace AtlasToolbox.HostBuilder
             {
                 services.AddKeyedTransient<IConfigurationSubMenu, ContextMenuSubMenu>("ContextMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, AiSubMenu>("AiSubMenu");
-                services.AddKeyedTransient<IConfigurationSubMenu, CPUIdleSubMenu>("CPUIdleSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, ServicesSubMenu>("ServicesSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, BootConfigurationSubMenu>("BootConfigurationSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, FileExplorerSubMenu>("FileExplorerSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, StartMenuSubMenu>("StartMenuSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, BootMenuAppearance>("BootConfigAppearance");
                 services.AddKeyedTransient<IConfigurationSubMenu, BootConfigBehavior>("BootConfigBehavior");
+                services.AddKeyedTransient<IConfigurationSubMenu, DriverConfigurationSubMenu>("DriverConfigurationSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, NvidiaDisplayContainerSubMenu>("NvidiaDisplayContainerSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, CoreIsolationSubMenu>("CoreIsolationSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, DefenderSubMenu>("DefenderSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, MitigationsSubMenu>("MitigationsSubMenu");
+                services.AddKeyedTransient<IConfigurationSubMenu, TroubleshootingNetworkSubMenu>("TroubleshootingNetwork");
             });
 
             return host;

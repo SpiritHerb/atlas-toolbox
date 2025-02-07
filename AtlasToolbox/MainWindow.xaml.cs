@@ -20,6 +20,9 @@ using System.Windows.Input;
 using NLog.LayoutRenderers.Wrappers;
 using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
+using ICSharpCode.Decompiler.CSharp.Syntax;
+using AtlasToolbox.Commands.ConfigurationButtonsCommand;
+
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -51,9 +54,40 @@ namespace AtlasToolbox
                        );
             SetTitleBar(AppTitleBar);
 
+            //RootGrid.PointerPressed += OnPointerPressed;
+
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
+
+        //private void OnPointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+        //{
+        //    var pointer = e.GetCurrentPoint(RootGrid);
+        //    if (pointer.Properties.PointerUpdateKind == Microsoft.UI.Input.PointerUpdateKind.XButton1Pressed)
+        //    {
+        //        if (ContentFrame.CanGoBack) 
+        //        {
+        //            ContentFrame.GoBack();
+        //            UpdateSelectedNavItem(ContentFrame.Content);
+        //        }
+        //    }
+        //}
+
+        //private void UpdateSelectedNavItem(object content)
+        //{
+        //    if (content.ToString() == "AtlasToolbox.Views.HomePage")
+        //    {
+        //        NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
+        //            .OfType<NavigationViewItem>()
+        //            .First(n => n.Tag.Equals(content.ToString()));
+        //    }
+        //    else
+        //    {
+        //        NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
+        //           .OfType<NavigationViewItem>()
+        //           .First(n => n.Tag.Equals(App.CurrentCategory));
+        //    }
+        //}
 
         public XamlRoot GetXamlRoot()
         {
@@ -65,7 +99,7 @@ namespace AtlasToolbox
             ContentFrame.Navigate(
                    new SoftwarePage().GetType(),
                    null,
-                   new EntranceNavigationTransitionInfo()
+                   new DrillInNavigationTransitionInfo()
                    );
             App.XamlRoot = this.Content.XamlRoot;
             NavigationViewControl.Header = "Software downloading";
@@ -77,24 +111,25 @@ namespace AtlasToolbox
             var test = sender as NavigationView;
             if (args.IsSettingsInvoked == true)
             {
+                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
-            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage"))
+            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage") && (args.InvokedItemContainer.Tag.ToString() != App.CurrentCategory))
             {
                 App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 ContentFrame.Navigate(
                        new ConfigPage().GetType(),
                        null,
-                       new EntranceNavigationTransitionInfo());
+                       new DrillInNavigationTransitionInfo());
                 App.XamlRoot = this.Content.XamlRoot;
             }
-            else
+            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage" && (args.InvokedItemContainer.Tag.ToString() != App.CurrentCategory))
             {
                 Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                 ContentFrame.Navigate(
                        newPage,
                        null,
-                       new EntranceNavigationTransitionInfo());
+                       new DrillInNavigationTransitionInfo());
                 App.XamlRoot = this.Content.XamlRoot;
             }
         }

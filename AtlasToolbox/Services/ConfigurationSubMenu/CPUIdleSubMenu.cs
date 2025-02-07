@@ -17,10 +17,5 @@ namespace AtlasToolbox.Services.ConfigurationSubMenu
         {
             _cpuIdleSubMenu = cpuIdleSubMenu;
         }
-
-        public void AddConfigurationService()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -11,16 +11,10 @@ namespace AtlasToolbox.Services.ConfigurationSubMenu
     public class FileExplorerSubMenu : IConfigurationSubMenu
     {
         private readonly ConfigurationStoreSubMenu _fileExplorerSubMenu;
-
         public FileExplorerSubMenu(
             [FromKeyedServices("FileExplorerSubMenu")] ConfigurationStoreSubMenu fileExplorerSubMenu)
         {
             _fileExplorerSubMenu = fileExplorerSubMenu;
-        }
-
-        public void AddConfigurationService()
-        {
-            throw new NotImplementedException();
         }
     }
 }

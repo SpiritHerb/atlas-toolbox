@@ -23,22 +23,9 @@
     <Style x:Key="RiskRatingTemplate" TargetType="TextBlock">
     </Style>
 
-    <DataTemplate x:Key="ConfigurationItem">
-            <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" Description="{Binding RiskRating}">
-                <controls:SettingsCard.Resources>
-                    <SolidColorBrush
-                     x:Key="TextFillColorSecondaryBrush"
-                     Color="{Binding }" />
-                </controls:SettingsCard.Resources>
-                <ToggleSwitch IsOn="{Binding CurrentSetting}" Style="{StaticResource ConfigurationItemTemplate}"/>
-            </controls:SettingsCard>
-    </DataTemplate>
-    
-
-
     <Style x:Key="ConfigurationSettingsCardTemplate" TargetType="controls:SettingsCard">
         <!--<Setter Property="Header" Value="{Binding Name}" />-->
-        <Setter Property="Margin" Value="0,0,36,5" />
+        <Setter Property="Margin" Value="0,0,36,10" />
         <Setter Property="BorderBrush" Value="#0DFFFFFF"/>
         <!--<Setter Property="Description" Value="{Binding RiskRating}"/>-->
     </Style>

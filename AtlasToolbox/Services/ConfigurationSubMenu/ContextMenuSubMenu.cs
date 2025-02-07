@@ -14,12 +14,5 @@ namespace AtlasToolbox.Services.ConfigurationSubMenu
         {
             _contextMenuConfigurationSubMenu = contextMenuSubMenu;
         }
-
-
-        public void AddConfigurationService()
-        {
-            _contextMenuConfigurationSubMenu.ConfigurationStores.Add(
-                "AppStoreArchiving");
-        }
     }
 }
