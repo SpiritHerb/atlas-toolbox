@@ -114,7 +114,7 @@ namespace AtlasToolbox
                 App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
-            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage") && (args.InvokedItemContainer.Tag.ToString() != App.CurrentCategory))
+            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage"))
             {
                 App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 ContentFrame.Navigate(
@@ -123,7 +123,7 @@ namespace AtlasToolbox
                        new DrillInNavigationTransitionInfo());
                 App.XamlRoot = this.Content.XamlRoot;
             }
-            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage" && (args.InvokedItemContainer.Tag.ToString() != App.CurrentCategory))
+            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage")
             {
                 Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                 ContentFrame.Navigate(
