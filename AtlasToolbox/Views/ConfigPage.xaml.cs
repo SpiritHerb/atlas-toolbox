@@ -7,6 +7,8 @@ using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace AtlasToolbox.Views;
 
@@ -31,7 +33,7 @@ public sealed partial class ConfigPage : Page
 
         var template = SubMenuItems.ItemTemplate;
 
-        Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template));
+        Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template), new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
     }
 
     private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)

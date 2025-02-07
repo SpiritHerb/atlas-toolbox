@@ -6,6 +6,7 @@ using AtlasToolbox.Commands;
 using AtlasToolbox.Enums;
 using Windows.UI;
 using System.Collections.Generic;
+using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.ViewModels
 {
@@ -22,7 +23,7 @@ namespace AtlasToolbox.ViewModels
 
         public Color Color { get; set; }
 
-        public string RiskRatingString { get; set; }
+        //public string RiskRatingIcon { get; set; }
 
         private string _currentSetting;
 
@@ -60,23 +61,23 @@ namespace AtlasToolbox.ViewModels
                 case RiskRating.MediumRisk:
                     return Color.FromArgb(255, 255, 255, 0);
                 case RiskRating.LowRisk:
-                    return Color.FromArgb(255, 0, 128, 0);
+                    return Color.FromArgb(255, 0, 176, 80);
             }
-            return Color.FromArgb(255, 0, 128, 0);
+            return Color.FromArgb(255, 0, 176, 80);
         }
 
-        public string RiskRatingFormatter(RiskRating riskRating)
-        {
-            string riskRatingString;
-
-            return riskRatingString = riskRating switch
-            {
-                RiskRating.HighRisk => "High risk",
-                RiskRating.MediumRisk => "Medium risk",
-                RiskRating.LowRisk => "Low risk",
-                _ => throw new System.Exception("Risk rating was not valid")
-            };
-        }
+        //public string RiskRatingFormatter(RiskRating riskRating)
+        //{
+        //    switch (riskRating)
+        //    {
+        //        case RiskRating.HighRisk:
+        //            return "\uE783";
+        //        case RiskRating.MediumRisk:
+        //            return "\uE7BA";
+        //        default:
+        //            return null;
+        //    }
+        //}
 
         public MultiOptionConfigurationItemViewModel(
             MultiOptionConfiguration configuration,
@@ -90,7 +91,7 @@ namespace AtlasToolbox.ViewModels
 
             _currentSetting = FetchCurrentSetting();
             Color = SetColor(Configuration.RiskRating);
-            RiskRatingString = RiskRatingFormatter(Configuration.RiskRating);
+            //RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
 
             MultiOptionSaveConfigurationCommand = new MultiOptionSaveConfigurationCommand(this, configurationStore, configurationService);
         }

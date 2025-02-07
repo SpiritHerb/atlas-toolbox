@@ -30,7 +30,8 @@ namespace AtlasToolbox.ViewModels
         [ObservableProperty]
         public ObservableCollection<Profiles> _profilesList;
 
-        public string Name;
+        [ObservableProperty]
+        public string _name;
 
         [ObservableProperty]
         public Profiles _profileSelected;
@@ -39,7 +40,7 @@ namespace AtlasToolbox.ViewModels
             IEnumerable<Profiles> profiles,
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels)
         {
-            Name = "";
+            _name = "";
             ConfigurationItemViewModels = configurationItemViewModels;
             _profilesList = new();
             foreach (Profiles profile in profiles) { ProfilesList.Add(profile); }

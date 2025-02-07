@@ -89,9 +89,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, ExtractContextMenuConfigurationService>("ExtractContextMenu");
                 services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriority");
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
-                services.AddKeyedTransient<IConfigurationService, TestConfigurationService>("TestConfig");
-                services.AddKeyedTransient<IConfigurationService, OtherTestConfigurationService>("OtherTestConfig");
-                services.AddKeyedTransient<IMultiOptionConfigurationServices, MultiOptionTestConfigurationService>("MultiOption");
                 services.AddKeyedTransient<IMultiOptionConfigurationServices, ContextMenuTeminalsConfigurationService>("ContextMenuTerminals");
                 services.AddKeyedTransient<IMultiOptionConfigurationServices, ShortcutIconConfigurationService>("ShortcutIcon");
                 services.AddKeyedTransient<IMultiOptionConfigurationServices, MitigationsConfigurationService>("Mitigations");
@@ -111,6 +108,8 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, HideAppBrowserControlConfigurationService>("HideAppBrowserControl");
                 services.AddKeyedTransient<IConfigurationService, SecurityHealthTrayConfigurationService>("SecurityHealthTray");
                 services.AddKeyedTransient<IConfigurationService, FaultTolerantHeapConfigurationService>("FaultTolerantHeap");
+                services.AddKeyedTransient<IConfigurationService, CopilotConfigurationService>("Copilot");
+                services.AddKeyedTransient<IConfigurationService, RecalSupportConfigurationService>("Recal");
             });
 
             return host;
@@ -122,7 +121,6 @@ namespace AtlasToolbox.HostBuilder
             {
                 services.AddKeyedTransient<IConfigurationSubMenu, ContextMenuSubMenu>("ContextMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, AiSubMenu>("AiSubMenu");
-                services.AddKeyedTransient<IConfigurationSubMenu, CPUIdleSubMenu>("CPUIdleSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, ServicesSubMenu>("ServicesSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, BootConfigurationSubMenu>("BootConfigurationSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, FileExplorerSubMenu>("FileExplorerSubMenu");

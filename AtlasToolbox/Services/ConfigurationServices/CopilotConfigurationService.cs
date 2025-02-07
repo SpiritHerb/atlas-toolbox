@@ -1,42 +1,50 @@
-﻿//using AtlasToolbox.Stores;
-//using Microsoft.Extensions.DependencyInjection;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Windows.ApplicationModel;
-//using Windows.Foundation;
-//using Windows.Management.Deployment;
+﻿using AtlasToolbox.Stores;
+using AtlasToolbox.Utils;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.Foundation;
+using Windows.Management.Deployment;
 
 
-//namespace AtlasToolbox.Services.ConfigurationServices
-//{
-//    internal class CopilotConfigurationService : IConfigurationService
-//    {
-//        private const string COPILOT_PACKAGE = "Microsoft.Copilot";
-//        private readonly ConfigurationStore _copilotConfigurationStore;
+namespace AtlasToolbox.Services.ConfigurationServices
+{
+    internal class CopilotConfigurationService : IConfigurationService
+    {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\MicrosoftCopilot";
+        private const string STATE_VALUE_NAME = "state";
 
-//        public CopilotConfigurationService([FromKeyedServices("Copilot")] ConfigurationStore copilotConfigurationStore) 
-//        {
-//            _copilotConfigurationStore = copilotConfigurationStore;
-//        }
 
-//        public void Disable()
-//        {
-//            PackageManager packageManager = new PackageManager();
-//            Package copilotPackage = packageManager.FindPackageForUser(userSecurityId: "", COPILOT_PACKAGE);
-//            throw new NotImplementedException();
-//        }
+        private readonly ConfigurationStore _copilotConfigurationStore;
 
-//        public void Enable()
-//        {
-//            throw new NotImplementedException();
-//        }
+        public CopilotConfigurationService([FromKeyedServices("Copilot")] ConfigurationStore copilotConfigurationStore)
+        {
+            _copilotConfigurationStore = copilotConfigurationStore;
+        }
 
-//        public bool IsEnabled()
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+        public void Disable()
+        {
+            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasModules\Toolbox\Scripts\Copilot\DisableMicrosoftCopilot.cmd");
+
+            _copilotConfigurationStore.CurrentSetting = IsEnabled();
+        }
+
+        public void Enable()
+        {
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasModules\Toolbox\Scripts\Copilot\EnableMicrosoftCopilot.cmd");
+
+            _copilotConfigurationStore.CurrentSetting = IsEnabled();
+        }
+
+        public bool IsEnabled()
+        {
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+        }
+    }
+}

@@ -242,7 +242,6 @@ namespace AtlasToolbox.HostBuilder
                 ["ContextMenuSubMenu"] = new("Context Menu", "Everything related to the context menu", ConfigurationType.Interface),
                 ["AiSubMenu"] = new("AI Features", "Everything related to AI features in Windows 11", ConfigurationType.General),
                 ["ServicesSubMenu"] = new("Services", "Everything related to services in Windows", ConfigurationType.Advanced),
-                ["CPUIdleSubMenu"] = new("CPU idle", "Everything related to CPU idling in Windows", ConfigurationType.Advanced),
                 ["BootConfigurationSubMenu"] = new("Boot configuration", "Everything related to booting in Windows", ConfigurationType.Advanced),
                 ["FileExplorerSubMenu"] = new("File Explorer customization", "Everything related to customizing the Windows File Explorer", ConfigurationType.Interface),
                 ["DriverConfigurationSubMenu"] = new("Driver configuration", "Everything related to driver configuration", ConfigurationType.Advanced),
@@ -279,7 +278,6 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, MultiOptionConfiguration> configurationDictionary = new()
             {
-                ["MultiOption"] = new("Multi option test configuration", "MultiOption", ConfigurationType.General, RiskRating.MediumRisk),
                 ["ContextMenuTerminals"] = new("Add or remove terminals from the context menu", "ContextMenuTerminals", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
                 ["ShortcutIcon"] = new("Change the icon from shortcuts", "ShortcutIcon", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["Mitigations"] = new("Change mitigations status", "Mitigations", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
@@ -307,8 +305,6 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types`
             Dictionary<string, Configuration> configurationDictionary = new()
             {
-                ["TestConfig"] = new ("TestConfig", "TestConfig", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
-                ["OtherTestConfig"] = new("Other test config", "OtherTestConfig", ConfigurationType.General, RiskRating.HighRisk),
                 ["Animations"] = new ("Animations", "Animations", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["ExtractContextMenu"] = new("Extract context menu", "ExtractContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["RunWithPriorityContextMenu"] = new("Run With Priority in context menu", "RunWithPriorityContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
@@ -316,7 +312,6 @@ namespace AtlasToolbox.HostBuilder
                 ["LanmanWorkstation"] = new("Lanman Workstation (SMB)", "LanmanWorkstation", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
                 ["NetworkDiscovery"] = new("Network Discovery", "NetworkDiscovery", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
                 ["Printing"] = new("Printing", "Printing", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
-                //["Troubleshooting"] = new("Troubleshooting", "Troubleshooting", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
                 ["CpuIdleContextMenu"] = new("CPU Idle toggle in context menu", "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
                 ["LockScreen"] = new("Lock Screen", "LockScreen", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["ShortcutText"] = new("Shortcut Text", "ShortcutText", ConfigurationType.Interface, RiskRating.LowRisk),
@@ -362,6 +357,8 @@ namespace AtlasToolbox.HostBuilder
                 ["HideAppBrowserControl"] = new("Automatically set static IP", "StaticIp", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
                 ["SecurityHealthTray"] = new("Automatically set static IP", "StaticIp", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
                 ["FaultTolerantHeap"] = new("Fault Tolerant Heap", "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
+                ["Copilot"] = new("Enable Microsoft Copilot", "Copilot", ConfigurationType.AiSubMenu, RiskRating.LowRisk),
+                ["Recal"] = new("Enable Windows Recal", "Recal", ConfigurationType.AiSubMenu, RiskRating.LowRisk),
             };
 
             host.ConfigureServices((_,services) =>
