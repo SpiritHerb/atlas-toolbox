@@ -93,6 +93,7 @@
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="AtlasToolbox.Views.HomePage"/>
+                <NavigationViewItemSeparator />
                 <NavigationViewItem Content="General Configuration" Tag="General">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xF259;" />

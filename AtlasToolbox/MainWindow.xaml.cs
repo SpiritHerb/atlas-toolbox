@@ -96,6 +96,7 @@ namespace AtlasToolbox
 
         public void GoToSoftwarePage()
         {
+            App.CurrentCategory = "Software";
             ContentFrame.Navigate(
                    new SoftwarePage().GetType(),
                    null,
@@ -108,13 +109,12 @@ namespace AtlasToolbox
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
-            var test = sender as NavigationView;
             if (args.IsSettingsInvoked == true)
             {
                 App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
-            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage"))
+            else if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null) && (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage") && (args.InvokedItemContainer.Tag.ToString() != App.CurrentCategory))
             {
                 App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 ContentFrame.Navigate(
@@ -125,6 +125,7 @@ namespace AtlasToolbox
             }
             else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage")
             {
+                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                 Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                 ContentFrame.Navigate(
                        newPage,
@@ -142,34 +143,27 @@ namespace AtlasToolbox
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
             NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
-
-            if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
-            {
-                NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
-                NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
-                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
-            }
-            else if (ContentFrame.SourcePageType == typeof(SoftwarePage))
-            {
-                NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
-                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
-            }
-            else if(ContentFrame.SourcePageType == typeof(Views.HomePage))
-            {
-                NavigationViewControl.HeaderTemplate = null;
-                NavigationViewControl.Header = null;
-                ContentFrame.Padding = new Thickness(0,0,0,0);
-                return;
-            }
-            else if (ContentFrame.SourcePageType != null && ContentFrame.SourcePageType != typeof(Views.SubSection))
+            NavigationViewControl.Header = null;
+            if (App.CurrentCategory != null)
             {
                 NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
                     .OfType<NavigationViewItem>()
                     .First(n => n.Tag.Equals(App.CurrentCategory));
-                NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
-                ContentFrame.Padding = new Thickness(55, 0, 0, 0);
+
             }
-            NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
+            if (ContentFrame.SourcePageType == typeof(Views.SettingsPage)) NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
+            //if (ContentFrame.SourcePageType == typeof(Views.HomePage))
+            //{
+            //    NavigationViewControl.HeaderTemplate = null;
+            //    NavigationViewControl.Header = null;
+            //    ContentFrame.Padding = new Thickness(0, 0, 0, 0);
+            //}else
+            //{
+            //    //NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
+            //    //ContentFrame.Padding = new Thickness(55, 0, 0, 0);
+            //    //NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
+            //}
+
         }
 
         public async void ContentDialogContoller(string type)
