@@ -11,11 +11,7 @@
     xmlns:viewmodel="using:AtlasToolbox.ViewModels" xmlns:controls1="using:AtlasToolbox.Controls"
     d:DataContext="{d:DesignInstance Type=viewmodel:ConfigPageViewModel}"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <local:FontIconConverter x:Key="FontIconConverter"/>
-        <!--HeaderIcon="{Binding RiskRatingIcon, Converter={StaticResource FontIconConverter}}"-->
-    </Page.Resources>
+    
     <Grid Margin="55 0 0 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -72,6 +68,16 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 
+                <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}">
+                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}" Style="{StaticResource AccentButtonStyle}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
                 <ItemsControl x:Name="Links" ItemsSource="{Binding LinksItemViewModel}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -87,17 +93,6 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-                <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}">
-                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}" Style="{StaticResource AccentButtonStyle}"/>
-                            </controls:SettingsCard>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-
             </StackPanel>
         </ScrollViewer>
     </Grid>

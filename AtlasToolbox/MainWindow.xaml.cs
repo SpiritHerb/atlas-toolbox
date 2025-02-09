@@ -60,35 +60,6 @@ namespace AtlasToolbox
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
 
-        //private void OnPointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-        //    var pointer = e.GetCurrentPoint(RootGrid);
-        //    if (pointer.Properties.PointerUpdateKind == Microsoft.UI.Input.PointerUpdateKind.XButton1Pressed)
-        //    {
-        //        if (ContentFrame.CanGoBack) 
-        //        {
-        //            ContentFrame.GoBack();
-        //            UpdateSelectedNavItem(ContentFrame.Content);
-        //        }
-        //    }
-        //}
-
-        //private void UpdateSelectedNavItem(object content)
-        //{
-        //    if (content.ToString() == "AtlasToolbox.Views.HomePage")
-        //    {
-        //        NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
-        //            .OfType<NavigationViewItem>()
-        //            .First(n => n.Tag.Equals(content.ToString()));
-        //    }
-        //    else
-        //    {
-        //        NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
-        //           .OfType<NavigationViewItem>()
-        //           .First(n => n.Tag.Equals(App.CurrentCategory));
-        //    }
-        //}
-
         public XamlRoot GetXamlRoot()
         {
             return this.Content.XamlRoot;
@@ -200,8 +171,8 @@ namespace AtlasToolbox
         }
         private void CenterWindowOnScreen()
         {
-            var screenWidth = GetSystemMetrics(SM_CXSCREEN);
-            var screenHeight = GetSystemMetrics(SM_CYSCREEN);
+            int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+            int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
             double centerX = (screenWidth - this.Bounds.Width) / 2;
             double centerY = (screenHeight - this.Bounds.Height) / 2;

@@ -10,10 +10,6 @@
     xmlns:local1="using:AtlasToolbox.Utils" xmlns:ui="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <local:FontIconConverter x:Key="FontIconConverter"/>
-    </Page.Resources>
-
     <Grid>
         <ScrollViewer>
             <StackPanel>
@@ -61,6 +57,16 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <ItemsControl x:Name="ConfigurationButton">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}">
+                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 
                 <ItemsControl x:Name="Links">
                     <ItemsControl.ItemTemplate>
@@ -78,15 +84,6 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 
-                <ItemsControl x:Name="ConfigurationButton">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}">
-                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}"/>
-                            </controls:SettingsCard>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
 
             </StackPanel>
         </ScrollViewer>

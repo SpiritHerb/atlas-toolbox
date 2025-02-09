@@ -41,14 +41,14 @@ public sealed partial class ConfigPage : Page
 
     private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
     {
-        var toggleSwitch = sender as ToggleSwitch;
+        ToggleSwitch toggleSwitch = sender as ToggleSwitch;
         toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
     }
 
     private async void LinkCard_Click(object sender, RoutedEventArgs e)
     {
-        var linkCard = sender as SettingsCard;
-        var linkVM = linkCard.DataContext as LinksViewModel;
+        SettingsCard linkCard = sender as SettingsCard;
+        LinksViewModel linkVM = linkCard.DataContext as LinksViewModel;
         await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
     }
 }

@@ -58,6 +58,7 @@ namespace AtlasToolbox.ViewModels
         [RelayCommand]
         private void AddProfile()
         {
+            //todo: Change profiles to be Json files 
             DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
             FileInfo[] profileFile = profilesDirectory.GetFiles();
 
