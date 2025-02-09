@@ -152,18 +152,6 @@ namespace AtlasToolbox
 
             }
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage)) NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
-            //if (ContentFrame.SourcePageType == typeof(Views.HomePage))
-            //{
-            //    NavigationViewControl.HeaderTemplate = null;
-            //    NavigationViewControl.Header = null;
-            //    ContentFrame.Padding = new Thickness(0, 0, 0, 0);
-            //}else
-            //{
-            //    //NavigationViewControl.HeaderTemplate = Application.Current.Resources["OtherHeader"] as DataTemplate;
-            //    //ContentFrame.Padding = new Thickness(55, 0, 0, 0);
-            //    //NavigationViewControl.Header = ((NavigationViewItem)NavigationViewControl.SelectedItem)?.Content?.ToString();
-            //}
-
         }
 
         public async void ContentDialogContoller(string type)
