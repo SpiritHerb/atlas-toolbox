@@ -10,8 +10,17 @@
     xmlns:local1="using:AtlasToolbox.Utils" xmlns:ui="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
 
-    <Grid>
-        <ScrollViewer>
+    <Grid Margin="55 0 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock
+             Grid.Row="0"
+             x:Name="TitleTxt"
+             Margin="0,24,36,24"
+             Style="{StaticResource TitleTextBlockStyle}"/>
+        <ScrollViewer Grid.Row="1">
             <StackPanel>
 
                 <ItemsControl x:Name="SubMenuItems">

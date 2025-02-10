@@ -11,25 +11,37 @@
     xmlns:ui="using:CommunityToolkit.WinUI"
     d:DataContext="{d:DesignInstance Type=viewmodel:SoftwarePageViewModel}"
     mc:Ignorable="d">
-    <Grid>
-        <ScrollView Height="550" VerticalAlignment="Top">
-            <StackPanel>
-                <ItemsControl ItemsSource="{Binding SoftwareItemViewModels}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" HorizontalContentAlignment="Right"
-                                    HeaderIcon="{Binding BitMapIcon}">
-                                <CheckBox Margin="0 0 -75 0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-                            </controls:SettingsCard>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+    <Grid Margin="55 0 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            x:Name="TitleTxt"
+            Margin="0,24,36,24"
+            Style="{StaticResource TitleTextBlockStyle}"
+            Text="Install Software"/>
+        <StackPanel Grid.Row="1">
+            <ScrollView Height="550" VerticalAlignment="Top" Grid.Row="1">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding SoftwareItemViewModels}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" HorizontalContentAlignment="Right"
+                                        HeaderIcon="{Binding BitMapIcon}">
+                                    <CheckBox Margin="0 0 -75 0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                                </controls:SettingsCard>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollView>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 40" x:Name="ProgressRingStackPanel" Orientation="Vertical" Visibility="Collapsed">
+                <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center"/>
+                <ProgressBar HorizontalAlignment="Left" Width="130" x:Name="DownloadingProgressBar"/>
             </StackPanel>
-        </ScrollView>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 40" x:Name="ProgressRingStackPanel" Orientation="Vertical" Visibility="Collapsed">
-            <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center"/>
-            <ProgressBar HorizontalAlignment="Left" Width="130" x:Name="DownloadingProgressBar"/>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 36 36 40" Click="Button_Click">Install</Button>
         </StackPanel>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 36 40" Click="Button_Click">Install</Button>
     </Grid>
 </Page>
