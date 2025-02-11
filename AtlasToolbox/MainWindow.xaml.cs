@@ -82,7 +82,7 @@ namespace AtlasToolbox
         {
             if (args.IsSettingsInvoked == true)
             {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
+                App.CurrentCategory = "SettingsItem";
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
             }
             else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.SoftwarePage")
@@ -125,12 +125,15 @@ namespace AtlasToolbox
         {
             NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
             NavigationViewControl.Header = null;
-            if (App.CurrentCategory != null)
+            if (App.CurrentCategory != null && App.CurrentCategory != "SettingsItem")
             {
                 NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
                     .OfType<NavigationViewItem>()
                     .First(n => n.Tag.Equals(App.CurrentCategory));
-
+            }
+            else
+            {
+                NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
             }
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage)) NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
         }

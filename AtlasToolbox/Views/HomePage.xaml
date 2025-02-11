@@ -18,10 +18,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
             <GridView
                 x:Name="itemGridView"
                 IsItemClickEnabled="True"
@@ -50,12 +46,12 @@
                             <TextBlock
                                 x:Name="subHeaderBlock"
                                 FontSize="18"
-                                Text="AtlasOS Toolbox" />
+                                Text="AtlasOS Toolbox"/>
                             <TextBlock
                                 x:Name="smallHeaderText"
                                 FontSize="45"
                                 FontWeight="SemiBold"
-                                Text="Home" />
+                                Text="Home"/>
                         </StackPanel>
                         <controls:TileGallery
                             x:Name="headerTileGallery"
@@ -74,14 +70,13 @@
                 Height="225"
                 Margin="36 36 0 10"
                 HorizontalAlignment="Left"
-                Grid.Row="1"
-                Grid.Column="0">
+                Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Profiles">
                         <Grid>
                             <Grid.ContextFlyout>
                                 <MenuFlyout>
-                                    <MenuFlyoutItem Text="Set this profile" Click="ContactDeleteMenuyItem_Click"/>
+                                    <MenuFlyoutItem x:Uid="Set_Profile" Text="Set this profile" Click="ContactDeleteMenuyItem_Click"/>
                                 </MenuFlyout>
                             </Grid.ContextFlyout>
                             <TextBlock Text="{x:Bind Name}"/>
@@ -89,13 +84,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="36,0,0,24">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="36,0,0,24">
                 <TextBox x:Name="ProfileNameTextBox" Width="210" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding Name}" TextChanged="ProfileNameTextBox_TextChanged"/>
-                <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="AddProfile">New</Button>
-                <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="DeleteProfile">Delete</Button>
+                <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="AddProfile" Content="Add"/>
+                <Button Margin="12 0 0 0" VerticalAlignment="Top" Click="DeleteProfile" Content="Delete"/>
             </StackPanel>
-            <Button Grid.Row="1" Grid.Column="1" Click="buttonclick">Go to software</Button>
         </Grid>
     </ScrollViewer>
-    
 </Page>
