@@ -88,6 +88,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("FaultTolerantHeap");
                 services.AddKeyedSingleton<ConfigurationStore>("Copilot");
                 services.AddKeyedSingleton<ConfigurationStore>("Recal");
+                services.AddKeyedSingleton<ConfigurationStore>("CpuIdle");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("Mitigations");

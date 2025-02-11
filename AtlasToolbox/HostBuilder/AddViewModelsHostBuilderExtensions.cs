@@ -359,6 +359,7 @@ namespace AtlasToolbox.HostBuilder
                 ["FaultTolerantHeap"] = new("Fault Tolerant Heap", "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
                 ["Copilot"] = new("Enable Microsoft Copilot", "Copilot", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
                 ["Recal"] = new("Enable Windows Recal", "Recal", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
+                ["CpuIdle"] = new("Enable CPU Idling", "CpuIdle", ConfigurationType.General, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>

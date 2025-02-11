@@ -42,7 +42,6 @@
     <None Remove="IncompatibleVersionWindow.xaml" />
     <None Remove="LoadingWindow.xaml" />
     <None Remove="MainWindow.xaml" />
-    <None Remove="MultilingualResources\AtlasToolbox.fr.xlf" />
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
     <None Remove="SoftwarePage.xaml" />
@@ -191,8 +190,5 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <XliffResource Include="MultilingualResources\AtlasToolbox.fr.xlf" />
   </ItemGroup>
 </Project>
