@@ -68,7 +68,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             CommandPromptHelper.RestartExplorer();
             CommandPromptHelper.RunCommand(REMOVE_PACKAGE_BING_COMMAND_NAME);
 
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _webSearchConfigurationService.CurrentSetting = IsEnabled();
         }

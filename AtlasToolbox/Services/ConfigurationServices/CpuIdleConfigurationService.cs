@@ -22,7 +22,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         }
         public void Disable()
         {
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand("powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 1");
             CommandPromptHelper.RunCommand("powercfg /setactive scheme_current");
 

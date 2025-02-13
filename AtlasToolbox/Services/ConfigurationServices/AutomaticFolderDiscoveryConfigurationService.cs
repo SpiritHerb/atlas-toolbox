@@ -29,14 +29,14 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.DeleteValue(SHELL_KEY_NAME, FOLDER_TYPE_VALUE_NAME);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _automaticFolderDiscoveryConfigurationService.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
-            RegistryHelper.SetValue(SHELL_KEY_NAME, FOLDER_TYPE_VALUE_NAME, 00000000, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(SHELL_KEY_NAME, FOLDER_TYPE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _automaticFolderDiscoveryConfigurationService.CurrentSetting = IsEnabled();

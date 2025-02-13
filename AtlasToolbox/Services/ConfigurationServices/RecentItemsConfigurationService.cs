@@ -54,7 +54,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ADVANCED_EXPLORER_KEY_NAME, START_TRACK_PROGS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ADVANCED_EXPLORER_KEY_NAME, START_TRACK_DOCS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand(@"call ""%windir%\AtlasModules\Scripts\settingsPages.cmd"" /hide privacy-general");
             CommandPromptHelper.RestartExplorer();
 

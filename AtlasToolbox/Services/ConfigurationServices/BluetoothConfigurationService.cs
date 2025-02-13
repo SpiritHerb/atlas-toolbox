@@ -10,6 +10,9 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
 {
     public class BluetoothConfigurationService : IConfigurationService
     {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Bluetooth";
+        private const string STATE_VALUE_NAME = "state";
+
         private const string BLUETOOTH_USER_SERVICE_SERVICE_NAME = "BluetoothUserService";
         private const string BTAG_SERVICE_SERVICE_NAME = "BTAGService";
         private const string BTH_A2DP_SERVICE_NAME = "BthA2dp";
@@ -53,6 +56,7 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(HIT_BTH_SERVICE_NAME, ServiceStartMode.Disabled);
             ServiceHelper.SetStartupType(MICROSOFT_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Disabled);
             ServiceHelper.SetStartupType(RFCOMM_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Disabled);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             DeviceHelper.DisableDevice("%Bluetooth%");
 
@@ -77,6 +81,7 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(HIT_BTH_SERVICE_NAME, ServiceStartMode.Manual);
             ServiceHelper.SetStartupType(MICROSOFT_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Manual);
             ServiceHelper.SetStartupType(RFCOMM_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Manual);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             DeviceHelper.EnableDevice("%Bluetooth%");
 
@@ -85,28 +90,7 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
 
         public bool IsEnabled()
         {
-            bool[] checks =
-            {
-                ServiceHelper.IsStartupTypeMatch(BLUETOOTH_USER_SERVICE_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTAG_SERVICE_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_A2DP_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_AVCTP_SVC_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_ENUM_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_HF_ENUM_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_LE_ENUM_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_MINI_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_MODEM_SERVICE_NAME, ServiceStartMode.Manual),
-                //ServiceHelper.IsStartupTypeMatch(BTH_PAN_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_PORT_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_SERV_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(BTH_USB_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(HIT_BTH_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(MICROSOFT_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(RFCOMM_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Manual),
-                DeviceHelper.GetDeviceStatus("%Bluetooth%") is true or null
-            };
-
-            return checks.All(x => x);
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

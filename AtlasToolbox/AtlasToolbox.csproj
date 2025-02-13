@@ -18,6 +18,7 @@
     <LangVersion>preview</LangVersion>
     <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
     <UserSecretsId>b05b26c0-f62c-4dd3-b138-de1a5b0c1243</UserSecretsId>
+    <ApplicationIcon>Assets\Logo\Atlaslogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Converter\**" />

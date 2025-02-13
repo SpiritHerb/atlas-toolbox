@@ -6,7 +6,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class CompactViewConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AppIconsThumbnail";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\CompactView";
         private const string STATE_VALUE_NAME = "state";
 
 
@@ -24,7 +24,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.SetValue(ADVANCED_KEY_NAME, USE_COMPACT_MODE_VALUE_NAME, 0);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _compactViewConfigurationStore.CurrentSetting = IsEnabled();
         }

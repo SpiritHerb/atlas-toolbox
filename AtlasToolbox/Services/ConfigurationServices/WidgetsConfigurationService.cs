@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     class WidgetsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\WebSearch";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Widgets";
         private const string STATE_VALUE_NAME = "state";
 
         private const string WINDOWS_FEED_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds";
@@ -35,7 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(WINDOWS_FEED_KEY_NAME, ENABLE_FIELDS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(DSH_KEY_NAME, ALLOW_NEWS_AND_INTERESTS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             CommandPromptHelper.RestartExplorer();
 

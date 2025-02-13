@@ -28,8 +28,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         }
         public void Disable()
         {
-            RegistryHelper.SetValue(EDGE_UI_KEY_NAME, ALLOW_EDGE_SWIPE_VALUE_NAME, 00000000, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(EDGE_UI_KEY_NAME, ALLOW_EDGE_SWIPE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _edgeSwipeConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -37,7 +37,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             RegistryHelper.DeleteValue(EDGE_UI_KEY_NAME, ALLOW_EDGE_SWIPE_VALUE_NAME);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _edgeSwipeConfigurationService.CurrentSetting = IsEnabled();
         }

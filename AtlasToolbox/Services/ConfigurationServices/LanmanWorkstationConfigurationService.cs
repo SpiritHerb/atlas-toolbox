@@ -9,6 +9,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class LanmanWorkstationConfigurationService : IConfigurationService
     {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\LanmanWorkstation";
+        private const string STATE_VALUE_NAME = "state";
+
         private readonly ConfigurationStore _lanmanWorkstationConfigurationStore;
         private readonly IDismService _dismService;
 
@@ -42,6 +45,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
             _dismService.DisableFeature(SMB_DIRECT_FEATURE_NAME);
 
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+
+
             _lanmanWorkstationConfigurationStore.CurrentSetting = IsEnabled();
         }
 
@@ -57,24 +63,14 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
             _dismService.EnableFeature(SMB_DIRECT_FEATURE_NAME);
 
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+
             _lanmanWorkstationConfigurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()
         {
-            bool[] checks =
-            {
-                ServiceHelper.IsStartupTypeMatch(KSECPKG_SERVICE_NAME, ServiceStartMode.Boot),
-                ServiceHelper.IsStartupTypeMatch(LANMANSERVER_SERVICE_NAME, ServiceStartMode.Automatic),
-                ServiceHelper.IsStartupTypeMatch(LANMANWORKSTATION_SERVICE_NAME, ServiceStartMode.Automatic),
-                ServiceHelper.IsStartupTypeMatch(MRXSMB_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(MRXSMB20_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(RDBSS_SERVICE_NAME, ServiceStartMode.System),
-                ServiceHelper.IsStartupTypeMatch(SRV2_SERVICE_NAME, ServiceStartMode.Manual),
-                //_dismService.GetFeatureState(SMB_DIRECT_FEATURE_NAME) is DismPackageFeatureState.Staged or DismPackageFeatureState.Installed
-            };
-
-            return checks.All(x => x);
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

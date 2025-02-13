@@ -15,7 +15,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class ExtractContextMenuConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AutomaticUpdates";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ExtractContextMenu";
         private const string STATE_VALUE_NAME = "state";
 
         private const string BLOCKED_KEY_NAME = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked";
@@ -44,7 +44,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             {
                 RegistryHelper.SetValue(BLOCKED_KEY_NAME, value, "");
             }
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _extractContextMenuConfigurationService.CurrentSetting = IsEnabled();
         }

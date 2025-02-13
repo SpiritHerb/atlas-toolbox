@@ -43,9 +43,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public bool IsEnabled()
         {
-            object value = _bcdService.GetElementValue(WellKnownObjectIdentifiers.Current, WellKnownElementTypes.BootStatusPolicy);
-            
-            return value is 0UL;
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

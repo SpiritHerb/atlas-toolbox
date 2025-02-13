@@ -31,7 +31,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(DWM_KEY_NAME, COLORIZATION_COLOR_VALUE_NAME, 0xc40078d7, RegistryValueKind.DWord);
             RegistryHelper.SetValue(DWM_KEY_NAME, COLORIZATION_AFTERGLOW_VALUE_NAME, 0xc40078d7, RegistryValueKind.DWord);
             RegistryHelper.SetValue(DWM_KEY_NAME, ACCENT_COLOR_VALUE_NAME, 0xffd77800, RegistryValueKind.DWord);
-            RegistryHelper.SetValue(DWM_KEY_NAME, COLOR_PREVALENCE_VALUE_NAME, 0x00000000, RegistryValueKind.DWord);
+            RegistryHelper.SetValue(DWM_KEY_NAME, COLOR_PREVALENCE_VALUE_NAME, 0x0, RegistryValueKind.DWord);
             RegistryHelper.DeleteValue(DWM_KEY_NAME, ACCENT_COLOR_INACTIVE_VALUE_NAME);
             RegistryHelper.SetValue(ACCENT_KEY_NAME, ACCENT_COLOR_MENU_VALUE_NAME, 0xffd77800, RegistryValueKind.DWord);
 

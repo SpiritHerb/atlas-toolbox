@@ -28,8 +28,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Disable()
         {
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
-            RegistryHelper.SetValue(APP_BROWSER_PROTECTION_KEY_NAME, "UILockdown", 00000001, RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(APP_BROWSER_PROTECTION_KEY_NAME, "UILockdown", 1, RegistryValueKind.DWord);
 
             _hideAppBrowserControlConfigurationService.CurrentSetting = IsEnabled();
         }

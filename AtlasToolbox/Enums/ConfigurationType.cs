@@ -37,6 +37,7 @@ namespace AtlasToolbox.Enums
         DefenderSubMenu,
         MitigationsSubMenu,
         TroubleshootingNetwork,
+        FileSharingSubMenu,
     }
 
     public static class EnumExtensions

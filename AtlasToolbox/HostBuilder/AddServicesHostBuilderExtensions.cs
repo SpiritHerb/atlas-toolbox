@@ -59,7 +59,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, DarkTitlebarsConfigurationService>("DarkTitlebars");
                 services.AddKeyedTransient<IConfigurationService, LockScreenConfigurationService>("LockScreen");
                 services.AddKeyedTransient<IConfigurationService, ModernVolumeFlyoutConfigurationService>("ModernVolumeFlyout");
-                services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriorityContextMenu");
+                services.AddKeyedTransient<IConfigurationService, RunWithPriorityConfigurationService>("RunWithPriority");
                 services.AddKeyedTransient<IConfigurationService, ShortcutTextConfigurationService>("ShortcutText");
                 services.AddKeyedTransient<IConfigurationService, BootLogoConfigurationService>("BootLogo");
                 services.AddKeyedTransient<IConfigurationService, BootMessagesConfigurationService>("BootMessages");
@@ -87,7 +87,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, WidgetsConfigurationService>("Widgets");
                 services.AddKeyedTransient<IConfigurationService, WindowsSpotlightConfigurationService>("WindowsSpotlight");
                 services.AddKeyedTransient<IConfigurationService, ExtractContextMenuConfigurationService>("ExtractContextMenu");
-                services.AddKeyedTransient<IConfigurationService, RunWithPriorityContextMenuConfigurationService>("RunWithPriority");
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
                 services.AddKeyedTransient<IConfigurationService, CpuIdleConfigurationService>("CpuIdle");
                 services.AddKeyedTransient<IMultiOptionConfigurationServices, ContextMenuTeminalsConfigurationService>("ContextMenuTerminals");
@@ -110,7 +109,12 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, SecurityHealthTrayConfigurationService>("SecurityHealthTray");
                 services.AddKeyedTransient<IConfigurationService, FaultTolerantHeapConfigurationService>("FaultTolerantHeap");
                 services.AddKeyedTransient<IConfigurationService, CopilotConfigurationService>("Copilot");
-                services.AddKeyedTransient<IConfigurationService, RecalSupportConfigurationService>("Recal");
+                services.AddKeyedTransient<IConfigurationService, RecallSupportConfigurationService>("Recall");
+                services.AddKeyedTransient<IConfigurationService, ProcessExplorerConfigurationService>("ProcessExplorer");
+                services.AddKeyedTransient<IConfigurationService, VbsConfigurationService>("VbsState");
+                services.AddKeyedTransient<IConfigurationService, GiveAccessToMenu>("GiveAccessToMenu");
+                services.AddKeyedTransient<IConfigurationService, NetworkNavigationPaneConfigurationService>("NetworkNavigationPane");
+                services.AddKeyedTransient<IConfigurationService, FileSharingConfigurationService>("FileSharing");
             });
 
             return host;
@@ -134,6 +138,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationSubMenu, DefenderSubMenu>("DefenderSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, MitigationsSubMenu>("MitigationsSubMenu");
                 services.AddKeyedTransient<IConfigurationSubMenu, TroubleshootingNetworkSubMenu>("TroubleshootingNetwork");
+                services.AddKeyedTransient<IConfigurationSubMenu, FileSharingSubMenu>("FileSharingSubMenu");
             });
 
             return host;

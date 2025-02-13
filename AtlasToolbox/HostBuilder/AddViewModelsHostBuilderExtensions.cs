@@ -150,7 +150,6 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
                 ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
-                ["OpenShell"] = new (@"https://github.com/Open-Shell/Open-Shell-Menu", "Open Shell", ConfigurationType.StartMenuSubMenu),
                 ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", "Open Shell AtlasOS preset", ConfigurationType.StartMenuSubMenu),
                 ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", "Interface tweaks documentation", ConfigurationType.Interface),
                 
@@ -205,6 +204,7 @@ namespace AtlasToolbox.HostBuilder
                 ["VBSCurrentConfig"] = new(buttonCommand = new CurrentVBSConfigurationCommand(), "VBS Current Configuration", "See the current VBS configuration", ConfigurationType.CoreIsolationSubMenu),
                 ["ToggleDefender"] = new(buttonCommand = new ToggleDefenderCommand(), "Toggle", "Toggle Windows Defender", ConfigurationType.DefenderSubMenu),
                 ["ResetFTH"] = new(buttonCommand = new ResetFTHCommand(), "Reset", "Reset FTH entries", ConfigurationType.MitigationsSubMenu),
+                ["InstallOpenShell"] = new(buttonCommand = new InstallOpenShellCommand(), "Install OpenShell", "Install", ConfigurationType.StartMenuSubMenu),
 
                 ["FixErrors"] = new(buttonCommand = new FixErrorsCommand(), "Troubleshoot", "Fix Errors 2502 and 2503", ConfigurationType.Troubleshooting),
                 ["RepairWinComponent"] = new(buttonCommand = new RepairWindowsComponentsCommand(), "Troubleshoot", "Repair Windows Components", ConfigurationType.Troubleshooting),
@@ -249,6 +249,7 @@ namespace AtlasToolbox.HostBuilder
                 ["DefenderSubMenu"] = new("Defender", "Everything related to Windows Defender", ConfigurationType.Security),
                 ["MitigationsSubMenu"] = new("Mitigations", "Everything related to mitigations", ConfigurationType.Security),
                 ["TroubleshootingNetwork"] = new("Network", "Everything related to troubleshooting network", ConfigurationType.Troubleshooting),
+                ["FileSharingSubMenu"] = new("File Sharing", "Everything related to file sharing in Windows", ConfigurationType.General),
             };
             host.ConfigureServices((_, services) =>
             {
@@ -307,7 +308,7 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["Animations"] = new ("Animations", "Animations", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["ExtractContextMenu"] = new("\"Extract\" option in the context menu", "ExtractContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
-                ["RunWithPriorityContextMenu"] = new("Run With Priority in context menu", "RunWithPriorityContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["RunWithPriority"] = new("Run With Priority in context menu", "RunWithPriority", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
                 ["Bluetooth"] = new("Bluetooth", "Bluetooth", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
                 ["LanmanWorkstation"] = new("Lanman Workstation (SMB)", "LanmanWorkstation", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
                 ["NetworkDiscovery"] = new("Network Discovery", "NetworkDiscovery", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
@@ -358,8 +359,13 @@ namespace AtlasToolbox.HostBuilder
                 ["SecurityHealthTray"] = new("Automatically set static IP", "StaticIp", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
                 ["FaultTolerantHeap"] = new("Fault Tolerant Heap", "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
                 ["Copilot"] = new("Enable Microsoft Copilot", "Copilot", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
-                ["Recal"] = new("Enable Windows Recal", "Recal", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
+                ["Recall"] = new("Enable Windows recall", "recall", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
                 ["CpuIdle"] = new("Enable CPU Idling", "CpuIdle", ConfigurationType.General, RiskRating.HighRisk),
+                ["ProcessExplorer"] = new("Install Process Explorer", "ProcessExplorer", ConfigurationType.Advanced, RiskRating.MediumRisk),
+                ["VbsState"] = new("Enable VBS", "VbsState", ConfigurationType.CoreIsolationSubMenu, RiskRating.HighRisk),
+                ["GiveAccessToMenu"] = new("Give access to menu", "GiveAccessToMenu", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
+                ["NetworkNavigationPane"] = new("Network navigation pane", "NetworkNavigationPane", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
+                ["FileSharing"] = new("File Sharing", "FileSharing", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>
