@@ -8,6 +8,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class NetworkDiscoveryConfigurationService : IConfigurationService
     {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\NetworkDiscovery";
+        private const string STATE_VALUE_NAME = "state";
+
         private readonly ConfigurationStore _networkDiscoveryConfigurationStore;
         private readonly ConfigurationStore _lanmanWorkstationConfigurationStore;
         private readonly IConfigurationService _lanmanWorkstationConfigurationService;
@@ -45,6 +48,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(NETMAN_SERVICE_NAME, ServiceStartMode.Manual);
             ServiceHelper.SetStartupType(NLASVC_SERVICE_NAME, ServiceStartMode.Automatic);
             ServiceHelper.SetStartupType(SSDPSRV_SERVICE_NAME, ServiceStartMode.Disabled);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+
 
             _networkDiscoveryConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -63,25 +68,14 @@ namespace AtlasToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(NETMAN_SERVICE_NAME, ServiceStartMode.Manual);
             ServiceHelper.SetStartupType(NLASVC_SERVICE_NAME, ServiceStartMode.Automatic);
             ServiceHelper.SetStartupType(SSDPSRV_SERVICE_NAME, ServiceStartMode.Manual);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _networkDiscoveryConfigurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()
         {
-            bool[] checks =
-            {
-                _lanmanWorkstationConfigurationStore.CurrentSetting is true,
-                ServiceHelper.IsStartupTypeMatch(EVENTLOG_SERVICE_NAME, ServiceStartMode.Automatic),
-                ServiceHelper.IsStartupTypeMatch(FDPHOST_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(FDRESPUB_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(LMHOSTS_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(NETMAN_SERVICE_NAME, ServiceStartMode.Manual),
-                ServiceHelper.IsStartupTypeMatch(NLASVC_SERVICE_NAME, ServiceStartMode.Automatic),
-                ServiceHelper.IsStartupTypeMatch(SSDPSRV_SERVICE_NAME, ServiceStartMode.Manual)
-            };
-
-            return checks.All(x => x);
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
 
         private void LanmanWorkstationConfigurationStore_CurrentSettingChanged()

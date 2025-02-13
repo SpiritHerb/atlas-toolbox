@@ -1,4 +1,5 @@
 ﻿using AtlasToolbox.Stores;
+using AtlasToolbox.Utils;
 using BcdSharp.Constants;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,6 +7,10 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class NewBootMenuConfigurationService : IConfigurationService
     {
+
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\NewBootMenu";
+        private const string STATE_VALUE_NAME = "state";
+
         private readonly ConfigurationStore _newBootMenuConfigurationStore;
         private readonly IBcdService _bcdService;
 
@@ -20,6 +25,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             _bcdService.SetIntegerElement(WellKnownObjectIdentifiers.Default, WellKnownElementTypes.BootMenuPolicyWinload, 0UL);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _newBootMenuConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -27,15 +33,14 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             _bcdService.SetIntegerElement(WellKnownObjectIdentifiers.Default, WellKnownElementTypes.BootMenuPolicyWinload, 1UL);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _newBootMenuConfigurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()
         {
-            object value = _bcdService.GetElementValue(WellKnownObjectIdentifiers.Default, WellKnownElementTypes.BootMenuPolicyWinload);
-
-            return value is 1UL;
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

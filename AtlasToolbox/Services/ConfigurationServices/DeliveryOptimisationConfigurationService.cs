@@ -28,7 +28,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.SetValue(DELIVERY_OPTIMIZATION_KEY_NAME, DO_DOWNLOAD_MODE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _deliveryOptimisationConfigurationStore.CurrentSetting = IsEnabled();
         }

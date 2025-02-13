@@ -30,18 +30,18 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Disable()
         {
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_ASSIST_FLYOUT_VALUE_NAME, 0000000, RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_BAR_VALUE_NAME, 0000000, RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_ASSIST_FLYOUT_VALUE_NAME, 0, RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_BAR_VALUE_NAME, 0, RegistryValueKind.DWord);
 
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _snapLayoutsConfigurationService.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_ASSIST_FLYOUT_VALUE_NAME, 0000001, RegistryValueKind.DWord);
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_BAR_VALUE_NAME, 0000001, RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_ASSIST_FLYOUT_VALUE_NAME, 1, RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_BAR_VALUE_NAME, 1, RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 

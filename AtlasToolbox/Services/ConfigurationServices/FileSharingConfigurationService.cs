@@ -1,12 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AtlasToolbox.Stores;
+using AtlasToolbox.Utils;
+using Microsoft.Extensions.DependencyInjection;
+using Windows.Devices.PointOfService;
 
 namespace AtlasToolbox.Services.ConfigurationServices
 {
-    internal class FileSharingConfigurationService
+    public class FileSharingConfigurationService : IConfigurationService
     {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\FileSharing";
+        private const string STATE_VALUE_NAME = "state";
+
+        private readonly ConfigurationStore _configurationStore;
+        public FileSharingConfigurationService(
+            [FromKeyedServices("FileSharing")] ConfigurationStore configurationStore)
+        {
+            _configurationStore = configurationStore;
+        }
+        public void Disable()
+        {
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasModules\Toolbox\ConfigurationServices\FileSharing\disable.cmd", false);
+        }
+
+        public void Enable()
+        {
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasModules\Toolbox\ConfigurationServices\FileSharing\enable.cmd", false);
+        }
+
+        public bool IsEnabled()
+        {
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+        }
     }
 }

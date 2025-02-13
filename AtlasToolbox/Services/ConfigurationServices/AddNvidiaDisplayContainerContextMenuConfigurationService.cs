@@ -31,7 +31,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         }
         public void Disable()
         {
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             RegistryHelper.DeleteKey(NVIDIA_CONTAINER_KEY_NAME);
 
             _addNvidiaDisplayContainerContextMenuConfigurationService.CurrentSetting = IsEnabled();

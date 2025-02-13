@@ -29,15 +29,15 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Disable()
         {
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, SHOW_TYPE_OVERLAY_KEY_NAME, 00000000, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ADVANCED_KEY_NAME, SHOW_TYPE_OVERLAY_KEY_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _appIconsThumbnailConfigurationService.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
-            RegistryHelper.SetValue(ADVANCED_KEY_NAME, SHOW_TYPE_OVERLAY_KEY_NAME, 00000001, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ADVANCED_KEY_NAME, SHOW_TYPE_OVERLAY_KEY_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _appIconsThumbnailConfigurationService.CurrentSetting = IsEnabled();

@@ -1,3 +1,4 @@
+using AtlasToolbox.Enums;
 using AtlasToolbox.Models;
 using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
@@ -24,6 +25,7 @@ namespace AtlasToolbox.Views
 {
     public sealed partial class SubSection : Page
     {
+        private object configType;
         public SubSection()
         {
             this.InitializeComponent();
@@ -41,7 +43,8 @@ namespace AtlasToolbox.Views
                 Links.ItemsSource = item.LinksViewModels;
                 SubMenuItems.ItemsSource = item.ConfigurationSubMenuViewModels;
                 ConfigurationButton.ItemsSource = item.ConfigurationButtonViewModels;
-            }   
+                TitleTxt.Text += item.Name;
+            }
         }
 
         private void OnCardClicked(object sender, RoutedEventArgs e)

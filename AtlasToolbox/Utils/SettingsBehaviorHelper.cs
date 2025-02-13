@@ -11,7 +11,6 @@ namespace AtlasToolbox.Utils
 {
     public static class SettingsBehaviorHelper
     {
-        //public static bool keepBackground_IsOn;
         public static void KeppBackground_Toggled(object sender, RoutedEventArgs e)
         {
             if (sender is ToggleSwitch toggleSwitch)
@@ -28,17 +27,6 @@ namespace AtlasToolbox.Utils
                     App.m_window.Closed += AppBehaviorHelper.CloseApp;
                 }
             }
-
-            //if (keepBackground_IsOn)
-            //{
-            //    RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "KeepInBackground", 1);
-            //    App.m_window.Closed += AppBehaviorHelper.HideApp;
-            //}
-            //else
-            //{
-            //    RegistryHelper.DeleteValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "KeepInBackground");
-            //    App.m_window.Closed += AppBehaviorHelper.CloseApp;
-            //}
         }
     }
 }

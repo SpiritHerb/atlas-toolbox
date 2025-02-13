@@ -54,7 +54,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(VISUAL_EFFECTS_KEY_NAME, VISUAL_FX_SETTING_VALUE_NAME, 3, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(DWM_KEY_NAME, ENABLE_AERO_PEEK_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(DWM_KEY_NAME, ALWAYS_HIBERNATE_THUMBNAILS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             App.ContentDialogCaller("logoff");
 

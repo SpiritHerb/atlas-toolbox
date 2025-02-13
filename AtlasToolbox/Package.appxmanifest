@@ -13,7 +13,7 @@
     Publisher="CN=TheyCreeper"
     Version="1.0.4.1" />
 
-  <mp:PhoneIdentity PhoneProductId="98ae3a68-e43b-4f70-9b72-db68291392f3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="98ae3a68-e43b-4f70-9b72-db68291392f3" PhonePublisherId="0-0000-0000-0000-00000"/>
 
   <Properties>
     <DisplayName>Atlas Toolbox</DisplayName>

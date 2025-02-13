@@ -8,16 +8,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:controls="using:CommunityToolkit.WinUI.Controls" 
     xmlns:ui="using:CommunityToolkit.WinUI"
-    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels" xmlns:controls1="using:AtlasToolbox.Controls"
     d:DataContext="{d:DesignInstance Type=viewmodel:ConfigPageViewModel}"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <local:FontIconConverter x:Key="FontIconConverter"/>
-        <!--HeaderIcon="{Binding RiskRatingIcon, Converter={StaticResource FontIconConverter}}"-->
-    </Page.Resources>
-    <Grid>
-        <ScrollViewer>
+    
+    <Grid Margin="55 0 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            x:Name="TitleTxt"
+            Margin="0,24,36,24"
+            Style="{StaticResource TitleTextBlockStyle}"/>
+        <ScrollViewer Grid.Row="1">
             <StackPanel>
                 <ItemsControl x:Name="SubMenuItems" ItemsSource="{Binding ConfigurationItemSubMenu}">
                     <ItemsControl.ItemTemplate>
@@ -63,6 +68,16 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 
+                <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}">
+                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}" Style="{StaticResource AccentButtonStyle}"/>
+                            </controls:SettingsCard>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
                 <ItemsControl x:Name="Links" ItemsSource="{Binding LinksItemViewModel}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -78,17 +93,6 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-                <ItemsControl x:Name="ConfigurationButton" ItemsSource="{Binding ConfigurationButtonViewModel}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Description}">
-                                <Button Content="{Binding Name}" Command="{Binding ExecuteCommandCommand}" Style="{StaticResource AccentButtonStyle}"/>
-                            </controls:SettingsCard>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-
             </StackPanel>
         </ScrollViewer>
     </Grid>

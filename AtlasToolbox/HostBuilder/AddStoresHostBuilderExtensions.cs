@@ -40,7 +40,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("DarkTitlebars");
                 services.AddKeyedSingleton<ConfigurationStore>("LockScreen");
                 services.AddKeyedSingleton<ConfigurationStore>("ModernVolumeFlyout");
-                services.AddKeyedSingleton<ConfigurationStore>("RunWithPriorityContextMenu");
+                services.AddKeyedSingleton<ConfigurationStore>("RunWithPriority");
                 services.AddKeyedSingleton<ConfigurationStore>("ShortcutText");
                 services.AddKeyedSingleton<ConfigurationStore>("BootLogo");
                 services.AddKeyedSingleton<ConfigurationStore>("BootMessages");
@@ -69,7 +69,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("WindowsSpotlight");
                 services.AddKeyedSingleton<ConfigurationStore>("ExtractContextMenu");
                 services.AddKeyedSingleton<ConfigurationStore>("AppStoreArchiving");
-                services.AddKeyedSingleton<ConfigurationStore>("RunWithPriority");
                 services.AddKeyedSingleton<ConfigurationStore>("TakeOwnership");
                 services.AddKeyedSingleton<ConfigurationStore>("OldContextMenu");
                 services.AddKeyedSingleton<ConfigurationStore>("EdgeSwipe");
@@ -87,7 +86,13 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("SecurityHealthTray");
                 services.AddKeyedSingleton<ConfigurationStore>("FaultTolerantHeap");
                 services.AddKeyedSingleton<ConfigurationStore>("Copilot");
-                services.AddKeyedSingleton<ConfigurationStore>("Recal");
+                services.AddKeyedSingleton<ConfigurationStore>("Recall");
+                services.AddKeyedSingleton<ConfigurationStore>("CpuIdle");
+                services.AddKeyedSingleton<ConfigurationStore>("ProcessExplorer");
+                services.AddKeyedSingleton<ConfigurationStore>("VbsState");
+                services.AddKeyedSingleton<ConfigurationStore>("GiveAccessToMenu");
+                services.AddKeyedSingleton<ConfigurationStore>("NetworkNavigationPane");
+                services.AddKeyedSingleton<ConfigurationStore>("FileSharing");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("Mitigations");
@@ -115,6 +120,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("DefenderSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("MitigationsSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("TroubleshootingNetwork");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("FileSharingSubMenu");
             });
 
             return host;

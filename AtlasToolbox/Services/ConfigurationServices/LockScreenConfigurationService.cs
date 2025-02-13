@@ -23,8 +23,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Disable()
         {
-            RegistryHelper.SetValue(PERSONALIZATION_KEY_NAME, NO_LOCK_SCREEN_VALUE_NAME, 00000001, Microsoft.Win32.RegistryValueKind.DWord);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(PERSONALIZATION_KEY_NAME, NO_LOCK_SCREEN_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _lockScreenConfigurationStore.CurrentSetting = IsEnabled();
         }

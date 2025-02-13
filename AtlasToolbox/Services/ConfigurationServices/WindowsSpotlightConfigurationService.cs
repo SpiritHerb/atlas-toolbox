@@ -61,7 +61,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
             RegistryHelper.SetValue(NEW_START_PANEL_KEY_NAME, NEW_START_PANEL_NUMBERS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
 
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _windowsSpotlightConfigurationService.CurrentSetting = IsEnabled();
         }

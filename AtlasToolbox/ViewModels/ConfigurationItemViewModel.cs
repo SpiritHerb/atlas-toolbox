@@ -24,8 +24,6 @@ namespace AtlasToolbox.ViewModels
 
         public Color Color { get; set; }
 
-        //public string RiskRatingIcon { get; set; }
-
         private bool _currentSetting;
 
         public bool CurrentSetting
@@ -67,19 +65,6 @@ namespace AtlasToolbox.ViewModels
                     return Color.FromArgb(255, 0, 176, 80);
             }
         }
-
-        //public string RiskRatingFormatter(RiskRating riskRating)
-        //{
-        //    switch (riskRating)
-        //    {
-        //        case RiskRating.HighRisk:
-        //            return "\uE783";
-        //        case RiskRating.MediumRisk:
-        //            return  "\uE7BA";
-        //        default:
-        //            return null;
-        //    }
-        //}
 
         public ConfigurationItemViewModel(
             Configuration configuration,

@@ -27,15 +27,15 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public void Disable()
         {
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
-            RegistryHelper.SetValue(FTH_KEY_NAME, "Enabled", 00000000, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(FTH_KEY_NAME, "Enabled", 0, Microsoft.Win32.RegistryValueKind.DWord);
 
             _faultTolerantHeapConfigurationService.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
-            RegistryHelper.SetValue(FTH_KEY_NAME, "Enabled", 00000001, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(FTH_KEY_NAME, "Enabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _faultTolerantHeapConfigurationService.CurrentSetting = IsEnabled();

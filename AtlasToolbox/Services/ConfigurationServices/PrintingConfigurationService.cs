@@ -9,6 +9,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class PrintingConfigurationService : IConfigurationService
     {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Printing";
+        private const string STATE_VALUE_NAME = "state";
+
         private const string PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME = "ProgrammaticAccessOnly";
 
         private const string SPOOLER_SERVICE_NAME = "Spooler";
@@ -54,6 +57,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
             ServiceHelper.SetStartupType(SPOOLER_SERVICE_NAME, ServiceStartMode.Disabled);
 
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+
             _printingConfigurationStore.CurrentSetting = IsEnabled();
         }
 
@@ -66,18 +71,14 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
             ServiceHelper.SetStartupType(SPOOLER_SERVICE_NAME, ServiceStartMode.Automatic);
 
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+
             _printingConfigurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()
         {
-            bool[] checks =
-            {
-                _keyNames.All(x => RegistryHelper.IsMatch(x, PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME, string.Empty)),
-                ServiceHelper.IsStartupTypeMatch(SPOOLER_SERVICE_NAME, ServiceStartMode.Automatic)
-            };
-
-            return checks.All(x => x);
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }

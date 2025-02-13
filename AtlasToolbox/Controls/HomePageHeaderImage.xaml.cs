@@ -9,10 +9,7 @@ using CommunityToolkit.WinUI.Animations;
 using System;
 using CommunityToolkit.WinUI;
 
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
+// Taken from https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Controls/HomePageHeaderImage.xaml.cs
 namespace AtlasToolbox.Controls
 {
     public sealed partial class HomePageHeaderImage : UserControl

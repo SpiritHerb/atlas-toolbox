@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
@@ -17,6 +18,7 @@
     <LangVersion>preview</LangVersion>
     <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
     <UserSecretsId>b05b26c0-f62c-4dd3-b138-de1a5b0c1243</UserSecretsId>
+    <ApplicationIcon>Assets\Logo\Atlaslogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Converter\**" />
@@ -40,7 +42,6 @@
     <None Remove="SoftwarePage.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="CommunityToolkit.WinUI.Animations" Version="8.1.240916" />
@@ -67,7 +68,6 @@
     <PackageReference Include="WinUIEx" Version="2.5.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="BcdSharp">
       <HintPath>..\lib\BcdSharp.dll</HintPath>
@@ -157,7 +157,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
     Explorer "Package and Publish" context menu entry to be enabled for this project even if
@@ -166,10 +165,31 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <!--<Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.PriResources.targets')" />
+  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
+    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
+  </Target>-->
   <ItemGroup>
     <PRIResource Remove="Converter\**" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Remove="Themes\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WUApiLib">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>b596cc9f-56e5-419e-a622-e01bb457431e</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\Logo\Atlaslogo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 </Project>

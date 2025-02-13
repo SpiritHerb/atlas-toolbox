@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Taken from https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Controls/TileGallery.xaml-->
 <UserControl
     x:Class="AtlasToolbox.Controls.TileGallery"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

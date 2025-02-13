@@ -37,7 +37,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(WINDOWS_UPADTE_KEY_NAME, SET_UPDATE_NOTIFICATION_LEVEL, 2, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(UX_SETTINGS_KEY_NAME, RESTART_NOTIFICATIONS_ALLOWED2, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _updateNotificationsConfigurationService.CurrentSetting = IsEnabled();
         }

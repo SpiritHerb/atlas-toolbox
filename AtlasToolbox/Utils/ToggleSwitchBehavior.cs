@@ -11,16 +11,14 @@ namespace AtlasToolbox
 
            if (sender is ToggleSwitch toggleSwitch)
            {
-               var item = toggleSwitch.DataContext as ConfigurationItemViewModel;
+               ConfigurationItemViewModel item = toggleSwitch.DataContext as ConfigurationItemViewModel;
                if (toggleSwitch.IsOn)
                {
                    item.CurrentSetting = true;
-                   //item.SaveConfigurationCommand.Execute(toggleSwitch);
                }
                else
                {
                    item.CurrentSetting = false;
-                   //item.SaveConfigurationCommand.Execute(toggleSwitch);
                }
            }
         }

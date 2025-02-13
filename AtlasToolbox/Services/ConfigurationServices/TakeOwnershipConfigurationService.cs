@@ -30,24 +30,23 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteKey(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME);
             RegistryHelper.DeleteKey(TAKE_OWNERSHIP_KEY_NAME);
             RegistryHelper.DeleteKey(RUNAS_KEY_NAME);
-            RegistryHelper.DeleteKey(ATLAS_STORE_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _takeOwnership.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
-            RegistryHelper.SetValue(TAKE_OWNERSHIP_KEY_NAME, "@", "Take Ownership", Microsoft.Win32.RegistryValueKind.String);    
+            RegistryHelper.SetValue(TAKE_OWNERSHIP_KEY_NAME, "", "Take Ownership", Microsoft.Win32.RegistryValueKind.String);    
             RegistryHelper.DeleteValue(TAKE_OWNERSHIP_KEY_NAME, "Extended");
             RegistryHelper.SetValue(TAKE_OWNERSHIP_KEY_NAME, "HasLUAShield", "", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(TAKE_OWNERSHIP_KEY_NAME, "NoWorkingDirectory", "", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(TAKE_OWNERSHIP_KEY_NAME, "NeverDefault", "", Microsoft.Win32.RegistryValueKind.String);
-            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
-            RegistryHelper.SetValue(TAKE_OWNERSHIP_COMMAND_KEY_NAME, "@", "PowerShell -windowstyle hidden -command \"Start-Process cmd -ArgumentList '/c takeown /f \\\"%1\\\" && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l & pause' -Verb runAs\"", Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(TAKE_OWNERSHIP_COMMAND_KEY_NAME, "", "PowerShell -windowstyle hidden -command \"Start-Process cmd -ArgumentList '/c takeown /f \\\"%1\\\" && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l & pause' -Verb runAs\"", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(TAKE_OWNERSHIP_COMMAND_KEY_NAME, "IsolatedCommand", "PowerShell -windowstyle hidden -command \"Start-Process cmd -ArgumentList '/c takeown /f \\\"%1\\\" && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l & pause' -Verb runAs\"", Microsoft.Win32.RegistryValueKind.String);
 
-            RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "@", "Take Ownership", Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "", "Take Ownership", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "AppliedTo", "NOT (System.ItemPathDisplay:=\"C:\\Users\" OR System.ItemPathDisplay:=\"C:\\ProgramData\" OR System.ItemPathDisplay:=\"C:\\Windows\" OR System.ItemPathDisplay:=\"C:\\Windows\\System32\" OR System.ItemPathDisplay:=\"C:\\Program Files\" OR System.ItemPathDisplay:=\"C:\\Program Files (x86)\")", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.DeleteValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "Extended");
             RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "HasLUAShield", "", Microsoft.Win32.RegistryValueKind.String);
@@ -55,10 +54,10 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "NeverDefault", "", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_KEY_NAME, "Position", "Middle", Microsoft.Win32.RegistryValueKind.String);
 
-            RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_COMMAND_KEY_NAME, "@", "PowerShell -windowstyle hidden -command \"$Y = ($null | choice).Substring(1,1); Start-Process cmd -ArgumentList ('/c takeown /f \\\"%1\\\" /r /d ' + $Y + ' && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l /q & pause') -Verb runAs\"", Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_COMMAND_KEY_NAME, "", "PowerShell -windowstyle hidden -command \"$Y = ($null | choice).Substring(1,1); Start-Process cmd -ArgumentList ('/c takeown /f \\\"%1\\\" /r /d ' + $Y + ' && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l /q & pause') -Verb runAs\"", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(TAKE_OWNERSHIP_DIRECTORY_COMMAND_KEY_NAME, "PowerShell -windowstyle hidden -command \"$Y = ($null | choice).Substring(1,1); Start-Process cmd -ArgumentList ('/c takeown /f \\\"%1\\\" /r /d ' + $Y + ' && icacls \\\"%1\\\" /grant *S-1-3-4:F /t /c /l /q & pause') -Verb runAs\"", Microsoft.Win32.RegistryValueKind.String);
 
-            RegistryHelper.SetValue(RUNAS_DRIVE_KEY_NAME, "@", "Take Ownership", Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(RUNAS_DRIVE_KEY_NAME, "", "Take Ownership", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(RUNAS_DRIVE_KEY_NAME, "AppliedTo", "NOT (System.ItemPathDisplay:=\"C:\\\")", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.DeleteValue(RUNAS_DRIVE_KEY_NAME, "Extended");
             RegistryHelper.SetValue(RUNAS_DRIVE_KEY_NAME, "HasLUAShield", "", Microsoft.Win32.RegistryValueKind.String);
@@ -66,9 +65,10 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(RUNAS_DRIVE_KEY_NAME, "NeverDefault", "", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(RUNAS_DRIVE_KEY_NAME, "Position", "Middle", Microsoft.Win32.RegistryValueKind.String);
 
-            RegistryHelper.SetValue(RUNAS_COMMAND_KEY_NAME, "@", "cmd.exe /c takeown /f \"%1\\\" /r /d y && icacls \"%1\\\" /grant *S-1-3-4:F /t /c & Pause", Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(RUNAS_COMMAND_KEY_NAME, "", "cmd.exe /c takeown /f \"%1\\\" /r /d y && icacls \"%1\\\" /grant *S-1-3-4:F /t /c & Pause", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(RUNAS_COMMAND_KEY_NAME, "cmd.exe /c takeown /f \"%1\\\" /r /d y && icacls \"%1\\\" /grant *S-1-3-4:F /t /c & Pause", Microsoft.Win32.RegistryValueKind.String);
 
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _takeOwnership.CurrentSetting = IsEnabled();
         }

@@ -25,27 +25,30 @@ public sealed partial class ConfigPage : Page
         Enum.TryParse(new ConfigurationType().GetType(), App.CurrentCategory, out configType);
         _viewModel.ShowForType((ConfigurationType)configType);
         this.DataContext = _viewModel;
+
+        ConfigurationType type = (ConfigurationType)configType;
+        TitleTxt.Text += type.GetDescription();
     }
     private void OnCardClicked(object sender, RoutedEventArgs e)
     {
-        var settingCard = sender as SettingsCard; 
-        var item = settingCard.DataContext as ConfigurationSubMenuViewModel;
+        SettingsCard settingCard = sender as SettingsCard;
+        ConfigurationSubMenuViewModel item = settingCard.DataContext as ConfigurationSubMenuViewModel;
 
-        var template = SubMenuItems.ItemTemplate;
+        DataTemplate template = SubMenuItems.ItemTemplate;
 
         Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template), new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
     }
 
     private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
     {
-        var toggleSwitch = sender as ToggleSwitch;
+        ToggleSwitch toggleSwitch = sender as ToggleSwitch;
         toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
     }
 
     private async void LinkCard_Click(object sender, RoutedEventArgs e)
     {
-        var linkCard = sender as SettingsCard;
-        var linkVM = linkCard.DataContext as LinksViewModel;
+        SettingsCard linkCard = sender as SettingsCard;
+        LinksViewModel linkVM = linkCard.DataContext as LinksViewModel;
         await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
     }
 }

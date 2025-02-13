@@ -1,6 +1,7 @@
 ﻿using AtlasToolbox.Services;
 using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Stores;
+using AtlasToolbox.Utils;
 using BcdSharp.Constants;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class AdvancedBootOptionsConfigurationService : IConfigurationService
     {
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AdvancedBootOptions";
+        private const string STATE_VALUE_NAME = "state";
+
         private readonly ConfigurationStore _advancedBootOptionsConfigurationStore;
         private readonly IBcdService _bcdService;
 
@@ -22,6 +26,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             _bcdService.DeleteElement(WellKnownObjectIdentifiers.GlobalSettings, WellKnownElementTypes.AdvancedOptions);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
             _advancedBootOptionsConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -29,15 +34,14 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             _bcdService.SetBooleanElement(WellKnownObjectIdentifiers.GlobalSettings, WellKnownElementTypes.AdvancedOptions, true);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
 
             _advancedBootOptionsConfigurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()
         {
-            object value = _bcdService.GetElementValue(WellKnownObjectIdentifiers.GlobalSettings, WellKnownElementTypes.AdvancedOptions);
-
-            return value is true;
+            return RegistryHelper.IsMatch(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
         }
     }
 }
