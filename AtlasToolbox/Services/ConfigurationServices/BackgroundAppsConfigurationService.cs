@@ -3,6 +3,7 @@ using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 
 namespace AtlasToolbox.Services.ConfigurationServices
@@ -29,6 +30,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(BACKGROUND_ACCESS_APPLICATION_KEY_NAME, GLOBAL_USER_DISABLED_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(SEARCH_KEY_NAME, BACKGROUND_APP_GLOBAL_TOGGLE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Background Apps\Disable Background Apps (default).cmd");
 
             _backgroundAppsConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -38,6 +40,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteValue(BACKGROUND_ACCESS_APPLICATION_KEY_NAME, GLOBAL_USER_DISABLED_VALUE_NAME);
             RegistryHelper.DeleteValue(SEARCH_KEY_NAME, BACKGROUND_APP_GLOBAL_TOGGLE_VALUE_NAME);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Background Apps\Enable Background Apps.cmd");
 
             _backgroundAppsConfigurationService.CurrentSetting = IsEnabled();
         }

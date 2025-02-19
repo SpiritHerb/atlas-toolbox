@@ -26,6 +26,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Disable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\AI Features\Microsoft Copilot\Disable Recall Support (default).cmd");
+
             RegistryHelper.SetValue(WINDOWS_AI_KEY_NAME, "DisableAIDataAnalysis", 01, Microsoft.Win32.RegistryValueKind.DWord);
             _recallConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -33,6 +35,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         public void Enable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\AI Features\Microsoft Copilot\Enable Recall Support.cmd");
+
             RegistryHelper.DeleteValue(WINDOWS_AI_KEY_NAME, "DisableAIDataAnalysis");
 
             _recallConfigurationStore.CurrentSetting = IsEnabled();
