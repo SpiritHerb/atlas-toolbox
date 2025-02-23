@@ -55,6 +55,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ADVANCED_EXPLORER_KEY_NAME, START_TRACK_DOCS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Unlock Recent Items\Disable Recent Items (default).cmd");
+
             CommandPromptHelper.RunCommand(@"call ""%windir%\AtlasModules\Scripts\settingsPages.cmd"" /hide privacy-general");
             CommandPromptHelper.RestartExplorer();
 
@@ -77,6 +79,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ADVANCED_EXPLORER_KEY_NAME, START_TRACK_DOCS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Unlock Recent Items\Enable Recent Items.cmd");
+
             CommandPromptHelper.RunCommand(@"call ""%windir%\AtlasModules\Scripts\settingsPages.cmd"" /unhide privacy-general");
             CommandPromptHelper.RestartExplorer();
         }

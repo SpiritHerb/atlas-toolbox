@@ -28,6 +28,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.DeleteValue(SYSTEM_POLICIES_KEY_NAME, VERBOSE_STATUS);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Verbose Status Messages\Disable Verbose Messages (default).cmd");
 
             _verboseStatusMessageConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -36,6 +37,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(SYSTEM_POLICIES_KEY_NAME, VERBOSE_STATUS, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Verbose Status Messages\Enable Verbose Messages.cmd");
 
             _verboseStatusMessageConfigurationService.CurrentSetting = IsEnabled();
         }

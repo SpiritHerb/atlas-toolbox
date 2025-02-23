@@ -35,6 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(SYSTEM_KEY_NAME, NO_CONNECTED_USER_VALUE_NAME, 1, RegistryValueKind.DWord);
             RegistryHelper.SetValue(WINDOWS_UPDATE_KEY_NAME, AUTO_DOWNLOAD_VALUE_NAME, 2, RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Mobile Devices (Phone Link)\Disable Mobile Device Settings (default).cmd");
 
             CommandPromptHelper.RunCommand(@"call %windir%\AtlasModules\Scripts\settingsPages.cmd /hide mobile-devices");
             CommandPromptHelper.RunCommand(@"powershell -NoP -NonI ""Get-AppxPackage -AllUsers Microsoft.YourPhone* | Remove-AppxPackage -AllUsers""");
@@ -48,6 +49,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteValue(CLOUD_CONTENT_KEY_NAME, DISABLE_WINDOWS_CONSUMER_FEATURES_VALUE_NAME);
             RegistryHelper.SetValue(WINDOWS_UPDATE_KEY_NAME, AUTO_DOWNLOAD_VALUE_NAME, 4, RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Mobile Devices (Phone Link)\Enable Mobile Device Settings.cmd");
 
             CommandPromptHelper.RunCommand(@"call %windir%\AtlasModules\Scripts\settingsPages.cmd /unhide mobile-devices");
 

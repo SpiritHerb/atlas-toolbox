@@ -36,6 +36,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(DSH_KEY_NAME, ALLOW_NEWS_AND_INTERESTS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Widgets (News and Interests)\Disable Widgets (default).cmd");
 
             CommandPromptHelper.RestartExplorer();
 
@@ -48,6 +49,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteValue(DSH_KEY_NAME, ALLOW_NEWS_AND_INTERESTS_VALUE_NAME);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Widgets (News and Interests)\Enable Widgets.cmd");
 
             CommandPromptHelper.RestartExplorer();
         }

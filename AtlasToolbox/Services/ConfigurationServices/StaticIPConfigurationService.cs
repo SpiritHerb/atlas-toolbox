@@ -27,6 +27,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\StaticIP\RevertStaticIP.cmd");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Static IP\Revert Static IP.cmd");
 
             _staticIPConfigurationService.CurrentSetting = IsEnabled();
             App.ContentDialogCaller("restart");
@@ -36,6 +37,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
             CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\StaticIP\AutomaticallySetStaticIP.cmd");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Static IP\Automatically Set Static IP (default).cmd");
 
             _staticIPConfigurationService.CurrentSetting = IsEnabled();
             App.ContentDialogCaller("restart");

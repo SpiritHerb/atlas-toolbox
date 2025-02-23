@@ -2,6 +2,7 @@
 using AtlasToolbox.Utils;
 using Microsoft.Dism;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.ServiceProcess;
 
@@ -46,6 +47,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             _dismService.DisableFeature(SMB_DIRECT_FEATURE_NAME);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Lanman Workstation (SMB)\Disable Lanman Workstation.cmd");
 
 
             _lanmanWorkstationConfigurationStore.CurrentSetting = IsEnabled();
@@ -64,6 +66,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             _dismService.EnableFeature(SMB_DIRECT_FEATURE_NAME);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Lanman Workstation (SMB)\Enable Lanman Workstation (default).cmd");
 
             _lanmanWorkstationConfigurationStore.CurrentSetting = IsEnabled();
         }

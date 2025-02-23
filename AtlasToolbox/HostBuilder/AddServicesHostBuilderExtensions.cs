@@ -112,7 +112,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, RecallSupportConfigurationService>("Recall");
                 services.AddKeyedTransient<IConfigurationService, ProcessExplorerConfigurationService>("ProcessExplorer");
                 services.AddKeyedTransient<IConfigurationService, VbsConfigurationService>("VbsState");
-                services.AddKeyedTransient<IConfigurationService, GiveAccessToMenu>("GiveAccessToMenu");
+                services.AddKeyedTransient<IConfigurationService, GiveAccessToMenuConfigurationService>("GiveAccessToMenu");
                 services.AddKeyedTransient<IConfigurationService, NetworkNavigationPaneConfigurationService>("NetworkNavigationPane");
                 services.AddKeyedTransient<IConfigurationService, FileSharingConfigurationService>("FileSharing");
             });

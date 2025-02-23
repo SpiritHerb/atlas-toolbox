@@ -29,12 +29,18 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             RegistryHelper.SetValue(KEY_KEY_NAME, SYSTEM_PINNED_VALUE_NAME, "0", Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\File Sharing\Network Navigation Pane\Disable Network Navigation Pane (default).cmd");
+
+            _configurationStore.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
             RegistryHelper.DeleteValue(KEY_KEY_NAME, SYSTEM_PINNED_VALUE_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\File Sharing\Network Navigation Pane\User Network Navigation Pane choice.cmd");
+
+            _configurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()

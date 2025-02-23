@@ -45,6 +45,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
                 RegistryHelper.SetValue(BLOCKED_KEY_NAME, value, "");
             }
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Context Menus\Extract\Remove Extract (default).cmd");
 
             _extractContextMenuConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -56,6 +57,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
                 RegistryHelper.DeleteValue(BLOCKED_KEY_NAME, value);
             }
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Context Menus\Extract\Add Extract.cmd");
 
             _extractContextMenuConfigurationService.CurrentSetting = IsEnabled();
         }

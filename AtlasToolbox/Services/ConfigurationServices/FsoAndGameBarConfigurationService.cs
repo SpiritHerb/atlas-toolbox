@@ -74,6 +74,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.SetValue(ENVIRONMENT_KEY_NAME, COMPAT_LAYER_VALUE_NAME, "~ DISABLEDXMAXIMIZEDWINDOWEDMODE");
             //RegistryHelper.SetValue(PRESENCE_WRITER_KEY_NAME, ACTIVATION_TYPE_VALUE_NAME, 0);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\FSO and Game Bar\Disable FSO and Game Bar Support.cmd");
 
             _fsoAndGameBarConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -100,6 +101,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             //RegistryHelper.DeleteValue(ENVIRONMENT_KEY_NAME, COMPAT_LAYER_VALUE_NAME);
             //RegistryHelper.SetValue(PRESENCE_WRITER_KEY_NAME, ACTIVATION_TYPE_VALUE_NAME, 1);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\FSO and Game Bar\Enable FSO and Game Bar Support (default).cmd");
 
             _fsoAndGameBarConfigurationStore.CurrentSetting = IsEnabled();
         }

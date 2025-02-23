@@ -26,6 +26,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             CommandPromptHelper.RunCommand("powercfg /h on");
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Hibernation\Disable Hibernation (default).cmd");
 
             _hibernationConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -35,6 +36,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             CommandPromptHelper.RunCommand("powercfg /h off");
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Hibernation\Enable Hibernation.cmd");
 
             _hibernationConfigurationStore.CurrentSetting = IsEnabled();
         }

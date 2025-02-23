@@ -29,6 +29,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             RegistryHelper.SetValue(FTH_KEY_NAME, "Enabled", 0, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\7. Security\Mitigations\Fault Tolerant Heap\Disable FTH (default).cmd");
 
             _faultTolerantHeapConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -37,6 +38,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(FTH_KEY_NAME, "Enabled", 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\7. Security\Mitigations\Fault Tolerant Heap\Enable FTH.cmd");
 
             _faultTolerantHeapConfigurationService.CurrentSetting = IsEnabled();
         }

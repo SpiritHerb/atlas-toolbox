@@ -27,6 +27,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(SYSTEM_RESTORE_KEY_NAME, DISABLE_SR_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\System Restore\Disable System Restore.cmd");
 
             _systemRestoreConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -35,6 +36,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.DeleteValue(SYSTEM_RESTORE_KEY_NAME, DISABLE_SR_VALUE_NAME);
             RegistryHelper.DeleteValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\System Restore\Enable System Restore (default).cmd");
 
             _systemRestoreConfigurationService.CurrentSetting = IsEnabled();
         }

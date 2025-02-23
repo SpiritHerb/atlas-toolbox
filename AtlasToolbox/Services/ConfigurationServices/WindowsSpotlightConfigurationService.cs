@@ -62,6 +62,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(NEW_START_PANEL_KEY_NAME, NEW_START_PANEL_NUMBERS_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Windows Spotlight\Disable Windows Spotlight (default).cmd");
 
             _windowsSpotlightConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -90,6 +91,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
             RegistryHelper.SetValue(NEW_START_PANEL_KEY_NAME, NEW_START_PANEL_NUMBERS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Windows Spotlight\Enable Windows Spotlight.cmd");
 
             _windowsSpotlightConfigurationService.CurrentSetting = IsEnabled();
 

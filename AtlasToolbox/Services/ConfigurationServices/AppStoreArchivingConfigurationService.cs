@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
+using System;
 
 namespace AtlasToolbox.Services.ConfigurationServices
 {
@@ -26,6 +27,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(APPX_KEY_NAME, ALLOW_AUTOMATIC_APP_ARCHIVING_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Store App Archiving\Disable Store App Archiving (default).cmd");
 
             _appStoreArchivingConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -35,6 +37,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(APPX_KEY_NAME, ALLOW_AUTOMATIC_APP_ARCHIVING_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Store App Archiving\Enable Store App Archiving.cmd");
 
             _appStoreArchivingConfigurationService.CurrentSetting = IsEnabled();
         }

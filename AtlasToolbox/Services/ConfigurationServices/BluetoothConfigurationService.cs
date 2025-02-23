@@ -3,6 +3,7 @@ using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.ServiceProcess;
 
@@ -57,6 +58,7 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(MICROSOFT_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Disabled);
             ServiceHelper.SetStartupType(RFCOMM_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Disabled);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Bluetooth\Disable Bluetooth.cmd");
 
             DeviceHelper.DisableDevice("%Bluetooth%");
 
@@ -82,6 +84,7 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(MICROSOFT_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Manual);
             ServiceHelper.SetStartupType(RFCOMM_BLUETOOTH_AVRCP_TRANSPORT_NAME, ServiceStartMode.Manual);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Bluetooth\Enable Bluetooth (default).cmd");
 
             DeviceHelper.EnableDevice("%Bluetooth%");
 

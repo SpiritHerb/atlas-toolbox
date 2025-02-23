@@ -36,6 +36,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(WINDOWS_UPADTE_KEY_NAME, SET_AUTO_RESTART_NOTIFICATION_DISABLE_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(WINDOWS_UPADTE_KEY_NAME, SET_UPDATE_NOTIFICATION_LEVEL, 2, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(UX_SETTINGS_KEY_NAME, RESTART_NOTIFICATIONS_ALLOWED2, 0, Microsoft.Win32.RegistryValueKind.DWord);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Update Notifications\Disable Update Notifications.cmd");
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
 
@@ -49,6 +50,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteValue(UX_SETTINGS_KEY_NAME, RESTART_NOTIFICATIONS_ALLOWED2);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Update Notifications\Enable Update Notifications (default).cmd");
 
             _updateNotificationsConfigurationService.CurrentSetting = IsEnabled();
         }

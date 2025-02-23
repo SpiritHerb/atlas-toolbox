@@ -10,7 +10,7 @@ using Windows.ApplicationModel.Activation;
 
 namespace AtlasToolbox.Services.ConfigurationServices
 {
-    public class GiveAccessToMenu : IConfigurationService
+    public class GiveAccessToMenuConfigurationService : IConfigurationService
     {
         private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\GiveAccessToMenu";
         private const string STATE_VALUE_NAME = "state";
@@ -26,7 +26,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         private readonly ConfigurationStore _configurationStore;
 
-        public GiveAccessToMenu(
+        public GiveAccessToMenuConfigurationService(
             [FromKeyedServices("GiveAccessToMenu")] ConfigurationStore configurationStore)
         {
             _configurationStore = configurationStore;
@@ -41,6 +41,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(SHARING_4_KEY_NAME, string.Empty, VALUE_VALUE_NAME);
             RegistryHelper.SetValue(SHARING_5_KEY_NAME, string.Empty, VALUE_VALUE_NAME);
             RegistryHelper.SetValue(SHARING_6_KEY_NAME, string.Empty, VALUE_VALUE_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\File Sharing\Give Access To Menu\Disable Give Access To Menu (default).cmd");
+
+            _configurationStore.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
@@ -52,6 +55,9 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteKey(SHARING_4_KEY_NAME);
             RegistryHelper.DeleteKey(SHARING_5_KEY_NAME);
             RegistryHelper.DeleteKey(SHARING_6_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\File Sharing\Give Access To Menu\Enable Give Access To Menu.cmd");
+
+            _configurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()
