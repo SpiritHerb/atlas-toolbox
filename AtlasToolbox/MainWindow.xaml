@@ -76,8 +76,8 @@
                         IsOpen="True"
                         IsIconVisible="True"
                         IsClosable="False"
-                        Title="Alpha Version"
-                        Message="This application is currently in an Alpha version. If you find bugs, or want to suggest a feature, please give feedback on the Discord. Features are subject to change." />
+                        Title="Beta Version"
+                        Message="This application is currently in a Beta version. If you find bugs, or want to suggest a feature, please give feedback on the Discord. Features are subject to change." />
                 </StackPanel>
             </NavigationView.PaneFooter>
 
