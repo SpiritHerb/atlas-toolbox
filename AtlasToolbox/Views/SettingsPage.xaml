@@ -1,39 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Page
     x:Class="AtlasToolbox.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AtlasToolbox.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AtlasToolbox.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Page.Resources>
         <Style x:Key="CategoryTitle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Margin" Value="0 0 0 10"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,10" />
         </Style>
     </Page.Resources>
-    <StackPanel Margin="55 0 0 0">
+    <StackPanel Margin="55,0,0,0">
 
         <TextBlock
-             Grid.Row="0"
-             x:Name="TitleTxt"
-             Margin="0,24,36,24"
-             Style="{StaticResource TitleTextBlockStyle}"
-            Text="Settings"/>
-        <StackPanel Grid.Row="1" x:Name="SettingToggles">
+            x:Name="TitleTxt"
+            Grid.Row="0"
+            Margin="0,24,36,24"
+            Style="{StaticResource TitleTextBlockStyle}"
+            Text="Settings" />
+        <StackPanel x:Name="SettingToggles" Grid.Row="1">
             <StackPanel x:Name="BehaviorSettings">
-                <TextBlock Style="{StaticResource CategoryTitle}" Text="Behavior"/>
-                <controls:SettingsCard Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="Keep the Toolbox in the background">
-                    <ToggleSwitch Toggled="KeepBackground_Toggled" IsOn="{x:Bind KeepBackground_State}"/>
+                <TextBlock Style="{StaticResource CategoryTitle}" Text="Behavior" />
+                <controls:SettingsCard Header="Keep the Toolbox in the background" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                    <ToggleSwitch IsOn="{x:Bind KeepBackground_State}" Toggled="KeepBackground_Toggled" />
                 </controls:SettingsCard>
             </StackPanel>
             <StackPanel>
-                <TextBlock Style="{StaticResource CategoryTitle}" Text="About"/>
-                <controls:SettingsExpander Style="{StaticResource ConfigurationSettingsExpanderTemplate}" Description="© 2024 Microsoft. All rights reserved." Header="AtlasOS Toolbox" >
+                <TextBlock Style="{StaticResource CategoryTitle}" Text="About" />
+                <controls:SettingsExpander
+                    Description="© 2024 Microsoft. All rights reserved."
+                    Header="AtlasOS Toolbox"
+                    Style="{StaticResource ConfigurationSettingsExpanderTemplate}">
                     <controls:SettingsExpander.HeaderIcon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="/Assets/Logo/Atlaslogo.png" />
                     </controls:SettingsExpander.HeaderIcon>
@@ -43,42 +46,42 @@
                         Text="{x:Bind Version}" />
                     <controls:SettingsExpander.Items>
                         <controls:SettingsCard
-                                x:Name="toCloneRepoCard"
-                                Header="Clone this repository"
-                                Click="toCloneRepoCard_Click"
-                                IsClickEnabled="True">
+                            x:Name="toCloneRepoCard"
+                            Click="toCloneRepoCard_Click"
+                            Header="Clone this repository"
+                            IsClickEnabled="True">
                             <TextBlock
                                 x:Name="gitCloneTextBlock"
                                 FontFamily="Consolas"
                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                 IsTextSelectionEnabled="True"
-                                Text="git clone https://github.com/Atlas-OS/atlas-toolbox"/>
+                                Text="git clone https://github.com/Atlas-OS/atlas-toolbox" />
                             <controls:SettingsCard.ActionIcon>
                                 <FontIcon Glyph="&#xE8C8;" />
                             </controls:SettingsCard.ActionIcon>
                         </controls:SettingsCard>
                         <controls:SettingsCard
                             x:Name="bugRequestCard"
-                            Header="File a bug report"
                             Click="bugRequestCard_Click"
+                            Header="File a bug report"
                             IsClickEnabled="True">
                             <controls:SettingsCard.ActionIcon>
                                 <FontIcon Glyph="&#xE8A7;" />
                             </controls:SettingsCard.ActionIcon>
                         </controls:SettingsCard>
                         <controls:SettingsCard
-                                HorizontalContentAlignment="Left"
-                                ContentAlignment="Vertical"
-                                Header="Dependencies &amp; references">
+                            HorizontalContentAlignment="Left"
+                            ContentAlignment="Vertical"
+                            Header="Dependencies &amp; references">
                             <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                 <HyperlinkButton Content="Windows UI Library" NavigateUri="https://learn.microsoft.com/en-us/windows/apps/winui/winui3/" />
                                 <HyperlinkButton Content="Windows Community Toolkit" NavigateUri="https://github.com/CommunityToolkit/WindowsCommunityToolkit" />
                             </StackPanel>
                         </controls:SettingsCard>
                         <controls:SettingsCard
-                                HorizontalContentAlignment="Left"
-                                ContentAlignment="Vertical"
-                                Header="This code is provided by the AtlasOS team. This software is meant to be used with AtlasOS on a suppoorted Windows version ONLY. Any other playbook and/or unsupported Windows version is not advised.">
+                            HorizontalContentAlignment="Left"
+                            ContentAlignment="Vertical"
+                            Header="This code is provided by the AtlasOS team. This software is meant to be used with AtlasOS on a suppoorted Windows version ONLY. Any other playbook and/or unsupported Windows version is not advised.">
                             <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                 <HyperlinkButton Content="AtlasOS GitHub" NavigateUri="https://github.com/Atlas-OS/" />
                                 <HyperlinkButton Content="AtlasOS Website" NavigateUri="https://atlasos.net" />

@@ -1,47 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Page
     x:Class="AtlasToolbox.SoftwarePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AtlasToolbox"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodel="using:AtlasToolbox.ViewModels" 
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AtlasToolbox"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:CommunityToolkit.WinUI"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodel:SoftwarePageViewModel}"
     mc:Ignorable="d">
-    <Grid Margin="55 0 0 0">
+    <Grid Margin="55,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
-            Grid.Row="0"
             x:Name="TitleTxt"
+            Grid.Row="0"
             Margin="0,24,36,24"
             Style="{StaticResource TitleTextBlockStyle}"
-            Text="Install Software"/>
+            Text="Install Software" />
         <StackPanel Grid.Row="1">
-            <ScrollView Height="550" VerticalAlignment="Top" Grid.Row="1">
+            <ScrollView
+                Grid.Row="1"
+                Height="550"
+                VerticalAlignment="Top">
                 <StackPanel>
                     <ItemsControl ItemsSource="{Binding SoftwareItemViewModels}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <controls:SettingsCard x:Name="SettingsCard" Style="{StaticResource ConfigurationSettingsCardTemplate}" Header="{Binding Name}" HorizontalContentAlignment="Right"
-                                        HeaderIcon="{Binding BitMapIcon}">
-                                    <CheckBox Margin="0 0 -75 0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                                <controls:SettingsCard
+                                    x:Name="SettingsCard"
+                                    HorizontalContentAlignment="Right"
+                                    Header="{Binding Name}"
+                                    HeaderIcon="{Binding BitMapIcon}"
+                                    Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                    <CheckBox
+                                        Margin="0,0,-75,0"
+                                        Checked="CheckBox_Checked"
+                                        Unchecked="CheckBox_Unchecked" />
                                 </controls:SettingsCard>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
             </ScrollView>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 40" x:Name="ProgressRingStackPanel" Orientation="Vertical" Visibility="Collapsed">
-                <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center"/>
-                <ProgressBar HorizontalAlignment="Left" Width="130" x:Name="DownloadingProgressBar"/>
+            <StackPanel
+                x:Name="ProgressRingStackPanel"
+                Grid.Row="1"
+                Margin="0,0,0,40"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Orientation="Vertical"
+                Visibility="Collapsed">
+                <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center" />
+                <ProgressBar
+                    x:Name="DownloadingProgressBar"
+                    Width="130"
+                    HorizontalAlignment="Left" />
             </StackPanel>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 36 36 40" Click="Button_Click">Install</Button>
+            <Button
+                Margin="0,36,36,40"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="Button_Click">
+                Install
+            </Button>
         </StackPanel>
     </Grid>
 </Page>
