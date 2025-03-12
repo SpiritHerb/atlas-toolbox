@@ -34,6 +34,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_BAR_VALUE_NAME, 0, RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Snap Layouts\Disable Snap Layout.cmd");
 
             _snapLayoutsConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -44,6 +45,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ADVANCED_KEY_NAME, ENABLE_SNAP_BAR_VALUE_NAME, 1, RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Snap Layouts\Enable Snap Layout (default).cmd");
 
             _snapLayoutsConfigurationService.CurrentSetting = IsEnabled();
         }

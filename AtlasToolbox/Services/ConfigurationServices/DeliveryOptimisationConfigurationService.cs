@@ -29,6 +29,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(DELIVERY_OPTIMIZATION_KEY_NAME, DO_DOWNLOAD_MODE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Delivery Optimization\Disable Delivery Optimization (default).cmd");
 
             _deliveryOptimisationConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -37,6 +38,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.DeleteValue(DELIVERY_OPTIMIZATION_KEY_NAME, DO_DOWNLOAD_MODE_VALUE_NAME);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Delivery Optimization\Enable Delivery Optimization.cmd");
 
             _deliveryOptimisationConfigurationStore.CurrentSetting = IsEnabled();
         }

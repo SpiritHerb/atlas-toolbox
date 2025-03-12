@@ -26,6 +26,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(EXPLORER_KEY_NAME, SHORTCUT_NAME_TEMPLATE_VALUE_NAME, "\"%s.lnk\"");
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Shortcut Text\Disable Shortcut Text (default).cmd");
 
             _shortcutTextConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -34,6 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.DeleteValue(EXPLORER_KEY_NAME, SHORTCUT_NAME_TEMPLATE_VALUE_NAME);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Shortcut Text\Enable Shortcut Text.cmd");
 
             _shortcutTextConfigurationStore.CurrentSetting = IsEnabled();
         }

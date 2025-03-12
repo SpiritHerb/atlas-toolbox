@@ -28,6 +28,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             RegistryHelper.MergeRegFile(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\SecurityHealthTray\RemoveTray.reg");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\7. Security\Defender\Security Health Tray\Remove Security Tray from Startup (default).cmd");
 
             _securityHealthTrayConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -36,6 +37,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
             RegistryHelper.MergeRegFile(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\SecurityHealthTray\AddTray.reg");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\7. Security\Defender\Security Health Tray\Add Security Tray from Startup.cmd");
 
             _securityHealthTrayConfigurationService.CurrentSetting = IsEnabled();
         }

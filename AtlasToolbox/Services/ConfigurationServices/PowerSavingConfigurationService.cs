@@ -28,6 +28,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             CommandPromptHelper.RunCommand($@"powershell -EP Bypass -NoP ^& """"""$env:{DISABLE_POWER_SAVING_SCRIPT_PATH_NAME}"""""" %*");
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Power-saving\Default Power-saving (default).cmd");
 
             _powerSavingConfigurationStore.CurrentSetting = IsEnabled();
 
@@ -37,6 +38,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             CommandPromptHelper.RunCommand($@"powershell -EP Bypass -NoP ^& """"""$env:{DEFAULT_POWER_SAVING_SCRIPT_PATH_NAME}"""""" %*");
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Power-saving\Disable Power-saving.cmd");
 
             _powerSavingConfigurationStore.CurrentSetting = IsEnabled();
 

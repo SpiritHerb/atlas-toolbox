@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
+using CommunityToolkit.WinUI;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.Devices.PointOfService;
 
@@ -26,12 +27,18 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasModules\Toolbox\ConfigurationServices\FileSharing\disable.cmd", false);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\File Sharing\Disable File Sharing (default).cmd");
+
+            _configurationStore.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasModules\Toolbox\ConfigurationServices\FileSharing\enable.cmd", false);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\File Sharing\Enable File Sharing.cmd");
+
+            _configurationStore.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()

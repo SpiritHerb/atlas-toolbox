@@ -69,6 +69,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             CommandPromptHelper.RunCommand(REMOVE_PACKAGE_BING_COMMAND_NAME);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Web Search (includes Search Highlights)\Disable Web Search (default).cmd");
 
             _webSearchConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -89,6 +90,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(SEARCH_SETTINGS_KEY_NAME, IS_DYNAMIC_SEARCH_BOX_ENABLED_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Web Search (includes Search Highlights)\Enable Web Search.cmd");
+            CommandPromptHelper.RunCommand(INSTALL_BING_COMMAND_NAME);
 
             CommandPromptHelper.RunCommand(INSTALL_BING_COMMAND_NAME);
             CommandPromptHelper.RunCommand(TASKKILL_SEARCHHOST_COMMAND_NAME);

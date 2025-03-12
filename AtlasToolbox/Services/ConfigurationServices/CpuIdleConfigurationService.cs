@@ -25,6 +25,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand("powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 1");
             CommandPromptHelper.RunCommand("powercfg /setactive scheme_current");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\CPU Idle\Disable Idle.cmd");
 
             _cpuIdle.CurrentSetting = IsEnabled();
         }
@@ -34,6 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
             CommandPromptHelper.RunCommand("powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0");
             CommandPromptHelper.RunCommand("powercfg /setactive scheme_current");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\CPU Idle\Enable Idle (default).cmd");
 
             _cpuIdle.CurrentSetting = IsEnabled();
         }

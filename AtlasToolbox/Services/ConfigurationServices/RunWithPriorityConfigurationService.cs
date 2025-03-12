@@ -44,6 +44,8 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.DeleteKey(PRIORITY_KEY_NAME);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Context Menus\Run With Priority\Remove Run With Priority In Context Menu (default).cmd");
+
         }
 
         public void Enable()
@@ -64,6 +66,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(SIX_COMMAND_KEY_NAME, "", "cmd /c start \"\" /Low \"%1\"");
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Context Menus\Run With Priority\Add Run With Priority In Context Menu.cmd");
         }
 
         public bool IsEnabled()

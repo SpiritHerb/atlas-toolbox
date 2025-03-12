@@ -1,6 +1,7 @@
 ﻿using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.ServiceProcess;
 
@@ -49,6 +50,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(NLASVC_SERVICE_NAME, ServiceStartMode.Automatic);
             ServiceHelper.SetStartupType(SSDPSRV_SERVICE_NAME, ServiceStartMode.Disabled);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Network Discovery\Disable Network Discovery Services.cmd");
 
 
             _networkDiscoveryConfigurationStore.CurrentSetting = IsEnabled();
@@ -69,6 +71,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             ServiceHelper.SetStartupType(NLASVC_SERVICE_NAME, ServiceStartMode.Automatic);
             ServiceHelper.SetStartupType(SSDPSRV_SERVICE_NAME, ServiceStartMode.Manual);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Network Discovery\Enable Network Discovery Services (default).cmd");
 
             _networkDiscoveryConfigurationStore.CurrentSetting = IsEnabled();
         }

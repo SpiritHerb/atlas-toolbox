@@ -44,6 +44,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(FIND_MY_DEVICE_KEY_NAME, LOCATION_SYNC_ENABLED_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(LOCATION_KEY_NAME, SHOW_GLOBAL_PROMPTS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Location\Disable Location (default).cmd");
 
             CommandPromptHelper.RunCommand("sc stop lfscv");
             CommandPromptHelper.RunCommand("sc stop MapsBroker");
@@ -61,6 +62,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteKey(FIND_MY_DEVICE_KEY_NAME);
             RegistryHelper.SetValue(LOCATION_KEY_NAME, SHOW_GLOBAL_PROMPTS_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Location\Enable Location.cmd");
 
             CommandPromptHelper.RunCommand("sc start lfscv");
             CommandPromptHelper.RunCommand("sc start MapsBroker");

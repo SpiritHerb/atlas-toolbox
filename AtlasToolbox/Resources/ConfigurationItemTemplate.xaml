@@ -24,10 +24,13 @@
     </Style>
 
     <Style x:Key="ConfigurationSettingsCardTemplate" TargetType="controls:SettingsCard">
-        <!--<Setter Property="Header" Value="{Binding Name}" />-->
         <Setter Property="Margin" Value="0,0,36,10" />
         <Setter Property="BorderBrush" Value="#0DFFFFFF"/>
-        <!--<Setter Property="Description" Value="{Binding RiskRating}"/>-->
+    </Style>
+
+    <Style x:Key="ConfigurationSettingsExpanderTemplate" TargetType="controls:SettingsExpander">
+        <Setter Property="Margin" Value="0,0,36,10" />
+        <Setter Property="BorderBrush" Value="#0DFFFFFF"/>
     </Style>
 
     <Style x:Key="ConfigurationSubSetting" TargetType="controls:SettingsCard">

@@ -31,6 +31,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.DeleteKey(TAKE_OWNERSHIP_KEY_NAME);
             RegistryHelper.DeleteKey(RUNAS_KEY_NAME);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Context Menus\Take Ownership\Remove Take Ownership to Context Menu (default).cmd");
 
             _takeOwnership.CurrentSetting = IsEnabled();
         }
@@ -69,6 +70,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(RUNAS_COMMAND_KEY_NAME, "cmd.exe /c takeown /f \"%1\\\" /r /d y && icacls \"%1\\\" /grant *S-1-3-4:F /t /c & Pause", Microsoft.Win32.RegistryValueKind.String);
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\Context Menus\Take Ownership\Add Take Ownership to Context Menu.cmd");
 
             _takeOwnership.CurrentSetting = IsEnabled();
         }

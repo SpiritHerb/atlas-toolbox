@@ -33,6 +33,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             RegistryHelper.DeleteKey(NVIDIA_CONTAINER_KEY_NAME);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\NVIDIA Display Container\Context Menu\Remove Container Context Menu (default).cmd");
 
             _addNvidiaDisplayContainerContextMenuConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -51,6 +52,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             RegistryHelper.SetValue(NVIDIA_CONTAINER_002_KEY_NAME, "HasLUAShield", "", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(NVIDIA_CONTAINER_002_KEY_NAME, "MUIVerb", "Disable NVIDIA Display Container LS", Microsoft.Win32.RegistryValueKind.String);
             RegistryHelper.SetValue(NVIDIA_CONTAINER_002_COMMAND_KEY_NAME, "", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\NVidia\DisableNVIDIADisplayContainerLS.cmd", Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\NVIDIA Display Container\Context Menu\Add Container Context Menu.cmd");
 
             CommandPromptHelper.RestartExplorer();
 

@@ -33,6 +33,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             CommandPromptHelper.RunCommand(@"powercfg /setacvalueindex scheme_current 2e601130-5351-4d9d-8e04-252966bad054 d502f7ee-1dc7-4efd-a55d-f04b6f5c0545 0");
             CommandPromptHelper.RunCommand(@"powercfg /setactive scheme_current");
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Sleep\Disable Sleep.cmd");
 
             _sleepConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -47,6 +48,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             CommandPromptHelper.RunCommand(@"powercfg /setacvalueindex scheme_current 2e601130-5351-4d9d-8e04-252966bad054 d502f7ee-1dc7-4efd-a55d-f04b6f5c0545 1");
             CommandPromptHelper.RunCommand(@"powercfg /setactive scheme_currernt");
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\3. General Configuration\Sleep\Enable Sleep (default)cmd");
 
             _sleepConfigurationService.CurrentSetting = IsEnabled();
         }

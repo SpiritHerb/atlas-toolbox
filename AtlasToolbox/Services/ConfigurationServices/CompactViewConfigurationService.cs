@@ -1,4 +1,5 @@
-﻿using AtlasToolbox.Stores;
+﻿using System;
+using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +26,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ADVANCED_KEY_NAME, USE_COMPACT_MODE_VALUE_NAME, 0);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Automatic Folder Discovery\Disable Compact View.cmd");
 
             _compactViewConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -33,6 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ADVANCED_KEY_NAME, USE_COMPACT_MODE_VALUE_NAME, 1);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Compact View\Enable Compact View (default).cmd");
 
             _compactViewConfigurationStore.CurrentSetting = IsEnabled();
         }

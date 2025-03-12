@@ -1,6 +1,7 @@
 ﻿using AtlasToolbox.Stores;
 using AtlasToolbox.Utils;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
@@ -35,6 +36,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             }
 
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Removable Drives in Siderbar\Disable Removable Drives in Sidebar (default).cmd");
 
             _removableDrivesInSidebarConfigurationStore.CurrentSetting = IsEnabled();
         }
@@ -46,6 +48,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
                 RegistryHelper.SetValue(keyName, string.Empty, "Removable Drives");
             }
                 RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Removable Drives in Siderbar\Enable Removable Drives in Sidebar.cmd");
 
             _removableDrivesInSidebarConfigurationStore.CurrentSetting = IsEnabled();
         }

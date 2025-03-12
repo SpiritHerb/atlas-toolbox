@@ -31,12 +31,18 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(LONG_STRING_KEY_NAME, IS_PINNED_TO_NAME_SPACE_TREE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Gallery\Disable Gallery (default).cmd");
+
+            _galleryConfigurationService.CurrentSetting = IsEnabled();
         }
 
         public void Enable()
         {
             RegistryHelper.SetValue(LONG_STRING_KEY_NAME, IS_PINNED_TO_NAME_SPACE_TREE_VALUE_NAME, 1, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Gallery\Enable Gallery.cmd");
+
+            _galleryConfigurationService.CurrentSetting = IsEnabled();
         }
 
         public bool IsEnabled()

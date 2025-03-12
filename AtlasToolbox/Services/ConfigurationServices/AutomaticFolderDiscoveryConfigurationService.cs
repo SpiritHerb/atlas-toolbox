@@ -30,6 +30,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.DeleteValue(SHELL_KEY_NAME, FOLDER_TYPE_VALUE_NAME);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Automatic Folder Discovery\Disable Automatic Folder Discovery (default).cmd");
 
             _automaticFolderDiscoveryConfigurationService.CurrentSetting = IsEnabled();
         }
@@ -38,6 +39,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(SHELL_KEY_NAME, FOLDER_TYPE_VALUE_NAME, 0, Microsoft.Win32.RegistryValueKind.DWord);
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\4. Interface Tweaks\File Explorer Customization\Automatic Folder Discovery\Enable Automatic Folder Discovery.cmd");
 
             _automaticFolderDiscoveryConfigurationService.CurrentSetting = IsEnabled();
         }

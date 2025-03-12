@@ -84,6 +84,7 @@ namespace AtlasToolbox
             {
                 App.CurrentCategory = "SettingsItem";
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
+                return;
             }
             else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.SoftwarePage")
             {
@@ -93,7 +94,6 @@ namespace AtlasToolbox
                        null,
                        new DrillInNavigationTransitionInfo()
                        );
-                App.XamlRoot = this.Content.XamlRoot;
             }
             else if (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage")
             {
@@ -102,7 +102,6 @@ namespace AtlasToolbox
                        new ConfigPage().GetType(),
                        null,
                        new DrillInNavigationTransitionInfo());
-                App.XamlRoot = this.Content.XamlRoot;
             }
             else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage")
             {
@@ -112,8 +111,8 @@ namespace AtlasToolbox
                        newPage,
                        null,
                        new DrillInNavigationTransitionInfo());
-                App.XamlRoot = this.Content.XamlRoot;
             }
+            App.XamlRoot = this.Content.XamlRoot;
         }
 
         private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)

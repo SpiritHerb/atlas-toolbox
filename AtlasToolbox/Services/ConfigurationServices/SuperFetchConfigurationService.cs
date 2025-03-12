@@ -25,6 +25,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 0);
             CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\SuperFetch\DisableSuperFetch.cmd");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Superfetch\Disable SuperFetch.cmd");
 
             _superFetchConfigurationService.CurrentSetting = IsEnabled();
             App.ContentDialogCaller("restart");
@@ -34,6 +35,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
         {
             RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME, 1);
             CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\SuperFetch\DisableSuperFetch.cmd");
+            RegistryHelper.SetValue(ATLAS_STORE_KEY_NAME, "path", @$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Services\Superfetch\Enable SuperFetch (default).cmd");
 
             _superFetchConfigurationService.CurrentSetting = IsEnabled();
             App.ContentDialogCaller("restart");
