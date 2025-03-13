@@ -1,4 +1,5 @@
 ﻿using AtlasToolbox.Enums;
+using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.Models
 {
@@ -8,13 +9,16 @@ namespace AtlasToolbox.Models
         public string Key { get; set; }
         public ConfigurationType Type { get; set; }
         public RiskRating RiskRating { get; set; }
+        public FontIcon Icon { get; set; }
 
-        public Configuration(string name, string key, ConfigurationType type, RiskRating riskRating)
+        public Configuration(string name, string key, ConfigurationType type, RiskRating riskRating, string icon = "\uE897")
         {
             Name = name;
             Key = key;
             Type = type;
             RiskRating = riskRating;
+            Icon = new FontIcon();
+            Icon.Glyph = icon;
         }
     }
 }

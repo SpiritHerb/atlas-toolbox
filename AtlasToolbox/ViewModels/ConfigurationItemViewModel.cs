@@ -21,7 +21,7 @@ namespace AtlasToolbox.ViewModels
         public string Name => Configuration.Name;
         public string Key => Configuration.Key;
         public ConfigurationType Type => Configuration.Type;
-
+        public FontIcon Icon => Configuration.Icon;
         public Color Color { get; set; }
 
         private bool _currentSetting;
@@ -75,12 +75,12 @@ namespace AtlasToolbox.ViewModels
             _configurationService = configurationService;
             Configuration = configuration;
 
-            Task.Run(() =>
-            {
-                Color = SetColor(Configuration.RiskRating);
-                _currentSetting = FetchCurrentSetting();
-                //RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
-            });
+            //Task.Run(() =>
+            //{
+            //    Color = SetColor(Configuration.RiskRating);
+            //    _currentSetting = FetchCurrentSetting();
+            //    RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
+            //});
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
             
         }
