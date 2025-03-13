@@ -3,6 +3,7 @@ using AtlasToolbox.Models;
 using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Services.ConfigurationSubMenu;
 using AtlasToolbox.Stores;
+using Microsoft.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 
 namespace AtlasToolbox.ViewModels
@@ -21,6 +22,7 @@ namespace AtlasToolbox.ViewModels
         public string Name => _configurationSubMenu.Name;
         public string Description => _configurationSubMenu.Description;
         public ConfigurationType Type => _configurationSubMenu.Type;
+        public FontIcon Icon => _configurationSubMenu.Icon;
 
         public ConfigurationSubMenuViewModel() { }
 

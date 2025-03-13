@@ -18,13 +18,13 @@ namespace AtlasToolbox.ViewModels
         public MultiOptionConfiguration Configuration { get; set; }
         public string Name => Configuration.Name;
         public ConfigurationType Type => Configuration.Type;
+        public FontIcon Icon => Configuration.Icon;
 
         public List<string> Options => _configurationStore.Options; 
         public string Key => Configuration.Key;
 
         public Color Color { get; set; }
 
-        //public string RiskRatingIcon { get; set; }
 
         private string _currentSetting;
 
@@ -67,19 +67,6 @@ namespace AtlasToolbox.ViewModels
             return Color.FromArgb(255, 0, 176, 80);
         }
 
-        //public string RiskRatingFormatter(RiskRating riskRating)
-        //{
-        //    switch (riskRating)
-        //    {
-        //        case RiskRating.HighRisk:
-        //            return "\uE783";
-        //        case RiskRating.MediumRisk:
-        //            return "\uE7BA";
-        //        default:
-        //            return null;
-        //    }
-        //}
-
         public MultiOptionConfigurationItemViewModel(
             MultiOptionConfiguration configuration,
             MultiOptionConfigurationStore configurationStore,
@@ -90,8 +77,8 @@ namespace AtlasToolbox.ViewModels
             _configurationStore = configurationStore;
             _configurationService = configurationService;
 
-            _currentSetting = FetchCurrentSetting();
-            Color = SetColor(Configuration.RiskRating);
+            //_currentSetting = FetchCurrentSetting();
+            //Color = SetColor(Configuration.RiskRating);
             //RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
 
             MultiOptionSaveConfigurationCommand = new MultiOptionSaveConfigurationCommand(this, configurationStore, configurationService);
