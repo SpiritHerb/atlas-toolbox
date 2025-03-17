@@ -1,4 +1,5 @@
 ﻿using AtlasToolbox.Enums;
+using FluentIcons.WinUI;
 using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.Models
@@ -9,16 +10,17 @@ namespace AtlasToolbox.Models
         public string Key { get; set; }
         public ConfigurationType Type { get; set; }
         public RiskRating RiskRating { get; set; }
-        public FontIcon Icon { get; set; }
+        public FluentIcon Icon { get; set; }
 
-        public Configuration(string name, string key, ConfigurationType type, RiskRating riskRating, string icon = "\uE897")
+        public Configuration(string name, string key, ConfigurationType type, RiskRating riskRating, FluentIcons.Common.Icon icon = FluentIcons.Common.Icon.Question)
         {
             Name = name;
             Key = key;
             Type = type;
             RiskRating = riskRating;
-            Icon = new FontIcon();
-            Icon.Glyph = icon;
+            Icon = new FluentIcon();
+            Icon.IconSize = FluentIcons.Common.IconSize.Size48;
+            Icon.Icon = icon;
         }
     }
 }
