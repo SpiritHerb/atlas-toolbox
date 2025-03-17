@@ -10,6 +10,7 @@ namespace AtlasToolbox.ViewModels
 {
     class ConfigPageViewModel : ObservableObject
     {
+        // If there is a better way to do this, it should be done. This is probably less than ideal
         private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
         private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
         private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
