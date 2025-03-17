@@ -47,7 +47,7 @@
                                     <ComboBox
                                         x:Name="ConfigSwitch"
                                         ItemsSource="{Binding Options}"
-                                        SelectedItem="{Binding CurrentSetting, Mode=OneWay}" />
+                                        SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" />
                                 </controls:SettingsCard>
                                 <!--<Border Width="5" HorizontalAlignment="Left" CornerRadius="3 0 0 3" Margin="0 0 0 10">
                                     <Border.Background>
