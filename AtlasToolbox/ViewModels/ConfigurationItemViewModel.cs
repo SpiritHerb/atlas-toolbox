@@ -75,10 +75,10 @@ namespace AtlasToolbox.ViewModels
             _configurationService = configurationService;
             Configuration = configuration;
 
+            _currentSetting = FetchCurrentSetting();
             //Task.Run(() =>
             //{
             //    Color = SetColor(Configuration.RiskRating);
-            //    _currentSetting = FetchCurrentSetting();
             //    RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
             //});
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
