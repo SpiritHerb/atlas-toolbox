@@ -77,7 +77,7 @@ namespace AtlasToolbox.ViewModels
             _configurationStore = configurationStore;
             _configurationService = configurationService;
 
-            //_currentSetting = FetchCurrentSetting();
+            _currentSetting = FetchCurrentSetting();
             //Color = SetColor(Configuration.RiskRating);
             //RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
 
