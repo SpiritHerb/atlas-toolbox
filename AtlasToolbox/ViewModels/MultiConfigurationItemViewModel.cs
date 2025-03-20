@@ -50,22 +50,22 @@ namespace AtlasToolbox.ViewModels
             }
         }
 
-
         public ICommand MultiOptionSaveConfigurationCommand { get; }
 
-        public Color SetColor(RiskRating riskRating)
-        {
-            switch (riskRating)
-            {
-                case RiskRating.HighRisk:
-                    return Color.FromArgb(255, 255, 0, 0);
-                case RiskRating.MediumRisk:
-                    return Color.FromArgb(255, 255, 255, 0);
-                case RiskRating.LowRisk:
-                    return Color.FromArgb(255, 0, 176, 80);
-            }
-            return Color.FromArgb(255, 0, 176, 80);
-        }
+        // Temporarily commented until a more consistent defenition for what a risk is is found
+        //public Color SetColor(RiskRating riskRating)
+        //{
+        //    switch (riskRating)
+        //    {
+        //        case RiskRating.HighRisk:
+        //            return Color.FromArgb(255, 255, 0, 0);
+        //        case RiskRating.MediumRisk:
+        //            return Color.FromArgb(255, 255, 255, 0);
+        //        case RiskRating.LowRisk:
+        //            return Color.FromArgb(255, 0, 176, 80);
+        //    }
+        //    return Color.FromArgb(255, 0, 176, 80);
+        //}
 
         public MultiOptionConfigurationItemViewModel(
             MultiOptionConfiguration configuration,

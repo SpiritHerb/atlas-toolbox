@@ -25,9 +25,6 @@ namespace AtlasToolbox
             ExtendsContentIntoTitleBar = true;
         }
 
-
-
-
         private void CenterWindowOnScreen()
         {
             var screenWidth = GetSystemMetrics(SM_CXSCREEN);

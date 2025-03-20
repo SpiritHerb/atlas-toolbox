@@ -14,15 +14,8 @@ namespace AtlasToolbox.ViewModels
 
         public SoftwarePageViewModel(IEnumerable<SoftwareItemViewModel> softwareItemViewModels)
         {
-            //SoftwareItemViewModels = softwareItemViewModels;
-            // TODO please change this and figure out something better this is stupid
             SelectedSoftwareItemViewModels = new List<SoftwareItemViewModel>();
-            SoftwareItemViewModels = new ObservableCollection<SoftwareItemViewModel>();
-
-            foreach (var itemViewModel in softwareItemViewModels)
-            {
-                SoftwareItemViewModels.Add(itemViewModel);
-            }
+            SoftwareItemViewModels = new ObservableCollection<SoftwareItemViewModel>(softwareItemViewModels);
         }
 
         public static SoftwarePageViewModel LoadViewModel(IEnumerable<SoftwareItemViewModel> softwareItemViewModels)

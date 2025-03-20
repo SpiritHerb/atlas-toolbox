@@ -50,6 +50,11 @@ namespace AtlasToolbox.Views
             ProfileNameTextBox.Text = "";
         }
 
+        /// <summary>
+        /// Deletes the profile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void DeleteProfile(object sender, RoutedEventArgs e)
         {
             if (ProfilesListView.SelectedItem != null)
@@ -60,7 +65,6 @@ namespace AtlasToolbox.Views
                 {
                     ContentDialog dialog = new ContentDialog();
 
-                    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
                     dialog.XamlRoot = this.XamlRoot;
                     dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
                     dialog.Title = "Do you really wish to delete this profile?";
@@ -75,7 +79,6 @@ namespace AtlasToolbox.Views
                 {
                     ContentDialog dialog = new ContentDialog();
 
-                    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
                     dialog.XamlRoot = this.XamlRoot;
                     dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
                     dialog.Title = "You cannot delete the default profile.";
@@ -88,11 +91,10 @@ namespace AtlasToolbox.Views
         }
 
 
-        private async void ContactDeleteMenuyItem_Click(object sender, RoutedEventArgs e)
+        private async void SetProfile_Click(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
 
-            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Do you really wish to set this profile?";
@@ -105,11 +107,13 @@ namespace AtlasToolbox.Views
             RestartPCPrompt();
         }
 
+        /// <summary>
+        /// Prompts the user to restart their PC
+        /// </summary>
         private async void RestartPCPrompt()
         {
             ContentDialog dialog = new ContentDialog();
 
-            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "To fully apply the changes, please restart your PC";

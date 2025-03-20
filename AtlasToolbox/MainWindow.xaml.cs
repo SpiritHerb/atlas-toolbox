@@ -7,31 +7,13 @@ using WinUIEx;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Runtime.InteropServices;
 using AtlasToolbox.Utils;
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using Windows.Graphics;
-using Windows.UI.Core;
 using CommunityToolkit.WinUI;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Windows.Media.Devices;
-using NLog;
 using System.Windows.Input;
-using NLog.LayoutRenderers.Wrappers;
 using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
-using ICSharpCode.Decompiler.CSharp.Syntax;
-using AtlasToolbox.Commands.ConfigurationButtonsCommand;
-
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace AtlasToolbox
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainWindow : Window
     {
         public MainWindow()
@@ -54,12 +36,15 @@ namespace AtlasToolbox
                        );
             SetTitleBar(AppTitleBar);
 
-            //RootGrid.PointerPressed += OnPointerPressed;
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
-
+        
+        /// <summary>
+        /// Gets the window Xaml root for ContentDialogs
+        /// </summary>
+        /// <returns></returns>
         public XamlRoot GetXamlRoot()
         {
             return this.Content.XamlRoot;
@@ -76,7 +61,12 @@ namespace AtlasToolbox
             App.XamlRoot = this.Content.XamlRoot;
             NavigationViewControl.Header = "Software downloading";
         }
-
+        
+        /// <summary>
+        /// navigates to the correct page when a navigation item is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
@@ -137,6 +127,11 @@ namespace AtlasToolbox
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage)) NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
         }
 
+        /// <summary>
+        /// Creates a ContentDialog with the required type
+        /// </summary>
+        /// <param name="type">type of content dialog</param>
+        /// <exception cref="Exception"></exception>
         public async void ContentDialogContoller(string type)
         {
             string title = "", desc = "", primBtnTxt = "";

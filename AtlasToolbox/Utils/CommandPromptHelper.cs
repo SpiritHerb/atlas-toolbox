@@ -11,18 +11,11 @@ namespace AtlasToolbox.Utils
 {
     public class CommandPromptHelper
     {
-
-        public static void RunCustomFile(string command)
-        {
-            Process commandPrompt = new Process();
-            commandPrompt.StartInfo.FileName = command;
-            commandPrompt.StartInfo.CreateNoWindow = true;
-            commandPrompt.StartInfo.UseShellExecute = false;
-
-            commandPrompt.Start();
-            commandPrompt.WaitForExit();
-        }
-
+        /// <summary>
+        /// Runs any given command in parameters
+        /// </summary>
+        /// <param name="command">command</param>
+        /// <param name="noWindow">True by default</param>
         public static void RunCommand(string command, bool noWindow= true)
         {
             Process commandPrompt = new Process();
@@ -34,7 +27,10 @@ namespace AtlasToolbox.Utils
             commandPrompt.Start();
             commandPrompt.WaitForExit();
         }
-
+        /// <summary>
+        /// Restarts explorer.exe
+        /// if there's a better way to do this, please make a PR
+        /// </summary>
         public static void RestartExplorer()
         {
             Process stopExplorer = new Process();
@@ -54,22 +50,6 @@ namespace AtlasToolbox.Utils
 
             startExplorer.Start();
             startExplorer.WaitForExit();
-        }
-
-        public static string ReturnRunCommand(string command)
-        {
-            Process commandPrompt = new Process();
-            commandPrompt.StartInfo.FileName = "cmd.exe";
-            commandPrompt.StartInfo.Arguments = $"/c {command}";
-            commandPrompt.StartInfo.CreateNoWindow = true;
-            commandPrompt.StartInfo.UseShellExecute = false;
-            commandPrompt.StartInfo.RedirectStandardOutput = true;
-
-            commandPrompt.Start();
-            string output = commandPrompt.StandardOutput.ReadToEnd();
-            commandPrompt.WaitForExit();
-            return output;
-
         }
     }
 }

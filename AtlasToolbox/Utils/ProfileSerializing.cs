@@ -17,24 +17,19 @@ namespace AtlasToolbox.Utils
 {
     public static class ProfileSerializing
     {
+        /// <summary>
+        /// Creates a .json profile with the enabled configuration services
+        /// </summary>
+        /// <param name="profileName"></param>
+        /// <returns></returns>
         public static Profiles CreateProfile(string profileName)
         {
-            //List<object> listConfigurationServices = new List<object>();
-
-            //listConfigurationServices.Add(App._host.Services.GetRequiredService<IEnumerable<ConfigurationItemViewModel>>());
-            //listConfigurationServices.Add(App._host.Services.GetRequiredService<IEnumerable<MultiOptionConfigurationItemViewModel>>());
-
-            //todo: Change profiles to be Json files 
-            DirectoryInfo profilesDirectory = new DirectoryInfo("..\\..\\..\\..\\Profiles\\");
-            FileInfo[] profileFile = profilesDirectory.GetFiles();
-
-
-            //outputFile.WriteLine(Name);
-
+            FileInfo[] profileFile = new DirectoryInfo("..\\..\\..\\..\\Profiles\\").GetFiles();
             List<string> configModelList = new ();
             List<KeyValuePair<string, string>> multiConfigModelList = new ();
             ProfileModel profileModel = new ();
 
+            // Checks for enabled config services and adds them to the configModelList
             foreach (ConfigurationItemViewModel configItemViewModel in App._host.Services.GetRequiredService<IEnumerable<ConfigurationItemViewModel>>())
             {
                 if (configItemViewModel.CurrentSetting == true) configModelList.Add(configItemViewModel.Key.ToString());

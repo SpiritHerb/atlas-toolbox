@@ -17,14 +17,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AtlasToolbox.Utils;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace AtlasToolbox
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class SoftwarePage : Page
     {
         private SoftwarePageViewModel _viewModel;
@@ -35,28 +29,25 @@ namespace AtlasToolbox
             _viewModel = App._host.Services.GetRequiredService<SoftwarePageViewModel>();
             this.DataContext = _viewModel;
         }
-
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             var checkBox = sender as CheckBox;
-
             _viewModel.SelectedSoftwareItemViewModels.Add((SoftwareItemViewModel)checkBox.DataContext);
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             var checkBox = sender as CheckBox;
-
             _viewModel.SelectedSoftwareItemViewModels.Remove((SoftwareItemViewModel)checkBox.DataContext);
         }
-
+        
+        /// <summary>
+        /// Installs all the selected packages
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void  Button_Click(object sender, RoutedEventArgs e)
         {
-            //CurrentlyInstalling.Text += _viewModel.SelectedSoftwareItemViewModels[0];
-
-            //Task.Run(() => _viewModel.InstallSoftware());
-            //var softwarePage = App.m_window.Content as SoftwarePage;
-
             int percentageCount = 100 / _viewModel.SelectedSoftwareItemViewModels.Count;
 
             ProgressRingStackPanel.Visibility = Visibility.Visible;

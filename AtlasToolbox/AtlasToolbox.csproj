@@ -131,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="IncompatibleVersionWindow.xaml">

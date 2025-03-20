@@ -78,7 +78,7 @@
                                 <MenuFlyout>
                                     <MenuFlyoutItem
                                         x:Uid="Set_Profile"
-                                        Click="ContactDeleteMenuyItem_Click"
+                                        Click="SetProfile_Click"
                                         Text="Set this profile" />
                                 </MenuFlyout>
                             </Grid.ContextFlyout>

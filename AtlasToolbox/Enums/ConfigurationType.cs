@@ -42,6 +42,11 @@ namespace AtlasToolbox.Enums
 
     public static class EnumExtensions
     {
+        /// <summary>
+        /// Returns the description of an Enum
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string GetDescription(this Enum value)
         {
             FieldInfo field = value.GetType().GetField(value.ToString());

@@ -100,7 +100,8 @@ namespace AtlasToolbox.ViewModels
                 }
                 catch
                 {
-                    App.logger.Warn("Failed to set a profile due to not having a selected profile");
+                    App.logger.Warn("Tried to set a profile whilst nothing was selected");
+                    break;
                 }
             }
             foreach (KeyValuePair<string, string> keyPair in ProfileSelected.MultiOptionConfigServices)
