@@ -24,6 +24,7 @@ namespace AtlasToolbox
 
         public static Window m_window;
         public static Window s_window;
+        public static Window f_window;
         public static XamlRoot XamlRoot { get; set; }
         public static string CurrentCategory { get; set; }
 

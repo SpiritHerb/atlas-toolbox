@@ -211,5 +211,19 @@ namespace AtlasToolbox
         private const uint SWP_NOZORDER = 0x0004;
         private const uint SWP_NOACTIVATE = 0x0010;
 
+        int timesClicked;
+        private void AtlasButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (timesClicked == 10)
+            {
+                App.f_window = new FWindow();
+                App.f_window.Activate();
+                timesClicked = 0;
+            }
+            else
+            {
+                timesClicked++;
+            }
+        }
     }
 }

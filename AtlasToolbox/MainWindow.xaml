@@ -32,10 +32,16 @@
             Canvas.ZIndex="1"
             IsHitTestVisible="True">
             <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
-                <Image
-                    Width="18"
-                    VerticalAlignment="Center"
-                    Source="ms-appx:///Assets/Tiles/TitlebarLogo.png" />
+                <Button
+                    x:Name="AtlasButton"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="AtlasButton_Click">
+                    <Image
+                        Width="18"
+                        VerticalAlignment="Center"
+                        Source="ms-appx:///Assets/Logo/AtlasLogo.png" />
+                </Button>
                 <TextBlock
                     x:Name="AppTitle"
                     Margin="12,-1,0,0"
