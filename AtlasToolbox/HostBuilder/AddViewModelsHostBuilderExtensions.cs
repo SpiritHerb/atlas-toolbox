@@ -48,6 +48,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers software items
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddSoftwareItemsViewModels(this IHostBuilder host)
         {
             Dictionary<string, SoftwareItem> configurationDictionary = new()
@@ -108,8 +113,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
-
-
+        /// <summary>
+        /// Regsiters profiles from the profile folder
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddProfiles(this IHostBuilder host)
         {
             List<Profiles> configurationDictionary = new List<Profiles>();
@@ -131,6 +139,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers links
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddLinksItemViewModels(this IHostBuilder host)
         {
             Dictionary<string, Links> configurationDictionary = new()
@@ -181,6 +194,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers configuration buttons
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationButtonItemViewModels(this IHostBuilder host)
         {
             ICommand buttonCommand;
@@ -216,6 +234,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers sub-menus
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationSubMenu(this IHostBuilder host)
         {
             // TODO: Change configuration types
@@ -261,6 +284,12 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+
+        /// <summary>
+        /// Registers multioption configuration services
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddMultiOptionConfigurationViewModels(this IHostBuilder host)
         {
             // TODO: Change configuration types
@@ -288,6 +317,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers configuration items
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationItemViewModels(this IHostBuilder host)
         {
             // TODO: Change configuration types`
@@ -373,6 +407,28 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        
+
+        private static MultiOptionConfigurationItemViewModel CreateMultiOptionConfigurationItemViewModel(
+            IServiceProvider serviceProvider, object key, MultiOptionConfiguration configuration)
+        {
+            MultiOptionConfigurationItemViewModel viewModel = new(
+                configuration, serviceProvider.GetRequiredKeyedService<MultiOptionConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IMultiOptionConfigurationServices>(key));
+
+            return viewModel;
+        }
+
+        private static ConfigurationItemViewModel CreateConfigurationItemViewModel(
+            IServiceProvider serviceProvider, object key, Configuration configuration)
+        {
+                ConfigurationItemViewModel viewModel = new(
+                    configuration, serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IConfigurationService>(key));
+
+                return viewModel;
+        }
+        
+        #region Create ViewModels
+        // Entire region is made to create view models
         private static SoftwareItemViewModel CreateSoftwareItemViewModel(SoftwareItem softwareItem)
         {
             SoftwareItemViewModel viewModel = new(softwareItem);
@@ -393,26 +449,6 @@ namespace AtlasToolbox.HostBuilder
 
             return viewModel;
         }
-
-        private static MultiOptionConfigurationItemViewModel CreateMultiOptionConfigurationItemViewModel(
-            IServiceProvider serviceProvider, object key, MultiOptionConfiguration configuration)
-        {
-            MultiOptionConfigurationItemViewModel viewModel = new(
-                configuration, serviceProvider.GetRequiredKeyedService<MultiOptionConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IMultiOptionConfigurationServices>(key));
-
-            return viewModel;
-        }
-
-        private static ConfigurationItemViewModel CreateConfigurationItemViewModel(
-            IServiceProvider serviceProvider, object key, Configuration configuration)
-        {
-                ConfigurationItemViewModel viewModel = new(
-                    configuration, serviceProvider.GetRequiredKeyedService<ConfigurationStore>(key), serviceProvider.GetRequiredKeyedService<IConfigurationService>(key));
-
-                return viewModel;
-        }
-
-        #region Create ViewModels
 
         private static ConfigPageViewModel CreateConfigPageViewModel(IServiceProvider serviceProvider)
         {
@@ -435,8 +471,6 @@ namespace AtlasToolbox.HostBuilder
             return SoftwarePageViewModel.LoadViewModel(
                 serviceProvider.GetServices<SoftwareItemViewModel>());
         }
-        #endregion Create ViewModels
-
         private static ConfigurationSubMenuViewModel CreateConfigurationSubMenuViewModel(
           IServiceProvider serviceProvider, ObservableCollection<ConfigurationItemViewModel> configurationItemViewModels, ObservableCollection<MultiOptionConfigurationItemViewModel> multiOptionConfigurationItemViewModel, ObservableCollection<LinksViewModel> linksViewModel, object key, ConfigurationSubMenu configuration, ObservableCollection<ConfigurationSubMenuViewModel> configurationSubMenuViewModel, ObservableCollection<ConfigurationButtonViewModel> configurationButtonViewModels)
         {
@@ -447,5 +481,6 @@ namespace AtlasToolbox.HostBuilder
 
             return viewModel;
         }
+        #endregion Create ViewModels
     }
 }

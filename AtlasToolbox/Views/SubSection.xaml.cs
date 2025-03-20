@@ -38,6 +38,7 @@ namespace AtlasToolbox.Views
             {
                 var item = parameter.Item1;
 
+                // Gets all the configuration services
                 ItemsControl.ItemsSource = item.ConfigurationItems;
                 MultiOptionItemsControl.ItemsSource = item.MultiOptionConfigurationItems;
                 Links.ItemsSource = item.LinksViewModels;

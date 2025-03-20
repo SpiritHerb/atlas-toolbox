@@ -25,7 +25,11 @@ namespace AtlasToolbox.Commands
             _configurationStore = configurationStore;
             _configurationService = configurationService;
         }
-
+        /// <summary>
+        /// Saves the state of a MultiOptionConfigurationService
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         protected override async Task ExecuteAsync(object parameter)
         {
             int currentSetting = _configurationItemViewModel.Options.IndexOf(_configurationStore.CurrentSetting);

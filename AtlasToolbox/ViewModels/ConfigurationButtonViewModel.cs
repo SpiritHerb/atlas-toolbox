@@ -13,7 +13,6 @@ namespace AtlasToolbox.ViewModels
     public partial class ConfigurationButtonViewModel
     {
         private ConfigurationButton ConfigButton { get; set; }
-
         public ICommand Command => ConfigButton.Command;
         public string Name => ConfigButton.Name;
         public string Description => ConfigButton.Description;

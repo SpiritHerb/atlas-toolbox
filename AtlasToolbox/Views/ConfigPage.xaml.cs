@@ -22,8 +22,10 @@ public sealed partial class ConfigPage : Page
         this.InitializeComponent();
 
         _viewModel = App._host.Services.GetRequiredService<ConfigPageViewModel>();
+        // Gets all the items for the choosen category
         Enum.TryParse(new ConfigurationType().GetType(), App.CurrentCategory, out configType);
         _viewModel.ShowForType((ConfigurationType)configType);
+
         this.DataContext = _viewModel;
 
         ConfigurationType type = (ConfigurationType)configType;

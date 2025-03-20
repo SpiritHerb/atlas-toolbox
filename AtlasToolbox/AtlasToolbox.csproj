@@ -34,6 +34,7 @@
     <None Remove="Controls\HeaderTile.xaml" />
     <None Remove="Controls\HomePageHeaderImage.xaml" />
     <None Remove="Controls\TileGallery.xaml" />
+    <None Remove="FWindow.xaml" />
     <None Remove="IncompatibleVersionWindow.xaml" />
     <None Remove="LoadingWindow.xaml" />
     <None Remove="MainWindow.xaml" />
@@ -130,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="IncompatibleVersionWindow.xaml">
@@ -191,5 +191,8 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="FWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

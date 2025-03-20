@@ -12,8 +12,10 @@ namespace AtlasToolbox.Commands
     {
         protected override async Task ExecuteAsync(object parameter)
         {
-            App.ContentDialogCaller("validate");
-            await Task.Run(() => { CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\setServicesToDefaults.cmd", false); });
+            await Task.Run(() => 
+            {
+                ProcessHelper.KillProcessByName("explorer.exe");
+            });
         }
     }
 }

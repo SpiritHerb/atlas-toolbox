@@ -9,6 +9,10 @@ namespace AtlasToolbox.Utils
 {
     public class CompatibilityHelper
     {
+        /// <summary>
+        /// Check compatibility with app's version
+        /// </summary>
+        /// <returns></returns>
         public static bool IsCompatible()
         {
             string toolboxVersion = ConfigurationManager.AppSettings.Get("AtlasVersion");

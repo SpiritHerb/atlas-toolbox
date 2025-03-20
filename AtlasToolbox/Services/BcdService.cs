@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace AtlasToolbox.Services
 {
+    /// <summary>
+    /// Registers the BCD service. 
+    /// </summary>
     public class BcdService : IBcdService
     {
         private readonly BcdStore _store;

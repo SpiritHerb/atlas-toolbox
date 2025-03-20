@@ -6,6 +6,10 @@ namespace AtlasToolbox.Utils
 {
     public class ProcessHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
         public static void StartShellExecute(string fileName)
         {
             ProcessStartInfo startInfo = new(fileName)

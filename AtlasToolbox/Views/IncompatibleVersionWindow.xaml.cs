@@ -37,7 +37,9 @@ namespace AtlasToolbox
             this.InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Centers the window
+        /// </summary>
         private void CenterWindowOnScreen()
         {
             var screenWidth = GetSystemMetrics(SM_CXSCREEN);

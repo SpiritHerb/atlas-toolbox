@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace AtlasToolbox.Services
 {
+    /// <summary>
+    /// Registers the DismService
+    /// </summary>
     public class DismService : IDismService, IDisposable
     {
         private bool _isDisposed;

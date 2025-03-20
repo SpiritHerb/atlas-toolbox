@@ -21,6 +21,7 @@ namespace AtlasToolbox.ViewModels
         {
             SoftwareItem = softwareItem;
             BitMapIcon = new BitmapIcon();
+            // Some icons do not appear as they don't have any, placeholder may be a good idea
             BitMapIcon.UriSource = new Uri($"https://api.winstall.app/icons/next/{Key}.webp");
             BitMapIcon.ShowAsMonochrome = false;
         }

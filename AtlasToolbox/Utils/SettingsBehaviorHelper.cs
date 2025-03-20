@@ -11,11 +11,15 @@ namespace AtlasToolbox.Utils
 {
     public static class SettingsBehaviorHelper
     {
+        /// <summary>
+        /// Changes the background setting in the registry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void KeppBackground_Toggled(object sender, RoutedEventArgs e)
         {
             if (sender is ToggleSwitch toggleSwitch)
             {
-                //keepBackground_IsOn = toggleSwitch.IsOn;
                 if (toggleSwitch.IsOn)
                 {
                     RegistryHelper.SetValue("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "KeepInBackground", 1);

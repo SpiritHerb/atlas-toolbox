@@ -10,7 +10,7 @@ namespace AtlasToolbox.ViewModels
 {
     class ConfigPageViewModel : ObservableObject
     {
-        // If there is a better way to do this, it should be done. This is probably less than ideal
+        // If there's a better solution for this, please do a PR, this isn't great imo
         private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
         private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
         private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
@@ -38,6 +38,10 @@ namespace AtlasToolbox.ViewModels
             ConfigurationButtonViewModels = configurationButtonViewModel;
         }
 
+        /// <summary>
+        /// Gets the configuration services
+        /// </summary>
+        /// <param name="configurationType">Type to get</param>
         public void ShowForType(ConfigurationType configurationType)
         {
             ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(ConfigurationItemViewModels.Where(item => item.Type == configurationType));
@@ -47,6 +51,15 @@ namespace AtlasToolbox.ViewModels
             ConfigurationButtonViewModel = new ObservableCollection<ConfigurationButtonViewModel>(ConfigurationButtonViewModels.Where(item => item.Type == configurationType));
         }
 
+        /// <summary>
+        /// Loads the view model
+        /// </summary>
+        /// <param name="linksViewModels"></param>
+        /// <param name="configurationItemViewModels"></param>
+        /// <param name="multiOptionConfigurationItemViewModels"></param>
+        /// <param name="configurationSubMenuViewModels"></param>
+        /// <param name="configurationButtonViewModels"></param>
+        /// <returns></returns>
         public static ConfigPageViewModel LoadViewModel(
             IEnumerable<LinksViewModel> linksViewModels,
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,

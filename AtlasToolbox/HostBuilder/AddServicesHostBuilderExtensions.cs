@@ -34,6 +34,11 @@ namespace AtlasToolbox.HostBuilder
             return BcdStore.OpenStore();
         }
 
+        /// <summary>
+        /// Register IConfigurationServices
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationServices(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>
@@ -89,10 +94,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, ExtractContextMenuConfigurationService>("ExtractContextMenu");
                 services.AddKeyedTransient<IConfigurationService, TakeOwnershipConfigurationService>("TakeOwnership");
                 services.AddKeyedTransient<IConfigurationService, CpuIdleConfigurationService>("CpuIdle");
-                services.AddKeyedTransient<IMultiOptionConfigurationServices, ContextMenuTeminalsConfigurationService>("ContextMenuTerminals");
-                services.AddKeyedTransient<IMultiOptionConfigurationServices, ShortcutIconConfigurationService>("ShortcutIcon");
-                services.AddKeyedTransient<IMultiOptionConfigurationServices, MitigationsConfigurationService>("Mitigations");
-                services.AddKeyedTransient<IMultiOptionConfigurationServices, SafeModeConfigurationService>("SafeMode");
                 services.AddKeyedTransient<IConfigurationService, OldContextMenuConfigurationService>("OldContextMenu");
                 services.AddKeyedTransient<IConfigurationService, EdgeSwipeConfigurationService>("EdgeSwipe");
                 services.AddKeyedTransient<IConfigurationService, AppIconsThumbnailConfigurationService>("AppIconsThumbnail");
@@ -115,11 +116,20 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, GiveAccessToMenuConfigurationService>("GiveAccessToMenu");
                 services.AddKeyedTransient<IConfigurationService, NetworkNavigationPaneConfigurationService>("NetworkNavigationPane");
                 services.AddKeyedTransient<IConfigurationService, FileSharingConfigurationService>("FileSharing");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, ContextMenuTeminalsConfigurationService>("ContextMenuTerminals");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, ShortcutIconConfigurationService>("ShortcutIcon");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, MitigationsConfigurationService>("Mitigations");
+                services.AddKeyedTransient<IMultiOptionConfigurationServices, SafeModeConfigurationService>("SafeMode");
             });
 
             return host;
         }
 
+        /// <summary>
+        /// Registers Configuration sub menus
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationMenus(this IHostBuilder host)
         {
             host.ConfigureServices((_,services) =>

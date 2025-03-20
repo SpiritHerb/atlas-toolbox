@@ -16,6 +16,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers ConfigurationStores
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationStores(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>
@@ -102,6 +107,11 @@ namespace AtlasToolbox.HostBuilder
             return host;
         }
 
+        /// <summary>
+        /// Registers sub-menu ConfigurationStore 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <returns></returns>
         private static IHostBuilder AddConfigurationMenu(this IHostBuilder host)
         {
             host.ConfigureServices((_, services) =>

@@ -6,6 +6,11 @@ namespace AtlasToolbox
 {
     public static class ToggleSwitchBehavior
     {
+        /// <summary>
+        /// Gives the toggled behavior to its DataContext
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void OnToggled(object sender, RoutedEventArgs e)
         {
 

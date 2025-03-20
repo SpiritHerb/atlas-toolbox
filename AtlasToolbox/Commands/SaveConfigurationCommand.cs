@@ -23,6 +23,11 @@ namespace AtlasToolbox.Commands
             _configurationService = configurationService;
         }
 
+        /// <summary>
+        /// Saves the current state of a ConfigurationService
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         protected override async Task ExecuteAsync(object parameter)
         {
             bool currentSetting = _configurationStore.CurrentSetting;
