@@ -14,6 +14,7 @@
     <Grid Margin="55,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="9*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
@@ -22,11 +23,8 @@
             Margin="0,24,36,24"
             Style="{StaticResource TitleTextBlockStyle}"
             Text="Install Software" />
-        <StackPanel Grid.Row="1">
-            <ScrollView
-                Grid.Row="1"
-                Height="550"
-                VerticalAlignment="Top">
+        <Grid Grid.Row="1">
+            <ScrollViewer Height="auto" VerticalAlignment="Top">
                 <StackPanel>
                     <ItemsControl ItemsSource="{Binding SoftwareItemViewModels}">
                         <ItemsControl.ItemTemplate>
@@ -46,28 +44,29 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
-            </ScrollView>
-            <StackPanel
-                x:Name="ProgressRingStackPanel"
-                Grid.Row="1"
-                Margin="0,0,0,40"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Orientation="Vertical"
-                Visibility="Collapsed">
-                <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center" />
-                <ProgressBar
-                    x:Name="DownloadingProgressBar"
-                    Width="130"
-                    HorizontalAlignment="Left" />
-            </StackPanel>
-            <Button
-                Margin="0,36,36,40"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Click="Button_Click">
-                Install
-            </Button>
+            </ScrollViewer>
+        </Grid>
+        <StackPanel
+            x:Name="ProgressRingStackPanel"
+            Grid.Row="2"
+            Margin="0,0,0,40"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Orientation="Vertical"
+            Visibility="Collapsed">
+            <TextBlock x:Name="CurrentlyInstalling" TextAlignment="Center" />
+            <ProgressBar
+                x:Name="DownloadingProgressBar"
+                Width="130"
+                HorizontalAlignment="Left" />
         </StackPanel>
+        <Button
+            Grid.Row="2"
+            Margin="0,0,36,20"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Click="Button_Click">
+            Install
+        </Button>
     </Grid>
 </Page>

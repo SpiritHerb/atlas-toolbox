@@ -39,10 +39,10 @@ namespace AtlasToolbox
             this.InitializeComponent();
 
             //Window parameters
-            WindowManager.Get(this).IsMaximizable = false;
-            WindowManager.Get(this).IsResizable = false;
             WindowManager.Get(this).Width = 1250;
             WindowManager.Get(this).Height = 850;
+            WindowManager.Get(this).MinHeight = 850;
+            WindowManager.Get(this).MinWidth = 1250;
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
 
