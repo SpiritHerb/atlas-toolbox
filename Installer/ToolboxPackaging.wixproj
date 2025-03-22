@@ -1,0 +1,56 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.0">
+  <PropertyGroup>
+    <MSIProductVersion Condition=" '$(MSIProductVersion)' == '' ">1.0.0.0</MSIProductVersion>
+    <DefineConstants>MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <AppxCertificateThumbprint Condition=" '$(AppxCertificateThumbprint)' == '' ">
+    </AppxCertificateThumbprint>
+    <AppxTimestampUrl Condition=" '$(AppxTimestampUrl)' == '' ">
+    </AppxTimestampUrl>
+    <MsixCertificateThumbprint Condition=" '$(MsixCertificateThumbprint)' == '' ">
+    </MsixCertificateThumbprint>
+    <MsixTimestampUrl Condition=" '$(MsixTimestampUrl)' == '' ">
+    </MsixTimestampUrl>
+    <OutputName>AtlasOS-Toolbox-$(MSIProductVersion)</OutputName>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <SuppressIces>ICE64</SuppressIces>
+    <DefineConstants>Debug;MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <WixVariables>WixUIBannerBmp=Resources\Banner.jpg;WixUIDialogBmp=Resources\Dialog.jpg;WixUILicenseRtf=Resources\EULA.rtf</WixVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <SuppressIces>ICE64</SuppressIces>
+    <DefineConstants>MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <WixVariables>WixUIBannerBmp=Resources\Banner.jpg;WixUIDialogBmp=Resources\Dialog.jpg;WixUILicenseRtf=Resources\EULA.rtf</WixVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <SuppressIces>ICE64</SuppressIces>
+    <DefineConstants>Debug;MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <WixVariables>WixUIBannerBmp=Resources\Banner.jpg;WixUIDialogBmp=Resources\Dialog.jpg;WixUILicenseRtf=Resources\EULA.rtf</WixVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <SuppressIces>ICE64</SuppressIces>
+    <DefineConstants>MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <WixVariables>WixUIBannerBmp=Resources\Banner.jpg;WixUIDialogBmp=Resources\Dialog.jpg;WixUILicenseRtf=Resources\EULA.rtf</WixVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM64' ">
+    <DefineConstants>Debug;MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <WixVariables>WixUIBannerBmp=Resources\Banner.jpg;WixUIDialogBmp=Resources\Dialog.jpg;WixUILicenseRtf=Resources\EULA.rtf</WixVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM64' ">
+    <DefineConstants>MSIProductVersion=$(MSIProductVersion)</DefineConstants>
+    <WixVariables>WixUIBannerBmp=Resources\Banner.jpg;WixUIDialogBmp=Resources\Dialog.jpg;WixUILicenseRtf=Resources\EULA.rtf</WixVariables>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Resources\Atlaslogo.png" />
+    <Content Include="Resources\Banner.jpg" />
+    <Content Include="Resources\Dialog.jpg" />
+    <Content Include="Resources\Icon.ico" />
+    <Content Include="Resources\EULA.rtf" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Iis.wixext" Version="5.0.0" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
+    <PackageReference Include="WixToolset.NetFx.wixext" Version="5.0.0" />
+  </ItemGroup>
+</Project>
