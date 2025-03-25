@@ -6,406 +6,406 @@
   <Fragment>
     <ComponentGroup Id="ToolboxPackagingFiles">
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Atlas-Banner.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Atlas-Banner.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Atlas-logo150x150.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Atlas-logo150x150.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Atlas-logo44x44.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Atlas-logo44x44.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\AtlasLogoText.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\AtlasLogoText.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Black.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Black.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-BlackItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-BlackItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Bold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Bold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-BoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-BoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-ExtraBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-ExtraBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-ExtraBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-ExtraBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-ExtraLight.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-ExtraLight.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-ExtraLightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-ExtraLightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Italic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Italic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Light.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Light.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-LightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-LightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Medium.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Medium.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-MediumItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-MediumItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Regular.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Regular.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-SemiBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-SemiBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-SemiBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-SemiBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-Thin.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-Thin.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Condensed-ThinItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Condensed-ThinItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Black.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Black.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-BlackItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-BlackItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Bold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Bold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-BoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-BoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-ExtraBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-ExtraBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-ExtraBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-ExtraBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-ExtraLight.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-ExtraLight.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-ExtraLightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-ExtraLightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Italic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Italic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Light.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Light.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-LightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-LightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Medium.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Medium.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-MediumItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-MediumItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Regular.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Regular.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-SemiBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-SemiBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-SemiBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-SemiBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-Thin.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-Thin.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_Expanded-ThinItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_Expanded-ThinItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Black.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Black.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-BlackItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-BlackItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Bold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Bold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-BoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-BoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-ExtraBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-ExtraBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-ExtraBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-ExtraBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-ExtraLight.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-ExtraLight.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-ExtraLightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-ExtraLightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Italic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Italic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Light.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Light.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-LightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-LightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Medium.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Medium.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-MediumItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-MediumItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Regular.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Regular.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-SemiBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-SemiBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-SemiBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-SemiBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-Thin.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-Thin.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_ExtraCondensed-ThinItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_ExtraCondensed-ThinItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Black.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Black.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-BlackItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-BlackItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Bold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Bold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-BoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-BoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-ExtraBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-ExtraBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-ExtraBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-ExtraBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-ExtraLight.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-ExtraLight.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-ExtraLightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-ExtraLightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Italic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Italic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Light.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Light.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-LightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-LightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Medium.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Medium.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-MediumItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-MediumItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Regular.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Regular.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-SemiBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-SemiBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-SemiBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-SemiBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-Thin.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-Thin.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiCondensed-ThinItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiCondensed-ThinItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Black.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Black.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-BlackItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-BlackItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Bold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Bold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-BoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-BoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-ExtraBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-ExtraBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-ExtraBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-ExtraBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-ExtraLight.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-ExtraLight.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-ExtraLightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-ExtraLightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Italic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Italic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Light.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Light.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-LightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-LightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Medium.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Medium.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-MediumItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-MediumItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Regular.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Regular.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-SemiBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-SemiBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-SemiBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-SemiBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-Thin.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-Thin.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo_SemiExpanded-ThinItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo_SemiExpanded-ThinItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Black.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Black.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-BlackItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-BlackItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Bold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Bold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-BoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-BoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-ExtraBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-ExtraBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-ExtraBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-ExtraBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-ExtraLight.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-ExtraLight.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-ExtraLightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-ExtraLightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Italic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Italic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Light.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Light.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-LightItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-LightItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Medium.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Medium.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-MediumItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-MediumItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Regular.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Regular.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-SemiBold.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-SemiBold.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-SemiBoldItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-SemiBoldItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-Thin.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-Thin.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Fonts">
-        <File Source="$(var.SourceDir)\Assets\Fonts\Archivo-ThinItalic.ttf" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Fonts\Archivo-ThinItalic.ttf" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\LockScreenLogo.scale-200.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\LockScreenLogo.scale-200.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Logo">
-        <File Source="$(var.SourceDir)\Assets\Logo\atlas-logo-white.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Logo\atlas-logo-white.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Logo">
-        <File Source="$(var.SourceDir)\Assets\Logo\atlas-white-svg.svg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Logo\atlas-white-svg.svg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Logo">
-        <File Source="$(var.SourceDir)\Assets\Logo\Atlaslogo.ico" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Logo\Atlaslogo.ico" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Logo">
-        <File Source="$(var.SourceDir)\Assets\Logo\Atlaslogo.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Logo\Atlaslogo.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Logo">
-        <File Source="$(var.SourceDir)\Assets\Logo\discord-mark-blue.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Logo\discord-mark-blue.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\Logo">
-        <File Source="$(var.SourceDir)\Assets\Logo\kofi_symbol.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Logo\kofi_symbol.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\1.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\1.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\2.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\2.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\3.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\3.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\4.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\4.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\5.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\5.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\6.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\6.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\7.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\7.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\8.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\8.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets\misc">
-        <File Source="$(var.SourceDir)\Assets\misc\9.jpg" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\misc\9.jpg" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\SplashScreen.scale-200.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\SplashScreen.scale-200.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Square150x150Logo.scale-200.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Square150x150Logo.scale-200.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Square44x44Logo.scale-200.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Square44x44Logo.scale-200.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Square44x44Logo.targetsize-24_altform-unplated.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Square44x44Logo.targetsize-24_altform-unplated.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\StoreLogo.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\StoreLogo.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION" Subdirectory="Assets">
-        <File Source="$(var.SourceDir)\Assets\Wide310x150Logo.scale-200.png" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\Assets\Wide310x150Logo.scale-200.png" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION">
         <File Source="$(var.SourceDir)\src\AtlasToolbox.deps.json" KeyPath="yes" />
