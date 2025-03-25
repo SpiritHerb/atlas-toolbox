@@ -16,7 +16,7 @@ namespace AtlasToolbox.Services
 
         public DismService()
         {
-            DismApi.Initialize(DismLogLevel.LogErrors, LOG_FILE_PATH);
+            DismApi.Initialize(DismLogLevel.LogErrors, AppDomain.CurrentDomain.BaseDirectory + LOG_FILE_PATH);
         }
 
         public DismPackageFeatureState GetFeatureState(string featureName)
