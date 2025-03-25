@@ -49,7 +49,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
             {
                 return options[((int)RegistryHelper.GetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME))];
             }
-            catch (Exception ex)
+            catch
             {
                 ChangeStatus(0);
                 return options[((int)RegistryHelper.GetValue(ATLAS_STORE_KEY_NAME, STATE_VALUE_NAME))];
