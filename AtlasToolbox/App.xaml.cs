@@ -32,6 +32,10 @@ namespace AtlasToolbox
 
         public App()
         {
+            AppDomain.CurrentDomain.FirstChanceException += (sender, eventArgs) =>
+            {
+                logger.Error($"An error occured: \n{eventArgs.Exception.ToString()}");
+            };
             ConfigureNLog();
             logger.Info("App Started");
             _host = CreateHostBuilder().Build();
