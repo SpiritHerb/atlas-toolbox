@@ -15,6 +15,7 @@ using NLog.Targets;
 using System.Configuration;
 using AtlasToolbox.Utils;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace AtlasToolbox
 {
@@ -30,7 +31,6 @@ namespace AtlasToolbox
         public static string CurrentCategory { get; set; }
 
         private static Mutex _mutex = new(true, "{AtlasToolbox}");
-
         public App()
         {
             ConfigureNLog();
@@ -145,10 +145,17 @@ namespace AtlasToolbox
             }
         }
 
+
+        /// <summary>
+        /// Logs XAML errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DebugSettings_BindingFailed(object sender, BindingFailedEventArgs e)
         {
-            throw new Exception($"A debug binding failed: " + e.Message);
+            App.logger.Warn(e.Message);
         }
+
         /// <summary>
         /// Checks for an existing toolbox instance in processes
         /// </summary>
