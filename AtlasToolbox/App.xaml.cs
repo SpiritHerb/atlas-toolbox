@@ -77,7 +77,6 @@ namespace AtlasToolbox
         /// <param name="e"></param>
         private void OnAppUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            e.Handled = true;
             logger.Error(e.Exception, "Unhandled exception occurred");
         }
         
