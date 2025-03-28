@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
+using NLog.Filters;
 
 namespace AtlasToolbox.Views;
 
@@ -16,7 +17,7 @@ public sealed partial class ConfigPage : Page
 {
     private readonly ConfigPageViewModel _viewModel;
     private object configType;
-
+   
     public ConfigPage()
     {
         this.InitializeComponent();
@@ -29,8 +30,21 @@ public sealed partial class ConfigPage : Page
         this.DataContext = _viewModel;
 
         ConfigurationType type = (ConfigurationType)configType;
-        TitleTxt.Text += type.GetDescription();
+        BreadcrumbBar.ItemsSource = new ObservableCollection<Folder> { 
+            new Folder {Name = type.GetDescription()}
+        };
+        BreadcrumbBar.ItemClicked += BreadcrumbBar_ItemClicked;
     }
+
+    private void BreadcrumbBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
+    {
+        var items = BreadcrumbBar.ItemsSource as ObservableCollection<string>;
+        for (int i = items.Count - 1; i >= args.Index + 1; i--)
+        {
+            items.RemoveAt(i);
+        }
+    }
+
     private void OnCardClicked(object sender, RoutedEventArgs e)
     {
         SettingsCard settingCard = sender as SettingsCard;
@@ -38,7 +52,7 @@ public sealed partial class ConfigPage : Page
 
         DataTemplate template = SubMenuItems.ItemTemplate;
 
-        Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate>(item, template), new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+        Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate, object>(item, template, this.BreadcrumbBar.ItemsSource), new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
     }
 
     private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)

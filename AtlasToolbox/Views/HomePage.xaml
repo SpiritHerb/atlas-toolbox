@@ -60,6 +60,11 @@
                     </Grid>
                 </GridView.Header>
             </GridView>
+            <TextBlock
+                Grid.Row="1"
+                Margin="36,5,0,0"
+                FontSize="20"
+                Text="Profiles" />
             <ListView
                 x:Name="ProfilesListView"
                 Grid.Row="1"
