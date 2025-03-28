@@ -417,7 +417,10 @@
         <File Source="$(var.SourceDir)\src\AtlasToolbox.dll.config" KeyPath="yes" />
       </Component>
       <Component Directory="INSTALLLOCATION">
-        <File Source="$(var.SourceDir)\src\AtlasToolbox.exe" KeyPath="yes" />
+        <File Source="$(var.SourceDir)\src\AtlasToolbox.exe" KeyPath="yes">
+          <Shortcut Id="sc19BD48F0920719AFC7617C54E8EC34C4" Name="AtlasToolbox" Directory="DesktopFolder" Advertise="yes" />
+          <Shortcut Id="scDD233E9E539FB9EDC6BBC6EDB45C7945" Name="AtlasToolbox" Directory="ProgramMenuFolder" Advertise="yes" />
+        </File>
       </Component>
       <Component Directory="INSTALLLOCATION">
         <File Source="$(var.SourceDir)\src\AtlasToolbox.pdb" KeyPath="yes" />
