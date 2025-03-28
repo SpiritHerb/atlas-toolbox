@@ -10,7 +10,7 @@
 
   <Identity
     Name="AtlasOSToolbox-WinUI-3"
-    Publisher="CN=TheyCreeper"
+    Publisher="CN=AtlasOS"
     Version="1.0.4.1" />
 
   <mp:PhoneIdentity PhoneProductId="98ae3a68-e43b-4f70-9b72-db68291392f3" PhonePublisherId="0-0000-0000-0000-00000"/>
