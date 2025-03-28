@@ -34,17 +34,33 @@ namespace AtlasToolbox.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is Tuple<ConfigurationSubMenuViewModel, DataTemplate> parameter)
+            if (e.Parameter is Tuple<ConfigurationSubMenuViewModel, DataTemplate, object> parameter)
             {
                 var item = parameter.Item1;
-
+                ObservableCollection<Folder> item2 = parameter.Item3 as ObservableCollection<Folder>;
                 // Gets all the configuration services
                 ItemsControl.ItemsSource = item.ConfigurationItems;
                 MultiOptionItemsControl.ItemsSource = item.MultiOptionConfigurationItems;
                 Links.ItemsSource = item.LinksViewModels;
                 SubMenuItems.ItemsSource = item.ConfigurationSubMenuViewModels;
                 ConfigurationButton.ItemsSource = item.ConfigurationButtonViewModels;
-                TitleTxt.Text += item.Name;
+                Folder folder = new Folder { 
+                    Name = item.Name,
+                };
+                item2.Add(folder);
+                BreadcrumbBar.ItemsSource = item2;
+                BreadcrumbBar.ItemClicked += BreadcrumbBar_ItemClicked;
+            }
+        }
+
+        private void BreadcrumbBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
+        {
+            var items = BreadcrumbBar.ItemsSource as ObservableCollection<Folder>;
+            for (int i = items.Count - 1; i >= args.Index + 1; i--)
+            {
+                items.RemoveAt(i);
+                MainWindow window = App.m_window as MainWindow;
+                window.GoBack();
             }
         }
 

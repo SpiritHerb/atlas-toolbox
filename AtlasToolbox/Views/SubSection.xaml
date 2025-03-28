@@ -11,16 +11,32 @@
     xmlns:ui="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <x:Double x:Key="BreadcrumbBarChevronFontSize">30</x:Double>
+        <Thickness x:Key="BreadcrumbBarChevronPadding">1,0</Thickness>
+    </Page.Resources>
+
     <Grid Margin="55,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock
-            x:Name="TitleTxt"
-            Grid.Row="0"
-            Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}" />
+        <BreadcrumbBar x:Name="BreadcrumbBar">
+            <BreadcrumbBar.ItemTemplate>
+                <DataTemplate x:DataType="local:Folder">
+                    <BreadcrumbBarItem AutomationProperties.Name="{Binding Name}" Content="{Binding}">
+                        <BreadcrumbBarItem.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,24,0,30"
+                                    Style="{StaticResource TitleTextBlockStyle}"
+                                    Text="{Binding Name}" />
+                            </DataTemplate>
+                        </BreadcrumbBarItem.ContentTemplate>
+                    </BreadcrumbBarItem>
+                </DataTemplate>
+            </BreadcrumbBar.ItemTemplate>
+        </BreadcrumbBar>
         <ScrollViewer Grid.Row="1">
             <StackPanel>
 

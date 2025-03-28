@@ -15,6 +15,7 @@
 
     <Page.Resources>
         <local:FontIconConverter x:Key="FontIconConverter" />
+        <x:Double x:Key="BreadcrumbBarChevronFontSize">30</x:Double>
     </Page.Resources>
 
     <Grid Margin="55,0,0,0">
@@ -22,11 +23,27 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock
+        <!--<TextBlock
             x:Name="TitleTxt"
             Grid.Row="0"
             Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}" />
+            Style="{StaticResource TitleTextBlockStyle}" />-->
+        <BreadcrumbBar x:Name="BreadcrumbBar">
+            <BreadcrumbBar.ItemTemplate>
+                <DataTemplate x:DataType="local:Folder">
+                    <BreadcrumbBarItem Content="{Binding}">
+                        <BreadcrumbBarItem.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,24,30,24"
+                                    Style="{StaticResource TitleTextBlockStyle}"
+                                    Text="{Binding Name}" />
+                            </DataTemplate>
+                        </BreadcrumbBarItem.ContentTemplate>
+                    </BreadcrumbBarItem>
+                </DataTemplate>
+            </BreadcrumbBar.ItemTemplate>
+        </BreadcrumbBar>
         <ScrollViewer Grid.Row="1">
             <StackPanel>
                 <ItemsControl x:Name="SubMenuItems" ItemsSource="{Binding ConfigurationItemSubMenu}">

@@ -11,6 +11,8 @@ using CommunityToolkit.WinUI;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
+using System.Threading.Tasks;
+using Windows.Security.Authentication.Web.Provider;
 
 namespace AtlasToolbox
 {
@@ -93,12 +95,21 @@ namespace AtlasToolbox
             App.XamlRoot = this.Content.XamlRoot;
         }
 
-        private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        public void GoBack()
+        {
+            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
+        }
+        public void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (ContentFrame.CanGoBack) ContentFrame.GoBack();
         }
 
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            NavigateTo();
+        }
+
+        private void NavigateTo()
         {
             NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
             NavigationViewControl.Header = null;
