@@ -30,7 +30,7 @@ namespace AtlasToolbox.Views
         {
             this.InitializeComponent();
         }
-
+        private string oldCat { get; set; }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -50,6 +50,9 @@ namespace AtlasToolbox.Views
                 item2.Add(folder);
                 BreadcrumbBar.ItemsSource = item2;
                 BreadcrumbBar.ItemClicked += BreadcrumbBar_ItemClicked;
+
+                oldCat = App.CurrentCategory;
+                App.CurrentCategory = item.Name;
             }
         }
 
@@ -59,6 +62,7 @@ namespace AtlasToolbox.Views
             for (int i = items.Count - 1; i >= args.Index + 1; i--)
             {
                 items.RemoveAt(i);
+                App.CurrentCategory = oldCat;
                 MainWindow window = App.m_window as MainWindow;
                 window.GoBack();
             }

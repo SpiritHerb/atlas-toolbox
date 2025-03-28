@@ -60,16 +60,22 @@ namespace AtlasToolbox
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
+            //var NavView = sender as NavigationView;
+            //if (NavView.SelectedItem == args.InvokedItemContainer) { return; };
+
+            if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; };
+
+            App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
             if (args.IsSettingsInvoked == true)
             {
                 App.CurrentCategory = "SettingsItem";
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
                 return;
             }
+            
             switch (args.InvokedItemContainer.Tag.ToString())
             {
                 case "AtlasToolbox.Views.SoftwarePage":
-                    App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                     ContentFrame.Navigate(
                            new SoftwarePage().GetType(),
                            null,
@@ -77,7 +83,6 @@ namespace AtlasToolbox
                            );
                     break;
                 case "AtlasToolbox.Views.HomePage":
-                    App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                     Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
                     ContentFrame.Navigate(
                            newPage,
@@ -85,7 +90,6 @@ namespace AtlasToolbox
                            new DrillInNavigationTransitionInfo());
                     break;
                 default:
-                    App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
                     ContentFrame.Navigate(
                            new ConfigPage().GetType(),
                            null,
