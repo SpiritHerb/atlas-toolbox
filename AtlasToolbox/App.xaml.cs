@@ -14,6 +14,7 @@ using NLog.Config;
 using NLog.Targets;
 using System.Configuration;
 using AtlasToolbox.Utils;
+using System.Diagnostics;
 
 namespace AtlasToolbox
 {
@@ -76,6 +77,7 @@ namespace AtlasToolbox
         /// <param name="e"></param>
         private void OnAppUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
+            e.Handled = true;
             logger.Error(e.Exception, "Unhandled exception occurred");
         }
         
@@ -85,6 +87,13 @@ namespace AtlasToolbox
         /// <param name="args"></param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                DebugSettings.BindingFailed += DebugSettings_BindingFailed;
+            }
+#endif
+
             if (CompatibilityHelper.IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());
@@ -134,6 +143,11 @@ namespace AtlasToolbox
                 m_window = new IncompatibleVersionWindow();
                 m_window.Activate();
             }
+        }
+
+        private void DebugSettings_BindingFailed(object sender, BindingFailedEventArgs e)
+        {
+            throw new Exception($"A debug binding failed: " + e.Message);
         }
         /// <summary>
         /// Checks for an existing toolbox instance in processes

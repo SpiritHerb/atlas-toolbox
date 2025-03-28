@@ -49,18 +49,6 @@ namespace AtlasToolbox
         {
             return this.Content.XamlRoot;
         }
-
-        public void GoToSoftwarePage()
-        {
-            App.CurrentCategory = "Software";
-            ContentFrame.Navigate(
-                   new SoftwarePage().GetType(),
-                   null,
-                   new DrillInNavigationTransitionInfo()
-                   );
-            App.XamlRoot = this.Content.XamlRoot;
-            NavigationViewControl.Header = "Software downloading";
-        }
         
         /// <summary>
         /// navigates to the correct page when a navigation item is clicked
@@ -76,31 +64,31 @@ namespace AtlasToolbox
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
                 return;
             }
-            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.SoftwarePage")
+            switch (args.InvokedItemContainer.Tag.ToString())
             {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-                ContentFrame.Navigate(
-                       new SoftwarePage().GetType(),
-                       null,
-                       new DrillInNavigationTransitionInfo()
-                       );
-            }
-            else if (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage")
-            {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-                ContentFrame.Navigate(
-                       new ConfigPage().GetType(),
-                       null,
-                       new DrillInNavigationTransitionInfo());
-            }
-            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage")
-            {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-                Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
-                ContentFrame.Navigate(
-                       newPage,
-                       null,
-                       new DrillInNavigationTransitionInfo());
+                case "AtlasToolbox.Views.SoftwarePage":
+                    App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
+                    ContentFrame.Navigate(
+                           new SoftwarePage().GetType(),
+                           null,
+                           new DrillInNavigationTransitionInfo()
+                           );
+                    break;
+                case "AtlasToolbox.Views.HomePage":
+                    App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
+                    Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
+                    ContentFrame.Navigate(
+                           newPage,
+                           null,
+                           new DrillInNavigationTransitionInfo());
+                    break;
+                default:
+                    App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
+                    ContentFrame.Navigate(
+                           new ConfigPage().GetType(),
+                           null,
+                           new DrillInNavigationTransitionInfo());
+                    break;
             }
             App.XamlRoot = this.Content.XamlRoot;
         }
