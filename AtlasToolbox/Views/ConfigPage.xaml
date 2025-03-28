@@ -13,6 +13,10 @@
     d:DataContext="{d:DesignInstance Type=viewmodel:ConfigPageViewModel}"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <local:FontIconConverter x:Key="FontIconConverter" />
+    </Page.Resources>
+
     <Grid Margin="55,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -42,9 +46,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <controls:SettingsCard
-                                    Header="{Binding Name}"
-                                    Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                <controls:SettingsCard Header="{Binding Name}" Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                     <ComboBox
                                         x:Name="ConfigSwitch"
                                         ItemsSource="{Binding Options}"
@@ -95,7 +97,6 @@
                             <controls:SettingsCard
                                 x:Name="SettingsCard"
                                 Header="{Binding Description}"
-                                HeaderIcon="{Binding Icon}"
                                 Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                 <Button
                                     Command="{Binding ExecuteCommandCommand}"
@@ -115,7 +116,7 @@
                                 ActionIconToolTip="Open in new window"
                                 Click="LinkCard_Click"
                                 Header="{Binding Name}"
-                                HeaderIcon="{Binding fontIcon}"
+                                HeaderIcon="{Binding FontIcon, Converter={StaticResource FontIconConverter}}"
                                 IsClickEnabled="True"
                                 Style="{StaticResource ConfigurationSettingsCardTemplate}" />
                         </DataTemplate>
