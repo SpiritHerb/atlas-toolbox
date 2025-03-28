@@ -17,7 +17,7 @@
         <ProgressRing IsActive="True" />
         <TextBlock
             Margin="0,175,0,0"
-            Text="Reticulating Splines..."
+            Text="Starting services..."
             TextAlignment="Center" />
     </Grid>
 </Window>
