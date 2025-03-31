@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.AI.MachineLearning;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
@@ -44,16 +45,31 @@ namespace AtlasToolbox.Views
                 Links.ItemsSource = item.LinksViewModels;
                 SubMenuItems.ItemsSource = item.ConfigurationSubMenuViewModels;
                 ConfigurationButton.ItemsSource = item.ConfigurationButtonViewModels;
+                bool addFolderItem = true;
                 Folder folder = new Folder
                 {
                     Name = item.Name,
                 };
-                item2.Add(folder);
+                foreach (Folder folder1 in item2)
+                {
+                    if (folder1.Name == item.Name)
+                    {
+                        addFolderItem = false;
+                    }
+                }
+                if (addFolderItem)
+                {
+                    item2.Add(folder);
+                }
+                if (!addFolderItem && item2.Last().Name != item.Name)
+                {
+                    item2.Remove(item2.Last());
+                }
                 BreadcrumbBar.ItemsSource = item2;
                 BreadcrumbBar.ItemClicked += BreadcrumbBar_ItemClicked;
 
                 oldCat = App.CurrentCategory;
-                App.CurrentCategory = item.Name;
+                //App.CurrentCategory = item.Name;
             }
         }
 
