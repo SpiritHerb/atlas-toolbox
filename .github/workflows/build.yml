@@ -38,7 +38,7 @@ jobs:
     #   run: dotnet build D:\a\atlas-toolbox\atlas-toolbox\Installer\ToolboxPackaging.wixproj --configuration Release -p:DefineConstants="MSIProductVersion=1.0.0" --output "D:\a\atlas-toolbox\atlas-toolbox\artifacts\"
 
     - name: Compile .ISS to .EXE Installer
-      uses: zhuzichu520/inno-setup-action@v1.0.0
+      uses: robin24/inno-setup-action@v1
       with:
         filepath: D:\a\atlas-toolbox\atlas-toolbox\Installer\setup.iss
         
