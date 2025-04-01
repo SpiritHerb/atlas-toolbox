@@ -40,7 +40,7 @@ jobs:
     - name: Compile .ISS to .EXE Installer
       uses: zhuzichu520/inno-setup-action@v1.0.0
       with:
-        path: Installer/setup.iss
+        filepath: Installer/setup.iss
         options: /O+
         
     - name: List Directory Structure After MSI Build
