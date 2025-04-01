@@ -41,12 +41,9 @@ jobs:
       uses: robin24/inno-setup-action@v1
       with:
         filepath: D:\a\atlas-toolbox\atlas-toolbox\Installer\setup.iss
-        
-    - name: List Directory Structure After MSI Build
-      run: dir "D:\a\atlas-toolbox\atlas-toolbox\artifacts\"
 
     - name: Create ZIP of MSI
-      run: powershell Compress-Archive -Path "D:\a\atlas-toolbox\atlas-toolbox\artifacts\*" -DestinationPath "D:\a\atlas-toolbox\atlas-toolbox\AtlasToolbox.zip"
+      run: powershell Compress-Archive -Path "D:\a\atlas-toolbox\atlas-toolbox\Installer\Output\*" -DestinationPath "D:\a\atlas-toolbox\atlas-toolbox\AtlasToolbox.zip"
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
