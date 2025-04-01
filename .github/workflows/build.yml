@@ -40,7 +40,7 @@ jobs:
     - name: Compile .ISS to .EXE Installer
       uses: zhuzichu520/inno-setup-action@v1.0.0
       with:
-        filepath: Installer/setup.iss
+        filepath: D:\a\atlas-toolbox\atlas-toolbox\Installer\setup.iss
         
     - name: List Directory Structure After MSI Build
       run: dir "D:\a\atlas-toolbox\atlas-toolbox\artifacts\"
