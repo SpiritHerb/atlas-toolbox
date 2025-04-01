@@ -24,7 +24,7 @@ namespace AtlasToolbox.Utils
         /// <returns></returns>
         public static Profiles CreateProfile(string profileName)
         {
-            FileInfo[] profileFile = new DirectoryInfo("..\\..\\..\\..\\Profiles\\").GetFiles();
+            FileInfo[] profileFile = new DirectoryInfo($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles\\").GetFiles();
             List<string> configModelList = new ();
             List<KeyValuePair<string, string>> multiConfigModelList = new ();
             ProfileModel profileModel = new ();

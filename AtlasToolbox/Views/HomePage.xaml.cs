@@ -37,12 +37,6 @@ namespace AtlasToolbox.Views
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }
-        private void buttonclick(object sender, RoutedEventArgs e)
-        {
-            var mainWindow = App.m_window as MainWindow;
-
-            mainWindow.GoToSoftwarePage();
-        }
 
         private void AddProfile(object sender, RoutedEventArgs e)
         {

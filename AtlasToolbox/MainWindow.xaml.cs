@@ -11,6 +11,8 @@ using CommunityToolkit.WinUI;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
+using System.Threading.Tasks;
+using Windows.Security.Authentication.Web.Provider;
 
 namespace AtlasToolbox
 {
@@ -40,7 +42,7 @@ namespace AtlasToolbox
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
-        
+
         /// <summary>
         /// Gets the window Xaml root for ContentDialogs
         /// </summary>
@@ -50,18 +52,6 @@ namespace AtlasToolbox
             return this.Content.XamlRoot;
         }
 
-        public void GoToSoftwarePage()
-        {
-            App.CurrentCategory = "Software";
-            ContentFrame.Navigate(
-                   new SoftwarePage().GetType(),
-                   null,
-                   new DrillInNavigationTransitionInfo()
-                   );
-            App.XamlRoot = this.Content.XamlRoot;
-            NavigationViewControl.Header = "Software downloading";
-        }
-        
         /// <summary>
         /// navigates to the correct page when a navigation item is clicked
         /// </summary>
@@ -70,61 +60,89 @@ namespace AtlasToolbox
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
+            //var NavView = sender as NavigationView;
+            //if (NavView.SelectedItem == args.InvokedItemContainer) { return; };
+
+            if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; };
+
+            App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
             if (args.IsSettingsInvoked == true)
             {
                 App.CurrentCategory = "SettingsItem";
                 ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
                 return;
             }
-            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.SoftwarePage")
+
+            switch (args.InvokedItemContainer.Tag.ToString())
             {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-                ContentFrame.Navigate(
-                       new SoftwarePage().GetType(),
-                       null,
-                       new DrillInNavigationTransitionInfo()
-                       );
-            }
-            else if (args.InvokedItemContainer.Tag.ToString() != "AtlasToolbox.Views.HomePage")
-            {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-                ContentFrame.Navigate(
-                       new ConfigPage().GetType(),
-                       null,
-                       new DrillInNavigationTransitionInfo());
-            }
-            else if (args.InvokedItemContainer.Tag.ToString() == "AtlasToolbox.Views.HomePage")
-            {
-                App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-                Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
-                ContentFrame.Navigate(
-                       newPage,
-                       null,
-                       new DrillInNavigationTransitionInfo());
+                case "AtlasToolbox.Views.SoftwarePage":
+                    ContentFrame.Navigate(
+                           new SoftwarePage().GetType(),
+                           null,
+                           new DrillInNavigationTransitionInfo()
+                           );
+                    break;
+                case "AtlasToolbox.Views.HomePage":
+                    Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
+                    ContentFrame.Navigate(
+                           newPage,
+                           null,
+                           new DrillInNavigationTransitionInfo());
+                    break;
+                default:
+                    ContentFrame.Navigate(
+                           new ConfigPage().GetType(),
+                           null,
+                           new DrillInNavigationTransitionInfo());
+                    break;
             }
             App.XamlRoot = this.Content.XamlRoot;
         }
 
-        private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        public void GoBack()
+        {
+            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
+        }
+        public void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (ContentFrame.CanGoBack) ContentFrame.GoBack();
         }
 
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
+            NavigateTo();
+        }
+
+        private void NavigateTo()
+        {
             NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
             NavigationViewControl.Header = null;
-            if (App.CurrentCategory != null && App.CurrentCategory != "SettingsItem")
+
+            if (ContentFrame.SourcePageType != typeof(Views.SubSection))
             {
-                NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
-                    .OfType<NavigationViewItem>()
-                    .First(n => n.Tag.Equals(App.CurrentCategory));
+                if (App.CurrentCategory != null && App.CurrentCategory != "SettingsItem")
+                {
+                    try
+                    {
+                        NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
+                            .OfType<NavigationViewItem>()
+                            .First(n => n.Tag.Equals(App.CurrentCategory));
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        App.logger.Error($"No matching NavigationViewItem found for category: {App.CurrentCategory}");
+                    }
+                }
+                else
+                {
+                    NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
+                }
             }
-            else
+
+            if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
             {
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
             }
-            if (ContentFrame.SourcePageType == typeof(Views.SettingsPage)) NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
         }
 
         /// <summary>
