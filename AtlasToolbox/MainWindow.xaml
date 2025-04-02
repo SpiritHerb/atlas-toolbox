@@ -40,7 +40,7 @@
                     <Image
                         Width="18"
                         VerticalAlignment="Center"
-                        Source="ms-appx:///Assets/Logo/AtlasLogo.png" />
+                        Source="ms-appx:///assets/logo/atlas-logo.png" />
                 </Button>
                 <TextBlock
                     x:Name="AppTitle"

@@ -18,7 +18,7 @@
     <LangVersion>preview</LangVersion>
     <SupportedOSPlatformVersion>10.0.26100.0</SupportedOSPlatformVersion>
     <UserSecretsId>b05b26c0-f62c-4dd3-b138-de1a5b0c1243</UserSecretsId>
-    <ApplicationIcon>Assets\Logo\Atlaslogo.ico</ApplicationIcon>
+    <ApplicationIcon>assets\logo\toolbox-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Converter\**" />
@@ -44,7 +44,7 @@
     <None Remove="Views\ContentDialogView.xaml" />
   </ItemGroup>
 	<ItemGroup>
-		<Content Include="Assets\**">
+		<Content Include="assets\**">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
@@ -130,7 +130,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Fonts\" />
+    <Folder Include="assets\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="IncompatibleVersionWindow.xaml">
@@ -187,7 +187,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Assets\Logo\Atlaslogo.png">
+    <None Update="assets\logo\toolbox-icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
