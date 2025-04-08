@@ -13,6 +13,8 @@ using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
 using System.Threading.Tasks;
 using Windows.Security.Authentication.Web.Provider;
+using Microsoft.UI;
+using WinRT.Interop;
 
 namespace AtlasToolbox
 {
@@ -24,9 +26,11 @@ namespace AtlasToolbox
 
             //Window parameters
             WindowManager.Get(this).Width = 1250;
+            WindowManager.Get(this).MinWidth = 1250;
+
             WindowManager.Get(this).Height = 850;
             WindowManager.Get(this).MinHeight = 850;
-            WindowManager.Get(this).MinWidth = 1250;
+
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
 
@@ -37,7 +41,6 @@ namespace AtlasToolbox
                        new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo()
                        );
             SetTitleBar(AppTitleBar);
-
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;
@@ -196,15 +199,14 @@ namespace AtlasToolbox
         }
         private void CenterWindowOnScreen()
         {
-            int screenWidth = GetSystemMetrics(SM_CXSCREEN);
-            int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+            var screenWidth = GetSystemMetrics(SM_CXSCREEN);
+            var screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
             double centerX = (screenWidth - this.Bounds.Width) / 2;
             double centerY = (screenHeight - this.Bounds.Height) / 2;
 
             this.MoveAndResize(centerX, centerY, this.Bounds.Width, this.Bounds.Height);
         }
-
 
         private void MoveAndResize(double x, double y, double width, double height)
         {

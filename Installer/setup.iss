@@ -33,7 +33,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-LicenseFile=D:\a\atlas-toolbox\atlas-toolbox\LICENSE
+;LicenseFile=D:\a\atlas-toolbox\atlas-toolbox\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
 OutputBaseFilename=mysetup
@@ -48,95 +48,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "D:\a\atlas-toolbox\atlas-toolbox\Deploy\src\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Assets\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\runtimes\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\AtlasToolbox.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\AtlasToolbox.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\AtlasToolbox.dll.config"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\AtlasToolbox.pdb"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\AtlasToolbox.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\BcdSharp.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.Common.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.Mvvm.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.WinUI.Animations.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.WinUI.Controls.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.WinUI.Controls.SettingsControls.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.WinUI.Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.WinUI.Helpers.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\CommunityToolkit.WinUI.Triggers.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\dism.log"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\ICSharpCode.Decompiler.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Dism.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.Binder.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.CommandLine.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.EnvironmentVariables.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.FileExtensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Configuration.UserSecrets.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.DependencyInjection.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.DependencyInjection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Diagnostics.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Diagnostics.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.FileProviders.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.FileProviders.Physical.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.FileSystemGlobbing.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Hosting.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Hosting.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.Configuration.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.Console.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.Debug.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.EventLog.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Logging.EventSource.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Options.ConfigurationExtensions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Options.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Extensions.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Graphics.Canvas.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Graphics.Canvas.Interop.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.InteractiveExperiences.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Web.WebView2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Web.WebView2.Core.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.ApplicationModel.Resources.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.AppLifecycle.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.AppNotifications.Builder.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.AppNotifications.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.Management.Deployment.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.PushNotifications.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.SDK.NET.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.Security.AccessControl.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.Storage.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.System.Power.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.System.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Windows.Widgets.Projection.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.WindowsAppRuntime.Bootstrap.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.WinUI.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Xaml.Interactions.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Microsoft.Xaml.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\MVVMEssentials.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\NLog.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\NLog.Extensions.Logging.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\resources.pri"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.CodeDom.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.Configuration.ConfigurationManager.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.Diagnostics.EventLog.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.Diagnostics.EventLog.Messages.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.Management.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.Runtime.InteropServices.WindowsRuntime.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.Security.Cryptography.ProtectedData.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\System.ServiceProcess.ServiceController.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\WindowsDisplayAPI.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\WinRT.Runtime.dll"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\WinUIEx.dll"; DestDir: "{app}"; Flags: ignoreversion
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "D:\a\atlas-toolbox\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
+;Source: "C:\Users\TheyCreeper\Desktop\AtlasToolbox\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "C:\Users\TheyCreeper\Documents\Dev\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue

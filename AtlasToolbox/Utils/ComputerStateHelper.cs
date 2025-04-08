@@ -14,7 +14,7 @@ namespace AtlasToolbox.Utils
 
         public static void RestartComputer()
         {
-            CommandPromptHelper.RunCommand("shutdown /r");
+            CommandPromptHelper.RunCommand("shutdown /r /t 000");
         }
     }
 }

@@ -18,6 +18,10 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <GridView
                 x:Name="itemGridView"
                 Grid.Row="0"
@@ -88,6 +92,32 @@
                                 </MenuFlyout>
                             </Grid.ContextFlyout>
                             <TextBlock Text="{x:Bind Name}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="36,5,0,0"
+                FontSize="20"
+                Text="Recent toggles" />
+            <ListView
+                x:Name="RecentTogglesList"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="350"
+                Height="225"
+                Margin="36,36,0,10"
+                HorizontalAlignment="Left"
+                BorderBrush="#36363e"
+                BorderThickness="2"
+                CornerRadius="5"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:RecentToggle">
+                        <Grid>
+                            <TextBlock Text="{Binding Description}"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

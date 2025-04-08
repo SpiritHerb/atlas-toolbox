@@ -30,10 +30,18 @@ namespace AtlasToolbox.Views
 
         public HomePage()
         {
+            RecentTogglesHelper.LoadRecentToggles();
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
             this.DataContext = _viewModel;
 
+            List<object> list = new();
+
+            for (int i = 0; i > 9; i++)
+            {
+                list.Add(RecentTogglesHelper.recentToggles[i]);
+            }
+            RecentTogglesList.ItemsSource = list;
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }

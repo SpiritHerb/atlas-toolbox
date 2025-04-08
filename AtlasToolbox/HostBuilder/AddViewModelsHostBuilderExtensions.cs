@@ -121,21 +121,29 @@ namespace AtlasToolbox.HostBuilder
         private static IHostBuilder AddProfiles(this IHostBuilder host)
         {
             List<Profiles> configurationDictionary = new List<Profiles>();
-
             DirectoryInfo profilesDirectory = new DirectoryInfo($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles");
-            FileInfo[] profileFile = profilesDirectory.GetFiles();
-
-            foreach (FileInfo file in profileFile)
+            try
             {
-                configurationDictionary.Add(ProfileSerializing.DeserializeProfile(file.FullName));
-            };
-            host.ConfigureServices((_, services) =>
+                FileInfo[] profileFile = profilesDirectory.GetFiles();
+            } catch
             {
-                services.AddSingleton<IEnumerable<Profiles>> (provider =>
+                Directory.CreateDirectory($"{Environment.GetEnvironmentVariable("windir")}\\AtlasModules\\Toolbox\\Profiles");
+            } finally
+            {
+                FileInfo[] profileFile = profilesDirectory.GetFiles();
+                foreach (FileInfo file in profileFile)
                 {
-                    return configurationDictionary;
+                    configurationDictionary.Add(ProfileSerializing.DeserializeProfile(file.FullName));
+                };
+                host.ConfigureServices((_, services) =>
+                {
+                    services.AddSingleton<IEnumerable<Profiles>> (provider =>
+                    {
+                        return configurationDictionary;
+                    });
                 });
-            });
+            }
+
             return host;
         }
 
