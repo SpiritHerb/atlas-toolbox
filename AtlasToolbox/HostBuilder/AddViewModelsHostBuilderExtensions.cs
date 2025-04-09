@@ -81,6 +81,7 @@ namespace AtlasToolbox.HostBuilder
                 ["Spotify"] = new("Spotify", "Spotify.Spotify"),
                 ["OBS Studio"] = new("OBS Studio", "OBSProject.OBSStudio"),
                 ["MSI Afterburner"] = new("MSI Afterburner", "Guru3D.Afterburner"),
+                ["NVCleanstall"] = new("NVCleanstall", "TechPowerUp.NVCleanstall"),
                 ["foobar2000"] = new("foobar2000", "PeterPawlowski.foobar2000"),
                 ["CPU-Z"] = new("CPU-Z", "CPUID.CPU-Z"),
                 ["GPU-Z"] = new("GPU-Z", "TechPowerUp.GPU-Z"),
