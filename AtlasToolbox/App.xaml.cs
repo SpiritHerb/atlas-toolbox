@@ -16,6 +16,7 @@ using System.Configuration;
 using AtlasToolbox.Utils;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Contracts;
 
 namespace AtlasToolbox
 {
@@ -31,6 +32,8 @@ namespace AtlasToolbox
         public static string CurrentCategory { get; set; }
 
         private static Mutex _mutex = new(true, "{AtlasToolbox}");
+
+        public static string Version { get; set; }
         public App()
         {
             ConfigureNLog();
@@ -92,7 +95,7 @@ namespace AtlasToolbox
                 DebugSettings.BindingFailed += DebugSettings_BindingFailed;
             }
 #endif
-
+            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "VersionNumber");
             if (CompatibilityHelper.IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());

@@ -16,7 +16,7 @@ namespace AtlasToolbox.Views
         {
             get
             {
-                return ConfigurationManager.AppSettings.Get("ToolboxVersion");
+                return App.Version;
             }
         }
 
