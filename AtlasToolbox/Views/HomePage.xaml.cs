@@ -44,8 +44,14 @@ namespace AtlasToolbox.Views
 
             for (int i = 0; i < 9; i++)
             {
-                list.Add(RecentTogglesHelper.recentToggles[i]);
-                if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
+                try
+                {
+                    list.Add(RecentTogglesHelper.recentToggles[i]);
+                    if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
+
+                }catch {
+                    break;
+                }
             }
             RecentTogglesList.ItemsSource = list;
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
