@@ -47,6 +47,8 @@
                             Margin="75,0,0,0"
                             VerticalAlignment="Center"
                             Orientation="Vertical">
+                            <TextBlock x:Name="WinVer" />
+                            <TextBlock x:Name="AtlasVer" Margin="0,0,0,20" />
                             <TextBlock
                                 x:Name="subHeaderBlock"
                                 FontSize="18"

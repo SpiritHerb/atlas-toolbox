@@ -31,16 +31,21 @@ namespace AtlasToolbox.Views
 
         public HomePage()
         {
+            OperatingSystem os = Environment.OSVersion;
+
             RecentTogglesHelper.LoadRecentToggles();
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
             this.DataContext = _viewModel;
+            WinVer.Text = "Windows Version: " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
+            AtlasVer.Text = "Playbook version: " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
 
             List<object> list = new();
 
-            for (int i = 0; i > 9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 list.Add(RecentTogglesHelper.recentToggles[i]);
+                if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
             }
             RecentTogglesList.ItemsSource = list;
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
