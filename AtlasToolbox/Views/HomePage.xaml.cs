@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Xaml.Interactivity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,26 +31,25 @@ namespace AtlasToolbox.Views
 
         public HomePage()
         {
+            OperatingSystem os = Environment.OSVersion;
+
             RecentTogglesHelper.LoadRecentToggles();
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
             this.DataContext = _viewModel;
+            WinVer.Text = "Windows Version: " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
+            AtlasVer.Text = "Playbook version: " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
 
             List<object> list = new();
 
-            for (int i = 0; i > 9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 list.Add(RecentTogglesHelper.recentToggles[i]);
+                if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
             }
             RecentTogglesList.ItemsSource = list;
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
-        }
-
-        private void AddProfile(object sender, RoutedEventArgs e)
-        {
-            _viewModel.AddProfileCommand.Execute(null);
-            ProfileNameTextBox.Text = "";
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace AtlasToolbox.Views
             {
                 var selectedItem = ProfilesListView.SelectedItem as Profiles;
 
-                if (selectedItem.Key != "default.txt")
+                if (selectedItem.Key != "default.json")
                 {
                     ContentDialog dialog = new ContentDialog();
 
@@ -103,10 +103,13 @@ namespace AtlasToolbox.Views
             dialog.PrimaryButtonText = "Yes";
             dialog.CloseButtonText = "No";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.PrimaryButtonCommand = _viewModel.SetProfileCommand;
 
             var result = await dialog.ShowAsync();
-            RestartPCPrompt();
+            if (result == ContentDialogResult.Primary)
+            {
+                RestartPCPrompt();
+                _viewModel.SetProfileCommand.Execute(this);
+            }
         }
 
         /// <summary>
@@ -125,11 +128,36 @@ namespace AtlasToolbox.Views
             dialog.PrimaryButtonCommand = new RelayCommand(ComputerStateHelper.RestartComputer);
 
             var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                ComputerStateHelper.RestartComputer();
+            }
         }
 
-        private void ProfileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private async void NewProfile()
         {
-            _viewModel.Name = ProfileNameTextBox.Text;
+            ContentDialog dialog = new ContentDialog();
+
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Create a new profile";
+            dialog.PrimaryButtonText = "Create";
+            dialog.CloseButtonText = "Cancel";
+            dialog.Content = new NewProfilePage(_viewModel);
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                _viewModel.AddProfileCommand.Execute(null);
+            }
+            Name = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewProfile();
         }
     }
 }

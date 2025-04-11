@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="AtlasToolbox.Views.NewProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AtlasToolbox.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
+    d:DataContext="{d:DesignInstance Type=viewmodel:HomePageViewModel}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <!--  Content body  -->
+            <TextBlock Text="Your current configuration will be saved to this profile" TextWrapping="Wrap" />
+            <TextBox
+                x:Name="ProfileName"
+                PlaceholderText="Name"
+                TextChanged="TextBox_TextChanged" />
+        </StackPanel>
+    </Grid>
+</Page>

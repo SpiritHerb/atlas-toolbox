@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AtlasToolbox.Services.ConfigurationServices;
 using AtlasToolbox.Stores;
+using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
 using MVVMEssentials.Commands;
 
@@ -33,6 +34,8 @@ namespace AtlasToolbox.Commands
         protected override async Task ExecuteAsync(object parameter)
         {
             int currentSetting = _configurationItemViewModel.Options.IndexOf(_configurationStore.CurrentSetting);
+
+            RecentTogglesHelper.AddRecentToggle(_configurationItemViewModel.Key, currentSetting.ToString());
 
             _configurationItemViewModel.IsBusy = true;
 
