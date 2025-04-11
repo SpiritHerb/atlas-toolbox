@@ -35,7 +35,7 @@
                 <TextBlock Style="{StaticResource CategoryTitle}" Text="About" />
                 <controls:SettingsExpander Header="AtlasOS Toolbox" Style="{StaticResource ConfigurationSettingsExpanderTemplate}">
                     <controls:SettingsExpander.HeaderIcon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="/assets/logo/toolbox-logo.png" />
+                        <BitmapIcon ShowAsMonochrome="False" UriSource="/assets/logo/toolbox-icon.ico" />
                     </controls:SettingsExpander.HeaderIcon>
                     <TextBlock
                         Foreground="{ThemeResource TextFillColorSecondaryBrush}"
