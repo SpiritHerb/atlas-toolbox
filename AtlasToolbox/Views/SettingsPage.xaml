@@ -78,7 +78,7 @@
                         <controls:SettingsCard
                             HorizontalContentAlignment="Left"
                             ContentAlignment="Vertical"
-                            Header="This code is provided by the AtlasOS team. This software is meant to be used with AtlasOS on a suppoorted Windows version ONLY. Any other playbook and/or unsupported Windows version is not advised.">
+                            Header="This code is provided by the AtlasOS team. This software is meant to be used with AtlasOS on a supported Windows version ONLY. Any other playbook and/or unsupported Windows version is not advised.">
                             <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                 <HyperlinkButton Content="AtlasOS GitHub" NavigateUri="https://github.com/Atlas-OS/" />
                                 <HyperlinkButton Content="AtlasOS Website" NavigateUri="https://atlasos.net" />
