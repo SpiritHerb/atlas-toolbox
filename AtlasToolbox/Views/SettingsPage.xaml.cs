@@ -1,8 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using AtlasToolbox.Utils;
+using AtlasToolbox.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Newtonsoft.Json;
+using NLog.LayoutRenderers;
+using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 
@@ -23,10 +29,11 @@ namespace AtlasToolbox.Views
         public SettingsPage()
         {
             this.InitializeComponent();
+            this.DataContext = new SettingsPageViewModel();
             LoadText();
         }
 
-        private void LoadText()
+        public void LoadText()
         {
             TitleTxt.Text = App.GetValueFromItemList("Settings");
             BehaviorHeader.Text = App.GetValueFromItemList("Behavior");
@@ -35,6 +42,7 @@ namespace AtlasToolbox.Views
             toCloneRepoCard.Header = App.GetValueFromItemList("CloneRepoCard");
             bugRequestCard.Header = App.GetValueFromItemList("BugReportCard");
             WarningHeader.Header = App.GetValueFromItemList("WarningHeader");
+            LanguageHeader.Header = App.GetValueFromItemList("Language");
         }
 
         private void KeepBackground_Toggled(object sender, RoutedEventArgs e)

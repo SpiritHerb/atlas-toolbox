@@ -66,6 +66,7 @@
                                 <controls:SettingsCard Header="{Binding Name}" Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                     <ComboBox
                                         x:Name="ConfigSwitch"
+                                        Width="200"
                                         ItemsSource="{Binding Options}"
                                         SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" />
                                 </controls:SettingsCard>

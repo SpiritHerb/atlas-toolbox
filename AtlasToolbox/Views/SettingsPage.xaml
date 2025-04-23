@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:AtlasToolbox.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="using:AtlasToolbox.ViewModels"
+    d:DataContext="{d:DesignInstance Type=viewmodel:SettingsPageViewModel}"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -22,12 +24,25 @@
             x:Name="TitleTxt"
             Grid.Row="0"
             Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}"/>
+            Style="{StaticResource TitleTextBlockStyle}" />
         <StackPanel x:Name="SettingToggles" Grid.Row="1">
             <StackPanel x:Name="BehaviorSettings">
                 <TextBlock x:Name="BehaviorHeader" Style="{StaticResource CategoryTitle}" />
                 <controls:SettingsCard x:Name="BackgroundDescription" Style="{StaticResource ConfigurationSettingsCardTemplate}">
                     <ToggleSwitch IsOn="{x:Bind KeepBackground_State}" Toggled="KeepBackground_Toggled" />
+                </controls:SettingsCard>
+                <controls:SettingsCard x:Name="LanguageHeader" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                    <ComboBox
+                        x:Name="ConfigSwitch"
+                        Width="200"
+                        ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding CurrentLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </controls:SettingsCard>
             </StackPanel>
             <StackPanel>
@@ -73,9 +88,9 @@
                             </StackPanel>
                         </controls:SettingsCard>
                         <controls:SettingsCard
+                            x:Name="WarningHeader"
                             HorizontalContentAlignment="Left"
-                            ContentAlignment="Vertical"
-                            x:Name="WarningHeader">
+                            ContentAlignment="Vertical">
                             <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                 <HyperlinkButton Content="AtlasOS GitHub" NavigateUri="https://github.com/Atlas-OS/" />
                                 <HyperlinkButton Content="AtlasOS Website" NavigateUri="https://atlasos.net" />

@@ -240,7 +240,7 @@ namespace AtlasToolbox
             mainWindow.ContentDialogContoller(type);
         }
 
-        private static void LoadLangString()
+        public static void LoadLangString()
         {
             string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
             StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));

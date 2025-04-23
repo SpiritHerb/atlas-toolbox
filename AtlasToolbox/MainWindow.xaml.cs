@@ -47,7 +47,7 @@ namespace AtlasToolbox
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
 
-        private void LoadText()
+        public void LoadText()
         {
             UnstableCard.Title = App.GetValueFromItemList("Unstable");
             UnstableCard.Message = App.GetValueFromItemList("UnstableDescription");
