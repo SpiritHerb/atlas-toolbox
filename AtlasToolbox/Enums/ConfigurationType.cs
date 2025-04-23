@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ICSharpCode.Decompiler.CSharp.Syntax;
 
 namespace AtlasToolbox.Enums
 {
@@ -49,10 +50,27 @@ namespace AtlasToolbox.Enums
         /// <returns></returns>
         public static string GetDescription(this Enum value)
         {
-            FieldInfo field = value.GetType().GetField(value.ToString());
-            DescriptionAttribute attribute = field.GetCustomAttribute<DescriptionAttribute>();
+            switch (value)
+            {
+                case ConfigurationType.General:
+                    return App.GetValueFromItemList("GeneralConfig");
 
-            return attribute == null ? value.ToString() : attribute.Description;
+                case ConfigurationType.Interface:
+                    return App.GetValueFromItemList("Interface");
+
+                case ConfigurationType.Windows:
+                    return App.GetValueFromItemList("Windows");
+
+                case ConfigurationType.Advanced:
+                    return App.GetValueFromItemList("Advanced");
+
+                case ConfigurationType.Security:
+                    return App.GetValueFromItemList("Security");
+
+                case ConfigurationType.Troubleshooting:
+                    return App.GetValueFromItemList("Troubleshooting");
+                default: return null;
+            }
         }
     }
 }

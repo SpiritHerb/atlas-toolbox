@@ -15,7 +15,8 @@ namespace AtlasToolbox
     {
         public LoadingWindow()
         {
-            this.InitializeComponent(); 
+            this.InitializeComponent();
+            LoadText();
             WindowManager.Get(this).IsMaximizable = false;
             WindowManager.Get(this).IsResizable = false;
             WindowManager.Get(this).Width = 250;
@@ -23,6 +24,11 @@ namespace AtlasToolbox
             WindowManager.Get(this).IsTitleBarVisible = false;
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
+        }
+
+        private void LoadText()
+        {
+            StartingServices.Text = App.GetValueFromItemList("StartingServices");
         }
 
         private void CenterWindowOnScreen()

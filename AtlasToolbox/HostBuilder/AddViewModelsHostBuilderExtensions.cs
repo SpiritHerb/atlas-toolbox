@@ -33,8 +33,7 @@ namespace AtlasToolbox.HostBuilder
         public static IHostBuilder AddViewModels(this IHostBuilder host)
         {
             // Gets the language and creates a list with all the translations
-            string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
-            list = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
+            
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<MainViewModel>();
@@ -55,11 +54,11 @@ namespace AtlasToolbox.HostBuilder
         }
 
 
-        private static string GetValueFromItemList(string key, bool desc = false)
-        {
-            if (!desc) return list.Where(item => item.Key == key).Select(item => item.Value).FirstOrDefault();
-            else return list.Where(item => item.Key == key + "Description").Select(item => item.Value).FirstOrDefault();
-        }
+        //private static string App.App.GetValueFromItemList(string key, bool desc = false)
+        //{
+        //    if (!desc) return list.Where(item => item.Key == key).Select(item => item.Value).FirstOrDefault();
+        //    else return list.Where(item => item.Key == key + "Description").Select(item => item.Value).FirstOrDefault();
+        //}
 
         /// <summary>
         /// Registers software items
@@ -172,32 +171,32 @@ namespace AtlasToolbox.HostBuilder
             {
                 ["ExplorerPatcher"] = new ("https://github.com/valinet/ExplorerPatcher", "ExplorerPatcher", ConfigurationType.StartMenuSubMenu),
                 ["StartAllBack"] = new ("https://www.startallback.com/", "StartAllBack", ConfigurationType.StartMenuSubMenu),
-                ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", GetValueFromItemList("OpenShellAtlasPreset"), ConfigurationType.StartMenuSubMenu),
-                ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", GetValueFromItemList("InterfaceTweaksDocumentation"), ConfigurationType.Interface),
+                ["OpenShellAtlasPreset"] = new (@"http://github.com/Atlas-OS/Atlas/blob/main/src/playbook/Executables/AtlasDesktop/4.%20Interface%20Tweaks/Start%20Menu/Atlas%20Open-Shell%20Preset.xml", App.GetValueFromItemList("OpenShellAtlasPreset"), ConfigurationType.StartMenuSubMenu),
+                ["InterfaceTweaksDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/interface-tweaks/", App.GetValueFromItemList("InterfaceTweaksDocumentation"), ConfigurationType.Interface),
                 
-                ["ActivationPage"] = new (@"ms-settings:activation", GetValueFromItemList("ActivationPage"), ConfigurationType.Windows, "\uE713"),
-                ["ColorsPage"] = new (@"ms-settings:personalization-colors", GetValueFromItemList("ColorsPage"), ConfigurationType.Windows, "\uE713"),
-                ["DateAndTime"] = new (@"ms-settings:dateandtime", GetValueFromItemList("DateAndTime"), ConfigurationType.Windows, "\uE713"),
-                ["DefaultApps"] = new (@"ms-settings:defaultapps", GetValueFromItemList("DefaultApps"), ConfigurationType.Windows, "\uE713"),
-                ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", GetValueFromItemList("DefaultGraphicsSettings"), ConfigurationType.Windows, "\uE713"),
-                ["RegionLanguage"] = new (@"ms-settings:regionlanguage", GetValueFromItemList("RegionLanguage"), ConfigurationType.Windows, "\uE713"),
-                ["Privacy"] = new (@"ms-settings:privacy", GetValueFromItemList("PrivacySettings"), ConfigurationType.Windows, "\uE713"),
-                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", GetValueFromItemList("RegionProperties"), ConfigurationType.Windows, "\uE713"),
-                ["Taskbar"] = new (@"ms-settings:taskbar", GetValueFromItemList("Taskbar"), ConfigurationType.Windows, "\uE713"),
-                ["CoreIsolation"] = new (@"windowsdefender://coreisolation/", GetValueFromItemList("CoreIsolation"), ConfigurationType.CoreIsolationSubMenu, "\uE83D"),
+                ["ActivationPage"] = new (@"ms-settings:activation", App.GetValueFromItemList("ActivationPage"), ConfigurationType.Windows, "\uE713"),
+                ["ColorsPage"] = new (@"ms-settings:personalization-colors", App.GetValueFromItemList("ColorsPage"), ConfigurationType.Windows, "\uE713"),
+                ["DateAndTime"] = new (@"ms-settings:dateandtime", App.GetValueFromItemList("DateAndTime"), ConfigurationType.Windows, "\uE713"),
+                ["DefaultApps"] = new (@"ms-settings:defaultapps", App.GetValueFromItemList("DefaultApps"), ConfigurationType.Windows, "\uE713"),
+                ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", App.GetValueFromItemList("DefaultGraphicsSettings"), ConfigurationType.Windows, "\uE713"),
+                ["RegionLanguage"] = new (@"ms-settings:regionlanguage", App.GetValueFromItemList("RegionLanguage"), ConfigurationType.Windows, "\uE713"),
+                ["Privacy"] = new (@"ms-settings:privacy", App.GetValueFromItemList("PrivacySettings"), ConfigurationType.Windows, "\uE713"),
+                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", App.GetValueFromItemList("RegionProperties"), ConfigurationType.Windows, "\uE713"),
+                ["Taskbar"] = new (@"ms-settings:taskbar", App.GetValueFromItemList("Taskbar"), ConfigurationType.Windows, "\uE713"),
+                ["CoreIsolation"] = new (@"windowsdefender://coreisolation/", App.GetValueFromItemList("CoreIsolation"), ConfigurationType.CoreIsolationSubMenu, "\uE83D"),
 
 
-                ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", GetValueFromItemList("WindowsSettingsDocumentation"), ConfigurationType.Windows),
-                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", GetValueFromItemList("BootConfigExplanations"), ConfigurationType.BootConfigurationSubMenu),
+                ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", App.GetValueFromItemList("WindowsSettingsDocumentation"), ConfigurationType.Windows),
+                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", App.GetValueFromItemList("BootConfigExplanations"), ConfigurationType.BootConfigurationSubMenu),
                 ["AutoGpuAffinity"] = new (@"https://github.com/valleyofdoom/AutoGpuAffinity", "AutoGpuAffinity", ConfigurationType.DriverConfigurationSubMenu),
                 ["GoInterruptPolicy"] = new (@"https://github.com/spddl/GoInterruptPolicy", "GoInterruptPolicy", ConfigurationType.DriverConfigurationSubMenu),
-                ["InterrupAffinityTool"] = new (@"https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool", GetValueFromItemList("InterrupAffinityTool"), ConfigurationType.DriverConfigurationSubMenu),
+                ["InterrupAffinityTool"] = new (@"https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool", App.GetValueFromItemList("InterrupAffinityTool"), ConfigurationType.DriverConfigurationSubMenu),
                 ["MSIUtilityV3"] = new (@"https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044", "MSI Utility V3", ConfigurationType.DriverConfigurationSubMenu),
-                ["ProcessExplorerApp"] = new (@"https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer", GetValueFromItemList("ProcessExplorer"), ConfigurationType.Advanced),
-                ["NvidiaDisplayContainerMustReadFirst"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/#nvidia-display-container", GetValueFromItemList("NvidiaDisplayContainerMustReadFirst"), ConfigurationType.NvidiaDisplayContainerSubMenu),
-                ["AdvancedConfigMustRead"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/", GetValueFromItemList("AdvancedConfigMustRead"), ConfigurationType.Advanced),
-                ["SecurityDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/security/", GetValueFromItemList("SecurityDocumentation"), ConfigurationType.Security),
-                ["ResetPC"] = new (@"https://docs.atlasos.net/getting-started/reverting-atlas/", GetValueFromItemList("ResetPC"), ConfigurationType.Troubleshooting),
+                ["ProcessExplorerApp"] = new (@"https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer", App.GetValueFromItemList("ProcessExplorer"), ConfigurationType.Advanced),
+                ["NvidiaDisplayContainerMustReadFirst"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/#nvidia-display-container", App.GetValueFromItemList("NvidiaDisplayContainerMustReadFirst"), ConfigurationType.NvidiaDisplayContainerSubMenu),
+                ["AdvancedConfigMustRead"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/", App.GetValueFromItemList("AdvancedConfigMustRead"), ConfigurationType.Advanced),
+                ["SecurityDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/security/", App.GetValueFromItemList("SecurityDocumentation"), ConfigurationType.Security),
+                ["ResetPC"] = new (@"https://docs.atlasos.net/getting-started/reverting-atlas/", App.GetValueFromItemList("ResetPC"), ConfigurationType.Troubleshooting),
             };
 
             host.ConfigureServices((_, services) =>
@@ -226,18 +225,18 @@ namespace AtlasToolbox.HostBuilder
             ICommand buttonCommand;
             Dictionary<string, ConfigurationButton> configurationDictionary = new()
             {
-                ["RestartExplorerButton"] = new(buttonCommand = new RestartExplorerCommand(), GetValueFromItemList("RestartExplorerButton"), GetValueFromItemList("RestartExplorerButton", true), ConfigurationType.Interface),
-                ["ViewCurrentSettingsBootConfig"] = new(buttonCommand = new ViewCurrentValuesCommand(), GetValueFromItemList("ViewCurrentSettingsBootConfig"), GetValueFromItemList("ViewCurrentSettingsBootConfig", true), ConfigurationType.BootConfigurationSubMenu),
-                ["VBSCurrentConfig"] = new(buttonCommand = new CurrentVBSConfigurationCommand(), GetValueFromItemList("VBSCurrentConfig"), GetValueFromItemList("VBSCurrentConfig", true), ConfigurationType.CoreIsolationSubMenu),
-                ["ToggleDefender"] = new(buttonCommand = new ToggleDefenderCommand(), GetValueFromItemList("ToggleDefender"), GetValueFromItemList("ToggleDefender", true), ConfigurationType.DefenderSubMenu),
-                ["ResetFTH"] = new(buttonCommand = new ResetFTHCommand(), GetValueFromItemList("ResetFTH"), GetValueFromItemList("ResetFTH", true), ConfigurationType.MitigationsSubMenu),
-                ["InstallOpenShell"] = new(buttonCommand = new InstallOpenShellCommand(), GetValueFromItemList("InstallOpenShell"), GetValueFromItemList("InstallOpenShell", true), ConfigurationType.StartMenuSubMenu),
+                ["RestartExplorerButton"] = new(buttonCommand = new RestartExplorerCommand(), App.GetValueFromItemList("RestartExplorerButton"), App.GetValueFromItemList("RestartExplorerButton", true), ConfigurationType.Interface),
+                ["ViewCurrentSettingsBootConfig"] = new(buttonCommand = new ViewCurrentValuesCommand(), App.GetValueFromItemList("ViewCurrentSettingsBootConfig"), App.GetValueFromItemList("ViewCurrentSettingsBootConfig", true), ConfigurationType.BootConfigurationSubMenu),
+                ["VBSCurrentConfig"] = new(buttonCommand = new CurrentVBSConfigurationCommand(), App.GetValueFromItemList("VBSCurrentConfig"), App.GetValueFromItemList("VBSCurrentConfig", true), ConfigurationType.CoreIsolationSubMenu),
+                ["ToggleDefender"] = new(buttonCommand = new ToggleDefenderCommand(), App.GetValueFromItemList("ToggleDefender"), App.GetValueFromItemList("ToggleDefender", true), ConfigurationType.DefenderSubMenu),
+                ["ResetFTH"] = new(buttonCommand = new ResetFTHCommand(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("ResetFTH", true), ConfigurationType.MitigationsSubMenu),
+                ["InstallOpenShell"] = new(buttonCommand = new InstallOpenShellCommand(), App.GetValueFromItemList("InstallOpenShell"), App.GetValueFromItemList("InstallOpenShell", true), ConfigurationType.StartMenuSubMenu),
 
-                ["FixErrors"] = new(buttonCommand = new FixErrorsCommand(), GetValueFromItemList("FixErrors"), GetValueFromItemList("FixErrors", true), ConfigurationType.Troubleshooting),
-                ["RepairWinComponent"] = new(buttonCommand = new RepairWindowsComponentsCommand(), GetValueFromItemList("FixErrors"), GetValueFromItemList("RepairWindowsComponents", true), ConfigurationType.Troubleshooting),
-                ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), GetValueFromItemList("FixErrors"), "Telemetry Components", ConfigurationType.Troubleshooting),
-                ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), GetValueFromItemList("ResetFTH"), GetValueFromItemList("AtlasDefaults"), ConfigurationType.TroubleshootingNetwork),
-                ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), GetValueFromItemList("ResetFTH"), GetValueFromItemList("WindowsDefaults"), ConfigurationType.TroubleshootingNetwork),
+                ["FixErrors"] = new(buttonCommand = new FixErrorsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("FixErrors", true), ConfigurationType.Troubleshooting),
+                ["RepairWinComponent"] = new(buttonCommand = new RepairWindowsComponentsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("RepairWindowsComponents", true), ConfigurationType.Troubleshooting),
+                ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), App.GetValueFromItemList("FixErrors"), "Telemetry Components", ConfigurationType.Troubleshooting),
+                ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("AtlasDefaults"), ConfigurationType.TroubleshootingNetwork),
+                ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("WindowsDefaults"), ConfigurationType.TroubleshootingNetwork),
             };
 
             host.ConfigureServices((_, services) =>
@@ -266,22 +265,22 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
-                ["BootConfigAppearance"] = new(GetValueFromItemList("BootConfigurationAppearance"), GetValueFromItemList("BootConfigurationAppearance", true), ConfigurationType.BootConfigurationSubMenu),
-                ["BootConfigBehavior"] = new(GetValueFromItemList("BootConfigBehavior"), GetValueFromItemList("BootConfigBehavior", true), ConfigurationType.BootConfigurationSubMenu),
-                ["NvidiaDisplayContainerSubMenu"] = new(GetValueFromItemList("NvidiaDisplayContainerSubMenu"), GetValueFromItemList("NvidiaDisplayContainerSubMenu", true), ConfigurationType.ServicesSubMenu),
+                ["BootConfigAppearance"] = new(App.GetValueFromItemList("BootConfigurationAppearance"), App.GetValueFromItemList("BootConfigurationAppearance", true), ConfigurationType.BootConfigurationSubMenu),
+                ["BootConfigBehavior"] = new(App.GetValueFromItemList("BootConfigBehavior"), App.GetValueFromItemList("BootConfigBehavior", true), ConfigurationType.BootConfigurationSubMenu),
+                ["NvidiaDisplayContainerSubMenu"] = new(App.GetValueFromItemList("NvidiaDisplayContainerSubMenu"), App.GetValueFromItemList("NvidiaDisplayContainerSubMenu", true), ConfigurationType.ServicesSubMenu),
 
-                ["StartMenuSubMenu"] = new(GetValueFromItemList("StartMenuSubMenu"), GetValueFromItemList("StartMenuSubMenu", true), ConfigurationType.Interface),
-                ["ContextMenuSubMenu"] = new(GetValueFromItemList("ContextMenuSubMenu"), GetValueFromItemList("ContextMenuSubMenu", true), ConfigurationType.Interface),
-                ["AiSubMenu"] = new(GetValueFromItemList("AiSubMenu"), GetValueFromItemList("AiSubMenu", true), ConfigurationType.General),
-                ["ServicesSubMenu"] = new(GetValueFromItemList("ServicesSubMenu"), GetValueFromItemList("ServicesSubMenu", true), ConfigurationType.Advanced),
-                ["BootConfigurationSubMenu"] = new(GetValueFromItemList("BootConfigurationSubMenu"), GetValueFromItemList("BootConfigurationSubMenu", true), ConfigurationType.Advanced),
-                ["FileExplorerSubMenu"] = new(GetValueFromItemList("FileExplorerSubMenu"), GetValueFromItemList("FileExplorerSubMenu", true), ConfigurationType.Interface),
-                ["DriverConfigurationSubMenu"] = new(GetValueFromItemList("DriverConfigurationSubMenu"), GetValueFromItemList("DriverConfigurationSubMenu", true), ConfigurationType.Advanced),
-                ["CoreIsolationSubMenu"] = new( GetValueFromItemList("CoreIsolationSubMenu"), GetValueFromItemList("CoreIsolationSubMenu", true), ConfigurationType.Security),
-                ["DefenderSubMenu"] = new(GetValueFromItemList("DefenderSubMenu"), GetValueFromItemList("DefenderSubMenu", true), ConfigurationType.Security),
-                ["MitigationsSubMenu"] = new(GetValueFromItemList("MitigationsSubMenu"), GetValueFromItemList("MitigationsSubMenu", true), ConfigurationType.Security),
-                ["TroubleshootingNetwork"] = new(GetValueFromItemList("TroubleshootingNetwork"), GetValueFromItemList("TroubleshootingNetwork", true), ConfigurationType.Troubleshooting),
-                ["FileSharingSubMenu"] = new(GetValueFromItemList("FileSharingSubMenu"), GetValueFromItemList("FileSharingSubMenu", true), ConfigurationType.General),
+                ["StartMenuSubMenu"] = new(App.GetValueFromItemList("StartMenuSubMenu"), App.GetValueFromItemList("StartMenuSubMenu", true), ConfigurationType.Interface),
+                ["ContextMenuSubMenu"] = new(App.GetValueFromItemList("ContextMenuSubMenu"), App.GetValueFromItemList("ContextMenuSubMenu", true), ConfigurationType.Interface),
+                ["AiSubMenu"] = new(App.GetValueFromItemList("AiSubMenu"), App.GetValueFromItemList("AiSubMenu", true), ConfigurationType.General),
+                ["ServicesSubMenu"] = new(App.GetValueFromItemList("ServicesSubMenu"), App.GetValueFromItemList("ServicesSubMenu", true), ConfigurationType.Advanced),
+                ["BootConfigurationSubMenu"] = new(App.GetValueFromItemList("BootConfigurationSubMenu"), App.GetValueFromItemList("BootConfigurationSubMenu", true), ConfigurationType.Advanced),
+                ["FileExplorerSubMenu"] = new(App.GetValueFromItemList("FileExplorerSubMenu"), App.GetValueFromItemList("FileExplorerSubMenu", true), ConfigurationType.Interface),
+                ["DriverConfigurationSubMenu"] = new(App.GetValueFromItemList("DriverConfigurationSubMenu"), App.GetValueFromItemList("DriverConfigurationSubMenu", true), ConfigurationType.Advanced),
+                ["CoreIsolationSubMenu"] = new( App.GetValueFromItemList("CoreIsolationSubMenu"), App.GetValueFromItemList("CoreIsolationSubMenu", true), ConfigurationType.Security),
+                ["DefenderSubMenu"] = new(App.GetValueFromItemList("DefenderSubMenu"), App.GetValueFromItemList("DefenderSubMenu", true), ConfigurationType.Security),
+                ["MitigationsSubMenu"] = new(App.GetValueFromItemList("MitigationsSubMenu"), App.GetValueFromItemList("MitigationsSubMenu", true), ConfigurationType.Security),
+                ["TroubleshootingNetwork"] = new(App.GetValueFromItemList("TroubleshootingNetwork"), App.GetValueFromItemList("TroubleshootingNetwork", true), ConfigurationType.Troubleshooting),
+                ["FileSharingSubMenu"] = new(App.GetValueFromItemList("FileSharingSubMenu"), App.GetValueFromItemList("FileSharingSubMenu", true), ConfigurationType.General),
             };
             host.ConfigureServices((_, services) =>
             {
@@ -317,10 +316,10 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, MultiOptionConfiguration> configurationDictionary = new()
             {
-                ["ContextMenuTerminals"] = new(GetValueFromItemList("ContextMenuTerminals"), "ContextMenuTerminals", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
-                ["ShortcutIcon"] = new(GetValueFromItemList("ShortcutIcon"), "ShortcutIcon", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["Mitigations"] = new(GetValueFromItemList("Mitigations"), "Mitigations", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
-                ["SafeMode"] = new(GetValueFromItemList("SafeMode"), "SafeMode", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
+                ["ContextMenuTerminals"] = new(App.GetValueFromItemList("ContextMenuTerminals"), "ContextMenuTerminals", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["ShortcutIcon"] = new(App.GetValueFromItemList("ShortcutIcon"), "ShortcutIcon", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["Mitigations"] = new(App.GetValueFromItemList("Mitigations"), "Mitigations", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
+                ["SafeMode"] = new(App.GetValueFromItemList("SafeMode"), "SafeMode", ConfigurationType.Troubleshooting, RiskRating.MediumRisk),
             };
 
             host.ConfigureServices((_, services) =>
@@ -349,66 +348,66 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types`
             Dictionary<string, Configuration> configurationDictionary = new()
             {
-                ["Animations"] = new (GetValueFromItemList("Animations"), "Animations", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["ExtractContextMenu"] = new(GetValueFromItemList("ExtractContextMenu"), "ExtractContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
-                ["RunWithPriority"] = new(GetValueFromItemList("RunWithPriority"), "RunWithPriority", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
-                ["Bluetooth"] = new(GetValueFromItemList("Bluetooth"), "Bluetooth", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
-                ["LanmanWorkstation"] = new(GetValueFromItemList("LanmanWorkstation"), "LanmanWorkstation", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
-                ["NetworkDiscovery"] = new(GetValueFromItemList("NetworkDiscovery"), "NetworkDiscovery", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
-                ["Printing"] = new(GetValueFromItemList("Printing"), "Printing", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
-                ["NvidiaDispayContainer"] = new(GetValueFromItemList("NvidiaDispayContainer"), "NvidiaDispayContainer", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.HighRisk),
-                ["AddNvidiaDisplayContainerContextMenu"] = new(GetValueFromItemList("AddNvidiaDisplayContainerContextMenu"), "AddNvidiaDisplayContainerContextMenu", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.HighRisk),
-                ["CpuIdleContextMenu"] = new(GetValueFromItemList("CpuIdleContextMenu"), "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
-                ["LockScreen"] = new(GetValueFromItemList("LockScreen"), "LockScreen", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["ShortcutText"] = new(GetValueFromItemList("ShortcutText"), "ShortcutText", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["BootLogo"] = new(GetValueFromItemList("BootLogo"), "BootLogo", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
-                ["BootMessages"] = new(GetValueFromItemList("BootMessages"), "BootMessages", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
-                ["NewBootMenu"] = new(GetValueFromItemList("NewBootMenu"), "NewBootMenu", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
-                ["SpinningAnimation"] = new(GetValueFromItemList("SpinningAnimation"), "SpinningAnimations", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
-                ["AdvancedBootOptions"] = new(GetValueFromItemList("AdvancedBootOptions"), "AdvancedBootOptions", ConfigurationType.BootConfigBehavior, RiskRating.MediumRisk),
-                ["AutomaticRepair"] = new(GetValueFromItemList("AutomaticRepair"), "AutomaticRepair", ConfigurationType.BootConfigBehavior, RiskRating.MediumRisk),
-                ["KernelParameters"] = new(GetValueFromItemList("KernelParameters"), "KernelParameters", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
-                ["HighestMode"] = new(GetValueFromItemList("HighestMode"), "HighestMode", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
-                ["CompactView"] = new(GetValueFromItemList("CompactView"), "CompactView", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
-                ["RemovableDrivesInSidebar"] = new(GetValueFromItemList("RemovableDrivesInSidebar"), "RemovableDrivesInSidebar", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
-                ["BackgroundApps"] = new(GetValueFromItemList("BackgroundApps"), "BackgroundApps", ConfigurationType.General, RiskRating.MediumRisk),
-                ["SearchIndexing"] = new(GetValueFromItemList("SearchIndexing"), "SearchIndexing", ConfigurationType.General, RiskRating.MediumRisk),
-                ["FsoAndGameBar"] = new(GetValueFromItemList("FsoAndGameBar"), "FsoAndGameBar", ConfigurationType.General, RiskRating.LowRisk),
-                ["AutomaticUpdates"] = new(GetValueFromItemList("AutomaticUpdates"), "AutomaticUpdates", ConfigurationType.General, RiskRating.HighRisk),
-                ["DeliveryOptimisation"] = new(GetValueFromItemList("DeliveryOptimisation"), "DeliveryOptimisation", ConfigurationType.General, RiskRating.LowRisk),
-                ["Hibernation"] = new(GetValueFromItemList("Hibernation"), "Hibernation", ConfigurationType.General, RiskRating.LowRisk),
-                ["Location"] = new(GetValueFromItemList("Location"), "Location", ConfigurationType.General, RiskRating.LowRisk),
-                ["PhoneLink"] = new(GetValueFromItemList("PhoneLink"), "PhoneLink", ConfigurationType.General, RiskRating.LowRisk),
-                ["PowerSaving"] = new(GetValueFromItemList("PowerSaving"), "PowerSaving", ConfigurationType.General, RiskRating.LowRisk),
-                ["Sleep"] = new(GetValueFromItemList("Sleep"), "Sleep", ConfigurationType.General, RiskRating.LowRisk),
-                ["SystemRestore"] = new(GetValueFromItemList("SystemRestore"), "SystemRestore", ConfigurationType.General, RiskRating.HighRisk),
-                ["UpdateNotifications"] = new(GetValueFromItemList("UpdateNotifications"), "UpdateNotifications", ConfigurationType.General, RiskRating.LowRisk),
-                ["WebSearch"] = new(GetValueFromItemList("WebSearch"), "WebSearch", ConfigurationType.General, RiskRating.HighRisk),
-                ["Widgets"] = new(GetValueFromItemList("Widgets"), "Widgets", ConfigurationType.General, RiskRating.LowRisk),
-                ["WindowsSpotlight"] = new(GetValueFromItemList("WindowsSpotlight"), "WindowsSpotlight", ConfigurationType.General, RiskRating.HighRisk),
-                ["AppStoreArchiving"] = new(GetValueFromItemList("AppStoreArchiving"), "AppStoreArchiving", ConfigurationType.General, RiskRating.HighRisk),
-                ["TakeOwnership"] = new(GetValueFromItemList("TakeOwnership"), "TakeOwnership", ConfigurationType.ContextMenuSubMenu, RiskRating.HighRisk),
-                ["OldContextMenu"] = new(GetValueFromItemList("OldContextMenu"), "OldContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
-                ["EdgeSwipe"] = new(GetValueFromItemList("EdgeSwipe"), "EdgeSwipe", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["AppIconsThumbnail"] = new(GetValueFromItemList("AppIconsThumbnail"), "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
-                ["AutomaticFolderDiscovery"] = new(GetValueFromItemList("AutomaticFolderDiscovery"), "AutomaticFolderDiscovery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
-                ["Gallery"] = new(GetValueFromItemList("Gallery"), "Gallery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
-                ["SnapLayout"] = new(GetValueFromItemList("SnapLayout"), "SnapLayout", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["RecentItems"] = new(GetValueFromItemList("RecentItems"), "RecentItems", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["VerboseStatusMessage"] = new(GetValueFromItemList("VerboseStatusMessage"), "VerboseStatusMessage", ConfigurationType.Interface, RiskRating.LowRisk),
-                ["SuperFetch"] = new(GetValueFromItemList("SuperFetch"), "SuperFetch", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
-                ["StaticIp"] = new(GetValueFromItemList("StaticIp"), "StaticIp", ConfigurationType.Advanced, RiskRating.MediumRisk),
-                ["HideAppBrowserControl"] = new(GetValueFromItemList("HideAppBrowserControl"), "HideAppBrowserControl", ConfigurationType.DefenderSubMenu, RiskRating.HighRisk),
-                ["SecurityHealthTray"] = new(GetValueFromItemList("SecurityHealthTray"), "SecurityHealthTray", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
-                ["FaultTolerantHeap"] = new(GetValueFromItemList("FaultTolerantHeap"), "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
-                ["Copilot"] = new(GetValueFromItemList("Copilot"), "Copilot", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
-                ["Recall"] = new(GetValueFromItemList("Recall"), "recall", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
-                ["CpuIdle"] = new(GetValueFromItemList("CpuIdle"), "CpuIdle", ConfigurationType.General, RiskRating.HighRisk),
-                ["ProcessExplorer"] = new(GetValueFromItemList("ProcessExplorer"), "ProcessExplorer", ConfigurationType.Advanced, RiskRating.MediumRisk),
-                ["VbsState"] = new(GetValueFromItemList("VbsState"), "VbsState", ConfigurationType.CoreIsolationSubMenu, RiskRating.HighRisk),
-                ["GiveAccessToMenu"] = new(GetValueFromItemList("GiveAccessToMenu"), "GiveAccessToMenu", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
-                ["NetworkNavigationPane"] = new(GetValueFromItemList("NetworkNavigationPane"), "NetworkNavigationPane", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
-                ["FileSharing"] = new(GetValueFromItemList("FileSharing"), "FileSharing", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
+                ["Animations"] = new (App.GetValueFromItemList("Animations"), "Animations", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["ExtractContextMenu"] = new(App.GetValueFromItemList("ExtractContextMenu"), "ExtractContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.LowRisk),
+                ["RunWithPriority"] = new(App.GetValueFromItemList("RunWithPriority"), "RunWithPriority", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["Bluetooth"] = new("Bluetooth", "Bluetooth", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
+                ["LanmanWorkstation"] = new(App.GetValueFromItemList("LanmanWorkstation"), "LanmanWorkstation", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
+                ["NetworkDiscovery"] = new(App.GetValueFromItemList("NetworkDiscovery"), "NetworkDiscovery", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
+                ["Printing"] = new(App.GetValueFromItemList("Printing"), "Printing", ConfigurationType.ServicesSubMenu, RiskRating.LowRisk),
+                ["NvidiaDispayContainer"] = new(App.GetValueFromItemList("NvidiaDispayContainer"), "NvidiaDispayContainer", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.HighRisk),
+                ["AddNvidiaDisplayContainerContextMenu"] = new(App.GetValueFromItemList("AddNvidiaDisplayContainerContextMenu"), "AddNvidiaDisplayContainerContextMenu", ConfigurationType.NvidiaDisplayContainerSubMenu, RiskRating.HighRisk),
+                ["CpuIdleContextMenu"] = new(App.GetValueFromItemList("CpuIdleContextMenu"), "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["LockScreen"] = new(App.GetValueFromItemList("LockScreen"), "LockScreen", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["ShortcutText"] = new(App.GetValueFromItemList("ShortcutText"), "ShortcutText", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["BootLogo"] = new(App.GetValueFromItemList("BootLogo"), "BootLogo", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["BootMessages"] = new(App.GetValueFromItemList("BootMessages"), "BootMessages", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["NewBootMenu"] = new(App.GetValueFromItemList("NewBootMenu"), "NewBootMenu", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["SpinningAnimation"] = new(App.GetValueFromItemList("SpinningAnimation"), "SpinningAnimations", ConfigurationType.BootConfigAppearance, RiskRating.LowRisk),
+                ["AdvancedBootOptions"] = new(App.GetValueFromItemList("AdvancedBootOptions"), "AdvancedBootOptions", ConfigurationType.BootConfigBehavior, RiskRating.MediumRisk),
+                ["AutomaticRepair"] = new(App.GetValueFromItemList("AutomaticRepair"), "AutomaticRepair", ConfigurationType.BootConfigBehavior, RiskRating.MediumRisk),
+                ["KernelParameters"] = new(App.GetValueFromItemList("KernelParameters"), "KernelParameters", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["HighestMode"] = new(App.GetValueFromItemList("HighestMode"), "HighestMode", ConfigurationType.BootConfigBehavior, RiskRating.LowRisk),
+                ["CompactView"] = new(App.GetValueFromItemList("CompactView"), "CompactView", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["RemovableDrivesInSidebar"] = new(App.GetValueFromItemList("RemovableDrivesInSidebar"), "RemovableDrivesInSidebar", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
+                ["BackgroundApps"] = new(App.GetValueFromItemList("BackgroundApps"), "BackgroundApps", ConfigurationType.General, RiskRating.MediumRisk),
+                ["SearchIndexing"] = new(App.GetValueFromItemList("SearchIndexing"), "SearchIndexing", ConfigurationType.General, RiskRating.MediumRisk),
+                ["FsoAndGameBar"] = new(App.GetValueFromItemList("FsoAndGameBar"), "FsoAndGameBar", ConfigurationType.General, RiskRating.LowRisk),
+                ["AutomaticUpdates"] = new(App.GetValueFromItemList("AutomaticUpdates"), "AutomaticUpdates", ConfigurationType.General, RiskRating.HighRisk),
+                ["DeliveryOptimisation"] = new(App.GetValueFromItemList("DeliveryOptimisation"), "DeliveryOptimisation", ConfigurationType.General, RiskRating.LowRisk),
+                ["Hibernation"] = new(App.GetValueFromItemList("Hibernation"), "Hibernation", ConfigurationType.General, RiskRating.LowRisk),
+                ["Location"] = new(App.GetValueFromItemList("Location"), "Location", ConfigurationType.General, RiskRating.LowRisk),
+                ["PhoneLink"] = new(App.GetValueFromItemList("PhoneLink"), "PhoneLink", ConfigurationType.General, RiskRating.LowRisk),
+                ["PowerSaving"] = new(App.GetValueFromItemList("PowerSaving"), "PowerSaving", ConfigurationType.General, RiskRating.LowRisk),
+                ["Sleep"] = new(App.GetValueFromItemList("Sleep"), "Sleep", ConfigurationType.General, RiskRating.LowRisk),
+                ["SystemRestore"] = new(App.GetValueFromItemList("SystemRestore"), "SystemRestore", ConfigurationType.General, RiskRating.HighRisk),
+                ["UpdateNotifications"] = new(App.GetValueFromItemList("UpdateNotifications"), "UpdateNotifications", ConfigurationType.General, RiskRating.LowRisk),
+                ["WebSearch"] = new(App.GetValueFromItemList("WebSearch"), "WebSearch", ConfigurationType.General, RiskRating.HighRisk),
+                ["Widgets"] = new(App.GetValueFromItemList("Widgets"), "Widgets", ConfigurationType.General, RiskRating.LowRisk),
+                ["WindowsSpotlight"] = new(App.GetValueFromItemList("WindowsSpotlight"), "WindowsSpotlight", ConfigurationType.General, RiskRating.HighRisk),
+                ["AppStoreArchiving"] = new(App.GetValueFromItemList("AppStoreArchiving"), "AppStoreArchiving", ConfigurationType.General, RiskRating.HighRisk),
+                ["TakeOwnership"] = new(App.GetValueFromItemList("TakeOwnership"), "TakeOwnership", ConfigurationType.ContextMenuSubMenu, RiskRating.HighRisk),
+                ["OldContextMenu"] = new(App.GetValueFromItemList("OldContextMenu"), "OldContextMenu", ConfigurationType.ContextMenuSubMenu, RiskRating.MediumRisk),
+                ["EdgeSwipe"] = new(App.GetValueFromItemList("EdgeSwipe"), "EdgeSwipe", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["AppIconsThumbnail"] = new(App.GetValueFromItemList("AppIconsThumbnail"), "AppIconsThumbnail", ConfigurationType.FileExplorerSubMenu, RiskRating.MediumRisk),
+                ["AutomaticFolderDiscovery"] = new(App.GetValueFromItemList("AutomaticFolderDiscovery"), "AutomaticFolderDiscovery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["Gallery"] = new(App.GetValueFromItemList("Gallery"), "Gallery", ConfigurationType.FileExplorerSubMenu, RiskRating.LowRisk),
+                ["SnapLayout"] = new(App.GetValueFromItemList("SnapLayout"), "SnapLayout", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["RecentItems"] = new(App.GetValueFromItemList("RecentItems"), "RecentItems", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["VerboseStatusMessage"] = new(App.GetValueFromItemList("VerboseStatusMessage"), "VerboseStatusMessage", ConfigurationType.Interface, RiskRating.LowRisk),
+                ["SuperFetch"] = new(App.GetValueFromItemList("SuperFetch"), "SuperFetch", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
+                ["StaticIp"] = new(App.GetValueFromItemList("StaticIp"), "StaticIp", ConfigurationType.Advanced, RiskRating.MediumRisk),
+                ["HideAppBrowserControl"] = new(App.GetValueFromItemList("HideAppBrowserControl"), "HideAppBrowserControl", ConfigurationType.DefenderSubMenu, RiskRating.HighRisk),
+                ["SecurityHealthTray"] = new(App.GetValueFromItemList("SecurityHealthTray"), "SecurityHealthTray", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
+                ["FaultTolerantHeap"] = new(App.GetValueFromItemList("FaultTolerantHeap"), "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
+                ["Copilot"] = new(App.GetValueFromItemList("Copilot"), "Copilot", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
+                ["Recall"] = new(App.GetValueFromItemList("Recall"), "recall", ConfigurationType.AiSubMenu, RiskRating.HighRisk),
+                ["CpuIdle"] = new(App.GetValueFromItemList("CpuIdle"), "CpuIdle", ConfigurationType.General, RiskRating.HighRisk),
+                ["ProcessExplorer"] = new(App.GetValueFromItemList("ProcessExplorer"), "ProcessExplorer", ConfigurationType.Advanced, RiskRating.MediumRisk),
+                ["VbsState"] = new(App.GetValueFromItemList("VbsState"), "VbsState", ConfigurationType.CoreIsolationSubMenu, RiskRating.HighRisk),
+                ["GiveAccessToMenu"] = new(App.GetValueFromItemList("GiveAccessToMenu"), "GiveAccessToMenu", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
+                ["NetworkNavigationPane"] = new(App.GetValueFromItemList("NetworkNavigationPane"), "NetworkNavigationPane", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
+                ["FileSharing"] = new(App.GetValueFromItemList("FileSharing"), "FileSharing", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>

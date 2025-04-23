@@ -23,6 +23,18 @@ namespace AtlasToolbox.Views
         public SettingsPage()
         {
             this.InitializeComponent();
+            LoadText();
+        }
+
+        private void LoadText()
+        {
+            TitleTxt.Text = App.GetValueFromItemList("Settings");
+            BehaviorHeader.Text = App.GetValueFromItemList("Behavior");
+            BackgroundDescription.Header = App.GetValueFromItemList("Settings_BackgroundDesc");
+            AboutHeader.Text = App.GetValueFromItemList("About");
+            toCloneRepoCard.Header = App.GetValueFromItemList("CloneRepoCard");
+            bugRequestCard.Header = App.GetValueFromItemList("BugReportCard");
+            WarningHeader.Header = App.GetValueFromItemList("WarningHeader");
         }
 
         private void KeepBackground_Toggled(object sender, RoutedEventArgs e)

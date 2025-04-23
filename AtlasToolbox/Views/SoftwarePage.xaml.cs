@@ -29,6 +29,13 @@ namespace AtlasToolbox
             _viewModel = App._host.Services.GetRequiredService<SoftwarePageViewModel>();
             this.DataContext = _viewModel;
         }
+
+        private void LoadText()
+        {
+            TitleTxt.Text = App.GetValueFromItemList("InstallSoftware");
+            InstallButton.Content = App.GetValueFromItemList("InstallButton");
+        }
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             var checkBox = sender as CheckBox;

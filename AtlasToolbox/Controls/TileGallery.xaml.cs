@@ -9,6 +9,19 @@ namespace AtlasToolbox.Controls
         public TileGallery()
         {
             this.InitializeComponent();
+            SetText();
+        }
+
+        private void SetText()
+        {
+            DocumentationTile.Title = App.GetValueFromItemList("Tile_DocumentationTitle");
+            DocumentationTile.Description = App.GetValueFromItemList("Tile_DocumentationDescription");
+            GithubTile.Title = App.GetValueFromItemList("Tile_GithubTitle");
+            GithubTile.Description = App.GetValueFromItemList("Tile_GithubDescription");
+            DiscordTile.Title = App.GetValueFromItemList("Tile_DiscordTitle");
+            DiscordTile.Description = App.GetValueFromItemList("Tile_DiscordDescription");
+            KofiTile.Title = App.GetValueFromItemList("Tile_KofiTitle");
+            KofiTile.Description = App.GetValueFromItemList("Tile_KofiDescription");
         }
 
         private void scroller_ViewChanging(object sender, ScrollViewerViewChangingEventArgs e)

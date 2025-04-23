@@ -21,8 +21,7 @@
             x:Name="TitleTxt"
             Grid.Row="0"
             Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}"
-            Text="Install Software" />
+            Style="{StaticResource TitleTextBlockStyle}" />
         <Grid Grid.Row="1">
             <ScrollViewer Height="auto" VerticalAlignment="Top">
                 <StackPanel>
@@ -61,12 +60,12 @@
                 HorizontalAlignment="Left" />
         </StackPanel>
         <Button
+            x:Name="InstallButton"
             Grid.Row="2"
             Margin="0,0,36,20"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Click="Button_Click">
-            Install
         </Button>
     </Grid>
 </Page>

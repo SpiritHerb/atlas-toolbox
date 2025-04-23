@@ -22,17 +22,16 @@
             x:Name="TitleTxt"
             Grid.Row="0"
             Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}"
-            Text="Settings" />
+            Style="{StaticResource TitleTextBlockStyle}"/>
         <StackPanel x:Name="SettingToggles" Grid.Row="1">
             <StackPanel x:Name="BehaviorSettings">
-                <TextBlock Style="{StaticResource CategoryTitle}" Text="Behavior" />
-                <controls:SettingsCard Header="Keep the Toolbox in the background" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                <TextBlock x:Name="BehaviorHeader" Style="{StaticResource CategoryTitle}" />
+                <controls:SettingsCard x:Name="BackgroundDescription" Style="{StaticResource ConfigurationSettingsCardTemplate}">
                     <ToggleSwitch IsOn="{x:Bind KeepBackground_State}" Toggled="KeepBackground_Toggled" />
                 </controls:SettingsCard>
             </StackPanel>
             <StackPanel>
-                <TextBlock Style="{StaticResource CategoryTitle}" Text="About" />
+                <TextBlock x:Name="AboutHeader" Style="{StaticResource CategoryTitle}" />
                 <controls:SettingsExpander Header="AtlasOS Toolbox" Style="{StaticResource ConfigurationSettingsExpanderTemplate}">
                     <controls:SettingsExpander.HeaderIcon>
                         <BitmapIcon ShowAsMonochrome="False" UriSource="/assets/logo/toolbox-icon.ico" />
@@ -45,7 +44,6 @@
                         <controls:SettingsCard
                             x:Name="toCloneRepoCard"
                             Click="toCloneRepoCard_Click"
-                            Header="Clone this repository"
                             IsClickEnabled="True">
                             <TextBlock
                                 x:Name="gitCloneTextBlock"
@@ -60,16 +58,15 @@
                         <controls:SettingsCard
                             x:Name="bugRequestCard"
                             Click="bugRequestCard_Click"
-                            Header="File a bug report"
                             IsClickEnabled="True">
                             <controls:SettingsCard.ActionIcon>
                                 <FontIcon Glyph="&#xE8A7;" />
                             </controls:SettingsCard.ActionIcon>
                         </controls:SettingsCard>
                         <controls:SettingsCard
+                            x:Name="DependenciesHeader"
                             HorizontalContentAlignment="Left"
-                            ContentAlignment="Vertical"
-                            Header="Dependencies &amp; references">
+                            ContentAlignment="Vertical">
                             <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                 <HyperlinkButton Content="Windows UI Library" NavigateUri="https://learn.microsoft.com/en-us/windows/apps/winui/winui3/" />
                                 <HyperlinkButton Content="Windows Community Toolkit" NavigateUri="https://github.com/CommunityToolkit/WindowsCommunityToolkit" />
@@ -78,7 +75,7 @@
                         <controls:SettingsCard
                             HorizontalContentAlignment="Left"
                             ContentAlignment="Vertical"
-                            Header="This code is provided by the AtlasOS team. This software is meant to be used with AtlasOS on a supported Windows version ONLY. Any other playbook and/or unsupported Windows version is not advised.">
+                            x:Name="WarningHeader">
                             <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
                                 <HyperlinkButton Content="AtlasOS GitHub" NavigateUri="https://github.com/Atlas-OS/" />
                                 <HyperlinkButton Content="AtlasOS Website" NavigateUri="https://atlasos.net" />

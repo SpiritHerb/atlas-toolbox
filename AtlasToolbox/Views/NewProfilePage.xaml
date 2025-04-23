@@ -8,13 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodel:HomePageViewModel}"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid>
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <!--  Content body  -->
-            <TextBlock Text="Your current configuration will be saved to this profile" TextWrapping="Wrap" />
+            <TextBlock x:Name="CurrentConfigSavedMessage" TextWrapping="Wrap" />
             <TextBox
                 x:Name="ProfileName"
                 PlaceholderText="Name"
