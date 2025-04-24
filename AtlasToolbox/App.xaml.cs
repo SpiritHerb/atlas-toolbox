@@ -242,8 +242,16 @@ namespace AtlasToolbox
 
         public static void LoadLangString()
         {
-            string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
-            StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
+            try
+            {
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
+                StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
+            } catch
+            {
+                RegistryHelper.SetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang", "en_us");
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
+                StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
+            }
         }
 
         public static string GetValueFromItemList(string key, bool desc = false)
