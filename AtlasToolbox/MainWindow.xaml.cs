@@ -26,7 +26,11 @@ namespace AtlasToolbox
 
             //Window parameters
             WindowManager.Get(this).Width = 1250;
+            WindowManager.Get(this).MinWidth = 1250;
+
             WindowManager.Get(this).Height = 850;
+            WindowManager.Get(this).MinHeight = 850;
+
             WindowManager.Get(this).IsResizable = false;
             WindowManager.Get(this).IsMaximizable = false;
 
