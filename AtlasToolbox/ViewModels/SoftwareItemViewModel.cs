@@ -15,15 +15,12 @@ namespace AtlasToolbox.ViewModels
         public string Key => SoftwareItem.Key;
         public string Name => SoftwareItem.Name;
         public string Icon { get; set; }
-        public BitmapIcon BitMapIcon { get; set; }
+        public string BitMapIcon { get; set; }
 
         public SoftwareItemViewModel(SoftwareItem softwareItem)
         {
             SoftwareItem = softwareItem;
-            BitMapIcon = new BitmapIcon();
-            // Some icons do not appear as they don't have any, placeholder may be a good idea
-            BitMapIcon.UriSource = new Uri($"https://api.winstall.app/icons/next/{Key}.webp");
-            BitMapIcon.ShowAsMonochrome = false;
+            BitMapIcon = $"https://api.winstall.app/icons/next/{Key}.webp";
         }
     }
 }

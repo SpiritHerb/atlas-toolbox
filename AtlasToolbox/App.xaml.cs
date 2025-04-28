@@ -101,7 +101,7 @@ namespace AtlasToolbox
                 DebugSettings.BindingFailed += DebugSettings_BindingFailed;
             }
 #endif
-            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "VersionNumber");
+            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version");
             if (CompatibilityHelper.IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());

@@ -22,4 +22,20 @@ namespace AtlasToolbox.Views
             throw new NotImplementedException();
         }
     }
+
+    internal class BitmapIconConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            BitmapIcon BitMapIcon = new BitmapIcon();
+            BitMapIcon.UriSource = new Uri(value.ToString());
+            BitMapIcon.ShowAsMonochrome = false;
+            return BitMapIcon;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
