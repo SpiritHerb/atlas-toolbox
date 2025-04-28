@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--Taken from https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Controls/TileGallery.xaml-->
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Taken from https://github.com/microsoft/WinUI-Gallery/blob/main/WinUIGallery/Controls/TileGallery.xaml  -->
 <UserControl
     x:Class="AtlasToolbox.Controls.TileGallery"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:AtlasToolbox.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:AtlasToolbox.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
@@ -42,20 +42,20 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
                             <ContentPresenter
-                            x:Name="ContentPresenter"
-                            Padding="{TemplateBinding Padding}"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            AnimatedIcon.State="Normal"
-                            AutomationProperties.AccessibilityView="Raw"
-                            Background="{TemplateBinding Background}"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            ContentTransitions="{TemplateBinding ContentTransitions}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                                x:Name="ContentPresenter"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                AnimatedIcon.State="Normal"
+                                AutomationProperties.AccessibilityView="Raw"
+                                Background="{TemplateBinding Background}"
+                                BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
                                 <ContentPresenter.BackgroundTransition>
                                     <BrushTransition Duration="0:0:0.083" />
                                 </ContentPresenter.BackgroundTransition>
@@ -126,27 +126,24 @@
     </UserControl.Resources>
     <Grid>
         <ScrollViewer
-        x:Name="scroller"
-        HorizontalScrollBarVisibility="Hidden"
-        HorizontalScrollMode="Enabled"
-        SizeChanged="scroller_SizeChanged"
-        VerticalScrollMode="Disabled"
-        ViewChanging="scroller_ViewChanging">
+            x:Name="scroller"
+            HorizontalScrollBarVisibility="Hidden"
+            HorizontalScrollMode="Enabled"
+            SizeChanged="scroller_SizeChanged"
+            VerticalScrollMode="Disabled"
+            ViewChanging="scroller_ViewChanging">
             <Grid x:Name="ContentGrid" Margin="36,0,36,0">
                 <StackPanel Orientation="Horizontal" Spacing="12">
                     <local:HeaderTile
-                        
-                        Title="Documentation"
-                        Description="Install AtlasOS, FAQ, and much more"
+                        x:Name="DocumentationTile"            
                         Link="https://docs.atlasos.net">
                         <local:HeaderTile.Source>
-                            <Image Source="..\assets\logo\atlas-logo.png"/>
+                            <Image Source="..\assets\logo\atlas-logo.png" />
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                     <local:HeaderTile
-                    Title="Github"
-                    Description="Explore AtlasOS' code and contribute"
-                    Link="https://github.com/Atlas-OS/">
+                        x:Name="GithubTile"
+                        Link="https://github.com/Atlas-OS/">
                         <local:HeaderTile.Source>
                             <PathIcon Data="{StaticResource GitHubIconPath}" Foreground="{ThemeResource TextFillColorPrimaryBrush}">
                                 <PathIcon.RenderTransform>
@@ -159,47 +156,44 @@
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                     <local:HeaderTile
-                    Title="Discord"
-                    Description="Ask for support and make friends !"
-                    Link="https://discord.atlasos.net">
+                        x:Name="DiscordTile"
+                        Link="https://discord.atlasos.net">
                         <local:HeaderTile.Source>
-                            <Image Source="..\assets\logo\discord-mark-blue.png"/>
+                            <Image Source="..\assets\logo\discord-mark-blue.png" />
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                     <local:HeaderTile
-                    Title="Support us on
-                        Ko-Fi"
-                    Description="Help us continue this project !"
-                    Link="https://ko-fi.com/atlasos">
+                        x:Name="KofiTile"
+                        Link="https://ko-fi.com/atlasos">
                         <local:HeaderTile.Source>
-                            <Image Source="..\assets\logo\kofi_symbol.png"/>
+                            <Image Source="..\assets\logo\kofi_symbol.png" />
                         </local:HeaderTile.Source>
                     </local:HeaderTile>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
         <Button
-        x:Name="ScrollBackBtn"
-        Width="16"
-        Height="38"
-        Margin="8,-16,0,0"
-        AutomationProperties.Name="Scroll left"
-        Click="ScrollBackBtn_Click"
-        Style="{StaticResource ScrollButtonStyle}"
-        ToolTipService.ToolTip="Scroll left"
-        Visibility="Collapsed">
+            x:Name="ScrollBackBtn"
+            Width="16"
+            Height="38"
+            Margin="8,-16,0,0"
+            AutomationProperties.Name="Scroll left"
+            Click="ScrollBackBtn_Click"
+            Style="{StaticResource ScrollButtonStyle}"
+            ToolTipService.ToolTip="Scroll left"
+            Visibility="Collapsed">
             <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="&#xedd9;" />
         </Button>
         <Button
-        x:Name="ScrollForwardBtn"
-        Width="16"
-        Height="38"
-        Margin="0,-16,8,0"
-        HorizontalAlignment="Right"
-        AutomationProperties.Name="Scroll right"
-        Click="ScrollForwardBtn_Click"
-        Style="{StaticResource ScrollButtonStyle}"
-        ToolTipService.ToolTip="Scroll right">
+            x:Name="ScrollForwardBtn"
+            Width="16"
+            Height="38"
+            Margin="0,-16,8,0"
+            HorizontalAlignment="Right"
+            AutomationProperties.Name="Scroll right"
+            Click="ScrollForwardBtn_Click"
+            Style="{StaticResource ScrollButtonStyle}"
+            ToolTipService.ToolTip="Scroll right">
             <FontIcon FontSize="{ThemeResource FlipViewButtonFontSize}" Glyph="&#xEDDA;" />
         </Button>
     </Grid>

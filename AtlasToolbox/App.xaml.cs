@@ -17,6 +17,9 @@ using AtlasToolbox.Utils;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace AtlasToolbox
 {
@@ -31,6 +34,8 @@ namespace AtlasToolbox
         public static XamlRoot XamlRoot { get; set; }
         public static string CurrentCategory { get; set; }
 
+        private static Dictionary<string, string> StringList = new Dictionary<string, string>();
+
         private static Mutex _mutex = new(true, "{AtlasToolbox}");
 
         public static string Version { get; set; }
@@ -38,6 +43,7 @@ namespace AtlasToolbox
         {
             ConfigureNLog();
             logger.Info("App Started");
+            LoadLangString();
             _host = CreateHostBuilder().Build();
             logger.Info("Building host");
             _host.Start();
@@ -95,7 +101,7 @@ namespace AtlasToolbox
                 DebugSettings.BindingFailed += DebugSettings_BindingFailed;
             }
 #endif
-            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "VersionNumber");
+            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version");
             if (CompatibilityHelper.IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());
@@ -232,6 +238,26 @@ namespace AtlasToolbox
         {
             var mainWindow = m_window as MainWindow;
             mainWindow.ContentDialogContoller(type);
+        }
+
+        public static void LoadLangString()
+        {
+            try
+            {
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
+                StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
+            } catch
+            {
+                RegistryHelper.SetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang", "en_us");
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
+                StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
+            }
+        }
+
+        public static string GetValueFromItemList(string key, bool desc = false)
+        {
+            if (!desc) return StringList.Where(item => item.Key == key).Select(item => item.Value).FirstOrDefault();
+            else return StringList.Where(item => item.Key == key + "Description").Select(item => item.Value).FirstOrDefault();
         }
     }
 }

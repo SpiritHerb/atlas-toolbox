@@ -26,12 +26,18 @@ namespace AtlasToolbox
 
             //Window parameters
             WindowManager.Get(this).Width = 1250;
+            WindowManager.Get(this).MinWidth = 1250;
+
             WindowManager.Get(this).Height = 850;
+            WindowManager.Get(this).MinHeight = 850;
+
             WindowManager.Get(this).IsResizable = false;
             WindowManager.Get(this).IsMaximizable = false;
 
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
+
+            LoadText();
 
             NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
             ContentFrame.Navigate(
@@ -43,6 +49,24 @@ namespace AtlasToolbox
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;
+        }
+
+        public void LoadText()
+        {
+            UnstableCard.Title = App.GetValueFromItemList("Unstable");
+            UnstableCard.Message = App.GetValueFromItemList("UnstableDescription");
+            BetaVersionCard.Title = App.GetValueFromItemList("BetaVersion");
+            BetaVersionCard.Message = App.GetValueFromItemList("BetaVersionDescription");
+
+            Home.Content = App.GetValueFromItemList("Home_HeaderText");
+            Software.Content = App.GetValueFromItemList("Software");
+            GeneralConfig.Content = App.GetValueFromItemList("GeneralConfig");
+            Interface.Content = App.GetValueFromItemList("Interface");
+            Windows.Content = App.GetValueFromItemList("Windows");
+            Advanced.Content = App.GetValueFromItemList("Advanced");
+            Security.Content = App.GetValueFromItemList("Security");
+            Troubleshooting.Content = App.GetValueFromItemList("Troubleshooting");
+            Setting.Content = App.GetValueFromItemList("Settings");
         }
 
         /// <summary>
@@ -77,6 +101,10 @@ namespace AtlasToolbox
 
             switch (args.InvokedItemContainer.Tag.ToString())
             {
+                case "SettingsPage":
+                    App.CurrentCategory = "SettingsItem";
+                    ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
+                    break;
                 case "AtlasToolbox.Views.SoftwarePage":
                     ContentFrame.Navigate(
                            new SoftwarePage().GetType(),

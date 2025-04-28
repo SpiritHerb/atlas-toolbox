@@ -15,14 +15,24 @@ namespace AtlasToolbox
     {
         public LoadingWindow()
         {
-            this.InitializeComponent(); 
-            WindowManager.Get(this).IsMaximizable = false;
-            WindowManager.Get(this).IsResizable = false;
+            this.InitializeComponent();
+            LoadText();
             WindowManager.Get(this).Width = 250;
+            WindowManager.Get(this).MinWidth = 250;
+
             WindowManager.Get(this).Height = 250;
+            WindowManager.Get(this).MinHeight = 250;
+
+            WindowManager.Get(this).IsResizable = false;
+            WindowManager.Get(this).IsMaximizable = false;
             WindowManager.Get(this).IsTitleBarVisible = false;
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
+        }
+
+        private void LoadText()
+        {
+            StartingServices.Text = App.GetValueFromItemList("StartingServices");
         }
 
         private void CenterWindowOnScreen()

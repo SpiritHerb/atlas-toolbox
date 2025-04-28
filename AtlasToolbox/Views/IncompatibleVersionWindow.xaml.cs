@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.UI.Xaml;
@@ -33,8 +35,13 @@ namespace AtlasToolbox
             WindowManager.Get(this).Height = 850;
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
-
+            LoadText();
             this.InitializeComponent();
+        }
+
+        private void LoadText()
+        {
+            IncompatibleVer.Text = App.GetValueFromItemList("IncompatibleVer") + ConfigurationManager.AppSettings.Get("AtlasVersion");
         }
 
         /// <summary>

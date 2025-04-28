@@ -54,10 +54,9 @@
                                 FontSize="18"
                                 Text="AtlasOS Toolbox" />
                             <TextBlock
-                                x:Name="smallHeaderText"
+                                x:Name="HomeHeaderText"
                                 FontSize="45"
-                                FontWeight="SemiBold"
-                                Text="Home" />
+                                FontWeight="SemiBold" />
                         </StackPanel>
                         <controls:TileGallery
                             x:Name="headerTileGallery"
@@ -67,10 +66,10 @@
                 </GridView.Header>
             </GridView>
             <TextBlock
+                x:Name="ProfilesHeader"
                 Grid.Row="1"
                 Margin="36,5,0,0"
-                FontSize="20"
-                Text="Profiles" />
+                FontSize="20" />
             <ListView
                 x:Name="ProfilesListView"
                 Grid.Row="1"
@@ -86,15 +85,15 @@
                     <DataTemplate x:DataType="model:Profiles">
                         <Grid>
                             <Grid.ContextFlyout>
-                                <MenuFlyout>
+                                <MenuFlyout x:Name="MenuFlyout">
                                     <MenuFlyoutItem
-                                        x:Uid="Set_Profile"
+                                        x:Name="SetProfile"
                                         Click="SetProfile_Click"
-                                        Text="Set this profile" />
+                                        Loaded="SetProfile_Loaded" />
                                     <MenuFlyoutItem
-                                        x:Uid="Delete"
+                                        x:Name="DeleteProfile"
                                         Click="DeleteProfile"
-                                        Text="Delete" />
+                                        Loaded="DeleteProfile_Loaded" />
                                 </MenuFlyout>
                             </Grid.ContextFlyout>
                             <TextBlock Text="{x:Bind Name}" />
@@ -103,11 +102,11 @@
                 </ListView.ItemTemplate>
             </ListView>
             <TextBlock
+                x:Name="RecentTogglesHeader"
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="36,5,0,0"
-                FontSize="20"
-                Text="Recent toggles" />
+                FontSize="20" />
             <ListView
                 x:Name="RecentTogglesList"
                 Grid.Row="1"
@@ -132,9 +131,9 @@
                 Margin="36,0,0,24"
                 Orientation="Horizontal">
                 <Button
+                    x:Name="NewProfileButton"
                     VerticalAlignment="Top"
-                    Click="Button_Click"
-                    Content="Create a new profile" />
+                    Click="Button_Click" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

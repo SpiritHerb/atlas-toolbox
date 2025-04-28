@@ -26,10 +26,15 @@ namespace AtlasToolbox.Views
         public NewProfilePage(HomePageViewModel homePageViewModel)
         {
             this.InitializeComponent();
+            LoadText();
             this.DataContext = homePageViewModel;
             _viewModel = homePageViewModel;
         }
 
+        private void LoadText()
+        {
+            CurrentConfigSavedMessage.Text = App.GetValueFromItemList("CurrentConfigIsSavedMessage");
+        }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             _viewModel.Name = ProfileName.Text;

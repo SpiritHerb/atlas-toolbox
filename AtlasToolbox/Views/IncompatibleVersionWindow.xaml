@@ -12,7 +12,7 @@
         <MicaBackdrop Kind="Base" />
     </Window.SystemBackdrop>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock FontSize="20">Current AtlasOS/Windows installation incompatible with this Toolbox version. Please upgrade to AtlasOS v0.4.1</TextBlock>
+        <TextBlock x:Name="IncompatibleVer" FontSize="20" />
         <HyperlinkButton HorizontalAlignment="Center" FontSize="20">https://docs.atlasos.net/getting-started/installation</HyperlinkButton>
     </StackPanel>
 </Window>

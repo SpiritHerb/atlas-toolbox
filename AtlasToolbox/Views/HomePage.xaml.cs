@@ -37,8 +37,7 @@ namespace AtlasToolbox.Views
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
             this.DataContext = _viewModel;
-            WinVer.Text = "Windows Version: " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
-            AtlasVer.Text = "Playbook version: " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
+            LoadText();
 
             List<object> list = new();
 
@@ -58,6 +57,19 @@ namespace AtlasToolbox.Views
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }
 
+        private void LoadText()
+        {
+            // Home Header
+            WinVer.Text = App.GetValueFromItemList("Home_WinVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
+            AtlasVer.Text = App.GetValueFromItemList("Home_PlaybookVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
+            HomeHeaderText.Text = App.GetValueFromItemList("Home_HeaderText");
+
+            //Other
+            ProfilesHeader.Text = App.GetValueFromItemList("Home_ProfilesText");
+            RecentTogglesHeader.Text = App.GetValueFromItemList("Home_RecentTogglesText");
+            NewProfileButton.Content = App.GetValueFromItemList("NewProfilesButton");
+        }
+
         /// <summary>
         /// Deletes the profile
         /// </summary>
@@ -75,9 +87,9 @@ namespace AtlasToolbox.Views
 
                     dialog.XamlRoot = this.XamlRoot;
                     dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                    dialog.Title = "Do you really wish to delete this profile?";
-                    dialog.PrimaryButtonText = "Yes";
-                    dialog.CloseButtonText = "Cancel";
+                    dialog.Title = App.GetValueFromItemList("DeleteProfileConfirmation");
+                    dialog.PrimaryButtonText = App.GetValueFromItemList("Yes");
+                    dialog.CloseButtonText = App.GetValueFromItemList("Cancel");
                     dialog.DefaultButton = ContentDialogButton.Primary;
                     dialog.PrimaryButtonCommand = _viewModel.RemoveProfileCommand;
 
@@ -89,8 +101,8 @@ namespace AtlasToolbox.Views
 
                     dialog.XamlRoot = this.XamlRoot;
                     dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                    dialog.Title = "You cannot delete the default profile.";
-                    dialog.CloseButtonText = "Ok";
+                    dialog.Title = App.GetValueFromItemList("TryDeleteDefaultProfile");
+                    dialog.CloseButtonText = App.GetValueFromItemList("Ok");
                     dialog.DefaultButton = ContentDialogButton.Primary;
 
                     var result = await dialog.ShowAsync();
@@ -105,9 +117,9 @@ namespace AtlasToolbox.Views
 
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Do you really wish to set this profile?";
-            dialog.PrimaryButtonText = "Yes";
-            dialog.CloseButtonText = "No";
+            dialog.Title = App.GetValueFromItemList("Home_SetProfileConfirm");
+            dialog.PrimaryButtonText = App.GetValueFromItemList("Yes"); ;
+            dialog.CloseButtonText = App.GetValueFromItemList("No"); ;
             dialog.DefaultButton = ContentDialogButton.Primary;
 
             var result = await dialog.ShowAsync();
@@ -127,9 +139,9 @@ namespace AtlasToolbox.Views
 
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "To fully apply the changes, please restart your PC";
-            dialog.PrimaryButtonText = "Restart";
-            dialog.CloseButtonText = "Later";
+            dialog.Title = App.GetValueFromItemList("RestartPCPromptHeader");
+            dialog.PrimaryButtonText = App.GetValueFromItemList("Restart"); ;
+            dialog.CloseButtonText = App.GetValueFromItemList("Later"); ;
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.PrimaryButtonCommand = new RelayCommand(ComputerStateHelper.RestartComputer);
 
@@ -146,9 +158,9 @@ namespace AtlasToolbox.Views
 
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Create a new profile";
-            dialog.PrimaryButtonText = "Create";
-            dialog.CloseButtonText = "Cancel";
+            dialog.Title = App.GetValueFromItemList("NewProfilesButton");
+            dialog.PrimaryButtonText = App.GetValueFromItemList("Create");
+            dialog.CloseButtonText = App.GetValueFromItemList("Cancel");
             dialog.Content = new NewProfilePage(_viewModel);
             dialog.DefaultButton = ContentDialogButton.Primary;
 
@@ -164,6 +176,18 @@ namespace AtlasToolbox.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NewProfile();
+        }
+
+        private void SetProfile_Loaded(object sender, RoutedEventArgs e)
+        {
+            var button = sender as MenuFlyoutItem;
+            button.Text = App.GetValueFromItemList("Home_SetProfileBtn");
+        }
+
+        private void DeleteProfile_Loaded(object sender, RoutedEventArgs e)
+        {
+            var button = sender as MenuFlyoutItem;
+            button.Text = App.GetValueFromItemList("Home_DeleteProfileBtn");
         }
     }
 }

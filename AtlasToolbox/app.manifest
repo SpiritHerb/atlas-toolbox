@@ -17,14 +17,8 @@
 		</application>
 	</compatibility>
 
-	<!--<application xmlns="urn:schemas-microsoft-com:asm.v3">
-		<windowsSettings>
-			<dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">True</dpiAware>
-		</windowsSettings>
-	</application>-->
-	
 	<application xmlns="urn:schemas-microsoft-com:asm.v3">
-		<windowsSettings>			
+		<windowsSettings>
 			<dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">True/PM</dpiAware>
 		</windowsSettings>
 	</application>

@@ -16,8 +16,8 @@
     <Grid>
         <ProgressRing IsActive="True" />
         <TextBlock
+            x:Name="StartingServices"
             Margin="0,175,0,0"
-            Text="Starting services..."
             TextAlignment="Center" />
     </Grid>
 </Window>

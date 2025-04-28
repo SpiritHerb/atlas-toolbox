@@ -5,12 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:AtlasToolbox"
+    xmlns:local="using:AtlasToolbox.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:CommunityToolkit.WinUI"
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodel:SoftwarePageViewModel}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <local:BitmapIconConverter x:Key="BitmapIconConverter" />
+    </Page.Resources>
     <Grid Margin="55,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -21,8 +24,7 @@
             x:Name="TitleTxt"
             Grid.Row="0"
             Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}"
-            Text="Install Software" />
+            Style="{StaticResource TitleTextBlockStyle}" />
         <Grid Grid.Row="1">
             <ScrollViewer Height="auto" VerticalAlignment="Top">
                 <StackPanel>
@@ -33,7 +35,7 @@
                                     x:Name="SettingsCard"
                                     HorizontalContentAlignment="Right"
                                     Header="{Binding Name}"
-                                    HeaderIcon="{Binding BitMapIcon}"
+                                    HeaderIcon="{Binding BitMapIcon, Converter={StaticResource BitmapIconConverter}}"
                                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                     <CheckBox
                                         Margin="0,0,-75,0"
@@ -61,12 +63,11 @@
                 HorizontalAlignment="Left" />
         </StackPanel>
         <Button
+            x:Name="InstallButton"
             Grid.Row="2"
             Margin="0,0,36,20"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Click="Button_Click">
-            Install
-        </Button>
+            Click="Button_Click" />
     </Grid>
 </Page>
