@@ -5,7 +5,8 @@
 This repository contains the AtlasOS Toolbox made with C# and WinAppSDK.
 
 **Want to contribute?** Please check out the [Atlas Contribution Guidelines](https://docs.atlasos.net/contributions) for more information.
-**If you want to contribute to the translations, please do it here: [Crowdin Project](https://crowdin.com/project/atlas-toolbox-test-1).
+
+**If you want to contribute to the translations, please do it here: [Crowdin Project](https://crowdin.com/project/atlas-toolbox-test-1).**
 
 ## How do I contribute?
 
