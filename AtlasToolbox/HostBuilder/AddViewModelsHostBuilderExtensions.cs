@@ -233,10 +233,10 @@ namespace AtlasToolbox.HostBuilder
                 ["InstallOpenShell"] = new(buttonCommand = new InstallOpenShellCommand(), App.GetValueFromItemList("InstallOpenShell"), App.GetValueFromItemList("InstallOpenShell", true), ConfigurationType.StartMenuSubMenu),
 
                 ["FixErrors"] = new(buttonCommand = new FixErrorsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("FixErrors", true), ConfigurationType.Troubleshooting),
-                ["RepairWinComponent"] = new(buttonCommand = new RepairWindowsComponentsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("RepairWindowsComponents", true), ConfigurationType.Troubleshooting),
-                ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), App.GetValueFromItemList("FixErrors"), "Telemetry Components", ConfigurationType.Troubleshooting),
-                ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("AtlasDefaults"), ConfigurationType.TroubleshootingNetwork),
-                ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("WindowsDefaults"), ConfigurationType.TroubleshootingNetwork),
+                ["RepairWinComponent"] = new(buttonCommand = new RepairWindowsComponentsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("RepairWinComponent"), ConfigurationType.Troubleshooting),
+                ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("TelemetryComponents"), ConfigurationType.Troubleshooting),
+                ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("AtlasDefault"), ConfigurationType.TroubleshootingNetwork),
+                ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("WindowsDefault"), ConfigurationType.TroubleshootingNetwork),
             };
 
             host.ConfigureServices((_, services) =>
@@ -265,7 +265,7 @@ namespace AtlasToolbox.HostBuilder
             // TODO: Change configuration types
             Dictionary<string, ConfigurationSubMenu> configurationDictionary = new()
             {
-                ["BootConfigAppearance"] = new(App.GetValueFromItemList("BootConfigurationAppearance"), App.GetValueFromItemList("BootConfigurationAppearance", true), ConfigurationType.BootConfigurationSubMenu),
+                ["BootConfigAppearance"] = new(App.GetValueFromItemList("BootConfigAppearance"), App.GetValueFromItemList("BootConfigAppearance", true), ConfigurationType.BootConfigurationSubMenu),
                 ["BootConfigBehavior"] = new(App.GetValueFromItemList("BootConfigBehavior"), App.GetValueFromItemList("BootConfigBehavior", true), ConfigurationType.BootConfigurationSubMenu),
                 ["NvidiaDisplayContainerSubMenu"] = new(App.GetValueFromItemList("NvidiaDisplayContainerSubMenu"), App.GetValueFromItemList("NvidiaDisplayContainerSubMenu", true), ConfigurationType.ServicesSubMenu),
 

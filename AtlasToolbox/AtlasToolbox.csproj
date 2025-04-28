@@ -94,7 +94,7 @@
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <Page Update="Resources\HeaderTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +162,7 @@
     <Page Update="LoadingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
+  </ItemGroup>-->
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
     Explorer "Package and Publish" context menu entry to be enabled for this project even if
@@ -175,12 +175,12 @@
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>-->
-  <ItemGroup>
+  <!--<ItemGroup>
     <PRIResource Remove="Converter\**" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Remove="Themes\**" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <COMReference Include="WUApiLib">
       <WrapperTool>tlbimp</WrapperTool>
