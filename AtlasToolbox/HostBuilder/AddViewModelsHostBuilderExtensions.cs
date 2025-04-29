@@ -31,9 +31,7 @@ namespace AtlasToolbox.HostBuilder
         private static List<Object> subMenuOnlyItems = new List<Object>();
         private static Dictionary<string, string> list = new Dictionary<string, string>();
         public static IHostBuilder AddViewModels(this IHostBuilder host)
-        {
-            // Gets the language and creates a list with all the translations
-            
+        {            
             host.ConfigureServices((_, services) =>
             {
                 services.AddSingleton<MainViewModel>();
