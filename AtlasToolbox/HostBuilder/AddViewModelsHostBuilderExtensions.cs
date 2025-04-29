@@ -178,8 +178,8 @@ namespace AtlasToolbox.HostBuilder
                 ["DefaultApps"] = new (@"ms-settings:defaultapps", App.GetValueFromItemList("DefaultApps"), ConfigurationType.Windows, "\uE713"),
                 ["DefaultGraphicsSettings"] = new (@"ms-settings:display-advancedgraphics-default", App.GetValueFromItemList("DefaultGraphicsSettings"), ConfigurationType.Windows, "\uE713"),
                 ["RegionLanguage"] = new (@"ms-settings:regionlanguage", App.GetValueFromItemList("RegionLanguage"), ConfigurationType.Windows, "\uE713"),
-                ["Privacy"] = new (@"ms-settings:privacy", App.GetValueFromItemList("PrivacySettings"), ConfigurationType.Windows, "\uE713"),
-                ["RegionProperties"] = new (@"C:\Windows\System32\rundll32.exe C:\Windows\System32\shell32.dll,Control_RunDLL C:\Windows\System32\intl.cpl", App.GetValueFromItemList("RegionProperties"), ConfigurationType.Windows, "\uE713"),
+                ["Privacy"] = new (@"ms-settings:privacy", App.GetValueFromItemList("Privacy"), ConfigurationType.Windows, "\uE713"),
+                ["RegionProperties"] = new (@"ms-settings:regionProperties", App.GetValueFromItemList("RegionProperties"), ConfigurationType.Windows, "\uE713"),
                 ["Taskbar"] = new (@"ms-settings:taskbar", App.GetValueFromItemList("Taskbar"), ConfigurationType.Windows, "\uE713"),
                 ["CoreIsolation"] = new (@"windowsdefender://coreisolation/", App.GetValueFromItemList("CoreIsolation"), ConfigurationType.CoreIsolationSubMenu, "\uE83D"),
 
