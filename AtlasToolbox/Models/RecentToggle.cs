@@ -11,6 +11,7 @@ namespace AtlasToolbox.Models
         public DateTime DateTime { get; set; }
         public string Key { get; set; }
         public string OldState { get; set; }
+        public string Path { get; set; }
         public string Description { get; set; }
 
         public RecentToggle(DateTime dateTime, string key, string oldState)
