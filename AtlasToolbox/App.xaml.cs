@@ -20,6 +20,7 @@ using System.Diagnostics.Contracts;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
+using Windows.ApplicationModel.Core;
 
 namespace AtlasToolbox
 {
@@ -57,7 +58,7 @@ namespace AtlasToolbox
         /// Registers all configuration services
         /// </summary>
         /// <returns></returns>
-        private static IHostBuilder CreateHostBuilder() =>
+        public static IHostBuilder CreateHostBuilder() =>
             Host.CreateDefaultBuilder()
                 .AddStores()
                 .AddServices()
@@ -152,7 +153,23 @@ namespace AtlasToolbox
                 m_window.Activate();
             }
         }
+        public static void RestartApp(string arguments = "")
+        {
+            AppRestartFailureReason restartError = Microsoft.Windows.AppLifecycle.AppInstance.Restart(arguments);
 
+            switch (restartError)
+            {
+                case AppRestartFailureReason.RestartPending:
+                    // Handle case where another restart is already pending
+                    break;
+                case AppRestartFailureReason.InvalidUser:
+                    // Handle case where the current user is not valid
+                    break;
+                case AppRestartFailureReason.Other:
+                    // Handle other failure reasons
+                    break;
+            }
+        }
 
         /// <summary>
         /// Logs XAML errors

@@ -31,6 +31,12 @@ namespace AtlasToolbox.Views
             this.InitializeComponent();
             this.DataContext = new SettingsPageViewModel();
             LoadText();
+            ConfigSwitch.Loaded += (s, e) =>
+            {
+                ConfigSwitch.SelectionChanged += ConfigSwitch_SelectionChanged;
+;
+            };
+
         }
 
         public void LoadText()
@@ -60,6 +66,11 @@ namespace AtlasToolbox.Views
         private async void bugRequestCard_Click(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("https://github.com/Atlas-OS/atlas-toolbox/issues/new"));
+        }
+
+        private void ConfigSwitch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.ContentDialogCaller("restartApp");
         }
     }
 }

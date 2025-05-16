@@ -184,5 +184,14 @@
     "Tile_GithubDescription": "Explore AtlasOS' code and contribute",
     "Tile_KofiTitle": "Support us on Ko-Fi",
     "Tile_KofiDescription": "Help us continue this project !",
-    "Language": "Language"
+    "Language": "Language",
+    "RestartApp": "Restart Toolbox to apply",
+    "RestartAppDesc": "To apply these changes, please restart Toolbox.",
+    "RestartAppBtn": "Restart Toolbox now",
+    "RestartPC": "Restart your PC to apply.",
+    "RestartPCDesc": "To apply these changes, please restart your PC.",
+    "RestartBtn": "Restart now",
+    "RelogApply": "Relog to apply",
+    "ReloadApplyDesc": "To apply these changes, please relog.",
+    "RelogBtn": "Log off"
 }

@@ -31,11 +31,9 @@ namespace AtlasToolbox.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-
             RegistryHelper.SetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang", this.CurrentLanguage.Key);
             App.LoadLangString();
             MainWindow mWindows = App.m_window as MainWindow;
-            mWindows.LoadText();
         }
 
         public ObservableCollection<Language> Languages { get; set; }

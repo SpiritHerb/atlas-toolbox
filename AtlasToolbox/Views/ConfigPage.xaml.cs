@@ -35,7 +35,6 @@ public sealed partial class ConfigPage : Page
         };
         BreadcrumbBar.ItemClicked += BreadcrumbBar_ItemClicked;
     }
-
     private void BreadcrumbBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
     {
         var items = BreadcrumbBar.ItemsSource as ObservableCollection<string>;

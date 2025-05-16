@@ -187,16 +187,22 @@ namespace AtlasToolbox
 
             switch (type)
             {
+                case "restartApp":
+                    title = App.GetValueFromItemList("RestartApp");
+                    desc = App.GetValueFromItemList("RestartAppDesc");
+                    primBtnTxt = App.GetValueFromItemList("RestartAppBtn");
+                    command = new RelayCommand(ComputerStateHelper.RestartApp);
+                    break;
                 case "restart":
-                    title = "Restart your PC to apply.";
-                    desc = "To apply these changes, please restart your PC.";
-                    primBtnTxt = "Restart now";
+                    title = App.GetValueFromItemList("RestartPC");
+                    desc = App.GetValueFromItemList("RestartPCDesc");
+                    primBtnTxt = App.GetValueFromItemList("RestartAppBtn");
                     command = new RelayCommand(ComputerStateHelper.RestartComputer);
                     break;
                 case "logoff":
-                    title = "Relog to apply";
-                    desc = "To apply these changes, please relog.";
-                    primBtnTxt = "Log off";
+                    title = App.GetValueFromItemList("RelogApply");
+                    desc = App.GetValueFromItemList("RelogApplyDesc");
+                    primBtnTxt = App.GetValueFromItemList("RelogBtn");
                     command = new RelayCommand(ComputerStateHelper.LogOffComputer);
                     break;
                 default:
@@ -212,7 +218,7 @@ namespace AtlasToolbox
                 dialog.Title = title;
                 dialog.Content = desc;
                 dialog.PrimaryButtonText = primBtnTxt;
-                dialog.CloseButtonText = "Later";
+                dialog.CloseButtonText = App.GetValueFromItemList("Later");
                 dialog.DefaultButton = ContentDialogButton.Primary;
                 dialog.PrimaryButtonCommand = command;
 

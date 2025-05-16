@@ -183,5 +183,13 @@
     "Tile_GithubDescription": "Explorez le code d'AtlasOS et contribuez",
     "Tile_KofiTitle": "Soutenez-nous sur Ko-Fi",
     "Tile_KofiDescription": "Aidez-nous à continuer ce projet !",
-    "Language": "Langue"
+    "Language": "Langue",
+    "RestartApp": "Redémarrer Toolbox",
+    "RestartAppDesc": "Pour appliquer ces changements, veuillez redémarrer Toolbox.",
+    "RestartAppBtn": "Redémarrer",
+    "RestartPC": "Redémarrer le PC",
+    "RestartPCDesc": "Pour appliquer ces changements, veuillez redémarrer votre ordinateur.",
+    "RelogApply": "Appliquer les changements",
+    "ReloadApplyDesc": "Pour appliquer ces changements, veuillez vous reconnecter",
+    "RelogBtn": "Déconnecter"
 }
