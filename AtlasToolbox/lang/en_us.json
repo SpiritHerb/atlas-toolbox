@@ -193,5 +193,11 @@
     "RestartBtn": "Restart now",
     "RelogApply": "Relog to apply",
     "ReloadApplyDesc": "To apply these changes, please relog.",
-    "RelogBtn": "Log off"
+    "RelogBtn": "Log off",
+    "CheckUpdates": "Check for updates",
+    "CheckUpdatesBtn": "Check now",
+    "LatestVer": "There are no updates available",
+    "NewUpdate": "Update",
+    "NewUpdateDesc": "There is a new update available. Would you like to install it now ?",
+    "InstallNow":  "Install now"
 }

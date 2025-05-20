@@ -11,11 +11,12 @@ using AtlasToolbox.Models;
 using AtlasToolbox.Utils;
 using AtlasToolbox.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 
 namespace AtlasToolbox.ViewModels
 {
-    public class SettingsPageViewModel : INotifyPropertyChanged
+    public partial class SettingsPageViewModel : INotifyPropertyChanged
     {
         public Language _currentLanguage { get; set; }
         public Language CurrentLanguage 
@@ -48,6 +49,18 @@ namespace AtlasToolbox.ViewModels
             }
             string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
             CurrentLanguage = Languages.Where(item => item.Key == lang).FirstOrDefault();
+        }
+
+        public bool CheckUpdates()
+        {
+            if (ToolboxUpdateHelper.CheckUpdates())
+            {
+                App.ContentDialogCaller("newUpdate");
+                return false;
+            }else
+            {
+                return true;
+            }
         }
     }
 }

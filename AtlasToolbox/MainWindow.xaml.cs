@@ -187,6 +187,12 @@ namespace AtlasToolbox
 
             switch (type)
             {
+                case "newUpdate":
+                    title = App.GetValueFromItemList("NewUpdate");
+                    desc = App.GetValueFromItemList("NewUpdateDesc");
+                    primBtnTxt = App.GetValueFromItemList("Yes");
+                    command = new RelayCommand(ToolboxUpdateHelper.InstallUpdate);
+                    break;
                 case "restartApp":
                     title = App.GetValueFromItemList("RestartApp");
                     desc = App.GetValueFromItemList("RestartAppDesc");

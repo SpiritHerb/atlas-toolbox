@@ -19,7 +19,6 @@
         </Style>
     </Page.Resources>
     <StackPanel Margin="55,0,0,0">
-
         <TextBlock
             x:Name="TitleTxt"
             Grid.Row="0"
@@ -43,6 +42,16 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
+                </controls:SettingsCard>
+                <controls:SettingsCard x:Name="Update" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="NoUpdatesBar"
+                            Margin="0,0,16,0"
+                            VerticalAlignment="Center"
+                            Visibility="Collapsed" />
+                        <Button x:Name="CheckUpdateButton" Click="CheckUpdateButton_Click" />
+                    </StackPanel>
                 </controls:SettingsCard>
             </StackPanel>
             <StackPanel>
