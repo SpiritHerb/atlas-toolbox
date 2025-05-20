@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Atlas Toolbox"
-#define MyAppVersion "0.1.5"
+#define MyAppVersion "0.1.6"
 #define MyAppPublisher "AtlasOS"
 #define MyAppURL "https://www.atlasos.net/"
 #define MyAppExeName "AtlasToolbox.exe"
@@ -66,4 +66,4 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
+Filename: {sys}\taskkill.exe; Parameters: "/f /im AtlasToolbox.exe"; Flags: skipifdoesntexist runhidden
