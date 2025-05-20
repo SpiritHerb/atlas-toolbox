@@ -34,9 +34,7 @@ namespace AtlasToolbox.Views
             ConfigSwitch.Loaded += (s, e) =>
             {
                 ConfigSwitch.SelectionChanged += ConfigSwitch_SelectionChanged;
-;
             };
-
         }
 
         public void LoadText()
@@ -49,6 +47,9 @@ namespace AtlasToolbox.Views
             bugRequestCard.Header = App.GetValueFromItemList("BugReportCard");
             WarningHeader.Header = App.GetValueFromItemList("WarningHeader");
             LanguageHeader.Header = App.GetValueFromItemList("Language");
+            Update.Header = App.GetValueFromItemList("CheckUpdates");
+            CheckUpdateButton.Content = App.GetValueFromItemList("CheckUpdatesBtn");
+            NoUpdatesBar.Text = App.GetValueFromItemList("LatestVer");
         }
 
         private void KeepBackground_Toggled(object sender, RoutedEventArgs e)
@@ -71,6 +72,15 @@ namespace AtlasToolbox.Views
         private void ConfigSwitch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App.ContentDialogCaller("restartApp");
+        }
+
+        private void CheckUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsPageViewModel vm = this.DataContext as SettingsPageViewModel;   
+            if (vm.CheckUpdates())
+            {
+                NoUpdatesBar.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -60,6 +60,7 @@
     <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.1.240916" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240916" />
     <PackageReference Include="ICSharpCode.Decompiler" Version="9.0.0.7889" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.Dism" Version="3.3.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.3" />

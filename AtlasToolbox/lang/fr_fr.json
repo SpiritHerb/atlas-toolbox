@@ -191,5 +191,11 @@
     "RestartPCDesc": "Pour appliquer ces changements, veuillez redémarrer votre ordinateur.",
     "RelogApply": "Appliquer les changements",
     "ReloadApplyDesc": "Pour appliquer ces changements, veuillez vous reconnecter",
-    "RelogBtn": "Déconnecter"
+    "RelogBtn": "Déconnecter",
+    "CheckUpdates": "Vérifier pour une mise-à-jour",
+    "CheckUpdatesBtn": "Vérifier maintenent",
+    "LatestVer": "Il n'y à aucune mise-à-jour disponible'",
+    "NewUpdate": "Mettre à jour",
+    "NewUpdateDesc": "Il y a une nouvelle mise-à-jour disponible. Voulez-vous l'installer maintenent ?",
+    "InstallNow": "Installer maintenent"
 }

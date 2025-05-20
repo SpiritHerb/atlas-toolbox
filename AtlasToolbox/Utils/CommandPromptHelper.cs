@@ -16,7 +16,7 @@ namespace AtlasToolbox.Utils
         /// </summary>
         /// <param name="command">command</param>
         /// <param name="noWindow">True by default</param>
-        public static void RunCommand(string command, bool noWindow= true)
+        public static void RunCommand(string command, bool noWindow= true, bool waitForExit = true)
         {
             Process commandPrompt = new Process();
             commandPrompt.StartInfo.FileName = "cmd.exe";
@@ -25,7 +25,7 @@ namespace AtlasToolbox.Utils
             commandPrompt.StartInfo.UseShellExecute = false;
 
             commandPrompt.Start();
-            commandPrompt.WaitForExit();
+            if (waitForExit) commandPrompt.WaitForExit();
         }
         /// <summary>
         /// Restarts explorer.exe
@@ -50,6 +50,21 @@ namespace AtlasToolbox.Utils
 
             startExplorer.Start();
             startExplorer.WaitForExit();
+        }
+
+        public static string ReturnRunCommand(string command)
+        {
+            Process commandPrompt = new Process();
+            commandPrompt.StartInfo.FileName = "cmd.exe";
+            commandPrompt.StartInfo.Arguments = $"/c {command}";
+            commandPrompt.StartInfo.CreateNoWindow = true;
+            commandPrompt.StartInfo.UseShellExecute = false;
+            commandPrompt.StartInfo.RedirectStandardOutput = true;
+
+            commandPrompt.Start();
+            string output = commandPrompt.StandardOutput.ReadToEnd();
+            commandPrompt.WaitForExit();
+            return output;
         }
     }
 }
