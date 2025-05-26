@@ -11,6 +11,26 @@
     xmlns:viewmodel="using:AtlasToolbox.ViewModels"
     d:DataContext="{d:DesignInstance Type=viewmodel:HomePageViewModel}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+                    <Thickness x:Key="ControlExampleDisplayBorderThickness">0</Thickness>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <StaticResource x:Key="ControlExampleDisplayBrush" ResourceKey="SolidBackgroundFillColorBaseBrush" />
+                    <Thickness x:Key="ControlExampleDisplayBorderThickness">0</Thickness>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="ControlExampleDisplayBrush" Color="{ThemeResource SystemColorWindowColor}" />
+                    <Thickness x:Key="ControlExampleDisplayBorderThickness">1</Thickness>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <Thickness x:Key="ControlElementScreenshotModePadding">67</Thickness>
+        </ResourceDictionary>
+    </Page.Resources>
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -49,6 +69,7 @@
                             Orientation="Vertical">
                             <TextBlock x:Name="WinVer" />
                             <TextBlock x:Name="AtlasVer" Margin="0,0,0,20" />
+
                             <TextBlock
                                 x:Name="subHeaderBlock"
                                 FontSize="18"
@@ -70,44 +91,51 @@
                 Grid.Row="1"
                 Margin="36,5,0,0"
                 FontSize="20" />
-            <ListView
-                x:Name="ProfilesListView"
+            <ContentPresenter
+                x:Name="ControlPresenter"
                 Grid.Row="1"
                 Width="350"
                 Height="225"
                 Margin="36,36,0,10"
+                Padding="12"
                 HorizontalAlignment="Left"
-                BorderBrush="#36363e"
-                BorderThickness="2"
-                CornerRadius="5"
-                SelectedItem="{Binding ProfileSelected, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Profiles">
-                        <Grid>
-                            <Grid.ContextFlyout>
-                                <MenuFlyout x:Name="MenuFlyout">
-                                    <MenuFlyoutItem
-                                        x:Name="SetProfile"
-                                        Click="SetProfile_Click"
-                                        Loaded="SetProfile_Loaded" />
-                                    <MenuFlyoutItem
-                                        x:Name="DeleteProfile"
-                                        Click="DeleteProfile"
-                                        Loaded="DeleteProfile_Loaded" />
-                                </MenuFlyout>
-                            </Grid.ContextFlyout>
-                            <TextBlock Text="{x:Bind Name}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                VerticalAlignment="Stretch"
+                Background="{ThemeResource ControlExampleDisplayBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="{ThemeResource ControlExampleDisplayBorderThickness}"
+                CornerRadius="8,8,8,8">
+                <ListView
+                    x:Name="ProfilesListView"
+                    HorizontalAlignment="Stretch"
+                    SelectedItem="{Binding ProfileSelected, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Profiles">
+                            <Grid>
+                                <Grid.ContextFlyout>
+                                    <MenuFlyout x:Name="MenuFlyout">
+                                        <MenuFlyoutItem
+                                            x:Name="SetProfile"
+                                            Click="SetProfile_Click"
+                                            Loaded="SetProfile_Loaded" />
+                                        <MenuFlyoutItem
+                                            x:Name="DeleteProfile"
+                                            Click="DeleteProfile"
+                                            Loaded="DeleteProfile_Loaded" />
+                                    </MenuFlyout>
+                                </Grid.ContextFlyout>
+                                <TextBlock Text="{x:Bind Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ContentPresenter>
             <TextBlock
                 x:Name="RecentTogglesHeader"
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="36,5,0,0"
                 FontSize="20" />
-            <ListView
+            <!--<ListView
                 x:Name="RecentTogglesList"
                 Grid.Row="1"
                 Grid.Column="1"
@@ -125,7 +153,8 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
+            <GridView ItemTemplate="{StaticResource ControlItemTemplate}" />
             <StackPanel
                 Grid.Row="2"
                 Margin="36,0,0,24"

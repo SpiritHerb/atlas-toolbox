@@ -40,6 +40,7 @@
     <None Remove="MainWindow.xaml" />
     <None Remove="Resources\ConfigurationItemTemplate.xaml" />
     <None Remove="Resources\HeaderTemplates.xaml" />
+    <None Remove="Resources\RecentItemTemplate.xaml" />
     <None Remove="SoftwarePage.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
     <None Remove="Views\NewProfilePage.xaml" />
@@ -198,6 +199,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <Page Update="Resources\RecentItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\NewProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
