@@ -199,5 +199,6 @@
     "LatestVer": "Обновления отсутствуют",
     "NewUpdate": "Обновление",
     "NewUpdateDesc": "Доступно новое обновление. Установить сейчас?",
-    "InstallNow":  "Установить сейчас"
+    "InstallNow": "Установить сейчас",
+    "WindowsHello": "Windows Hello"
 }
