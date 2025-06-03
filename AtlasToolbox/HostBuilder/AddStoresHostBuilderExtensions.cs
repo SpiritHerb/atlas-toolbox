@@ -98,7 +98,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("GiveAccessToMenu");
                 services.AddKeyedSingleton<ConfigurationStore>("NetworkNavigationPane");
                 services.AddKeyedSingleton<ConfigurationStore>("FileSharing");
-                services.AddKeyedSingleton<ConfigurationStore>("WindowsHello");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("Mitigations");
