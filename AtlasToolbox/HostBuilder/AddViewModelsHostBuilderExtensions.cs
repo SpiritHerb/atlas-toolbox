@@ -406,6 +406,7 @@ namespace AtlasToolbox.HostBuilder
                 ["GiveAccessToMenu"] = new(App.GetValueFromItemList("GiveAccessToMenu"), "GiveAccessToMenu", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
                 ["NetworkNavigationPane"] = new(App.GetValueFromItemList("NetworkNavigationPane"), "NetworkNavigationPane", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
                 ["FileSharing"] = new(App.GetValueFromItemList("FileSharing"), "FileSharing", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
+                ["WindowsHello"] = new(App.GetValueFromItemList("WindowsHello"), "WindowsHello", ConfigurationType.General, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>

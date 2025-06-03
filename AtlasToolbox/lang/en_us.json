@@ -199,5 +199,6 @@
     "LatestVer": "There are no updates available",
     "NewUpdate": "Update",
     "NewUpdateDesc": "There is a new update available. Would you like to install it now ?",
-    "InstallNow":  "Install now"
+    "InstallNow":  "Install now",
+    "WindowsHello":  "Windows Hello"
 }
