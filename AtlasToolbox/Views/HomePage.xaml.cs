@@ -81,7 +81,7 @@ namespace AtlasToolbox.Views
             {
                 var selectedItem = ProfilesListView.SelectedItem as Profiles;
 
-                if (selectedItem.Key != "Default")
+                if (selectedItem.Key != "default.json")
                 {
                     ContentDialog dialog = new ContentDialog();
 
