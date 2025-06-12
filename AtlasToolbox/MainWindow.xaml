@@ -97,6 +97,13 @@
                 <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
             </NavigationView.Resources>
 
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    Width="300"
+                    AutomationProperties.Name="Basic AutoSuggestBox"
+                    SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                    TextChanged="AutoSuggestBox_TextChanged"/>
+            </NavigationView.AutoSuggestBox>
 
             <NavigationView.MenuItems>
                 <NavigationViewItem

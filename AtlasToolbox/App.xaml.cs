@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using Windows.ApplicationModel.Core;
+using System.Collections;
+using System.Reflection;
 
 namespace AtlasToolbox
 {

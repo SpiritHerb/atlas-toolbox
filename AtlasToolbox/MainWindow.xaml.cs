@@ -15,11 +15,16 @@ using System.Threading.Tasks;
 using Windows.Security.Authentication.Web.Provider;
 using Microsoft.UI;
 using WinRT.Interop;
+using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
+using ICSharpCode.Decompiler.CSharp.Syntax;
+using AtlasToolbox.ViewModels;
 
 namespace AtlasToolbox
 {
     public sealed partial class MainWindow : Window
     {
+        public List<IConfigurationItem> RootList { get; set; }
         public MainWindow()
         {
             this.InitializeComponent();
@@ -49,6 +54,29 @@ namespace AtlasToolbox
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;
+
+            // Setup root list for search bar
+            RootList = new List<IConfigurationItem>();
+            foreach (IConfigurationItem item in App._host.Services.GetServices<LinksViewModel>())
+            {
+                RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationItemViewModel>())
+            {
+                RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<MultiOptionConfigurationItemViewModel>())
+            {
+                RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationSubMenuViewModel>())
+            {
+                RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationButtonViewModel>())
+            {
+                RootList.Add(item);
+            }
         }
 
         public void LoadText()
@@ -277,6 +305,39 @@ namespace AtlasToolbox
             else
             {
                 timesClicked++;
+            }
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            //var obj = RootList.Where(item => item.Name == args.SelectedItem.ToString()).FirstOrDefault();
+//            Navigate
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            // Since selecting an item will also change the text,
+            // only listen to changes caused by user entering text.
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                var suitableItems = new List<string>();
+                var splitText = sender.Text.ToLower().Split(" ");
+                foreach (var viewModel in RootList)
+                {
+                    var found = splitText.All((key) =>
+                    {
+                        return viewModel.Name.ToLower().Contains(key);
+                    });
+                    if (found)
+                    {
+                        suitableItems.Add(viewModel.Name);
+                    }
+                }
+                if (suitableItems.Count == 0)
+                {
+                    suitableItems.Add("No results found");
+                }
+                sender.ItemsSource = suitableItems;
             }
         }
     }

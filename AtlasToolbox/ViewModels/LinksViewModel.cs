@@ -9,7 +9,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.ViewModels
 {
-    public class LinksViewModel
+    public class LinksViewModel : IConfigurationItem
     {
         private Links link { get; set; }
 
@@ -17,6 +17,10 @@ namespace AtlasToolbox.ViewModels
         public string Link => link.link;
         public ConfigurationType ConfigurationType => link.configurationType;
         public string FontIcon => link.Icon;
+
+        public string Key => throw new NotImplementedException();
+
+        public ConfigurationType Type => throw new NotImplementedException();
 
         public LinksViewModel(Links link)
         {
