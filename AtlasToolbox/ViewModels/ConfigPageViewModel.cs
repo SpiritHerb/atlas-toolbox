@@ -47,7 +47,7 @@ namespace AtlasToolbox.ViewModels
             ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(ConfigurationItemViewModels.Where(item => item.Type == configurationType));
             MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(MultiOptionConfigurationItemViewModels.Where(item => item.Type == configurationType));
             ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(ConfigurationSubMenuViewModels.Where(item => item.Type == configurationType));
-            LinksItemViewModel = new ObservableCollection<LinksViewModel>(LinksViewModels.Where(item => item.ConfigurationType == configurationType));
+            LinksItemViewModel = new ObservableCollection<LinksViewModel>(LinksViewModels.Where(item => item.Type == configurationType));
             ConfigurationButtonViewModel = new ObservableCollection<ConfigurationButtonViewModel>(ConfigurationButtonViewModels.Where(item => item.Type == configurationType));
         }
 

@@ -12,15 +12,11 @@ namespace AtlasToolbox.ViewModels
     public class LinksViewModel : IConfigurationItem
     {
         private Links link { get; set; }
-
         public string Name => link.name;
         public string Link => link.link;
-        public ConfigurationType ConfigurationType => link.configurationType;
         public string FontIcon => link.Icon;
-
-        public string Key => throw new NotImplementedException();
-
-        public ConfigurationType Type => throw new NotImplementedException();
+        public string Key => link.name.ToLower();
+        public ConfigurationType Type => link.configurationType;
 
         public LinksViewModel(Links link)
         {

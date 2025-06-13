@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using ICSharpCode.Decompiler.CSharp.Syntax;
 using AtlasToolbox.ViewModels;
+using System.Runtime.CompilerServices;
 
 namespace AtlasToolbox
 {
@@ -59,23 +60,23 @@ namespace AtlasToolbox
             RootList = new List<IConfigurationItem>();
             foreach (IConfigurationItem item in App._host.Services.GetServices<LinksViewModel>())
             {
-                RootList.Add(item);
+                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationItemViewModel>())
             {
-                RootList.Add(item);
+                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<MultiOptionConfigurationItemViewModel>())
             {
-                RootList.Add(item);
+                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationSubMenuViewModel>())
             {
-                RootList.Add(item);
+                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationButtonViewModel>())
             {
-                RootList.Add(item);
+                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
             }
         }
 
@@ -117,7 +118,8 @@ namespace AtlasToolbox
             //var NavView = sender as NavigationView;
             //if (NavView.SelectedItem == args.InvokedItemContainer) { return; };
 
-            if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; };
+            if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; }
+            ;
 
             App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
             if (args.IsSettingsInvoked == true)
@@ -127,7 +129,13 @@ namespace AtlasToolbox
                 return;
             }
 
-            switch (args.InvokedItemContainer.Tag.ToString())
+            Navigate(args.InvokedItemContainer.Tag.ToString());
+            App.XamlRoot = this.Content.XamlRoot;
+        }
+
+        private void Navigate(string tag)
+        {
+            switch (tag)
             {
                 case "SettingsPage":
                     App.CurrentCategory = "SettingsItem";
@@ -141,7 +149,7 @@ namespace AtlasToolbox
                            );
                     break;
                 case "AtlasToolbox.Views.HomePage":
-                    Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
+                    Type newPage = Type.GetType(tag);
                     ContentFrame.Navigate(
                            newPage,
                            null,
@@ -154,7 +162,6 @@ namespace AtlasToolbox
                            new DrillInNavigationTransitionInfo());
                     break;
             }
-            App.XamlRoot = this.Content.XamlRoot;
         }
 
         public void GoBack()
@@ -202,6 +209,7 @@ namespace AtlasToolbox
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
             }
         }
+
 
         /// <summary>
         /// Creates a ContentDialog with the required type
@@ -310,8 +318,17 @@ namespace AtlasToolbox
 
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            //var obj = RootList.Where(item => item.Name == args.SelectedItem.ToString()).FirstOrDefault();
-//            Navigate
+            var configItem = RootList.Where(item => item.Name == args.SelectedItem.ToString()).FirstOrDefault();
+            string type = configItem.Type.ToString();
+
+            if (configItem is not null)
+            {
+                NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
+                                .OfType<NavigationViewItem>()
+                                .First(n => n.Tag.Equals(configItem.Type.ToString()));
+                App.CurrentCategory = configItem.Type.ToString();
+                Navigate(configItem.Type.ToString());
+            }
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

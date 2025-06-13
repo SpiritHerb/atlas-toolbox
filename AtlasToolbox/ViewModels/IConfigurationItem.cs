@@ -10,7 +10,7 @@ namespace AtlasToolbox.ViewModels
     public interface IConfigurationItem
     {
         string Name { get; }
-        string Key {  get; }
+        string Key { get; }
         ConfigurationType Type { get; }
     }
 }
