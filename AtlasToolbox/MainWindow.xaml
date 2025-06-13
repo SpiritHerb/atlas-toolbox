@@ -101,8 +101,10 @@
                 <AutoSuggestBox
                     Width="300"
                     AutomationProperties.Name="Basic AutoSuggestBox"
+                    PlaceholderText="Search a tweak"
+                    QueryIcon="Find"
                     SuggestionChosen="AutoSuggestBox_SuggestionChosen"
-                    TextChanged="AutoSuggestBox_TextChanged"/>
+                    TextChanged="AutoSuggestBox_TextChanged" />
             </NavigationView.AutoSuggestBox>
 
             <NavigationView.MenuItems>
