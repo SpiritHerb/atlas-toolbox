@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Atlas Toolbox"
-#define MyAppVersion "0.1.6"
+#define MyAppVersion "0.1.7"
 #define MyAppPublisher "AtlasOS"
 #define MyAppURL "https://www.atlasos.net/"
 #define MyAppExeName "AtlasToolbox.exe"
