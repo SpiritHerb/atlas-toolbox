@@ -69,7 +69,7 @@ namespace AtlasToolbox.Views
                 }
                 else
                 {
-                    App.logger.Warn(@$"Key {key.ToString()} was not found");
+                    App.logger.Warn(@$"Key ""HKLM\SOFTWARE\AtlasOS\Toolbox\Favorites"" was not found");
                 }
             }
             if (_configurationItems.Count == 0)
