@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace AtlasToolbox.ViewModels
 {
-    public class ConfigurationSubMenuViewModel
+    public class ConfigurationSubMenuViewModel : IConfigurationItem
     {
         private readonly ConfigurationStoreSubMenu _configurationStoreSubMenu;
 
@@ -23,6 +23,8 @@ namespace AtlasToolbox.ViewModels
         public string Description => _configurationSubMenu.Description;
         public ConfigurationType Type => _configurationSubMenu.Type;
         public FontIcon Icon => _configurationSubMenu.Icon;
+
+        public string Key => "";
 
         public ConfigurationSubMenuViewModel() { }
 

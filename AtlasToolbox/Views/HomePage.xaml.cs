@@ -2,6 +2,7 @@
 using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -10,6 +11,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Win32;
 using Microsoft.Xaml.Interactivity;
 using System;
 using System.Collections.Generic;
@@ -28,46 +30,67 @@ namespace AtlasToolbox.Views
     public sealed partial class HomePage : Page
     {
         private HomePageViewModel _viewModel;
-
+        private List<IConfigurationItem> _configurationItems;
         public HomePage()
         {
             OperatingSystem os = Environment.OSVersion;
 
-            RecentTogglesHelper.LoadRecentToggles();
+            //RecentTogglesHelper.LoadRecentToggles();
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
             this.DataContext = _viewModel;
             LoadText();
-
-            List<object> list = new();
-
-            for (int i = 0; i < 9; i++)
-            {
-                try
-                {
-                    list.Add(RecentTogglesHelper.recentToggles[i]);
-                    if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
-
-                }catch {
-                    break;
-                }
-            }
-            RecentTogglesList.ItemsSource = list;
+            LoadFavorites();
+            
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }
 
+        private void LoadFavorites()
+        {
+            _configurationItems = new List<IConfigurationItem>();
+            // Get all values in the Favorites reg key
+            string keyPath = @"SOFTWARE\AtlasOS\Toolbox\Favorites";
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(keyPath))
+            {
+                if (key != null)
+                {
+                    foreach (string valueName in key.GetValueNames())
+                    {
+                        try
+                        {
+                            _configurationItems.Add(App.RootList.Where(item => item.Key == valueName).FirstOrDefault());
+                        }
+                        catch
+                        {
+                            App.logger.Error(@$"Value {valueName} was not found in RootList when trying to initialize favorites");
+                        }
+                    }
+                }
+                else
+                {
+                    App.logger.Warn(@$"Key {key.ToString()} was not found");
+                }
+            }
+            if (_configurationItems.Count == 0)
+            {
+                NoFavoritesText.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                NoFavoritesText.Visibility = Visibility.Collapsed;
+            }
+            FavoritesControl.ItemsSource = _configurationItems;
+        }
         private void LoadText()
         {
             // Home Header
-            WinVer.Text = App.GetValueFromItemList("Home_WinVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
-            AtlasVer.Text = App.GetValueFromItemList("Home_PlaybookVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
             HomeHeaderText.Text = App.GetValueFromItemList("Home_HeaderText");
-
             //Other
             ProfilesHeader.Text = App.GetValueFromItemList("Home_ProfilesText");
-            RecentTogglesHeader.Text = App.GetValueFromItemList("Home_RecentTogglesText");
+            FavoritesHeader.Text = App.GetValueFromItemList("Home_Favorites");
             NewProfileButton.Content = App.GetValueFromItemList("NewProfilesButton");
+            NoFavoritesText.Text = App.GetValueFromItemList("NoFavorites");
         }
 
         /// <summary>
@@ -188,6 +211,32 @@ namespace AtlasToolbox.Views
         {
             var button = sender as MenuFlyoutItem;
             button.Text = App.GetValueFromItemList("Home_DeleteProfileBtn");
+        }
+        private void ToggleSwitch_Loaded(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            toggleSwitch.Toggled += ToggleSwitchBehavior.OnToggled;
+        }
+
+        private async void LinkCard_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsCard linkCard = sender as SettingsCard;
+            LinksViewModel linkVM = linkCard.DataContext as LinksViewModel;
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
+        }
+
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
+            try
+            {
+                RegistryHelper.DeleteValue(@"HKLM\SOFTWARE\\AtlasOS\\Toolbox\\Favorites", menuFlyoutItem.Tag.ToString());
+                LoadFavorites();
+            }
+            catch
+            {
+                App.logger.Error($@"{menuFlyoutItem.Tag.ToString()} value was not found");
+            }
         }
     }
 }

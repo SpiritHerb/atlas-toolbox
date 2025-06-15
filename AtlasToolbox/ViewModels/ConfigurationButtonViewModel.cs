@@ -10,12 +10,13 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace AtlasToolbox.ViewModels
 {
-    public partial class ConfigurationButtonViewModel
+    public partial class ConfigurationButtonViewModel : IConfigurationItem
     {
         private ConfigurationButton ConfigButton { get; set; }
         public ICommand Command => ConfigButton.Command;
         public string Name => ConfigButton.Name;
         public string Description => ConfigButton.Description;
+        public string Key => ConfigButton.Name.Replace(" ", "");
         public ConfigurationType Type => ConfigButton.Type;
 
         public ConfigurationButtonViewModel(ConfigurationButton configurationButton)

@@ -10,7 +10,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.ViewModels
 {
-    public class MultiOptionConfigurationItemViewModel
+    public class MultiOptionConfigurationItemViewModel : IConfigurationItem
     {
         private readonly MultiOptionConfigurationStore _configurationStore;
         private readonly IMultiOptionConfigurationServices _configurationService;

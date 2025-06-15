@@ -12,7 +12,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace AtlasToolbox.ViewModels
 {
-    public class ConfigurationItemViewModel
+    public class ConfigurationItemViewModel : IConfigurationItem
     {
         private readonly ConfigurationStore _configurationStore;
         private readonly IConfigurationService _configurationService;

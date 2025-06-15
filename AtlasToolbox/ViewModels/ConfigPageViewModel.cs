@@ -5,23 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.Storage.AccessCache;
 
 namespace AtlasToolbox.ViewModels
 {
     class ConfigPageViewModel : ObservableObject
     {
-        // If there's a better solution for this, please do a PR, this isn't great imo
-        private IEnumerable<ConfigurationItemViewModel> ConfigurationItemViewModels { get; }
-        private IEnumerable<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItemViewModels { get; }
-        private IEnumerable<ConfigurationSubMenuViewModel> ConfigurationSubMenuViewModels { get; }
-        private IEnumerable<LinksViewModel> LinksViewModels { get; }
-        private IEnumerable<ConfigurationButtonViewModel> ConfigurationButtonViewModels { get; }
-
-        public ObservableCollection<ConfigurationItemViewModel> ConfigurationItem { get; set; }
-        public ObservableCollection<MultiOptionConfigurationItemViewModel> MultiOptionConfigurationItem { get; set; }
-        public ObservableCollection<ConfigurationSubMenuViewModel> ConfigurationItemSubMenu { get; set; }
-        public ObservableCollection<LinksViewModel> LinksItemViewModel { get; set; }
-        public ObservableCollection<ConfigurationButtonViewModel> ConfigurationButtonViewModel { get; set; }
+        public ObservableCollection<IConfigurationItem> ConfigurationItems { get; set; }
 
         public ConfigPageViewModel(
             IEnumerable<ConfigurationItemViewModel> configurationItemViewModels,
@@ -30,12 +20,13 @@ namespace AtlasToolbox.ViewModels
             IEnumerable<LinksViewModel> linksViewModel,
             IEnumerable<ConfigurationButtonViewModel> configurationButtonViewModel)
         {
+            ConfigurationItems = new ObservableCollection<IConfigurationItem>();
+            configurationSubMenuViewModel.ToList().ForEach(item => ConfigurationItems.Add(item));
+            multiOptionConfigurationItemViewModels.ToList().ForEach(item => ConfigurationItems.Add(item));
+            configurationItemViewModels.ToList().ForEach(item => ConfigurationItems.Add(item));
+            configurationButtonViewModel.ToList().ForEach(item => ConfigurationItems.Add(item));
+            linksViewModel.ToList().ForEach(item => ConfigurationItems.Add(item));
 
-            ConfigurationItemViewModels = configurationItemViewModels;
-            MultiOptionConfigurationItemViewModels = multiOptionConfigurationItemViewModels;
-            ConfigurationSubMenuViewModels = configurationSubMenuViewModel;
-            LinksViewModels = linksViewModel;
-            ConfigurationButtonViewModels = configurationButtonViewModel;
         }
 
         /// <summary>
@@ -44,11 +35,15 @@ namespace AtlasToolbox.ViewModels
         /// <param name="configurationType">Type to get</param>
         public void ShowForType(ConfigurationType configurationType)
         {
-            ConfigurationItem = new ObservableCollection<ConfigurationItemViewModel>(ConfigurationItemViewModels.Where(item => item.Type == configurationType));
-            MultiOptionConfigurationItem = new ObservableCollection<MultiOptionConfigurationItemViewModel>(MultiOptionConfigurationItemViewModels.Where(item => item.Type == configurationType));
-            ConfigurationItemSubMenu = new ObservableCollection<ConfigurationSubMenuViewModel>(ConfigurationSubMenuViewModels.Where(item => item.Type == configurationType));
-            LinksItemViewModel = new ObservableCollection<LinksViewModel>(LinksViewModels.Where(item => item.ConfigurationType == configurationType));
-            ConfigurationButtonViewModel = new ObservableCollection<ConfigurationButtonViewModel>(ConfigurationButtonViewModels.Where(item => item.Type == configurationType));
+            ObservableCollection<IConfigurationItem> tempList = new();
+            foreach (var item in ConfigurationItems)
+            {
+                if (item.Type == configurationType)
+                {
+                    tempList.Add(item);
+                }
+            }
+            ConfigurationItems = tempList;
         }
 
         /// <summary>

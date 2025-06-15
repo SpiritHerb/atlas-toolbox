@@ -15,11 +15,17 @@ using System.Threading.Tasks;
 using Windows.Security.Authentication.Web.Provider;
 using Microsoft.UI;
 using WinRT.Interop;
+using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
+using ICSharpCode.Decompiler.CSharp.Syntax;
+using AtlasToolbox.ViewModels;
+using System.Runtime.CompilerServices;
 
 namespace AtlasToolbox
 {
     public sealed partial class MainWindow : Window
     {
+        public List<IConfigurationItem> RootList { get; set; }
         public MainWindow()
         {
             this.InitializeComponent();
@@ -31,14 +37,34 @@ namespace AtlasToolbox
             WindowManager.Get(this).Height = 850;
             WindowManager.Get(this).MinHeight = 850;
 
-            WindowManager.Get(this).IsResizable = false;
-            WindowManager.Get(this).IsMaximizable = false;
-
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
 
             LoadText();
 
+            // Setup root list
+            RootList = new List<IConfigurationItem>();
+            foreach (IConfigurationItem item in App._host.Services.GetServices<LinksViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationItemViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<MultiOptionConfigurationItemViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationSubMenuViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationButtonViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            App.RootList = this.RootList;
             NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
             ContentFrame.Navigate(
                        typeof(Views.HomePage),
@@ -48,7 +74,7 @@ namespace AtlasToolbox
             SetTitleBar(AppTitleBar);
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
-            else this.Closed += AppBehaviorHelper.CloseApp;
+            else this.Closed += AppBehaviorHelper.CloseApp;            
         }
 
         public void LoadText()
@@ -89,7 +115,8 @@ namespace AtlasToolbox
             //var NavView = sender as NavigationView;
             //if (NavView.SelectedItem == args.InvokedItemContainer) { return; };
 
-            if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; };
+            if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; }
+            ;
 
             App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
             if (args.IsSettingsInvoked == true)
@@ -99,7 +126,13 @@ namespace AtlasToolbox
                 return;
             }
 
-            switch (args.InvokedItemContainer.Tag.ToString())
+            Navigate(args.InvokedItemContainer.Tag.ToString());
+            App.XamlRoot = this.Content.XamlRoot;
+        }
+
+        private void Navigate(string tag)
+        {
+            switch (tag)
             {
                 case "SettingsPage":
                     App.CurrentCategory = "SettingsItem";
@@ -113,7 +146,7 @@ namespace AtlasToolbox
                            );
                     break;
                 case "AtlasToolbox.Views.HomePage":
-                    Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
+                    Type newPage = Type.GetType(tag);
                     ContentFrame.Navigate(
                            newPage,
                            null,
@@ -126,7 +159,6 @@ namespace AtlasToolbox
                            new DrillInNavigationTransitionInfo());
                     break;
             }
-            App.XamlRoot = this.Content.XamlRoot;
         }
 
         public void GoBack()
@@ -174,6 +206,7 @@ namespace AtlasToolbox
                 NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
             }
         }
+
 
         /// <summary>
         /// Creates a ContentDialog with the required type
@@ -277,6 +310,48 @@ namespace AtlasToolbox
             else
             {
                 timesClicked++;
+            }
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            var configItem = RootList.Where(item => item.Name == args.SelectedItem.ToString()).FirstOrDefault();
+            string type = configItem.Type.ToString();
+
+            if (configItem is not null)
+            {
+                NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
+                                .OfType<NavigationViewItem>()
+                                .First(n => n.Tag.Equals(configItem.Type.ToString()));
+                App.CurrentCategory = configItem.Type.ToString();
+                Navigate(configItem.Type.ToString());
+            }
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            // Since selecting an item will also change the text,
+            // only listen to changes caused by user entering text.
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                var suitableItems = new List<string>();
+                var splitText = sender.Text.ToLower().Split(" ");
+                foreach (var viewModel in RootList)
+                {
+                    var found = splitText.All((key) =>
+                    {
+                        return viewModel.Name.ToLower().Contains(key);
+                    });
+                    if (found)
+                    {
+                        suitableItems.Add(viewModel.Name);
+                    }
+                }
+                if (suitableItems.Count == 0)
+                {
+                    suitableItems.Add("No results found");
+                }
+                sender.ItemsSource = suitableItems;
             }
         }
     }

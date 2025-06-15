@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using Windows.ApplicationModel.Core;
+using System.Collections;
+using System.Reflection;
 
 namespace AtlasToolbox
 {
@@ -34,9 +36,8 @@ namespace AtlasToolbox
         public static Window f_window;
         public static XamlRoot XamlRoot { get; set; }
         public static string CurrentCategory { get; set; }
-
         private static Dictionary<string, string> StringList = new Dictionary<string, string>();
-
+        public static List<IConfigurationItem> RootList = new List<IConfigurationItem>();
         private static Mutex _mutex = new(true, "{AtlasToolbox}");
 
         public static string Version { get; set; }

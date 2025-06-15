@@ -23,6 +23,8 @@ namespace AtlasToolbox.Enums
         Security,
         [Description("Troubleshooting")]
         Troubleshooting,
+        [Description("Software")]
+        Software,
         ContextMenuSubMenu,
         AiSubMenu,
         ServicesSubMenu,
