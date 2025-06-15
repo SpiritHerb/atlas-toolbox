@@ -33,26 +33,26 @@ namespace AtlasToolbox.Views
         {
             OperatingSystem os = Environment.OSVersion;
 
-            RecentTogglesHelper.LoadRecentToggles();
+            //RecentTogglesHelper.LoadRecentToggles();
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<HomePageViewModel>();
             this.DataContext = _viewModel;
             LoadText();
 
-            List<object> list = new();
+            //List<object> list = new();
 
-            for (int i = 0; i < 9; i++)
-            {
-                try
-                {
-                    list.Add(RecentTogglesHelper.recentToggles[i]);
-                    if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
+            //for (int i = 0; i < 9; i++)
+            //{
+            //    try
+            //    {
+            //        list.Add(RecentTogglesHelper.recentToggles[i]);
+            //        if (RecentTogglesHelper.recentToggles.Count == i + 1) i = 10; 
 
-                }catch {
-                    break;
-                }
-            }
-            RecentTogglesList.ItemsSource = list;
+            //    }catch {
+            //        break;
+            //    }
+            //}
+            //RecentTogglesList.ItemsSource = list;
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }

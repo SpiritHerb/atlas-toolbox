@@ -48,7 +48,13 @@
                                 Description="{Binding Description}"
                                 Header="{Binding Name}"
                                 IsClickEnabled="True"
-                                Style="{StaticResource ConfigurationSettingsCardTemplate}" />
+                                Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                <controls:SettingsCard.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Favorite" Tag="{Binding Key}"/>
+                                    </MenuFlyout>
+                                </controls:SettingsCard.ContextFlyout>
+                            </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -58,6 +64,11 @@
                         <DataTemplate>
                             <Grid>
                                 <controls:SettingsCard Header="{Binding Name}" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                    <controls:SettingsCard.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Favorite" Tag="{Binding Key}"/>
+                                        </MenuFlyout>
+                                    </controls:SettingsCard.ContextFlyout>
                                     <ComboBox
                                         x:Name="ConfigSwitch"
                                         ItemsSource="{Binding Options}"
@@ -82,6 +93,11 @@
                                     x:Name="SettingsCard"
                                     Header="{Binding Name}"
                                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                    <controls:SettingsCard.ContextFlyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Favorite" Tag="{Binding Key}"/>
+                                        </MenuFlyout>
+                                    </controls:SettingsCard.ContextFlyout>
                                     <ToggleSwitch
                                         x:Name="ConfigSwitch"
                                         IsOn="{Binding CurrentSetting}"
@@ -109,6 +125,11 @@
                                 x:Name="SettingsCard"
                                 Header="{Binding Description}"
                                 Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                <controls:SettingsCard.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Favorite" Tag="{Binding Name}"/>
+                                    </MenuFlyout>
+                                </controls:SettingsCard.ContextFlyout>
                                 <Button Command="{Binding ExecuteCommandCommand}" Content="{Binding Name}" />
                             </controls:SettingsCard>
                         </DataTemplate>
@@ -126,7 +147,13 @@
                                 Header="{Binding Name}"
                                 HeaderIcon="{ui:FontIcon Glyph=&#xE774;}"
                                 IsClickEnabled="True"
-                                Style="{StaticResource ConfigurationSettingsCardTemplate}" />
+                                Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                                <controls:SettingsCard.ContextFlyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Favorite" Tag="{Binding Name}"/>
+                                    </MenuFlyout>
+                                </controls:SettingsCard.ContextFlyout>
+                            </controls:SettingsCard>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

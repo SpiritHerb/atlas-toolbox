@@ -49,7 +49,7 @@ public sealed partial class ConfigPage : Page
         SettingsCard settingCard = sender as SettingsCard;
         ConfigurationSubMenuViewModel item = settingCard.DataContext as ConfigurationSubMenuViewModel;
 
-        DataTemplate template = SubMenuItems.ItemTemplate;
+        DataTemplate template = (DataTemplate)MainGrid.Resources["ConfigurationSubMenuTemplate"];
 
         Frame.Navigate(typeof(SubSection), new Tuple<ConfigurationSubMenuViewModel, DataTemplate, object>(item, template, this.BreadcrumbBar.ItemsSource), new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
     }
