@@ -28,7 +28,10 @@
                         Style="{StaticResource ConfigurationSettingsCardTemplate}">
                         <controls:SettingsCard.ContextFlyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Tag="{Binding Key}" Text="Favorite" />
+                                <MenuFlyoutItem
+                                    Click="MenuFlyoutItem_Click"
+                                    Tag="{Binding Key}"
+                                    Text="Favorite" />
                             </MenuFlyout>
                         </controls:SettingsCard.ContextFlyout>
                         <ToggleSwitch
@@ -50,20 +53,21 @@
             </DataTemplate>
 
             <DataTemplate x:Key="MultiOptionTemplate" x:DataType="viewmodel:MultiOptionConfigurationItemViewModel">
-                <Grid>
-                    <controls:SettingsCard Header="{Binding Name}" Style="{StaticResource ConfigurationSettingsCardTemplate}">
-                        <controls:SettingsCard.ContextFlyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Tag="{Binding Key}" Text="Favorite" />
-                            </MenuFlyout>
-                        </controls:SettingsCard.ContextFlyout>
-                        <ComboBox
-                            x:Name="ConfigSwitch"
-                            Width="200"
-                            ItemsSource="{Binding Options}"
-                            SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" />
-                    </controls:SettingsCard>
-                </Grid>
+                <controls:SettingsCard Header="{Binding Name}" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                    <controls:SettingsCard.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem
+                                Click="MenuFlyoutItem_Click"
+                                Tag="{Binding Key}"
+                                Text="Favorite" />
+                        </MenuFlyout>
+                    </controls:SettingsCard.ContextFlyout>
+                    <ComboBox
+                        x:Name="ConfigSwitch"
+                        Width="200"
+                        ItemsSource="{Binding Options}"
+                        SelectedItem="{Binding CurrentSetting, Mode=TwoWay}" />
+                </controls:SettingsCard>
             </DataTemplate>
 
             <DataTemplate x:Key="ConfigurationButtonTemplate" x:DataType="viewmodel:ConfigurationButtonViewModel">
@@ -73,7 +77,10 @@
                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
                     <controls:SettingsCard.ContextFlyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Tag="{Binding Name}" Text="Favorite" />
+                            <MenuFlyoutItem
+                                Click="MenuFlyoutItem_Click"
+                                Tag="{Binding Key}"
+                                Text="Favorite" />
                         </MenuFlyout>
                     </controls:SettingsCard.ContextFlyout>
                     <Button
@@ -95,7 +102,10 @@
                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
                     <controls:SettingsCard.ContextFlyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Tag="{Binding Key}" Text="Favorite" />
+                            <MenuFlyoutItem
+                                Click="MenuFlyoutItem_Click"
+                                Tag="{Binding Key}"
+                                Text="Favorite" />
                         </MenuFlyout>
                     </controls:SettingsCard.ContextFlyout>
                 </controls:SettingsCard>

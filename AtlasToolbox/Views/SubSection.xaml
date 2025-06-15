@@ -51,7 +51,10 @@
                                 Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                 <controls:SettingsCard.ContextFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Favorite" Tag="{Binding Key}"/>
+                                        <MenuFlyoutItem
+                                            Click="MenuFlyoutItem_Click"
+                                            Tag="{Binding Key}"
+                                            Text="Favorite" />
                                     </MenuFlyout>
                                 </controls:SettingsCard.ContextFlyout>
                             </controls:SettingsCard>
@@ -66,7 +69,10 @@
                                 <controls:SettingsCard Header="{Binding Name}" Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                     <controls:SettingsCard.ContextFlyout>
                                         <MenuFlyout>
-                                            <MenuFlyoutItem Text="Favorite" Tag="{Binding Key}"/>
+                                            <MenuFlyoutItem
+                                                Click="MenuFlyoutItem_Click"
+                                                Tag="{Binding Key}"
+                                                Text="Favorite" />
                                         </MenuFlyout>
                                     </controls:SettingsCard.ContextFlyout>
                                     <ComboBox
@@ -95,7 +101,10 @@
                                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                     <controls:SettingsCard.ContextFlyout>
                                         <MenuFlyout>
-                                            <MenuFlyoutItem Text="Favorite" Tag="{Binding Key}"/>
+                                            <MenuFlyoutItem
+                                                Click="MenuFlyoutItem_Click"
+                                                Tag="{Binding Key}"
+                                                Text="Favorite" />
                                         </MenuFlyout>
                                     </controls:SettingsCard.ContextFlyout>
                                     <ToggleSwitch
@@ -127,7 +136,10 @@
                                 Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                 <controls:SettingsCard.ContextFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Favorite" Tag="{Binding Name}"/>
+                                        <MenuFlyoutItem
+                                            Click="MenuFlyoutItem_Click"
+                                            Tag="{Binding Key}"
+                                            Text="Favorite" />
                                     </MenuFlyout>
                                 </controls:SettingsCard.ContextFlyout>
                                 <Button Command="{Binding ExecuteCommandCommand}" Content="{Binding Name}" />
@@ -150,7 +162,10 @@
                                 Style="{StaticResource ConfigurationSettingsCardTemplate}">
                                 <controls:SettingsCard.ContextFlyout>
                                     <MenuFlyout>
-                                        <MenuFlyoutItem Text="Favorite" Tag="{Binding Name}"/>
+                                        <MenuFlyoutItem
+                                            Click="MenuFlyoutItem_Click"
+                                            Tag="{Binding Key}"
+                                            Text="Favorite" />
                                     </MenuFlyout>
                                 </controls:SettingsCard.ContextFlyout>
                             </controls:SettingsCard>

@@ -136,7 +136,7 @@
     "Home_PlaybookVer": "Version du Playbook",
     "Home_HeaderText": "Accueil",
     "Home_ProfilesText": "Profiles",
-    "Home_RecentTogglesText": "Activités récentes",
+    "Home_Favorites": "Favoris",
     "NewProfilesButton": "Créer un nouveau profil",
     "IncompatibleVer": "L'installation actuelle d'AtlasOS/Windows est incompatible avec cette version du Toolbox. Veuillez mettre à jour vers AtlasOS ",
     "StatingServices": "Démarrage des services...",
@@ -198,5 +198,6 @@
     "NewUpdate": "Mettre à jour",
     "NewUpdateDesc": "Il y a une nouvelle mise-à-jour disponible. Voulez-vous l'installer maintenent ?",
     "InstallNow": "Installer maintenent",
-    "WindowsHello": "Windows Hello"
+    "WindowsHello": "Windows Hello",
+    "NoFavorites": "Vous n'avez rien ajouté à votre liste des favoris."
 }

@@ -11,8 +11,6 @@ namespace AtlasToolbox.ViewModels
 {
     class ConfigPageViewModel : ObservableObject
     {
-        // If there's a better solution for this, please do a PR, this isn't great imo
-
         public ObservableCollection<IConfigurationItem> ConfigurationItems { get; set; }
 
         public ConfigPageViewModel(

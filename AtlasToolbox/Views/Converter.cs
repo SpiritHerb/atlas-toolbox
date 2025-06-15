@@ -74,4 +74,33 @@ namespace AtlasToolbox.Views
             return base.SelectTemplateCore(item, container);
         }
     }
+
+    public class FavoriteItemDataTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate ConfigurationItem { get; set; }
+        public DataTemplate MultiOptionConfigurationItem { get; set; }
+        public DataTemplate ConfigurationButton { get; set; }
+        public DataTemplate ConfiguartionLink { get; set; }
+        protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
+        {
+            if (item is ConfigurationItemViewModel)
+            {
+                return ConfigurationItem;
+            }
+            if (item is MultiOptionConfigurationItemViewModel)
+            {
+                return MultiOptionConfigurationItem;
+            }
+            if (item is LinksViewModel)
+            {
+                return ConfiguartionLink;
+            }
+            if (item is ConfigurationButtonViewModel)
+            {
+                return ConfigurationButton;
+            }
+
+            return base.SelectTemplateCore(item, container);
+        }
+    }
 }

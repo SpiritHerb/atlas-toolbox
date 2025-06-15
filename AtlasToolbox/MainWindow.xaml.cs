@@ -37,14 +37,34 @@ namespace AtlasToolbox
             WindowManager.Get(this).Height = 850;
             WindowManager.Get(this).MinHeight = 850;
 
-            WindowManager.Get(this).IsResizable = false;
-            WindowManager.Get(this).IsMaximizable = false;
-
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
 
             LoadText();
 
+            // Setup root list
+            RootList = new List<IConfigurationItem>();
+            foreach (IConfigurationItem item in App._host.Services.GetServices<LinksViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationItemViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<MultiOptionConfigurationItemViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationSubMenuViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationButtonViewModel>())
+            {
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+            }
+            App.RootList = this.RootList;
             NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
             ContentFrame.Navigate(
                        typeof(Views.HomePage),
@@ -54,30 +74,7 @@ namespace AtlasToolbox
             SetTitleBar(AppTitleBar);
 
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
-            else this.Closed += AppBehaviorHelper.CloseApp;
-
-            // Setup root list for search bar
-            RootList = new List<IConfigurationItem>();
-            foreach (IConfigurationItem item in App._host.Services.GetServices<LinksViewModel>())
-            {
-                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
-            }
-            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationItemViewModel>())
-            {
-                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
-            }
-            foreach (IConfigurationItem item in App._host.Services.GetServices<MultiOptionConfigurationItemViewModel>())
-            {
-                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
-            }
-            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationSubMenuViewModel>())
-            {
-                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
-            }
-            foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationButtonViewModel>())
-            {
-                if (!item.Type.ToString().Contains("SubMenu")) RootList.Add(item);
-            }
+            else this.Closed += AppBehaviorHelper.CloseApp;            
         }
 
         public void LoadText()

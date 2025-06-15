@@ -137,7 +137,7 @@
     "Home_PlaybookVer": "Playbook Version",
     "Home_HeaderText": "Home",
     "Home_ProfilesText": "Profiles",
-    "Home_RecentTogglesText": "Recent Toggles",
+    "Home_Favorites": "Favorites",
     "NewProfilesButton": "Create a new profile",
     "IncompatibleVer": "Current AtlasOS/Windows installation incompatible with this Toolbox version. Please upgrade to AtlasOS ",
     "StatingServices": "Starting services...",
@@ -200,5 +200,6 @@
     "NewUpdate": "Update",
     "NewUpdateDesc": "There is a new update available. Would you like to install it now ?",
     "InstallNow":  "Install now",
-    "WindowsHello":  "Windows Hello"
+    "WindowsHello": "Windows Hello",
+    "NoFavorites": "You have not added anything to your favorites yet."
 }

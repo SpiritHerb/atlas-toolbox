@@ -16,8 +16,8 @@ namespace AtlasToolbox.ViewModels
         public ICommand Command => ConfigButton.Command;
         public string Name => ConfigButton.Name;
         public string Description => ConfigButton.Description;
+        public string Key => ConfigButton.Name.Replace(" ", "");
         public ConfigurationType Type => ConfigButton.Type;
-        string IConfigurationItem.Key => "";
 
         public ConfigurationButtonViewModel(ConfigurationButton configurationButton)
         {

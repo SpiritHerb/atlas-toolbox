@@ -15,7 +15,7 @@ namespace AtlasToolbox.ViewModels
         public string Name => link.name;
         public string Link => link.link;
         public string FontIcon => link.Icon;
-        public string Key => link.name.ToLower();
+        public string Key => link.name.ToLower().Replace(" ", "");
         public ConfigurationType Type => link.configurationType;
 
         public LinksViewModel(Links link)

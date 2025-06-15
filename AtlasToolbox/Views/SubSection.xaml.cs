@@ -113,5 +113,10 @@ namespace AtlasToolbox.Views
 
             await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
         }
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
+            RegistryHelper.SetValue(@"HKLM\SOFTWARE\\AtlasOS\\Toolbox\\Favorites", menuFlyoutItem.Tag.ToString(), true);
+        }
     }
 }

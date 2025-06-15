@@ -18,9 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <!--  TitleBar  -->
             <RowDefinition Height="*" />
-            <!--  NavView  -->
         </Grid.RowDefinitions>
         <Border
             x:Name="AppTitleBar"
@@ -70,7 +68,7 @@
             </NavigationView.Content>
 
             <NavigationView.PaneFooter>
-                <!--  Alpha version message, to be removed at release  -->
+                <!--  Beta version message, to be removed at release  -->
                 <StackPanel>
                     <InfoBar
                         x:Name="UnstableCard"
@@ -89,23 +87,22 @@
             </NavigationView.PaneFooter>
 
             <NavigationView.Resources>
-                <!--  This top margin is the height of the custom titleBar  -->
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>
                 <Thickness x:Key="NavigationViewMinimalContentMargin">0,48,0,0</Thickness>
                 <Thickness x:Key="NavigationViewContentGridBorderThickness">1,1,0,0</Thickness>
-                <!--  This is the rounded corner on the Top left of the L Pattern  -->
                 <CornerRadius x:Key="NavigationViewContentGridCornerRadius">8,0,0,0</CornerRadius>
             </NavigationView.Resources>
 
-            <NavigationView.AutoSuggestBox>
+            <!--  Since this is WIP and really buggy at this stage, prefer to comment it rathen than releasing it.  -->
+            <!--<NavigationView.AutoSuggestBox>
                 <AutoSuggestBox
                     Width="300"
                     AutomationProperties.Name="Basic AutoSuggestBox"
-                    PlaceholderText="Search a tweak"
+                    PlaceholderText="Search a tweak (WIP)"
                     QueryIcon="Find"
                     SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                     TextChanged="AutoSuggestBox_TextChanged" />
-            </NavigationView.AutoSuggestBox>
+            </NavigationView.AutoSuggestBox>-->
 
             <NavigationView.MenuItems>
                 <NavigationViewItem

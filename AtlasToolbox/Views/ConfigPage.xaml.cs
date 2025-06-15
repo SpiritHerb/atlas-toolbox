@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AtlasToolbox.Enums;
+using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,7 @@ public sealed partial class ConfigPage : Page
 {
     private readonly ConfigPageViewModel _viewModel;
     private object configType;
-   
+
     public ConfigPage()
     {
         this.InitializeComponent();
@@ -30,7 +31,7 @@ public sealed partial class ConfigPage : Page
         this.DataContext = _viewModel;
 
         ConfigurationType type = (ConfigurationType)configType;
-        BreadcrumbBar.ItemsSource = new ObservableCollection<Folder> { 
+        BreadcrumbBar.ItemsSource = new ObservableCollection<Folder> {
             new Folder {Name = type.GetDescription()}
         };
         BreadcrumbBar.ItemClicked += BreadcrumbBar_ItemClicked;
@@ -65,5 +66,11 @@ public sealed partial class ConfigPage : Page
         SettingsCard linkCard = sender as SettingsCard;
         LinksViewModel linkVM = linkCard.DataContext as LinksViewModel;
         await Windows.System.Launcher.LaunchUriAsync(new Uri(linkVM.Link));
+    }
+
+    private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+    {
+        MenuFlyoutItem menuFlyoutItem = sender as MenuFlyoutItem;
+        RegistryHelper.SetValue(@"HKLM\SOFTWARE\\AtlasOS\\Toolbox\\Favorites", menuFlyoutItem.Tag.ToString(), true);
     }
 }
