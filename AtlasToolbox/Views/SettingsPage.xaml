@@ -18,96 +18,108 @@
             <Setter Property="Margin" Value="0,0,0,10" />
         </Style>
     </Page.Resources>
-    <StackPanel Margin="55,0,0,0">
-        <TextBlock
-            x:Name="TitleTxt"
-            Grid.Row="0"
-            Margin="0,24,36,24"
-            Style="{StaticResource TitleTextBlockStyle}" />
-        <StackPanel x:Name="SettingToggles" Grid.Row="1">
-            <StackPanel x:Name="BehaviorSettings">
-                <TextBlock x:Name="BehaviorHeader" Style="{StaticResource CategoryTitle}" />
-                <controls:SettingsCard x:Name="BackgroundDescription" Style="{StaticResource ConfigurationSettingsCardTemplate}">
-                    <ToggleSwitch IsOn="{x:Bind KeepBackground_State}" Toggled="KeepBackground_Toggled" />
-                </controls:SettingsCard>
-                <controls:SettingsCard x:Name="LanguageHeader" Style="{StaticResource ConfigurationSettingsCardTemplate}">
-                    <ComboBox
-                        x:Name="ConfigSwitch"
-                        Width="200"
-                        ItemsSource="{Binding Languages}"
-                        SelectedItem="{Binding CurrentLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </controls:SettingsCard>
-                <controls:SettingsCard x:Name="Update" Style="{StaticResource ConfigurationSettingsCardTemplate}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            x:Name="NoUpdatesBar"
-                            Margin="0,0,16,0"
-                            VerticalAlignment="Center"
-                            Visibility="Collapsed" />
-                        <Button x:Name="CheckUpdateButton" Click="CheckUpdateButton_Click" />
-                    </StackPanel>
-                </controls:SettingsCard>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock x:Name="AboutHeader" Style="{StaticResource CategoryTitle}" />
-                <controls:SettingsExpander Header="AtlasOS Toolbox" Style="{StaticResource ConfigurationSettingsExpanderTemplate}">
-                    <controls:SettingsExpander.HeaderIcon>
-                        <BitmapIcon ShowAsMonochrome="False" UriSource="/assets/logo/toolbox-icon.ico" />
-                    </controls:SettingsExpander.HeaderIcon>
-                    <TextBlock
-                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                        IsTextSelectionEnabled="True"
-                        Text="{x:Bind Version}" />
-                    <controls:SettingsExpander.Items>
-                        <controls:SettingsCard
-                            x:Name="toCloneRepoCard"
-                            Click="toCloneRepoCard_Click"
-                            IsClickEnabled="True">
+    <ScrollViewer>
+
+        <StackPanel Margin="55,0,0,0">
+            <TextBlock
+                x:Name="TitleTxt"
+                Grid.Row="0"
+                Margin="0,24,36,24"
+                Style="{StaticResource TitleTextBlockStyle}" />
+            <StackPanel x:Name="SettingToggles" Grid.Row="1">
+                <StackPanel x:Name="BehaviorSettings">
+                    <TextBlock x:Name="BehaviorHeader" Style="{StaticResource CategoryTitle}" />
+                    <controls:SettingsCard x:Name="BackgroundDescription" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                        <ToggleSwitch IsOn="{x:Bind KeepBackground_State}" Toggled="KeepBackground_Toggled" />
+                    </controls:SettingsCard>
+                    <controls:SettingsCard x:Name="LanguageHeader" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                        <ComboBox
+                            x:Name="ConfigSwitch"
+                            Width="200"
+                            ItemsSource="{Binding Languages}"
+                            SelectedItem="{Binding CurrentLanguage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard x:Name="Update" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock
-                                x:Name="gitCloneTextBlock"
-                                FontFamily="Consolas"
-                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                IsTextSelectionEnabled="True"
-                                Text="git clone https://github.com/Atlas-OS/atlas-toolbox" />
-                            <controls:SettingsCard.ActionIcon>
-                                <FontIcon Glyph="&#xE8C8;" />
-                            </controls:SettingsCard.ActionIcon>
-                        </controls:SettingsCard>
-                        <controls:SettingsCard
-                            x:Name="bugRequestCard"
-                            Click="bugRequestCard_Click"
-                            IsClickEnabled="True">
-                            <controls:SettingsCard.ActionIcon>
-                                <FontIcon Glyph="&#xE8A7;" />
-                            </controls:SettingsCard.ActionIcon>
-                        </controls:SettingsCard>
-                        <controls:SettingsCard
-                            x:Name="DependenciesHeader"
-                            HorizontalContentAlignment="Left"
-                            ContentAlignment="Vertical">
-                            <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
-                                <HyperlinkButton Content="Windows UI Library" NavigateUri="https://learn.microsoft.com/en-us/windows/apps/winui/winui3/" />
-                                <HyperlinkButton Content="Windows Community Toolkit" NavigateUri="https://github.com/CommunityToolkit/WindowsCommunityToolkit" />
-                            </StackPanel>
-                        </controls:SettingsCard>
-                        <controls:SettingsCard
-                            x:Name="WarningHeader"
-                            HorizontalContentAlignment="Left"
-                            ContentAlignment="Vertical">
-                            <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
-                                <HyperlinkButton Content="AtlasOS GitHub" NavigateUri="https://github.com/Atlas-OS/" />
-                                <HyperlinkButton Content="AtlasOS Website" NavigateUri="https://atlasos.net" />
-                            </StackPanel>
-                        </controls:SettingsCard>
-                    </controls:SettingsExpander.Items>
-                </controls:SettingsExpander>
+                                x:Name="NoUpdatesBar"
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center"
+                                Visibility="Collapsed" />
+                            <Button x:Name="CheckUpdateButton" Click="CheckUpdateButton_Click" />
+                        </StackPanel>
+                    </controls:SettingsCard>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Name="AboutHeader" Style="{StaticResource CategoryTitle}" />
+                    <controls:SettingsExpander Header="AtlasOS Toolbox" Style="{StaticResource ConfigurationSettingsExpanderTemplate}">
+                        <controls:SettingsExpander.HeaderIcon>
+                            <BitmapIcon ShowAsMonochrome="False" UriSource="/assets/logo/toolbox-icon.ico" />
+                        </controls:SettingsExpander.HeaderIcon>
+                        <TextBlock
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            IsTextSelectionEnabled="True"
+                            Text="{x:Bind Version}" />
+                        <controls:SettingsExpander.Items>
+                            <controls:SettingsCard
+                                x:Name="toCloneRepoCard"
+                                Click="toCloneRepoCard_Click"
+                                IsClickEnabled="True">
+                                <TextBlock
+                                    x:Name="gitCloneTextBlock"
+                                    FontFamily="Consolas"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    IsTextSelectionEnabled="True"
+                                    Text="git clone https://github.com/Atlas-OS/atlas-toolbox" />
+                                <controls:SettingsCard.ActionIcon>
+                                    <FontIcon Glyph="&#xE8C8;" />
+                                </controls:SettingsCard.ActionIcon>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard
+                                x:Name="bugRequestCard"
+                                Click="bugRequestCard_Click"
+                                IsClickEnabled="True">
+                                <controls:SettingsCard.ActionIcon>
+                                    <FontIcon Glyph="&#xE8A7;" />
+                                </controls:SettingsCard.ActionIcon>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard
+                                x:Name="DependenciesHeader"
+                                HorizontalContentAlignment="Left"
+                                ContentAlignment="Vertical">
+                                <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
+                                    <HyperlinkButton Content="Windows UI Library" NavigateUri="https://learn.microsoft.com/en-us/windows/apps/winui/winui3/" />
+                                    <HyperlinkButton Content="Windows Community Toolkit" NavigateUri="https://github.com/CommunityToolkit/WindowsCommunityToolkit" />
+                                </StackPanel>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard
+                                x:Name="WarningHeader"
+                                HorizontalContentAlignment="Left"
+                                ContentAlignment="Vertical">
+                                <StackPanel Margin="-12,0,0,0" Orientation="Vertical">
+                                    <HyperlinkButton Content="AtlasOS GitHub" NavigateUri="https://github.com/Atlas-OS/" />
+                                    <HyperlinkButton Content="AtlasOS Website" NavigateUri="https://atlasos.net" />
+                                </StackPanel>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard
+                                x:Name="SystemInfo"
+                                HorizontalContentAlignment="Left"
+                                ContentAlignment="Vertical">
+                                <StackPanel Margin="0,0,0,0" Orientation="Vertical">
+                                    <TextBlock x:Name="WinVer" Foreground="{StaticResource TextFillColorTertiary}" />
+                                    <TextBlock x:Name="AtlasVer" Foreground="{StaticResource TextFillColorTertiary}" />
+                                </StackPanel>
+                            </controls:SettingsCard>
+                        </controls:SettingsExpander.Items>
+                    </controls:SettingsExpander>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </Page>

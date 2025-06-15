@@ -50,6 +50,9 @@ namespace AtlasToolbox.Views
             Update.Header = App.GetValueFromItemList("CheckUpdates");
             CheckUpdateButton.Content = App.GetValueFromItemList("CheckUpdatesBtn");
             NoUpdatesBar.Text = App.GetValueFromItemList("LatestVer");
+            SystemInfo.Header = App.GetValueFromItemList("SystemInfo");
+            WinVer.Text = App.GetValueFromItemList("Home_WinVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
+            AtlasVer.Text = App.GetValueFromItemList("Home_PlaybookVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
         }
 
         private void KeepBackground_Toggled(object sender, RoutedEventArgs e)

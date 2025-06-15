@@ -85,10 +85,7 @@ namespace AtlasToolbox.Views
         private void LoadText()
         {
             // Home Header
-            WinVer.Text = App.GetValueFromItemList("Home_WinVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "DisplayVersion").ToString();
-            AtlasVer.Text = App.GetValueFromItemList("Home_PlaybookVer") + ": " + RegistryHelper.GetValue("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", "RegisteredOrganization").ToString();
             HomeHeaderText.Text = App.GetValueFromItemList("Home_HeaderText");
-
             //Other
             ProfilesHeader.Text = App.GetValueFromItemList("Home_ProfilesText");
             FavoritesHeader.Text = App.GetValueFromItemList("Home_Favorites");

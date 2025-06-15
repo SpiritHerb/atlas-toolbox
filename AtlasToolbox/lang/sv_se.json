@@ -201,5 +201,6 @@
     "NewUpdateDesc": "There is a new update available. Would you like to install it now ? (to be translated)",
     "InstallNow": "Install now (to be translated)",
     "WindowsHello": "Windows Hello",
-    "NoFavorites": "You have not marked anything as favorite yet. (to be translated)"
+    "NoFavorites": "You have not marked anything as favorite yet. (to be translated)",
+    "SystemInfo": "About this system: (to be translated)"
 }

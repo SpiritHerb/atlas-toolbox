@@ -199,5 +199,7 @@
     "NewUpdateDesc": "Il y a une nouvelle mise-à-jour disponible. Voulez-vous l'installer maintenent ?",
     "InstallNow": "Installer maintenent",
     "WindowsHello": "Windows Hello",
-    "NoFavorites": "Vous n'avez rien ajouté à votre liste des favoris."
+    "NoFavorites": "Vous n'avez rien ajouté à votre liste des favoris.",
+    "SystemInfo": "À propos de ce système:"
+
 }
