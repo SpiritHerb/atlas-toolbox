@@ -12,7 +12,7 @@ namespace AtlasToolbox.Commands.ConfigurationButtonsCommand
     {
         protected override async Task ExecuteAsync(object parameter)
         {
-            await Task.Run(() => { CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\System32\rundll32.exe", false); });
+            await Task.Run(() => { ProcessHelper.StartShellExecute($@"{Environment.GetEnvironmentVariable("windir")}\System32\rundll32.exe"); });
         }
     }
 }
