@@ -67,8 +67,8 @@
                 </Grid>
             </NavigationView.Content>
 
-            <NavigationView.PaneFooter>
-                <!--  Beta version message, to be removed at release  -->
+            <!--<NavigationView.PaneFooter>
+                --><!--  Beta version message, to be removed at release  --><!--
                 <StackPanel>
                     <InfoBar
                         x:Name="UnstableCard"
@@ -84,7 +84,7 @@
                         IsIconVisible="True"
                         IsOpen="True" />
                 </StackPanel>
-            </NavigationView.PaneFooter>
+            </NavigationView.PaneFooter>-->
 
             <NavigationView.Resources>
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>

@@ -32,10 +32,10 @@ namespace AtlasToolbox
 
             //Window parameters
             WindowManager.Get(this).Width = 1250;
-            WindowManager.Get(this).MinWidth = 1250;
+            WindowManager.Get(this).MinWidth = 700;
 
             WindowManager.Get(this).Height = 850;
-            WindowManager.Get(this).MinHeight = 850;
+            WindowManager.Get(this).MinHeight = 500;
 
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
@@ -79,10 +79,10 @@ namespace AtlasToolbox
 
         public void LoadText()
         {
-            UnstableCard.Title = App.GetValueFromItemList("Unstable");
-            UnstableCard.Message = App.GetValueFromItemList("UnstableDescription");
-            BetaVersionCard.Title = App.GetValueFromItemList("BetaVersion");
-            BetaVersionCard.Message = App.GetValueFromItemList("BetaVersionDescription");
+            //UnstableCard.Title = App.GetValueFromItemList("Unstable");
+            //UnstableCard.Message = App.GetValueFromItemList("UnstableDescription");
+            //BetaVersionCard.Title = App.GetValueFromItemList("BetaVersion");
+            //BetaVersionCard.Message = App.GetValueFromItemList("BetaVersionDescription");
 
             Home.Content = App.GetValueFromItemList("Home_HeaderText");
             Software.Content = App.GetValueFromItemList("Software");
