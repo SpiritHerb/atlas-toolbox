@@ -32,10 +32,10 @@ namespace AtlasToolbox
 
             //Window parameters
             WindowManager.Get(this).Width = 1250;
-            WindowManager.Get(this).MinWidth = 1000;
+            WindowManager.Get(this).MinWidth = 720;
 
             WindowManager.Get(this).Height = 850;
-            WindowManager.Get(this).MinHeight = 800;
+            WindowManager.Get(this).MinHeight = 480;
 
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;
@@ -72,18 +72,23 @@ namespace AtlasToolbox
                        new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo()
                        );
             SetTitleBar(AppTitleBar);
-
+            CheckUpdates();
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
             else this.Closed += AppBehaviorHelper.CloseApp;            
         }
 
+        private async void CheckUpdates()
+        {
+            bool update = await Task.Run(() => ToolboxUpdateHelper.CheckUpdates());
+            if (update)
+            {
+                UpdateTitleBar.IsOpen = true;
+            }
+        }
         public void LoadText()
         {
-            //UnstableCard.Title = App.GetValueFromItemList("Unstable");
-            //UnstableCard.Message = App.GetValueFromItemList("UnstableDescription");
-            //BetaVersionCard.Title = App.GetValueFromItemList("BetaVersion");
-            //BetaVersionCard.Message = App.GetValueFromItemList("BetaVersionDescription");
-
+            UpdateTitleBar.Title = App.GetValueFromItemList("NewUpdateMessage");
+            LearnMoreBtn.Content = App.GetValueFromItemList("LearnMore");
             Home.Content = App.GetValueFromItemList("Home_HeaderText");
             Software.Content = App.GetValueFromItemList("Software");
             GeneralConfig.Content = App.GetValueFromItemList("GeneralConfig");
