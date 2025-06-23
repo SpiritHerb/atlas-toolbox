@@ -13,7 +13,7 @@ namespace AtlasToolbox.Commands.ConfigurationButtonsCommand
         protected override async Task ExecuteAsync(object parameter)
         {
             await Task.Run(() => {
-                CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\toggleDefender.cmd", false);
+                ProcessHelper.StartShellExecute($@"{Environment.GetEnvironmentVariable("windir")}\AtlasModules\Toolbox\Scripts\toggleDefender.cmd");
             });
         }
     }

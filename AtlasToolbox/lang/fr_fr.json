@@ -200,6 +200,7 @@
     "InstallNow": "Installer maintenent",
     "WindowsHello": "Windows Hello",
     "NoFavorites": "Vous n'avez rien ajouté à votre liste des favoris.",
-    "SystemInfo": "À propos de ce système:"
-
+    "SystemInfo": "À propos de ce système:",
+    "NewUpdateMessage": "Une nouvelle mise-à-jour est disponible.",
+    "LearnMore": "En savoir plus"
 }

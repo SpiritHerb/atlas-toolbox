@@ -64,27 +64,19 @@
             <NavigationView.Content>
                 <Grid>
                     <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
+                    <InfoBar
+                        x:Name="UpdateTitleBar"
+                        Margin="0,26,36,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="#30313E"
+                        IsOpen="False">
+                        <InfoBar.ActionButton>
+                            <HyperlinkButton NavigateUri="https://github.com/atlas-os/atlas-toolbox/releases/latest" x:Name="LearnMoreBtn"/>
+                        </InfoBar.ActionButton>
+                    </InfoBar>
                 </Grid>
             </NavigationView.Content>
-
-            <NavigationView.PaneFooter>
-                <!--  Beta version message, to be removed at release  -->
-                <StackPanel>
-                    <InfoBar
-                        x:Name="UnstableCard"
-                        Margin="16,0,16,10"
-                        IsClosable="False"
-                        IsIconVisible="True"
-                        IsOpen="True"
-                        Severity="Warning" />
-                    <InfoBar
-                        x:Name="BetaVersionCard"
-                        Margin="16,0,16,0"
-                        IsClosable="False"
-                        IsIconVisible="True"
-                        IsOpen="True" />
-                </StackPanel>
-            </NavigationView.PaneFooter>
 
             <NavigationView.Resources>
                 <Thickness x:Key="NavigationViewContentMargin">0,48,0,0</Thickness>

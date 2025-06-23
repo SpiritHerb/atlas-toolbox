@@ -51,7 +51,7 @@
                             Margin="75,0,0,0"
                             VerticalAlignment="Center"
                             Orientation="Vertical">
-                            
+
                             <TextBlock
                                 x:Name="subHeaderBlock"
                                 FontSize="18"
@@ -78,7 +78,6 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Height="225"
-                    MinWidth="200"
                     Margin="0,10,36,10"
                     VerticalAlignment="Top"
                     Background="{ThemeResource ControlFillColorDefault}"

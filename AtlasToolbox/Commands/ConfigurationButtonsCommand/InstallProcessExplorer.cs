@@ -12,7 +12,7 @@ namespace AtlasToolbox.Commands.ConfigurationButtonsCommand
     {
         protected override async Task ExecuteAsync(object parameter)
         {
-            await Task.Run(() => { CommandPromptHelper.RunCommand(@$"{Environment.GetEnvironmentVariable("windir")}AtlasDesktop\6. Advanced Configuration\Process Explorer\Install Process Explorer.cmd", false); });
+            await Task.Run(() => { ProcessHelper.StartShellExecute(@$"{Environment.GetEnvironmentVariable("windir")}\AtlasDesktop\6. Advanced Configuration\Process Explorer\Install Process Explorer.cmd"); });
         }
     }
 }

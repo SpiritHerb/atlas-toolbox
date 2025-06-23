@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Threading.Tasks;
 using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels;
 using Microsoft.UI.Xaml;
@@ -77,11 +78,15 @@ namespace AtlasToolbox.Views
             App.ContentDialogCaller("restartApp");
         }
 
-        private void CheckUpdateButton_Click(object sender, RoutedEventArgs e)
+        private async void CheckUpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            SettingsPageViewModel vm = this.DataContext as SettingsPageViewModel;   
-            if (vm.CheckUpdates())
+            SettingsPageViewModel vm = this.DataContext as SettingsPageViewModel;
+            NoUpdatesBar.Visibility = Visibility.Collapsed;
+            ProgressRing.Visibility = Visibility.Visible;
+            bool update = await Task.Run(() => vm.CheckUpdates());
+            if (update)
             {
+                ProgressRing.Visibility = Visibility.Collapsed;
                 NoUpdatesBar.Visibility = Visibility.Visible;
             }
         }

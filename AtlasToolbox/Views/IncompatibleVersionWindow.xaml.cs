@@ -29,8 +29,8 @@ namespace AtlasToolbox
     {
         public IncompatibleVersionWindow()
         {
-            WindowManager.Get(this).IsMaximizable = false;
-            WindowManager.Get(this).IsResizable = false;
+            //WindowManager.Get(this).IsMaximizable = false;
+            //WindowManager.Get(this).IsResizable = false;
             WindowManager.Get(this).Width = 1250;
             WindowManager.Get(this).Height = 850;
             CenterWindowOnScreen();

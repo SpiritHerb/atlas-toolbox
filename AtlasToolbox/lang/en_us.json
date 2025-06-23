@@ -202,5 +202,7 @@
     "InstallNow": "Install now",
     "WindowsHello": "Windows Hello",
     "NoFavorites": "You have not added anything to your favorites yet.",
-    "SystemInfo": "About this system:"
+    "SystemInfo": "About this system:",
+    "NewUpdateMessage": "There is a new update available.",
+    "LearnMore": "Learn more"
 }
