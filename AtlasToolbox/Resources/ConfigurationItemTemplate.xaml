@@ -15,9 +15,10 @@
 
 
     <Style x:Key="ConfigurationItemTemplate" TargetType="ToggleSwitch">
-        <Setter Property="Header" Value="{Binding Name}" />
-        <Setter Property="Margin" Value="0,0,-75,0" />
+        <!--<Setter Property="Header" Value="{Binding Name}" />-->
+        <!--<Setter Property="Margin" Value="0,0,-75,0" />-->
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 
     <Style x:Key="RiskRatingTemplate" TargetType="TextBlock" />

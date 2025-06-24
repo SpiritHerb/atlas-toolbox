@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
-using WinUIEx;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Runtime.InteropServices;
 using AtlasToolbox.Utils;
@@ -20,6 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ICSharpCode.Decompiler.CSharp.Syntax;
 using AtlasToolbox.ViewModels;
 using System.Runtime.CompilerServices;
+using Windows.Graphics;
+using Microsoft.UI.Windowing;
 
 namespace AtlasToolbox
 {
@@ -31,11 +32,14 @@ namespace AtlasToolbox
             this.InitializeComponent();
 
             //Window parameters
-            WindowManager.Get(this).Width = 1250;
-            WindowManager.Get(this).MinWidth = 720;
+            AppWindow.Resize(new Windows.Graphics.SizeInt32(1250, 850));
+            AppWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
 
-            WindowManager.Get(this).Height = 850;
-            WindowManager.Get(this).MinHeight = 480;
+            OverlappedPresenter presenter = OverlappedPresenter.Create();
+            presenter.PreferredMinimumWidth = 516;
+            presenter.PreferredMinimumHeight = 491;
+            presenter.IsMaximizable = true;
+            AppWindow.SetPresenter(presenter);
 
             CenterWindowOnScreen();
             ExtendsContentIntoTitleBar = true;

@@ -6,24 +6,11 @@ using CommunityToolkit.WinUI.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Win32;
-using Microsoft.Xaml.Interactivity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Security.Principal;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using WinRT.AtlasToolboxVtableClasses;
+using System.Windows;
 
 namespace AtlasToolbox.Views
 {
@@ -41,11 +28,29 @@ namespace AtlasToolbox.Views
             this.DataContext = _viewModel;
             LoadText();
             LoadFavorites();
-            
+            this.SizeChanged += MainWindow_SizeChanged;
+
             ProfilesListView.ItemsSource = _viewModel.ProfilesList;
             ProfilesListView.SelectedItem = _viewModel.ProfileSelected;
         }
 
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.ActualWidth <= 640)
+            {
+                Grid.SetRow(ProfilesPanel, 2);
+                Grid.SetColumn(ProfilesPanel, 0);
+                Grid.SetColumnSpan(FavoritesPanel, 2);
+                ProfilesPanel.Margin = new Thickness{ Left = 36, Right = 5, Top = 0, Bottom = 0 }; 
+            }
+            if (this.ActualWidth >= 640)
+            {
+                Grid.SetRow(ProfilesPanel, 1);
+                Grid.SetColumn(ProfilesPanel, 1);
+                Grid.SetColumnSpan(FavoritesPanel, 1);
+                ProfilesPanel.Margin = new Thickness { Left = 16, Right = 5, Top = 0, Bottom = 0 };
+            }
+        }
         private void LoadFavorites()
         {
             _configurationItems = new List<IConfigurationItem>();
@@ -75,10 +80,12 @@ namespace AtlasToolbox.Views
             if (_configurationItems.Count == 0)
             {
                 NoFavoritesText.Visibility = Visibility.Visible;
+                FavoritesPanel.MinHeight = 300;
             }
             else
             {
                 NoFavoritesText.Visibility = Visibility.Collapsed;
+                FavoritesPanel.MinHeight = 50;
             }
             FavoritesControl.ItemsSource = _configurationItems;
         }

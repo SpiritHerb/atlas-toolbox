@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System;
 using System.IO.Pipes;
 using System.IO;
-using WinUIEx;
 using System.Threading;
 using NLog;
 using NLog.Config;
