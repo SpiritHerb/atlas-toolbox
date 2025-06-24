@@ -111,7 +111,7 @@
                                         x:Name="ConfigSwitch"
                                         IsOn="{Binding CurrentSetting}"
                                         Loaded="ToggleSwitch_Loaded"
-                                        Style="{StaticResource ConfigurationItemTemplate}" />
+                                        />
                                 </controls:SettingsCard>
                                 <!--<Border
                                     Width="5"
