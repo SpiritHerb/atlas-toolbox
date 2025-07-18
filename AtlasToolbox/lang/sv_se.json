@@ -204,5 +204,8 @@
     "NoFavorites": "You have not added anything as favorite yet. (to be translated)",
     "SystemInfo": "About this system: (to be translated)",
     "NewUpdateMessage": "A new update is available. (to be translated)",
-    "LearnMore": "Learn more (to be translated)"
+    "LearnMore": "Learn more (to be translated)",
+    "ToggleWindowsUpdates": "Toggle Windows Update (to be translated)",
+    "WindowsUpdate": "Windows Update (to be translated)",
+    "WindowsUpdateDescription": "Settings related to Windows Update (to be translated)"
 }

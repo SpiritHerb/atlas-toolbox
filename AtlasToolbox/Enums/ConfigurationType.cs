@@ -41,6 +41,7 @@ namespace AtlasToolbox.Enums
         MitigationsSubMenu,
         TroubleshootingNetwork,
         FileSharingSubMenu,
+        WindowsUpdate,
     }
 
     public static class EnumExtensions

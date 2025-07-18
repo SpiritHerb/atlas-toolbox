@@ -202,5 +202,8 @@
     "NoFavorites": "Vous n'avez rien ajouté à votre liste des favoris.",
     "SystemInfo": "À propos de ce système:",
     "NewUpdateMessage": "Une nouvelle mise-à-jour est disponible.",
-    "LearnMore": "En savoir plus"
+    "LearnMore": "En savoir plus",
+    "ToggleWindowsUpdates": "Activer/Désactiver Windows Update",
+    "WindowsUpdate": "Windows Update",
+    "WindowsUpdateDescription": "Paramètres relié à Windows Update"
 }

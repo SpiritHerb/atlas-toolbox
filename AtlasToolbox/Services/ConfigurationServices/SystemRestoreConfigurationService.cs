@@ -16,7 +16,6 @@ namespace AtlasToolbox.Services.ConfigurationServices
         private const string DISABLE_SR_VALUE_NAME = "DisableSR";
 
         private readonly ConfigurationStore _systemRestoreConfigurationService;
-
         public SystemRestoreConfigurationService(
             [FromKeyedServices("SystemRestore")] ConfigurationStore systemRestoreConfigurationService)
         {
