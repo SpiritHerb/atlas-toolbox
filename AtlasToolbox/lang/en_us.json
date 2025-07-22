@@ -207,6 +207,11 @@
     "LearnMore": "Learn more",
     "ToggleWindowsUpdates": "Toggle Windows Update",
     "WindowsUpdate": "Windows Update",
-    "WindowsUpdateDescription": "Settings related to Windows Update"
+    "WindowsUpdateDescription": "Settings related to Windows Update",
+    "FeatureHeader": "Number of days for feature updates:",
+    "QualityHeader": "Number of days for quality updates:",
+    "Set": "Set",
+    "WindowsUpdateDeferal": "Set the number of days for Windows Update deferal",
+    "UpdateDeferalPromptTitle": "Set Windows Update deferal time"
 
 }

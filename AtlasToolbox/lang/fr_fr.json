@@ -205,5 +205,10 @@
     "LearnMore": "En savoir plus",
     "ToggleWindowsUpdates": "Activer/Désactiver Windows Update",
     "WindowsUpdate": "Windows Update",
-    "WindowsUpdateDescription": "Paramètres relié à Windows Update"
+    "WindowsUpdateDescription": "Paramètres relié à Windows Update",
+    "FeatureHeader": "Nombres de jours pour les M-À-J de foncitonnalité:",
+    "QualityHeader": "Nombres de jours pour les M-À-J de qualité:",
+    "Set": "Modifier",
+    "WindowsUpdateDeferal": "Modifier le nombres de jours avant de recevoir une mise-à-jour Windows",
+    "UpdateDeferalPromptTitle": "Modifier le nombres de jours"
 }

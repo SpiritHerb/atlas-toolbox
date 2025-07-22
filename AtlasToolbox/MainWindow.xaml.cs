@@ -11,15 +11,9 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using AtlasToolbox.Views;
 using System.Threading.Tasks;
-using Windows.Security.Authentication.Web.Provider;
-using Microsoft.UI;
-using WinRT.Interop;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
-using ICSharpCode.Decompiler.CSharp.Syntax;
 using AtlasToolbox.ViewModels;
-using System.Runtime.CompilerServices;
-using Windows.Graphics;
 using Microsoft.UI.Windowing;
 
 namespace AtlasToolbox

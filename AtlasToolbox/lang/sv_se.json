@@ -207,5 +207,10 @@
     "LearnMore": "Learn more (to be translated)",
     "ToggleWindowsUpdates": "Toggle Windows Update (to be translated)",
     "WindowsUpdate": "Windows Update (to be translated)",
-    "WindowsUpdateDescription": "Settings related to Windows Update (to be translated)"
+    "WindowsUpdateDescription": "Settings related to Windows Update (to be translated)",
+    "FeatureHeader": "Number of days for feature updates: (to be translated)",
+    "QualityHeader": "Number of days for quality updates: (to be translated)",
+    "Set": "Set (to be translated)",
+    "WindowsUpdateDeferal": "Set the number of days for Windows Update deferal (to be translated)",
+    "UpdateDeferalPromptTitle": "Set Windows Update deferal time (TBT)"
 }

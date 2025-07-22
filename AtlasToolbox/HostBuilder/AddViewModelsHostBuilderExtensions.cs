@@ -235,6 +235,7 @@ namespace AtlasToolbox.HostBuilder
                 ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("TelemetryComponents"), ConfigurationType.Troubleshooting),
                 ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("AtlasDefault"), ConfigurationType.TroubleshootingNetwork),
                 ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("WindowsDefault"), ConfigurationType.TroubleshootingNetwork),
+                ["SetUpdateDeferal"] = new(buttonCommand = new SetUpdateDeferalConfigurationButton(), App.GetValueFromItemList("Set"), App.GetValueFromItemList("WindowsUpdateDeferal"), ConfigurationType.WindowsUpdate),
             };
 
             host.ConfigureServices((_, services) =>
