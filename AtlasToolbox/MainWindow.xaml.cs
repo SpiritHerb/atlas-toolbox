@@ -44,26 +44,32 @@ namespace AtlasToolbox
             RootList = new List<IConfigurationItem>();
             foreach (IConfigurationItem item in App._host.Services.GetServices<LinksViewModel>())
             {
-                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/
+                RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationItemViewModel>())
             {
-                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/
+                RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<MultiOptionConfigurationItemViewModel>())
             {
-                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/
+                RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationSubMenuViewModel>())
             {
-                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/
+                RootList.Add(item);
             }
             foreach (IConfigurationItem item in App._host.Services.GetServices<ConfigurationButtonViewModel>())
             {
-                /*if (!item.Type.ToString().Contains("SubMenu"))*/ RootList.Add(item);
+                /*if (!item.Type.ToString().Contains("SubMenu"))*/
+                RootList.Add(item);
             }
             App.RootList = this.RootList;
             NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
+            App.CurrentCategory = "AtlasToolbox.Views.HomePage";
             ContentFrame.Navigate(
                        typeof(Views.HomePage),
                        null,
@@ -115,20 +121,9 @@ namespace AtlasToolbox
         private void NavigationViewControl_ItemInvoked(NavigationView sender,
                       NavigationViewItemInvokedEventArgs args)
         {
-            //var NavView = sender as NavigationView;
-            //if (NavView.SelectedItem == args.InvokedItemContainer) { return; };
-
             if (App.CurrentCategory == args.InvokedItemContainer.Tag.ToString() || (App.CurrentCategory == "SettingsItem" && args.IsSettingsInvoked == true)) { return; }
-            ;
 
             App.CurrentCategory = args.InvokedItemContainer.Tag.ToString();
-            if (args.IsSettingsInvoked == true)
-            {
-                App.CurrentCategory = "SettingsItem";
-                ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
-                return;
-            }
-
             Navigate(args.InvokedItemContainer.Tag.ToString());
             App.XamlRoot = this.Content.XamlRoot;
         }
@@ -143,7 +138,10 @@ namespace AtlasToolbox
             {
                 case "SettingsPage":
                     App.CurrentCategory = "SettingsItem";
-                    ContentFrame.Navigate(typeof(Views.SettingsPage), null, new DrillInNavigationTransitionInfo());
+                    ContentFrame.Navigate(
+                        new SettingsPage().GetType(),
+                        null,
+                        new DrillInNavigationTransitionInfo());
                     break;
                 case "AtlasToolbox.Views.SoftwarePage":
                     ContentFrame.Navigate(
@@ -155,7 +153,7 @@ namespace AtlasToolbox
                 case "AtlasToolbox.Views.HomePage":
                     Type newPage = Type.GetType(tag);
                     ContentFrame.Navigate(
-                           newPage,
+                           new HomePage().GetType(),
                            null,
                            new DrillInNavigationTransitionInfo());
                     break;
@@ -187,30 +185,25 @@ namespace AtlasToolbox
             NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
             NavigationViewControl.Header = null;
 
-            if (ContentFrame.SourcePageType != typeof(Views.SubSection))
-            {
-                if (App.CurrentCategory != null && App.CurrentCategory != "SettingsItem")
-                {
-                    try
-                    {
-                        NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .First(n => n.Tag.Equals(App.CurrentCategory));
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        App.logger.Error($"No matching NavigationViewItem found for category: {App.CurrentCategory}");
-                    }
-                }
-                else
-                {
-                    NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
-                }
-            }
-
             if (ContentFrame.SourcePageType == typeof(Views.SettingsPage))
             {
-                NavigationViewControl.SelectedItem = (NavigationViewItem)NavigationViewControl.SettingsItem;
+                NavigationViewControl.SelectedItem = NavigationViewControl.FooterMenuItems
+                           .OfType<NavigationViewItem>()
+                           .First(n => n.Tag.Equals("SettingsPage"));
+                return;
+            }
+            if (ContentFrame.SourcePageType != typeof(Views.SubSection))
+            {
+                try
+                {
+                    NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems
+                        .OfType<NavigationViewItem>()
+                        .First(n => n.Tag.Equals(App.CurrentCategory));
+                }
+                catch (InvalidOperationException)
+                {
+                    App.logger.Error($"No matching NavigationViewItem found for category: {App.CurrentCategory}");
+                }
             }
         }
 
@@ -290,7 +283,8 @@ namespace AtlasToolbox
                 // Get Window size
                 width = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth"));
                 height = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppHeight"));
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 width = 1250;
                 height = 850;
