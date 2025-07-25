@@ -26,9 +26,9 @@ namespace AtlasToolbox.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UpdateDeferalPage : Page
+    public sealed partial class UpdateDeferralPage : Page
     {
-        public UpdateDeferalPage()
+        public UpdateDeferralPage()
         {
             this.InitializeComponent();
             LoadText();
@@ -39,7 +39,7 @@ namespace AtlasToolbox.Views
             FeatureHeader.Text = App.GetValueFromItemList("FeatureHeader");
             QualityHeader.Text = App.GetValueFromItemList("QualityHeader");
         }
-        public async void ShowUpdateDeferalPrompt()
+        public async void ShowUpdateDeferralPrompt()
         {
             await DispatcherQueue.EnqueueAsync(async () =>
             {
@@ -47,7 +47,7 @@ namespace AtlasToolbox.Views
 
                 dialog.XamlRoot = App.XamlRoot;
                 dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                dialog.Title = App.GetValueFromItemList("UpdateDeferalPromptTitle");
+                dialog.Title = App.GetValueFromItemList("UpdateDeferralPromptTitle");
                 dialog.Content = this;
                 dialog.PrimaryButtonText = App.GetValueFromItemList("Set");
                 dialog.CloseButtonText = App.GetValueFromItemList("Cancel");
@@ -59,7 +59,7 @@ namespace AtlasToolbox.Views
                     var result = await dialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {
-                        SetUpdateDeferalConfigurationButton.SetUpdateDeferal(FormatDoubleInt(FeatureBox.Value), FormatDoubleInt(QualityBox.Value));
+                        SetUpdateDeferralConfigurationButton.SetUpdateDeferral(FormatDoubleInt(FeatureBox.Value), FormatDoubleInt(QualityBox.Value));
                     }
                 }
                 catch

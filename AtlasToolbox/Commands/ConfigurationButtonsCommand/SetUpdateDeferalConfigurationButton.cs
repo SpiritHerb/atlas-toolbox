@@ -10,20 +10,20 @@ using MVVMEssentials.Commands;
 
 namespace AtlasToolbox.Commands.ConfigurationButtonsCommand
 {
-    public class SetUpdateDeferalConfigurationButton : AsyncCommandBase
+    public class SetUpdateDeferralConfigurationButton : AsyncCommandBase
     {
         protected override async Task ExecuteAsync(object parameter)
         {
-            UpdateDeferalPage page = new UpdateDeferalPage();
+            UpdateDeferralPage page = new UpdateDeferralPage();
             await Task.Run(() =>
             {
                 // stupid hack idk why microsoft doesn't allow us to do a DispatcherQueue.EnqueueAsync
                 // in things other than pages and whatnot
-                page.ShowUpdateDeferalPrompt();
+                page.ShowUpdateDeferralPrompt();
             });
         }
 
-        public static void SetUpdateDeferal(int featureDays, int qualityDays)
+        public static void SetUpdateDeferral(int featureDays, int qualityDays)
         {
             const string WINDOWS_UPDATE_KEY = "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate";
             

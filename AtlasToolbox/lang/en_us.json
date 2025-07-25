@@ -211,7 +211,8 @@
     "FeatureHeader": "Number of days for feature updates:",
     "QualityHeader": "Number of days for quality updates:",
     "Set": "Set",
-    "WindowsUpdateDeferal": "Set the number of days for Windows Update deferal",
-    "UpdateDeferalPromptTitle": "Set Windows Update deferal time"
+    "WindowsUpdateDeferral": "Set the number of days for Windows Update Deferral",
+    "UpdateDeferralPromptTitle": "Set Windows Update Deferral time",
+    "ResetWindowsUpdateDeferral": "Reset Windows Update deferral"
 
 }

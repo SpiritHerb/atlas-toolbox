@@ -43,7 +43,7 @@
     <None Remove="SoftwarePage.xaml" />
     <None Remove="Views\ContentDialogView.xaml" />
     <None Remove="Views\NewProfilePage.xaml" />
-    <None Remove="Views\UpdateDeferalPAge.xaml" />
+    <None Remove="Views\UpdateDeferralPAge.xaml" />
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="assets\**">
@@ -199,7 +199,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <Page Update="Views\UpdateDeferalPage.xaml">
+    <Page Update="Views\UpdateDeferralPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\NewProfilePage.xaml">

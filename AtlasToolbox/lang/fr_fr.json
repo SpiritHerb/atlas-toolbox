@@ -209,6 +209,7 @@
     "FeatureHeader": "Nombres de jours pour les M-À-J de foncitonnalité:",
     "QualityHeader": "Nombres de jours pour les M-À-J de qualité:",
     "Set": "Modifier",
-    "WindowsUpdateDeferal": "Modifier le nombres de jours avant de recevoir une mise-à-jour Windows",
-    "UpdateDeferalPromptTitle": "Modifier le nombres de jours"
+    "WindowsUpdateDeferral": "Modifier le nombres de jours avant de recevoir une mise-à-jour Windows",
+    "UpdateDeferralPromptTitle": "Modifier le nombres de jours",
+    "ResetWindowsUpdateDeferral": "Remettre les paramètres par défault"
 }
