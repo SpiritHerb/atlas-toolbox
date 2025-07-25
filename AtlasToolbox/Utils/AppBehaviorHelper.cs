@@ -22,6 +22,15 @@ namespace AtlasToolbox.Utils
         }
         public static void CloseApp(object sender, WindowEventArgs e)
         {
+            // Get & save the current app size
+
+            // TODO: Check if the window is maximised, if it is then don't save the size
+            int width, height;
+            MainWindow mWindow = App.m_window as MainWindow;
+            mWindow.GetWindowSize(out width, out height);
+            RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
+            RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
+
             App.Current.Exit();
         }
     }

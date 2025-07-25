@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using AtlasToolbox.ViewModels;
 using Microsoft.UI.Windowing;
+using WinUIEx;
 
 namespace AtlasToolbox
 {
@@ -25,17 +26,16 @@ namespace AtlasToolbox
         {
             this.InitializeComponent();
 
-            //Window parameters
-            AppWindow.Resize(new Windows.Graphics.SizeInt32(1250, 850));
-            AppWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
 
             OverlappedPresenter presenter = OverlappedPresenter.Create();
             presenter.PreferredMinimumWidth = 516;
             presenter.PreferredMinimumHeight = 491;
             presenter.IsMaximizable = true;
-            AppWindow.SetPresenter(presenter);
 
-            CenterWindowOnScreen();
+            AppWindow.SetPresenter(presenter);
+            AppWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
+
+            SetWindowPosSize();
             ExtendsContentIntoTitleBar = true;
 
             LoadText();
@@ -72,7 +72,7 @@ namespace AtlasToolbox
             SetTitleBar(AppTitleBar);
             CheckUpdates();
             if (RegistryHelper.IsMatch("HKLM\\SOFTWARE\\AtlasOS\\Toolbox", "OnStartup", 1)) this.Closed += AppBehaviorHelper.HideApp;
-            else this.Closed += AppBehaviorHelper.CloseApp;            
+            else this.Closed += AppBehaviorHelper.CloseApp;
         }
 
         private async void CheckUpdates()
@@ -133,6 +133,10 @@ namespace AtlasToolbox
             App.XamlRoot = this.Content.XamlRoot;
         }
 
+        /// <summary>
+        /// Navigates the ContentFrame to the selected page
+        /// </summary>
+        /// <param name="tag"></param>
         private void Navigate(string tag)
         {
             switch (tag)
@@ -272,26 +276,71 @@ namespace AtlasToolbox
                 { App.logger.Error("Program tried to open more than one ContentDialog"); }
             });
         }
-        private void CenterWindowOnScreen()
+
+        /// <summary>
+        /// Sets the window position and size
+        /// </summary>
+        private void SetWindowPosSize()
         {
-            var screenWidth = GetSystemMetrics(SM_CXSCREEN);
-            var screenHeight = GetSystemMetrics(SM_CYSCREEN);
+            int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+            int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+            int width, height;
+            try
+            {
+                // Get Window size
+                width = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth"));
+                height = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppHeight"));
+            }catch (Exception ex)
+            {
+                width = 1250;
+                height = 850;
+                // Reset the registry
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
+                // Log the error
+                App.logger.Warn("Window size values were incorrect. Reverting to defaults\n\n" + ex.Message);
+            }
 
-            double centerX = (screenWidth - this.Bounds.Width) / 2;
-            double centerY = (screenHeight - this.Bounds.Height) / 2;
+            if (width == 1250 && height == 850)
+            {
+                // Calculate size
+                if (screenWidth != 1920)
+                {
+                    width = (screenWidth / 1920) * 1250;
+                }
+                if (screenHeight != 1080)
+                {
+                    height = (screenHeight / 1080) * 850;
+                }
+            }
 
-            this.MoveAndResize(centerX, centerY, this.Bounds.Width, this.Bounds.Height);
+            // Calculate position to put on screen
+            double centerX = (screenWidth - width) / 2;
+            double centerY = (screenHeight - height) / 2;
+
+            AppWindow.Resize(new Windows.Graphics.SizeInt32(width, height));
+            this.Move((int)centerX, (int)centerY);
+        }
+        /// <summary>
+        /// Formats a double into an int 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private int FormatDoubleInt(double value)
+        {
+            string valueString = value.ToString();
+            string[] valueArr = valueString.Split('.');
+            return int.Parse(valueArr[0]);
         }
 
-        private void MoveAndResize(double x, double y, double width, double height)
+        public void GetWindowSize(out int width, out int height)
         {
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-
-            SetWindowPos(hwnd, IntPtr.Zero, (int)x, (int)y, (int)width, (int)height, SWP_NOZORDER | SWP_NOACTIVATE);
+            width = AppWindow.Size.Width;
+            height = AppWindow.Size.Height;
         }
 
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        //[DllImport("user32.dll", SetLastError = true)]
+        //private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [DllImport("user32.dll")]
         private static extern int GetSystemMetrics(int nIndex);
