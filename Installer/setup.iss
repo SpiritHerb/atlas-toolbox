@@ -48,6 +48,10 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
+; Test code
+;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "C:\Users\TheyCreeper\Documents\dev\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
+; Prod code
 Source: "D:\a\atlas-toolbox\atlas-toolbox\Deploy\src\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "D:\a\atlas-toolbox\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
 
@@ -65,5 +69,5 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent runascurrentuser
 Filename: {sys}\taskkill.exe; Parameters: "/f /im AtlasToolbox.exe"; Flags: skipifdoesntexist runhidden
