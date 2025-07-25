@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using AtlasToolbox.Commands.ConfigurationButtonsCommand;
+using AtlasToolbox.Utils;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.WinUI;
 using Microsoft.UI.Xaml;
@@ -31,6 +32,16 @@ namespace AtlasToolbox.Views
         public UpdateDeferralPage()
         {
             this.InitializeComponent();
+            try
+            {
+                FeatureBox.Value = int.Parse(RegistryHelper.GetValue("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate", "DeferFeatureUpdatesPeriodInDays").ToString());
+                QualityBox.Value = int.Parse(RegistryHelper.GetValue("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate", "DeferQualityUpdatesPeriodInDays").ToString());
+            }
+            catch
+            {
+                FeatureBox.Value = 0;
+                QualityBox.Value = 0;
+            }
             LoadText();
         }
 
@@ -59,6 +70,8 @@ namespace AtlasToolbox.Views
                     var result = await dialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {
+                        if (FeatureBox.Value is double.NaN) FeatureBox.Value = 0;
+                        if (QualityBox.Value is double.NaN) QualityBox.Value = 0;
                         SetUpdateDeferralConfigurationButton.SetUpdateDeferral(FormatDoubleInt(FeatureBox.Value), FormatDoubleInt(QualityBox.Value));
                     }
                 }

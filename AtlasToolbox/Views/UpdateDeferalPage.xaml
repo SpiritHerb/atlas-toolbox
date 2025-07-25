@@ -9,25 +9,29 @@
     mc:Ignorable="d">
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="FeatureHeader"/>
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="FeatureHeader" Margin="0 0 0 10"/>
             <NumberBox
                 x:Name="FeatureBox"
                 Value="1"
                 Maximum="365"
-                Minimum="1"
+                Minimum="0"
                 SpinButtonPlacementMode="Inline"
+                Width="150"
+                HorizontalAlignment="Left"
                 SmallChange="1"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="QualityHeader"/>
+        <StackPanel Margin="0 20 0 0" Orientation="Vertical">
+            <TextBlock x:Name="QualityHeader" Margin="0 0 0 10"/>
             <NumberBox
             x:Name="QualityBox"
+            HorizontalAlignment="Left"
             Value="1"
             Maximum="365"
-            Minimum="1"
+            Minimum="0"
             SpinButtonPlacementMode="Inline"
-            SmallChange="1"/>
+            SmallChange="1"
+            Width="150"/>
         </StackPanel>
     </StackPanel>
 </Page>
