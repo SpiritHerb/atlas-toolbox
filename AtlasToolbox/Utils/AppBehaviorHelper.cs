@@ -1,10 +1,4 @@
 ﻿using Microsoft.UI.Xaml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.ViewManagement;
 using WinUIEx;
 
 namespace AtlasToolbox.Utils
@@ -26,12 +20,11 @@ namespace AtlasToolbox.Utils
         {
             // Get & save the current app size
             int width, height;
-            ApplicationView applicationView = ApplicationView.GetForCurrentView();
             MainWindow mWindow = App.m_window as MainWindow;
 
             // Check if app is fullscreen
             // if true then don't save screen size
-            if (!applicationView.IsFullScreenMode)
+            if (!mWindow.IsFullscreen())
             {
                 mWindow.GetWindowSize(out width, out height);
                 RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);

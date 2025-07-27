@@ -1,9 +1,4 @@
-﻿using System;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using AtlasOSToolbox;
-
-namespace AtlasToolbox.Utils
+﻿namespace AtlasToolbox.Utils
 {
     public static class ComputerStateHelper
     {

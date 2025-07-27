@@ -1,5 +1,4 @@
-﻿using AtlasToolbox.Utils;
-using System.ServiceProcess;
+﻿using System.ServiceProcess;
 
 namespace AtlasToolbox.Utils
 {

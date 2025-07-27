@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Newtonsoft.Json;
-using WinRT;
 using System.IO;
-using ICSharpCode.Decompiler.CSharp.Syntax;
 
 namespace AtlasToolbox.Utils
 {

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using AtlasToolbox.Models;
 using AtlasToolbox.Models.ProfileModels;
 using AtlasToolbox.ViewModels;
-using ICSharpCode.Decompiler.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 

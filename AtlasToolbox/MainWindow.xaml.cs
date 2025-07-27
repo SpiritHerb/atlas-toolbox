@@ -1,20 +1,20 @@
-using System;
-using System.Linq;
+using AtlasToolbox.Utils;
+using AtlasToolbox.ViewModels;
+using AtlasToolbox.Views;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.WinUI;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Media.Animation;
-using System.Runtime.InteropServices;
-using AtlasToolbox.Utils;
-using CommunityToolkit.WinUI;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
-using AtlasToolbox.Views;
-using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Navigation;
+using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
-using AtlasToolbox.ViewModels;
-using Microsoft.UI.Windowing;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using WinUIEx;
 
 namespace AtlasToolbox
@@ -22,10 +22,10 @@ namespace AtlasToolbox
     public sealed partial class MainWindow : Window
     {
         public List<IConfigurationItem> RootList { get; set; }
+
         public MainWindow()
         {
             this.InitializeComponent();
-
 
             OverlappedPresenter presenter = OverlappedPresenter.Create();
             presenter.PreferredMinimumWidth = 516;
@@ -81,6 +81,22 @@ namespace AtlasToolbox
             else this.Closed += AppBehaviorHelper.CloseApp;
         }
 
+        public bool IsFullscreen()
+        {
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+
+            if (appWindow.Presenter is OverlappedPresenter presenter)
+            {
+                if (presenter.State == OverlappedPresenterState.Maximized)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         private async void CheckUpdates()
         {
             bool update = await Task.Run(() => ToolboxUpdateHelper.CheckUpdates());

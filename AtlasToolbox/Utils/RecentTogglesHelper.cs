@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AtlasToolbox.Models;
-using AtlasToolbox.Models.ProfileModels;
 using Newtonsoft.Json;
 
 namespace AtlasToolbox.Utils
