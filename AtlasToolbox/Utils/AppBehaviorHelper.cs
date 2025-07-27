@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
+using Windows.UI.ViewManagement;
 using WinUIEx;
 
 namespace AtlasToolbox.Utils
@@ -20,8 +21,23 @@ namespace AtlasToolbox.Utils
             e.Handled = true;
             App.m_window.Hide();
         }
+
         public static void CloseApp(object sender, WindowEventArgs e)
         {
+            // Get & save the current app size
+            int width, height;
+            ApplicationView applicationView = ApplicationView.GetForCurrentView();
+            MainWindow mWindow = App.m_window as MainWindow;
+
+            // Check if app is fullscreen
+            // if true then don't save screen size
+            if (!applicationView.IsFullScreenMode)
+            {
+                mWindow.GetWindowSize(out width, out height);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
+            }
+            // Exit the app
             App.Current.Exit();
         }
     }

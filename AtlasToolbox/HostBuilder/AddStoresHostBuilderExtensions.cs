@@ -99,6 +99,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("NetworkNavigationPane");
                 services.AddKeyedSingleton<ConfigurationStore>("FileSharing");
                 services.AddKeyedSingleton<ConfigurationStore>("WindowsHello");
+                services.AddKeyedSingleton<ConfigurationStore>("ToggleWindowsUpdates");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ContextMenuTerminals");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("ShortcutIcon");
                 services.AddKeyedSingleton<MultiOptionConfigurationStore>("Mitigations");
@@ -132,6 +133,7 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("MitigationsSubMenu");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("TroubleshootingNetwork");
                 services.AddKeyedSingleton<ConfigurationStoreSubMenu>("FileSharingSubMenu");
+                services.AddKeyedSingleton<ConfigurationStoreSubMenu>("WindowsUpdate");
             });
 
             return host;

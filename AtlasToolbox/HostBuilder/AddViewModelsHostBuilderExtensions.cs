@@ -235,6 +235,8 @@ namespace AtlasToolbox.HostBuilder
                 ["TelemetryComponents"] = new(buttonCommand = new TelemetryComponentsCommand(), App.GetValueFromItemList("FixErrors"), App.GetValueFromItemList("TelemetryComponents"), ConfigurationType.Troubleshooting),
                 ["AtlasDefault"] = new(buttonCommand = new NetworkAtlasDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("AtlasDefault"), ConfigurationType.TroubleshootingNetwork),
                 ["WindowsDefault"] = new(buttonCommand = new NetworkWindowsDefaults(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("WindowsDefault"), ConfigurationType.TroubleshootingNetwork),
+                ["SetUpdateDeferral"] = new(buttonCommand = new SetUpdateDeferralConfigurationButton(), App.GetValueFromItemList("Set"), App.GetValueFromItemList("WindowsUpdateDeferral"), ConfigurationType.WindowsUpdate),
+                ["ResetUpdateDeferral"] = new(buttonCommand = new ResetWindowsUpdateDeferral(), App.GetValueFromItemList("ResetFTH"), App.GetValueFromItemList("ResetWindowsUpdateDeferral"), ConfigurationType.WindowsUpdate),
             };
 
             host.ConfigureServices((_, services) =>
@@ -279,6 +281,7 @@ namespace AtlasToolbox.HostBuilder
                 ["MitigationsSubMenu"] = new(App.GetValueFromItemList("MitigationsSubMenu"), App.GetValueFromItemList("MitigationsSubMenu", true), ConfigurationType.Security),
                 ["TroubleshootingNetwork"] = new(App.GetValueFromItemList("TroubleshootingNetwork"), App.GetValueFromItemList("TroubleshootingNetwork", true), ConfigurationType.Troubleshooting),
                 ["FileSharingSubMenu"] = new(App.GetValueFromItemList("FileSharingSubMenu"), App.GetValueFromItemList("FileSharingSubMenu", true), ConfigurationType.General),
+                ["WindowsUpdate"] = new(App.GetValueFromItemList("WindowsUpdate"), App.GetValueFromItemList("WindowsUpdate", true), ConfigurationType.General),
             };
             host.ConfigureServices((_, services) =>
             {
@@ -407,6 +410,7 @@ namespace AtlasToolbox.HostBuilder
                 ["NetworkNavigationPane"] = new(App.GetValueFromItemList("NetworkNavigationPane"), "NetworkNavigationPane", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
                 ["FileSharing"] = new(App.GetValueFromItemList("FileSharing"), "FileSharing", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
                 ["WindowsHello"] = new(App.GetValueFromItemList("WindowsHello"), "WindowsHello", ConfigurationType.General, RiskRating.HighRisk),
+                ["ToggleWindowsUpdates"] = new(App.GetValueFromItemList("ToggleWindowsUpdates"), "ToggleWindowsUpdates", ConfigurationType.WindowsUpdate, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>

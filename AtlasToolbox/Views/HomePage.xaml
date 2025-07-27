@@ -140,8 +140,7 @@
                             <ToggleSwitch
                                 x:Name="ConfigSwitch"
                                 IsOn="{Binding CurrentSetting}"
-                                Loaded="ToggleSwitch_Loaded"
-                                Style="{StaticResource ConfigurationItemTemplate}" />
+                                Loaded="ToggleSwitch_Loaded" />
                         </control:SettingsCard>
                     </DataTemplate>
                     <DataTemplate x:Key="MultiOptionControlTemplate" x:DataType="viewmodel:MultiOptionConfigurationItemViewModel">

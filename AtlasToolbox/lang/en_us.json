@@ -204,5 +204,15 @@
     "NoFavorites": "You have not added anything to your favorites yet.",
     "SystemInfo": "About this system:",
     "NewUpdateMessage": "There is a new update available.",
-    "LearnMore": "Learn more"
+    "LearnMore": "Learn more",
+    "ToggleWindowsUpdates": "Toggle Windows Update",
+    "WindowsUpdate": "Windows Update",
+    "WindowsUpdateDescription": "Settings related to Windows Update",
+    "FeatureHeader": "Feature updates:",
+    "QualityHeader": "Quality updates:",
+    "Set": "Set",
+    "WindowsUpdateDeferral": "Set the number of days for Windows Update Deferral",
+    "UpdateDeferralPromptTitle": "Set Windows Update Deferral time",
+    "ResetWindowsUpdateDeferral": "Reset Windows Update deferral"
+
 }
