@@ -213,6 +213,6 @@
     "Set": "Set",
     "WindowsUpdateDeferral": "Set the number of days for Windows Update Deferral",
     "UpdateDeferralPromptTitle": "Set Windows Update Deferral time",
-    "ResetWindowsUpdateDeferral": "Reset Windows Update deferral"
-
+    "ResetWindowsUpdateDeferral": "Reset Windows Update deferral",
+    "MicrosoftStoreToggle": "Toggle Microsoft Store"
 }

@@ -411,6 +411,7 @@ namespace AtlasToolbox.HostBuilder
                 ["FileSharing"] = new(App.GetValueFromItemList("FileSharing"), "FileSharing", ConfigurationType.FileSharingSubMenu, RiskRating.HighRisk),
                 ["WindowsHello"] = new(App.GetValueFromItemList("WindowsHello"), "WindowsHello", ConfigurationType.General, RiskRating.HighRisk),
                 ["ToggleWindowsUpdates"] = new(App.GetValueFromItemList("ToggleWindowsUpdates"), "ToggleWindowsUpdates", ConfigurationType.WindowsUpdate, RiskRating.HighRisk),
+                ["MicrosoftStore"] = new(App.GetValueFromItemList("MicrosoftStoreToggle"), "MicrosoftStore", ConfigurationType.Advanced, RiskRating.HighRisk),
             };
 
             host.ConfigureServices((_,services) =>
