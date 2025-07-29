@@ -28,6 +28,7 @@ namespace AtlasToolbox
             this.InitializeComponent();
             _viewModel = App._host.Services.GetRequiredService<SoftwarePageViewModel>();
             this.DataContext = _viewModel;
+            LoadText();
         }
 
         private void LoadText()
@@ -47,25 +48,32 @@ namespace AtlasToolbox
             var checkBox = sender as CheckBox;
             _viewModel.SelectedSoftwareItemViewModels.Remove((SoftwareItemViewModel)checkBox.DataContext);
         }
-        
+
         /// <summary>
         /// Installs all the selected packages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void  Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            int percentageCount = 100 / _viewModel.SelectedSoftwareItemViewModels.Count;
-
-            ProgressRingStackPanel.Visibility = Visibility.Visible;
-            foreach (SoftwareItemViewModel package in _viewModel.SelectedSoftwareItemViewModels)
+            try
             {
-                DownloadingProgressBar.Value += percentageCount;
-                CurrentlyInstalling.Text = $"Currently Installing : {package.Name}";
-                await Task.Run(() => CommandPromptHelper.RunCommand($"winget install -e --id {package.Key} --accept-package-agreements --accept-source-agreements --disable-interactivity --force -h"));
+                int percentageCount = 100 / _viewModel.SelectedSoftwareItemViewModels.Count;
+
+                ProgressRingStackPanel.Visibility = Visibility.Visible;
+                foreach (SoftwareItemViewModel package in _viewModel.SelectedSoftwareItemViewModels)
+                {
+                    DownloadingProgressBar.Value += percentageCount;
+                    CurrentlyInstalling.Text = $"Currently Installing : {package.Name}";
+                    await Task.Run(() => CommandPromptHelper.RunCommand($"winget install -e --id {package.Key} --accept-package-agreements --accept-source-agreements --disable-interactivity --force -h"));
+                }
+                ProgressRingStackPanel.Visibility = Visibility.Collapsed;
+                _viewModel.SelectedSoftwareItemViewModels.Clear();
+            } catch (Exception ex)
+            {
+                App.logger.Error(ex.Message);
+                return;
             }
-            ProgressRingStackPanel.Visibility = Visibility.Collapsed;
-            _viewModel.SelectedSoftwareItemViewModels.Clear();
         }
     }
 }
