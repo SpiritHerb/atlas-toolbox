@@ -21,8 +21,6 @@
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 
-    <Style x:Key="" TargetType="TextBlock" />
-
     <Style x:Key="ConfigurationSettingsCardTemplate" TargetType="controls:SettingsCard">
         <Setter Property="Margin" Value="0,0,36,10" />
         <Setter Property="BorderBrush" Value="#0DFFFFFF" />

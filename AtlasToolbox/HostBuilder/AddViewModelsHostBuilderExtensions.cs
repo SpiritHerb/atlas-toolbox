@@ -360,7 +360,7 @@ namespace AtlasToolbox.HostBuilder
                 ["AddNvidiaDisplayContainerContextMenu"] = new(App.GetValueFromItemList("AddNvidiaDisplayContainerContextMenu"), "AddNvidiaDisplayContainerContextMenu", ConfigurationType.NvidiaDisplayContainerSubMenu),
                 ["CpuIdleContextMenu"] = new(App.GetValueFromItemList("CpuIdleContextMenu"), "CpuIdleContextMenu", ConfigurationType.ContextMenuSubMenu),
                 ["LockScreen"] = new(App.GetValueFromItemList("LockScreen"), "LockScreen", ConfigurationType.Interface),
-                ["ShortcutText"] = new(App.GetValueFromItemList("ShortcutText"), "ShortcutText", ConfigurationType.InterfacHe),
+                ["ShortcutText"] = new(App.GetValueFromItemList("ShortcutText"), "ShortcutText", ConfigurationType.Interface),
                 ["BootLogo"] = new(App.GetValueFromItemList("BootLogo"), "BootLogo", ConfigurationType.BootConfigAppearance),
                 ["BootMessages"] = new(App.GetValueFromItemList("BootMessages"), "BootMessages", ConfigurationType.BootConfigAppearance),
                 ["NewBootMenu"] = new(App.GetValueFromItemList("NewBootMenu"), "NewBootMenu", ConfigurationType.BootConfigAppearance),
