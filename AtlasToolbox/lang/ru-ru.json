@@ -214,5 +214,6 @@
   "WindowsUpdateDeferral": "Set the number of days for Windows Update Deferral (to be translated)",
   "UpdateDeferralPromptTitle": "Set Windows Update Deferral time (TBT)",
   "ResetWindowsUpdateDeferral": "Reset Windows Update deferral (TBT)",
-  "MicrosoftStoreToggle": "Toggle Microsoft Store (TBT)"
+  "MicrosoftStoreToggle": "Toggle Microsoft Store (TBT)",
+  "TroubleshootingDocumenation": "Troubleshooting documentation (TBT)"
 }

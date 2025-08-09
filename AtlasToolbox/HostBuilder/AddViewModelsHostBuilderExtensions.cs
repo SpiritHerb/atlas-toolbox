@@ -183,18 +183,19 @@ namespace AtlasToolbox.HostBuilder
                 ["Taskbar"] = new (@"ms-settings:taskbar", App.GetValueFromItemList("Taskbar"), ConfigurationType.Windows, "\uE713"),
                 ["CoreIsolation"] = new (@"windowsdefender://coreisolation/", App.GetValueFromItemList("CoreIsolation"), ConfigurationType.CoreIsolationSubMenu, "\uE83D"),
 
+                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", App.GetValueFromItemList("BootConfigExplanations"), ConfigurationType.BootConfigurationSubMenu),
+                ["AdvancedConfigMustRead"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/", App.GetValueFromItemList("AdvancedConfigMustRead"), ConfigurationType.Advanced),
+                ["NvidiaDisplayContainerMustReadFirst"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/#nvidia-display-container", App.GetValueFromItemList("NvidiaDisplayContainerMustReadFirst"), ConfigurationType.NvidiaDisplayContainerSubMenu),
+                ["SecurityDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/security/", App.GetValueFromItemList("SecurityDocumentation"), ConfigurationType.Security),
 
                 ["WindowsSettingsDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/windows-settings/", App.GetValueFromItemList("WindowsSettingsDocumentation"), ConfigurationType.Windows),
-                ["BootConfigExplanations"] = new (@"https://learn.microsoft.com/windows-hardware/drivers/devtest/bcdedit--set", App.GetValueFromItemList("BootConfigExplanations"), ConfigurationType.BootConfigurationSubMenu),
                 ["AutoGpuAffinity"] = new (@"https://github.com/valleyofdoom/AutoGpuAffinity", "AutoGpuAffinity", ConfigurationType.DriverConfigurationSubMenu),
                 ["GoInterruptPolicy"] = new (@"https://github.com/spddl/GoInterruptPolicy", "GoInterruptPolicy", ConfigurationType.DriverConfigurationSubMenu),
                 ["InterrupAffinityTool"] = new (@"https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool", App.GetValueFromItemList("InterrupAffinityTool"), ConfigurationType.DriverConfigurationSubMenu),
                 ["MSIUtilityV3"] = new (@"https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044", "MSI Utility V3", ConfigurationType.DriverConfigurationSubMenu),
                 ["ProcessExplorerApp"] = new (@"https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer", App.GetValueFromItemList("ProcessExplorer"), ConfigurationType.Advanced),
-                ["NvidiaDisplayContainerMustReadFirst"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/#nvidia-display-container", App.GetValueFromItemList("NvidiaDisplayContainerMustReadFirst"), ConfigurationType.NvidiaDisplayContainerSubMenu),
-                ["AdvancedConfigMustRead"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/advanced-configuration/", App.GetValueFromItemList("AdvancedConfigMustRead"), ConfigurationType.Advanced),
-                ["SecurityDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/security/", App.GetValueFromItemList("SecurityDocumentation"), ConfigurationType.Security),
                 ["ResetPC"] = new (@"https://docs.atlasos.net/getting-started/reverting-atlas/", App.GetValueFromItemList("ResetPC"), ConfigurationType.Troubleshooting),
+                ["TroubleshootingDocumentation"] = new (@"https://docs.atlasos.net/getting-started/post-installation/atlas-folder/troubleshooting/", App.GetValueFromItemList("TroubleshootingDocumenation"), ConfigurationType.Troubleshooting),
             };
 
             host.ConfigureServices((_, services) =>
@@ -397,7 +398,6 @@ namespace AtlasToolbox.HostBuilder
                 ["RecentItems"] = new(App.GetValueFromItemList("RecentItems"), "RecentItems", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["VerboseStatusMessage"] = new(App.GetValueFromItemList("VerboseStatusMessage"), "VerboseStatusMessage", ConfigurationType.Interface, RiskRating.LowRisk),
                 ["SuperFetch"] = new(App.GetValueFromItemList("SuperFetch"), "SuperFetch", ConfigurationType.ServicesSubMenu, RiskRating.HighRisk),
-                ["StaticIp"] = new(App.GetValueFromItemList("StaticIp"), "StaticIp", ConfigurationType.Advanced, RiskRating.MediumRisk),
                 ["HideAppBrowserControl"] = new(App.GetValueFromItemList("HideAppBrowserControl"), "HideAppBrowserControl", ConfigurationType.DefenderSubMenu, RiskRating.HighRisk),
                 ["SecurityHealthTray"] = new(App.GetValueFromItemList("SecurityHealthTray"), "SecurityHealthTray", ConfigurationType.DefenderSubMenu, RiskRating.MediumRisk),
                 ["FaultTolerantHeap"] = new(App.GetValueFromItemList("FaultTolerantHeap"), "FaultTolerantHeap", ConfigurationType.MitigationsSubMenu, RiskRating.MediumRisk),
