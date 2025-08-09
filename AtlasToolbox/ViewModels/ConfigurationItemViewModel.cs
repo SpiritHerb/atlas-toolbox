@@ -22,7 +22,6 @@ namespace AtlasToolbox.ViewModels
         public string Key => Configuration.Key;
         public ConfigurationType Type => Configuration.Type;
         public FontIcon Icon => Configuration.Icon;
-        public Color Color { get; set; }
 
         private bool _currentSetting;
 
@@ -51,22 +50,6 @@ namespace AtlasToolbox.ViewModels
 
         public ICommand SaveConfigurationCommand { get; }
 
-        // Temporarily commented until a more consistent defenition for what a risk is is found
-        //public Color SetColor(RiskRating riskRating)
-        //{
-        //    switch (riskRating)
-        //    {
-        //        case RiskRating.HighRisk:
-        //            return Color.FromArgb(255, 255, 0, 0);
-        //        case RiskRating.MediumRisk:
-        //            return Color.FromArgb(255, 255, 255, 0);
-        //        case RiskRating.LowRisk:
-        //            return Color.FromArgb(255, 0, 176, 80);
-        //        default:
-        //            return Color.FromArgb(255, 0, 176, 80);
-        //    }
-        //}
-
         public ConfigurationItemViewModel(
             Configuration configuration,
             ConfigurationStore configurationStore,
@@ -77,11 +60,6 @@ namespace AtlasToolbox.ViewModels
             Configuration = configuration;
 
             _currentSetting = FetchCurrentSetting();
-            //Task.Run(() =>
-            //{
-            //    Color = SetColor(Configuration.RiskRating);
-            //    RiskRatingIcon = RiskRatingFormatter(Configuration.RiskRating);
-            //});
             SaveConfigurationCommand = new SaveConfigurationCommand(this, configurationStore, configurationService);
             
         }
