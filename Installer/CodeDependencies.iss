@@ -206,7 +206,7 @@ begin
   end else begin
     Result := x86;
   end;
-end;
+  end;
 
 function Dependency_ArchSuffix: String;
 begin
@@ -261,8 +261,8 @@ begin
 procedure Dependency_AddWASDK17;
 begin
   // https://dotnet.microsoft.com/download/dotnet-framework/net35-sp1
-    Dependency_Add('windowsappruntimeinstall-x64.exe',
-      '-q -f',
+    Dependency_Add('WindowsAppRuntimeInstall-x64.exe',
+      '--quiet',
       'WinAppSDK 1.7',
       'https://aka.ms/windowsappsdk/1.7/latest/windowsappruntimeinstall-x64.exe',
       '', False, False);
