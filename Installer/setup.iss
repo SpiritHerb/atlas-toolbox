@@ -50,11 +50,11 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; Test code
-Source: "C:\Users\TheyCreeper\Desktop\Toolbox\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\TheyCreeper\Documents\dev\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
+;Source: "C:\Users\TheyCreeper\Desktop\Toolbox\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+;Source: "C:\Users\TheyCreeper\Documents\dev\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
 ; Prod code
-;Source: "D:\a\atlas-toolbox\atlas-toolbox\Deploy\src\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "D:\a\atlas-toolbox\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
+Source: "D:\a\atlas-toolbox\atlas-toolbox\Deploy\src\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\a\atlas-toolbox\atlas-toolbox\Installer\Toolbox\*"; DestDir: "C:\Windows\AtlasModules\Toolbox"; Flags: ignoreversion recursesubdirs
 
 [Registry]
 Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
