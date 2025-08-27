@@ -78,7 +78,6 @@ function InitializeSetup: Boolean;
 begin
   // comment out functions to disable installing them
   Dependency_AddDotNet8;
-  Dependency_AddWASDK17;
-  
+    
   Result := True;
  end;

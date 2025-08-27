@@ -258,16 +258,6 @@ begin
       '', False, False);
  end;
 
-procedure Dependency_AddWASDK17;
-begin
-  // https://dotnet.microsoft.com/download/dotnet-framework/net35-sp1
-    Dependency_Add('WindowsAppRuntimeInstall-x64.exe',
-      '--quiet',
-      'WinAppSDK 1.7',
-      'https://aka.ms/windowsappsdk/1.7/latest/windowsappruntimeinstall-x64.exe',
-      '', False, False);
-end;
-
 [Files]
 #ifdef Dependency_Path_DirectX
 Source: "{#Dependency_Path_DirectX}dxwebsetup.exe"; Flags: dontcopy noencryption
