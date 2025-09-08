@@ -116,28 +116,7 @@ namespace AtlasToolbox
 
                 string[] arguments = Environment.GetCommandLineArgs();
                 bool wasRanWithArgs = false;
-                // planned for args but they are not currently used
-                //foreach (var arg in arguments)
-                //{
-                //    if (arg.StartsWith("-"))
-                //    {
-                //        switch (arg)
-                //        {
-                //            case "-silent":
-                //                InitializeVMSilent();
-                //                wasRanWithArgs = true;
-                //                break;
-                //            case "-toforeground":
-                //                m_window.Show();
-                //                wasRanWithArgs = true;
-                //                break;
-                //            case "-runEnabled":
-                //                break;
-                //            case "-runDefaults":
-                //                break;
-                //        }
-                //    }
-                //}
+                
                 if (!wasRanWithArgs)
                 {
                     logger.Info("Loading without args");
