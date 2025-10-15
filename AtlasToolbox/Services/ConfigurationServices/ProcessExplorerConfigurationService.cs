@@ -39,7 +39,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 
         public bool IsEnabled()
         {
-           return RegistryHelper.IsMatch(@"HKLM\SOFTWARE\AtlasOS\ProcessExplorer", "state", 1);
+           return RegistryHelper.IsMatch(@"HKLM\SOFTWARE\AtlasOS\ServicesProcessExplorer", "state", 1);
         }
     }
 }

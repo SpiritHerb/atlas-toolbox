@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class SnapLayoutsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\SnapLayouts";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesSnapLayouts";
         private const string STATE_VALUE_NAME = "state";
 
         private const string ADVANCED_KEY_NAME = @"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced";

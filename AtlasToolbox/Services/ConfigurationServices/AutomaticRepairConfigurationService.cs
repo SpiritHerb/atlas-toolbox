@@ -9,7 +9,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class AutomaticRepairConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AutomaticRepair";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesAutomaticRepair";
         private const string STATE_VALUE_NAME = "state";
 
 

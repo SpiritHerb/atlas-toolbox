@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class OldContextMenuConfigurationService : IConfigurationService
     {
         
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\OldContextMenu";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesOldContextMenu";
         private const string STATE_VALUE_NAME = "state";
 
         private const string INCROP_SERVER_32 = @"HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32";

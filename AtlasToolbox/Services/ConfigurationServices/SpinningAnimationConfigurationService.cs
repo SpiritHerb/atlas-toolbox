@@ -9,7 +9,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class SpinningAnimationConfigurationService : IConfigurationService
     {
 
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\SpinningAnimations";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesSpinningAnimations";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _spinningAnimationConfigurationStore;

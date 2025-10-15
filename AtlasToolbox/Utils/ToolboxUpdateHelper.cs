@@ -19,7 +19,7 @@ namespace AtlasToolbox.Utils
                 string tagName = result.RootElement.GetProperty("tag_name").GetString();
 
                 // Format everything to compare 
-                int version = int.Parse(RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version").ToString().Replace(".", ""));
+                int version = int.Parse(RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "Version").ToString().Replace(".", ""));
 
                 if (int.Parse(tagName.Replace(".", "").Replace("v", "")) > version)
                 {

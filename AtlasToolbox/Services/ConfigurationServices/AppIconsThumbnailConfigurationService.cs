@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class AppIconsThumbnailConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AppIconsThumbnail";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesAppIconsThumbnail";
         private const string STATE_VALUE_NAME = "state";
 
         private const string ADVANCED_KEY_NAME = @"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced";

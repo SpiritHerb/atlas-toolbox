@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class SafeModeConfigurationService : IMultiOptionConfigurationServices
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\SafeMode";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesSafeMode";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly MultiOptionConfigurationStore _safeModeConfigurationService;

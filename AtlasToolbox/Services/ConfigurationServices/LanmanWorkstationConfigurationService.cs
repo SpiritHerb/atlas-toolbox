@@ -10,7 +10,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class LanmanWorkstationConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\LanmanWorkstation";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesLanmanWorkstation";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _lanmanWorkstationConfigurationStore;

@@ -6,7 +6,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class QuickAccessConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\QuickAccess";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesQuickAccess";
         private const string STATE_VALUE_NAME = "state";
 
         private const string EXPLORER_KEY_NAME = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer";

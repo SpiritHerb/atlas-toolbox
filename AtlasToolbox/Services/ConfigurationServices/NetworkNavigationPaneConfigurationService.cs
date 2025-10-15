@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class NetworkNavigationPaneConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\NetworkNavigationPane";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesNetworkNavigationPane";
         private const string STATE_VALUE_NAME = "state";
 
         private const string KEY_KEY_NAME = @"HKEY_CURRENT_USER\SOFTWARE\Classes\CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}";

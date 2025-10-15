@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class PowerSavingConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\PowerSaving";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesPowerSaving";
         private const string STATE_VALUE_NAME = "state";
 
         private const string DEFAULT_POWER_SAVING_SCRIPT_PATH_NAME = @"%windir%\AtlasModules\Scripts\ScriptWrappers\DefaultPowerSaving.ps1";

@@ -15,7 +15,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class CopilotConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\MicrosoftCopilot";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesMicrosoftCopilot";
         private const string STATE_VALUE_NAME = "state";
 
 

@@ -7,7 +7,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class WindowsSpotlightConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\WindowsSpotlight";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesWindowsSpotlight";
         private const string STATE_VALUE_NAME = "state";
 
         private const string CLOUD_CONTENT_LOCAL_MACHINE_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent";
