@@ -7,7 +7,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class CompactViewConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesCompactView";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\CompactView";
         private const string STATE_VALUE_NAME = "state";
 
 

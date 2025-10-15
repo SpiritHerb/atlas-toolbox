@@ -14,7 +14,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class LocationConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesLocation";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\Location";
         private const string STATE_VALUE_NAME = "state";
 
         private const string LFSCV_SERVICE_NAME = "lfscv";

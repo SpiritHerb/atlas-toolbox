@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     class CpuIdleConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesCpuIdle";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\CpuIdle";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _cpuIdle;

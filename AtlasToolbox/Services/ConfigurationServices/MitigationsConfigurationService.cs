@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class MitigationsConfigurationService : IMultiOptionConfigurationServices
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesMitigations";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\Mitigations";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly MultiOptionConfigurationStore _mitigationsConfigurationService;

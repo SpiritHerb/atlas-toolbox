@@ -102,7 +102,7 @@ namespace AtlasToolbox
                 DebugSettings.BindingFailed += DebugSettings_BindingFailed;
             }
 #endif
-            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "Version");
+            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version");
             if (CompatibilityHelper.IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());
@@ -240,12 +240,12 @@ namespace AtlasToolbox
         {
             try
             {
-                string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang");
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "lang");
                 StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
             } catch
             {
-                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang", "en_us");
-                string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang");
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "lang", "en_us");
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "lang");
                 StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
             }
         }

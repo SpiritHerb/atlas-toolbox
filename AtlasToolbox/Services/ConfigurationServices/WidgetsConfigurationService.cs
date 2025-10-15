@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     class WidgetsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesWidgets";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\Widgets";
         private const string STATE_VALUE_NAME = "state";
 
         private const string WINDOWS_FEED_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds";

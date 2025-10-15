@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class VerboseStatusMessageConfiguarationServices : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesVerboseStatusMessage";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\VerboseStatusMessage";
         private const string STATE_VALUE_NAME = "state";
 
         private const string SYSTEM_POLICIES_KEY_NAME = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System";

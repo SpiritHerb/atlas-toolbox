@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class RunWithPriorityConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesRunWithPriority";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\RunWithPriority";
         private const string STATE_VALUE_NAME = "state";
 
         private const string PRIORITY_KEY_NAME = @"HKCR\exefile\shell\Priority";

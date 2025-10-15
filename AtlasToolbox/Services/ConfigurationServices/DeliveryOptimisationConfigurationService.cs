@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class DeliveryOptimisationConfigurationService : IConfigurationService
 
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesDeliveryOptimisation";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\DeliveryOptimisation";
         private const string STATE_VALUE_NAME = "state";
 
         private const string DELIVERY_OPTIMIZATION_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization";

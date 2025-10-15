@@ -297,16 +297,16 @@ namespace AtlasToolbox
             try
             {
                 // Get Window size
-                width = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "AppWidth"));
-                height = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "AppHeight"));
+                width = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "AppWidth"));
+                height = int.Parse((string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "AppHeight"));
             }
             catch (Exception ex)
             {
                 width = 1250;
                 height = 850;
                 // Reset the registry
-                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
-                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
                 // Log the error
                 App.logger.Warn("Window size values were incorrect. Reverting to defaults\n\n" + ex.Message);
             }

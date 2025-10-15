@@ -10,7 +10,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class BootLogoConfigurationService : IConfigurationService
     {
 
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesBootLogo";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\BootLogo";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _configurationStore;

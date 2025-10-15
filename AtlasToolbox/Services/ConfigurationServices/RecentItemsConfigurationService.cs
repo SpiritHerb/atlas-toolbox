@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class RecentItemsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesRecentItems";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\RecentItems";
         private const string STATE_VALUE_NAME = "state";
 
         private const string EXPLORER_POLICIES_HKCU_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer";
