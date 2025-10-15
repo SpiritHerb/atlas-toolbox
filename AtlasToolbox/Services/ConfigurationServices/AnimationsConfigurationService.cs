@@ -8,7 +8,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class AnimationsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Animation";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesAnimation";
         private const string STATE_VALUE_NAME = "state";
 
 

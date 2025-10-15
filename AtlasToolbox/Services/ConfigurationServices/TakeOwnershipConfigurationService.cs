@@ -6,7 +6,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class TakeOwnershipConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\TakeOwnership";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesTakeOwnership";
         private const string STATE_VALUE_NAME = "state";
 
         private const string RUNAS_DRIVE_KEY_NAME = @"HKCR\Drive\shell\runas";

@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class AddNvidiaDisplayContainerContextMenuConfigurationService : IConfigurationService
     {
 
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\NVidiaDisplayContainerContextMenu";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesNVidiaDisplayContainerContextMenu";
         private const string STATE_VALUE_NAME = "state";
 
         private const string NVIDIA_CONTAINER_KEY_NAME = @"HKCR\DesktopBackground\Shell\NVIDIAContainer";

@@ -86,7 +86,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedSingleton<ConfigurationStore>("NvidiaDispayContainer");
                 services.AddKeyedSingleton<ConfigurationStore>("AddNvidiaDisplayContainerContextMenu");
                 services.AddKeyedSingleton<ConfigurationStore>("SuperFetch");
-                services.AddKeyedSingleton<ConfigurationStore>("StaticIp");
                 services.AddKeyedSingleton<ConfigurationStore>("HideAppBrowserControl");
                 services.AddKeyedSingleton<ConfigurationStore>("SecurityHealthTray");
                 services.AddKeyedSingleton<ConfigurationStore>("FaultTolerantHeap");

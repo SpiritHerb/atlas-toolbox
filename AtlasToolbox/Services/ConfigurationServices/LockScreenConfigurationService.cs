@@ -7,7 +7,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class LockScreenConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\LockScreen";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesLockScreen";
         private const string STATE_VALUE_NAME = "state";
 
         private const string PERSONALIZATION_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization";

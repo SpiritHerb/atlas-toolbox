@@ -16,7 +16,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     class WebSearchConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\WebSearch";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesWebSearch";
         private const string STATE_VALUE_NAME = "state";
 
         private const string WINDOWS_SEARCH_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search";

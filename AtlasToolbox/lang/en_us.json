@@ -19,7 +19,7 @@
     "InterrupAffinityTool": "Interrupt Affinity Tool",
     "ProcessExplorerApp": "Process Explorer",
     "NvidiaDisplayContainerMustReadFirst": "Must read first",
-    "AdvancedConfigMustRead": "Must read first (Documentation)",
+    "AdvancedConfigMustRead": "Advanced configuration documentation",
     "SecurityDocumentation": "Security documentation",
     "ResetPC": "Reset this PC (read first)",
     "RestartExplorerButton": "Restart Explorer.exe",
@@ -146,6 +146,7 @@
     "TryDeleteDefaultProfile": "You cannot delete the default profile",
     "Home_SetProfileConfig": "Do you really wish to set this profile ?",
     "RestartPCPromptHeader": "To fully apply the changes, please restart your PC",
+    "RelogApplyDesc": "To fully apply the changes, please log off.",
     "Yes": "Yes",
     "No": "No",
     "Cancel": "Cancel",
@@ -214,5 +215,6 @@
     "WindowsUpdateDeferral": "Set the number of days for Windows Update Deferral",
     "UpdateDeferralPromptTitle": "Set Windows Update Deferral time",
     "ResetWindowsUpdateDeferral": "Reset Windows Update deferral",
-    "MicrosoftStoreToggle": "Toggle Microsoft Store"
+    "MicrosoftStoreToggle": "Toggle Microsoft Store",
+    "TroubleshootingDocumenation": "Troubleshooting documentation"
 }

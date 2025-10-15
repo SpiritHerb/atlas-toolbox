@@ -105,7 +105,6 @@ namespace AtlasToolbox.HostBuilder
                 services.AddKeyedTransient<IConfigurationService, NvidiaDispayContainerConfigurationService>("NvidiaDispayContainer");
                 services.AddKeyedTransient<IConfigurationService, AddNvidiaDisplayContainerContextMenuConfigurationService>("AddNvidiaDisplayContainerContextMenu");
                 services.AddKeyedTransient<IConfigurationService, SuperFetchConfigurationService>("SuperFetch");
-                services.AddKeyedTransient<IConfigurationService, StaticIPConfigurationService>("StaticIp");
                 services.AddKeyedTransient<IConfigurationService, HideAppBrowserControlConfigurationService>("HideAppBrowserControl");
                 services.AddKeyedTransient<IConfigurationService, SecurityHealthTrayConfigurationService>("SecurityHealthTray");
                 services.AddKeyedTransient<IConfigurationService, FaultTolerantHeapConfigurationService>("FaultTolerantHeap");

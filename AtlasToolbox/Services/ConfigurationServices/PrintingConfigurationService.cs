@@ -10,7 +10,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class PrintingConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Printing";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesPrinting";
         private const string STATE_VALUE_NAME = "state";
 
         private const string PROGRAMMATIC_ACCESS_ONLY_VALUE_NAME = "ProgrammaticAccessOnly";

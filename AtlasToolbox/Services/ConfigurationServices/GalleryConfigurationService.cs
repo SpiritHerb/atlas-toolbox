@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class GalleryConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Gallery";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesGallery";
         private const string STATE_VALUE_NAME = "state";
 
         private const string LONG_STRING_KEY_NAME = @"HKCU\Software\Classes\CLSID\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}";

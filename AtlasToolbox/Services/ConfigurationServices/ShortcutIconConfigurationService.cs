@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class ShortcutIconConfigurationService : IMultiOptionConfigurationServices
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ShortcutIcon";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesShortcutIcon";
         private const string STATE_VALUE_NAME = "state";
 
 

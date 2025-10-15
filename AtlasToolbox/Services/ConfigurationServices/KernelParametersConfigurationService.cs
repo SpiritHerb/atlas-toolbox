@@ -7,7 +7,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class KernelParametersConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\KernelParameters";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesKernelParameters";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _kernelParametersConfigurationStore;

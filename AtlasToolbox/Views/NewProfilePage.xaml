@@ -13,7 +13,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <!--  Content body  -->
-            <TextBlock x:Name="CurrentConfigSavedMessage" TextWrapping="Wrap" />
+            <TextBlock x:Name="CurrentConfigSavedMessage" TextWrapping="Wrap" Padding="5"/>
             <TextBox
                 x:Name="ProfileName"
                 PlaceholderText="Name"

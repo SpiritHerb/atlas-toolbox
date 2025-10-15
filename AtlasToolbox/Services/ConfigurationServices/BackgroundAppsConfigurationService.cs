@@ -10,7 +10,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class BackgroundAppsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\BackgroundApps";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesBackgroundApps";
         private const string STATE_VALUE_NAME = "state";
 
         private const string BACKGROUND_ACCESS_APPLICATION_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications";

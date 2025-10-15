@@ -8,7 +8,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class CpuIdleContextMenuConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\CPUIdleContextMenu";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesCPUIdleContextMenu";
         private const string STATE_VALUE_NAME = "state";
 
         private const string IDLE_KEY_NAME = @"HKCR\DesktopBackground\Shell\Idle";

@@ -7,7 +7,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class AppStoreArchivingConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AppStoreArchiving";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesAppStoreArchiving";
         private const string STATE_VALUE_NAME = "state";
 
         private const string APPX_KEY_NAME = @"HKLM\Software\Policies\Microsoft\Windows\Appx";

@@ -8,7 +8,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class SystemRestoreConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\SystemRestore";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesSystemRestore";
         private const string STATE_VALUE_NAME = "state";
 
         private const string SYSTEM_RESTORE_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows NT\SystemRestore";

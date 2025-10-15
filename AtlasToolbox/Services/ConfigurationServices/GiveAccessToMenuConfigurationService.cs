@@ -12,7 +12,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class GiveAccessToMenuConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\GiveAccessToMenu";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesGiveAccessToMenu";
         private const string STATE_VALUE_NAME = "state";
 
         private const string SHARING_1_KEY_NAME = @"HKCR\*\shellex\ContextMenuHandlers\Sharing";

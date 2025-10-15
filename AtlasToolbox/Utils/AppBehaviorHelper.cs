@@ -27,8 +27,8 @@ namespace AtlasToolbox.Utils
             if (!mWindow.IsFullscreen())
             {
                 mWindow.GetWindowSize(out width, out height);
-                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
-                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Toolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "AppWidth", width, Microsoft.Win32.RegistryValueKind.String);
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "AppHeight", height, Microsoft.Win32.RegistryValueKind.String);
             }
             // Exit the app
             App.Current.Exit();

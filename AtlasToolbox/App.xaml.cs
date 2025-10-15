@@ -102,7 +102,7 @@ namespace AtlasToolbox
                 DebugSettings.BindingFailed += DebugSettings_BindingFailed;
             }
 #endif
-            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version");
+            Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "Version");
             if (CompatibilityHelper.IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());
@@ -116,28 +116,7 @@ namespace AtlasToolbox
 
                 string[] arguments = Environment.GetCommandLineArgs();
                 bool wasRanWithArgs = false;
-                // planned for args but they are not currently used
-                //foreach (var arg in arguments)
-                //{
-                //    if (arg.StartsWith("-"))
-                //    {
-                //        switch (arg)
-                //        {
-                //            case "-silent":
-                //                InitializeVMSilent();
-                //                wasRanWithArgs = true;
-                //                break;
-                //            case "-toforeground":
-                //                m_window.Show();
-                //                wasRanWithArgs = true;
-                //                break;
-                //            case "-runEnabled":
-                //                break;
-                //            case "-runDefaults":
-                //                break;
-                //        }
-                //    }
-                //}
+                
                 if (!wasRanWithArgs)
                 {
                     logger.Info("Loading without args");
@@ -261,12 +240,12 @@ namespace AtlasToolbox
         {
             try
             {
-                string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang");
                 StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
             } catch
             {
-                RegistryHelper.SetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang", "en_us");
-                string lang = (string)RegistryHelper.GetValue(@"HKLM\Software\AtlasOS\Toolbox", "lang");
+                RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang", "en_us");
+                string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang");
                 StringList = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(@$"lang\{lang}.json"));
             }
         }

@@ -10,7 +10,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class AutomaticUpdatesConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\AutomaticUpdates";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesAutomaticUpdates";
         private const string STATE_VALUE_NAME = "state";
 
         private const string AU_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU";

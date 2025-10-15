@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class VbsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\VbsState";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesVbsState";
         private const string STATE_VALUE_NAME = "state";
 
         private const string HYPERVISOR_ENFORCED_CODE_INTEGRITY = @"HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity";

@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class HideAppBrowserControlConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\HideAppBrowserControl";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesHideAppBrowserControl";
         private const string STATE_VALUE_NAME = "state";
 
         private const string APP_BROWSER_PROTECTION_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\App and Browser protection";

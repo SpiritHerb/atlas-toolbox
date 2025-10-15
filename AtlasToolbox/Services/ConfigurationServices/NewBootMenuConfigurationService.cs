@@ -8,7 +8,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class NewBootMenuConfigurationService : IConfigurationService
     {
 
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\NewBootMenu";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesNewBootMenu";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _newBootMenuConfigurationStore;

@@ -11,7 +11,7 @@ namespace AtlasOSToolbox.Services.ConfigurationServices
 {
     public class BluetoothConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Bluetooth";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesBluetooth";
         private const string STATE_VALUE_NAME = "state";
 
         private const string BLUETOOTH_USER_SERVICE_SERVICE_NAME = "BluetoothUserService";
