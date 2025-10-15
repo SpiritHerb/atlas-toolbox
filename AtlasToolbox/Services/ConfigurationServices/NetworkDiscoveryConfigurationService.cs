@@ -9,7 +9,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class NetworkDiscoveryConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesNetworkDiscovery";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\NetworkDiscovery";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _networkDiscoveryConfigurationStore;

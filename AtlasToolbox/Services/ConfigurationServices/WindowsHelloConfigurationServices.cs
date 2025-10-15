@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class WindowsHelloConfigurationServices : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesWindowsHello";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\WindowsHello";
         private const string STATE_VALUE_NAME = "state";
 
         private const string PASSPORT_FOR_WORK_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\PassportForWork";

@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     internal class UpdateNotificationsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesUpdateNotifications";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\UpdateNotifications";
         private const string STATE_VALUE_NAME = "state";
 
         private const string WINDOWS_UPADTE_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate";

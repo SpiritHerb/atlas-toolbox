@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class SecurityHealthTrayConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesSecurityHealthTray";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\SecurityHealthTray";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _securityHealthTrayConfigurationService;

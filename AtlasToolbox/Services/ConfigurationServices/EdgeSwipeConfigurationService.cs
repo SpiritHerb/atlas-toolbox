@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class EdgeSwipeConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesEdgeSwipe";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\EdgeSwipe";
         private const string STATE_VALUE_NAME = "state";
 
         private const string EDGE_UI_KEY_NAME = @"HKLM\Software\Policies\Microsoft\Windows\EdgeUI";

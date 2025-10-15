@@ -13,7 +13,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     // This one does not work, a 'System.UnauthorizedAccessException' is being thrown
     public class FsoAndGameBarConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesFSOGameBar";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\FSOGameBar";
         private const string STATE_VALUE_NAME = "state";
         private const string GAME_BAR_KEY_NAME = @"HKCU\SOFTWARE\Microsoft\GameBar";
         private const string GAME_CONFIG_STORE_KEY_NAME = @"HKCU\System\GameConfigStore";

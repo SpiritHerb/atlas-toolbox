@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     class RecallSupportConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Servicesrecall";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\recall";
         private const string STATE_VALUE_NAME = "state";
 
         private const string WINDOWS_AI_KEY_NAME = @"HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI";

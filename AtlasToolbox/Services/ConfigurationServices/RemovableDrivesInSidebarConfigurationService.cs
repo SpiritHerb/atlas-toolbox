@@ -10,7 +10,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class RemovableDrivesInSidebarConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesRemovableDrivesInSidebar";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\RemovableDrivesInSidebar";
         private const string STATE_VALUE_NAME = "state";
 
 

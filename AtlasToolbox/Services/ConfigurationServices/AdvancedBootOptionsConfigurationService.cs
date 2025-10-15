@@ -9,7 +9,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class AdvancedBootOptionsConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesAdvancedBootOptions";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\AdvancedBootOptions";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly ConfigurationStore _advancedBootOptionsConfigurationStore;

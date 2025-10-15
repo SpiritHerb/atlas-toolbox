@@ -7,7 +7,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class ShortcutTextConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesShortcutText";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\ShortcutText";
         private const string STATE_VALUE_NAME = "state";
 
         private const string EXPLORER_KEY_NAME = @"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\NamingTemplates";

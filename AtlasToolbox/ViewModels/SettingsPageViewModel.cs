@@ -32,7 +32,7 @@ namespace AtlasToolbox.ViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang", this.CurrentLanguage.Key);
+            RegistryHelper.SetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "lang", this.CurrentLanguage.Key);
             App.LoadLangString();
             MainWindow mWindows = App.m_window as MainWindow;
         }
@@ -47,7 +47,7 @@ namespace AtlasToolbox.ViewModels
             {
                 Languages.Add(new (language.Value, language.Key));
             }
-            string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\ServicesToolbox", "lang");
+            string lang = (string)RegistryHelper.GetValue(@"HKLM\SOFTWARE\AtlasOS\Services\Toolbox", "lang");
             CurrentLanguage = Languages.Where(item => item.Key == lang).FirstOrDefault();
         }
 

@@ -14,7 +14,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
     public class ContextMenuTeminalsConfigurationService : IMultiOptionConfigurationServices
     {
 
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesContextMenuTerminals";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\ContextMenuTerminals";
         private const string STATE_VALUE_NAME = "state";
 
         private readonly MultiOptionConfigurationStore _contextMenuTeminalsConfigurationService;

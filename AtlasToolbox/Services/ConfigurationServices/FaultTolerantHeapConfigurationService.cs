@@ -11,7 +11,7 @@ namespace AtlasToolbox.Services.ConfigurationServices
 {
     public class FaultTolerantHeapConfigurationService : IConfigurationService
     {
-        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\ServicesFaultTolerantHeap";
+        private const string ATLAS_STORE_KEY_NAME = @"HKLM\SOFTWARE\AtlasOS\Services\FaultTolerantHeap";
         private const string STATE_VALUE_NAME = "state";
 
         private const string FTH_KEY_NAME = @"HKLM\SOFTWARE\Microsoft\FTH";
