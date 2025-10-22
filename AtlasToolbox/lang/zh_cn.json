@@ -16,7 +16,7 @@
     "CoreIsolation": "核心隔离 - Windows 安全中心",
     "WindowsSettingsDocumentation": "Windows 设置文档",
     "BootConfigExplanations": "Microsoft 官方解释",
-    "InterrupAffinityTool": "中断亲和性工具",
+    "InterrupAffinityTool": "Microsoft 中断关联策略工具（IntPolicy）",
     "ProcessExplorerApp": "进程资源管理器",
     "NvidiaDisplayContainerMustReadFirst": "请先阅读",
     "AdvancedConfigMustRead": "高级配置文档",
@@ -217,4 +217,5 @@
     "ResetWindowsUpdateDeferral": "重置 Windows 更新延迟",
     "MicrosoftStoreToggle": "切换 Microsoft Store",
     "TroubleshootingDocumenation": "故障排除文档"
+
 }
