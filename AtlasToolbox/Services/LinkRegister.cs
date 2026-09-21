@@ -19,7 +19,7 @@ namespace AtlasToolbox.Services
         public string Name { get => App.GetValueFromItemList(Key); }
         public string Description { get => App.GetValueFromItemList(Key, true); }
         public string Route { get; set; }
-        public FontIcon Icon { get; set; } = new();
+        public string Icon { get; set; }
         public string Link { get; set; }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace AtlasToolbox.Services
             Key = key;
             Route = route;
             Link = link;
-            Icon.Glyph = icon;
+            Icon = icon;
         }
     }
 }

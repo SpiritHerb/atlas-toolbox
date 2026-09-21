@@ -11,7 +11,8 @@ namespace AtlasToolbox.Views
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            FontIcon icon = (FontIcon)value;
+            FontIcon icon = new FontIcon();
+            icon.Glyph = (string)value;
             return icon;
         }
 

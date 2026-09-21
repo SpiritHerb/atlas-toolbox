@@ -16,7 +16,7 @@ namespace AtlasToolbox.Services
             Route = string.Join("/", route.Split('/').SkipLast(1));
             Key = route.Split("/").Last();
             FullRoute = route;
-            Icon.Glyph = icon;
+            Icon = icon;
             IsRootRoute = isRootRoute;
         }
     }

@@ -17,9 +17,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using AtlasToolbox.Utils;
 using AtlasToolbox.ViewModels.ConfigurationVM;
-using System.Threading.Tasks;
-using AtlasToolbox.Utils;
-using AtlasToolbox.ViewModels.ConfigurationVM;
 
 namespace AtlasToolbox
 {

@@ -19,12 +19,12 @@ namespace AtlasToolbox.Services
         /// <param name="route"></param>
         /// <param name="defaultOption"></param>
         /// <param name="icon"></param>
-        public MultiServiceRegister(string key, string route, string[] options, string defaultOption, string icon = "")
+        public MultiServiceRegister(string key, string route, string[] options, string defaultOption, string icon = "\uE897")
         {
             Key = key;
             Route = route;
             Options = new(options);
-            Icon.Glyph = icon;
+            Icon = icon;
             DefaultOption = defaultOption;
             //try
             //{

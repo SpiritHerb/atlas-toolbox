@@ -20,7 +20,7 @@ namespace AtlasToolbox.ViewModels.ConfigurationVM
         public string Key => ToggleService.Key;
         public string Description => ToggleService.Description;
         public string RouteItem => ToggleService.Route;
-        public FontIcon Icon => ToggleService.Icon;
+        public string Icon => ToggleService.Icon;
 
         private bool _currentSetting => ToggleService.CurrentState;
 

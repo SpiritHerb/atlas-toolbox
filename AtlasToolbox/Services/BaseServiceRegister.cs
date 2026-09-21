@@ -15,7 +15,7 @@ namespace AtlasToolbox.Services
         public string Name { get => App.GetValueFromItemList(Key); }
         public string Description { get => App.GetValueFromItemList(Key, true); }
         public string Route { get; set; }
-        public FontIcon Icon { get; set; } = new();
+        public string Icon { get; set; }
         public BaseServiceRegister() { }
         /// <summary>
         /// Contstructor for the base registry service.
@@ -27,7 +27,7 @@ namespace AtlasToolbox.Services
         {
             Key = key;
             Route = route;
-            Icon.Glyph = icon;
+            Icon = icon;
         }
     }
 }

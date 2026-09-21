@@ -58,7 +58,7 @@
             <DataTemplate x:Key="MultiOptionTemplate" x:DataType="viewmodel:MultiConfigViewModel">
                 <controls:SettingsCard
                     Header="{Binding Name}"
-                    HeaderIcon="{Binding Icon}"
+                    HeaderIcon="{Binding Icon, Converter={StaticResource FontIconConverter}}"
                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
                     <controls:SettingsCard.ContextFlyout>
                         <MenuFlyout>
@@ -104,7 +104,7 @@
                     ActionIconToolTip="Open in new window"
                     Click="LinkCard_Click"
                     Header="{Binding Name}"
-                    HeaderIcon="{Binding FontIcon}"
+                    HeaderIcon="{Binding FontIcon, Converter={StaticResource FontIconConverter}}"
                     IsClickEnabled="True"
                     Style="{StaticResource ConfigurationSettingsCardTemplate}">
                     <controls:SettingsCard.ContextFlyout>
@@ -132,7 +132,7 @@
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="ConfigScrollViewer" Grid.Row="1">
             <StackPanel>
-                <ItemsControl x:Name="ConfigItemsControl" ItemTemplateSelector="{StaticResource DataTemplateSelector}" ItemsSource="{Binding FilteredItems, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <ItemsControl x:Name="ConfigItemsControl" ItemTemplateSelector="{StaticResource DataTemplateSelector}" ItemsSource="{Binding FilteredItems}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

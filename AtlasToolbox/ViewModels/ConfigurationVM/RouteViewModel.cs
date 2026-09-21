@@ -17,7 +17,7 @@ namespace AtlasToolbox.ViewModels.ConfigurationVM
         public string Description => RouteModel.Description;
         public string RouteItem => RouteModel.Route;
         public string FullRoute => RouteModel.FullRoute;
-        public FontIcon Icon => RouteModel.Icon;
+        public string Icon => RouteModel.Icon;
         public RouteViewModel(
             RouteService route)
         {

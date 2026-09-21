@@ -1,7 +1,6 @@
 
 using AtlasToolbox.Models;
 using AtlasToolbox.Utils;
-using AtlasToolbox.ViewModels;
 using AtlasToolbox.ViewModels.ConfigurationVM;
 using AtlasToolbox.Views;
 using CommunityToolkit.Mvvm.Input;
@@ -30,6 +29,10 @@ namespace AtlasToolbox.Views
     public sealed partial class MainWindow : Window
     {
         public ObservableCollection<BreadcrumbItem> BreadCrumbBarList { get; set; } = new();
+        public Stack<BreadcrumbBarItem> breadcrumbBarItems = new();
+        private bool _isNavigating;
+        private bool _isUpdatingBreadcrumb = true;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -131,6 +134,11 @@ namespace AtlasToolbox.Views
         /// <param name="args"></param>
         private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            if (args.SelectedItemContainer is null)
+            {
+                return;
+            }
+
             string selectedItem = args.SelectedItemContainer.Tag.ToString() ?? "";
             switch (selectedItem)
             {
@@ -166,7 +174,7 @@ namespace AtlasToolbox.Views
                 BreadcrumbBar.Visibility = Visibility.Visible;
                 Grid.SetRow(ContentFrame, 1);
                 Grid.SetRowSpan(ContentFrame, 1);
-                MainGrid.Margin = new Thickness(55,0,0,0);
+                MainGrid.Margin = new Thickness(55, 0, 0, 0);
                 return;
             }
             BreadcrumbBar.Visibility = Visibility.Collapsed;
@@ -179,13 +187,29 @@ namespace AtlasToolbox.Views
         /// Navigates the ContentFrame to the selected page
         /// </summary>
         /// <param name="tag"></param>
-        private void Navigate(Type type, string route = null)
+        private async void Navigate(Type type, string route = null)
         {
-            ContentFrame.Navigate(type, route, new DrillInNavigationTransitionInfo());
-            if (type == typeof(ConfigPage) && route is not null) GenerateBreadcrumBar(route);
+            if (_isNavigating)
+            {
+                return;
+            }
+
+            try
+            {
+                _isNavigating = true;
+                ContentFrame.Navigate(type, route, new DrillInNavigationTransitionInfo());
+                if (type == typeof(ConfigPage) && route is not null)
+                {
+                    GenerateBreadcrumBar(route);
+                }
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
 
-        public void NavigateToRoute(string route, NavigationTransitionInfo transitionInfo)
+        public async void NavigateToRoute(string route, NavigationTransitionInfo transitionInfo)
         {
             ContentFrame.Navigate(typeof(ConfigPage), route, transitionInfo);
             // Remove previous ConfigPage entries from back-stack to prevent memory accumulation
@@ -230,46 +254,42 @@ namespace AtlasToolbox.Views
             BreadcrumbBar.IsEnabled = false;
         }
 
-        //public void GenerateBreadcrumBar(string route)
-        //{
-        //    BreadCrumbBarList.Clear();
-        //    var segments = route.Split("/");
-        //    for (int i = segments.Length - 1; i >= 0; i--)
-        //    {
-        //        string routeName = string.Join("/", segments.SkipLast(i));
-        //        BreadCrumbBarList.Add(
-        //            new(routeName,
-        //            App.GetValueFromItemList(routeName.Split("/").Last())));
-        //    }
-        //    if (!BreadcrumbBar.IsEnabled) BreadcrumbBar.IsEnabled = true;
-        //}
-
         public void GenerateBreadcrumBar(string route)
         {
-            BreadCrumbBarList.Clear();
-
-            if (string.IsNullOrWhiteSpace(route))
+            try
             {
-                BreadcrumbBar.IsEnabled = false;
-                return;
-            }
 
-            string[] segments = route.Split('/');
-            string currentRoute = string.Empty;
+                if (string.IsNullOrWhiteSpace(route))
+                {
+                    BreadCrumbBarList.Clear();
+                    BreadcrumbBar.IsEnabled = false;
+                    return;
+                }
 
-            for (int i = 0; i < segments.Length; i++)
-            {
-                currentRoute = i == 0 ? segments[i] : $"{currentRoute}/{segments[i]}";
+                string[] segments = route.Split('/');
+                string currentRoute = string.Empty;
+                List<BreadcrumbItem> newItems = new(segments.Length);
 
-                BreadCrumbBarList.Add(new(
-                    currentRoute,
-                    App.GetValueFromItemList(segments[i])));
-            }
+                for (int i = 0; i < segments.Length; i++)
+                {
+                    currentRoute = i == 0 ? segments[i] : $"{currentRoute}/{segments[i]}";
+                    newItems.Add(new(currentRoute, App.GetValueFromItemList(segments[i])));
+                }
 
-            if (!BreadcrumbBar.IsEnabled)
+                BreadCrumbBarList.Clear();
+                foreach (BreadcrumbItem item in newItems)
+                {
+                    BreadCrumbBarList.Add(item);
+                }
+
                 BreadcrumbBar.IsEnabled = true;
+            }
+            catch
+            {
+                App.logger.Info("Failed to generate breadcrumb bar");
+            }
         }
-
+       
         private void BreadcrumbBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
         {
             var route = ((BreadcrumbItem)args.Item).Route;
@@ -282,7 +302,6 @@ namespace AtlasToolbox.Views
         {
             NavigationViewControl.IsPaneOpen = !NavigationViewControl.IsPaneOpen;
         }
-
 
         /// <summary>
         /// Creates a ContentDialog with the required type

@@ -16,7 +16,7 @@ namespace AtlasToolbox.ViewModels.ConfigurationVM
     {
         public MultiServiceRegister Configuration { get; set; }
         public string Name => Configuration.Name;
-        public FontIcon Icon => Configuration.Icon;
+        public string Icon => Configuration.Icon;
 
         public List<string> Options => Configuration.Options; 
         public string Key => Configuration.Key;

@@ -35,7 +35,7 @@ namespace AtlasToolbox.Services
         {
             Key = key;
             Route = route;
-            Icon.Glyph = icon;
+            Icon = icon;
             DefaultValue = defaultValue;
             try
             {

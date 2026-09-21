@@ -16,7 +16,7 @@ namespace AtlasToolbox.Services
             Key = key;
             Route = route;
             Command = command;
-            Icon.Glyph = icon;
+            Icon = icon;
         }
     }
 }
