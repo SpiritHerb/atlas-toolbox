@@ -20,7 +20,7 @@
 
     <Grid x:Name="MainGrid">
         <Grid.Resources>
-            <DataTemplate x:Key="ConfigurationItemTemplate" x:DataType="viewmodel:ConfigPageViewModel">
+            <DataTemplate x:Key="ConfigurationItemTemplate" x:DataType="viewmodel:ConfigurationItemViewModel">
                 <Grid>
                     <controls:SettingsCard
                         x:Name="SettingsCard"

@@ -38,8 +38,8 @@ namespace AtlasToolbox.Views
             this.InitializeComponent();
 
             OverlappedPresenter presenter = OverlappedPresenter.Create();
-            presenter.PreferredMinimumWidth = 516;
-            presenter.PreferredMinimumHeight = 491;
+            WindowManager.Get(this).Width = 1250;
+            WindowManager.Get(this).Height = 850;
             presenter.IsMaximizable = true;
 
             AppWindow.SetPresenter(presenter);

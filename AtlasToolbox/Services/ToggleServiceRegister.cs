@@ -22,7 +22,15 @@ namespace AtlasToolbox.Services
        );
         private readonly string switchStateCommand = $"call {toggleLauncherPath}";
         public bool DefaultValue { get; set; }
-        public bool CurrentState { get; set; }
+        private bool _currentState;
+        public bool CurrentState { 
+            get => _currentState;
+            set
+            {
+                _currentState = value;
+                this.SwitchState();
+            }
+        }
 
         /// <summary>
         /// Contstructor for the base registry service.
@@ -39,7 +47,7 @@ namespace AtlasToolbox.Services
             DefaultValue = defaultValue;
             try
             {
-                CurrentState = GetCurrentState();
+                _currentState = GetCurrentState();
             
             }
             catch
@@ -56,14 +64,14 @@ namespace AtlasToolbox.Services
 
         private string SwitchState()
         {
-            string returnString = ServiceToggle(CurrentState ? "disable" : "enable");
-            CurrentState = GetCurrentState();
+            string returnString = ServiceToggle(_currentState ? "Enable" : "Disable");
             return returnString;
+            //return "tempo";
         }
         private string ToDefault()
         {
-            string returnString = ServiceToggle(DefaultValue ? "enable" : "disable");
-            CurrentState = GetCurrentState();
+            string returnString = ServiceToggle(DefaultValue ? "Enable" : "Disable");
+            _currentState = GetCurrentState();
             return returnString;
         }
 
@@ -72,9 +80,10 @@ namespace AtlasToolbox.Services
             using (Process commandPrompt = new Process())
             {
                 commandPrompt.StartInfo.FileName = "cmd.exe";
-                commandPrompt.StartInfo.Arguments = $"/c {switchStateCommand} {this.Key} {toggleValue} \"%~f0\" %*";
+                commandPrompt.StartInfo.Arguments = $"/c {switchStateCommand} {this.Key} {toggleValue} \"%~f0\"";
+                App.logger.Info($"[CMD] {switchStateCommand} {this.Key} {toggleValue} \"%~f0\"");
                 commandPrompt.StartInfo.CreateNoWindow = true;
-                commandPrompt.StartInfo.UseShellExecute = true;
+                commandPrompt.StartInfo.UseShellExecute = false;
 
                 commandPrompt.StartInfo.RedirectStandardOutput = true;
                 commandPrompt.StartInfo.RedirectStandardError = true;

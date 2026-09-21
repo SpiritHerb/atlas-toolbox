@@ -29,7 +29,7 @@ namespace AtlasToolbox.ViewModels.ConfigurationVM
             get => _currentSetting;
             set
             {
-                ToggleService.CurrentState = CurrentSetting;
+                ToggleService.CurrentState = value;
             }
         }
 
