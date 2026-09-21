@@ -18,6 +18,7 @@ using Windows.ApplicationModel.Core;
 using System.Diagnostics;
 using AtlasToolbox.ViewModels.ConfigurationVM;
 using AtlasToolbox.Views;
+using System.Configuration;
 
 namespace AtlasToolbox
 {
@@ -100,7 +101,7 @@ namespace AtlasToolbox
             }
 #endif
             Version = RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Channel") + " v" + RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version");
-            if (CompatibilityHelper.IsCompatible())
+            if (IsCompatible())
             {
                 Task.Run(() => StartNamedPipeServer());
 
@@ -261,6 +262,17 @@ namespace AtlasToolbox
             {
                 return "To be translated";
             }
+        }
+        public static bool IsCompatible()
+        {
+            string[] compatibleVersions = ConfigurationManager.AppSettings.Get("AtlasVersion").Split(',');
+
+            string atlasOSFolder = Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\AtlasOS\state.json";
+            Object jsonObj = JsonConvert.DeserializeObject(File.ReadAllText(atlasOSFolder));
+            string atlasVersion = ((dynamic)jsonObj).installedVersion;
+
+            if (compatibleVersions.Contains(atlasVersion)) return true;
+            return false;
         }
     }
 }
