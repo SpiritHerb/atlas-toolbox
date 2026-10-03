@@ -2,6 +2,8 @@
   "LangName": "简体中文 (Chinese Simplified)",
   "LangKey": "zh_cn",
 
+
+  "ToBeTranslated": "待翻译",
   "OpenShellAtlasPreset": "打开 Shell AtlasOS 预设",
   "InterfaceTweaksDocumentation": "界面调整文档",
   "ActivationPage": "激活页面",
@@ -16,9 +18,9 @@
   "CoreIsolation": "核心隔离 - Windows 安全中心",
   "WindowsSettingsDocumentation": "Windows 设置文档",
   "BootConfigExplanations": "Microsoft 官方说明",
-  "InterrupAffinityTool": "中断亲和性工具",
-  "ProcessExplorerApp": "进程浏览器",
-  "ProcessExplorerDocumentation": "进程浏览器文档",
+  "InterrupAffinityTool": "Interrupt-Affinity 策略工具（IntPolicy）",
+  "ProcessExplorerApp": "Process Explorer",
+  "ProcessExplorerDocumentation": "Process Explorer 文档",
   "NvidiaDisplayContainerMustReadFirst": "必读",
   "AdvancedConfigMustRead": "高级配置文档",
   "SecurityDocumentation": "安全文档",
@@ -57,8 +59,8 @@
   "ServicesSubMenuDescription": "与 Windows 服务相关的所有内容",
   "BootConfigurationSubMenu": "启动配置",
   "BootConfigurationSubMenuDescription": "与 Windows 启动相关的所有内容",
-  "FileExplorerSubMenu": "文件浏览器自定义",
-  "FileExplorerSubMenuDescription": "与自定义 Windows 文件浏览器相关的所有内容",
+  "FileExplorerSubMenu": "文件资源管理器自定义",
+  "FileExplorerSubMenuDescription": "与自定义 Windows 文件资源管理器相关的所有内容",
   "DriverConfigurationSubMenu": "驱动程序配置",
   "DriverConfigurationSubMenuDescription": "与驱动程序配置相关的所有内容",
   "CoreIsolationSubMenu": "核心隔离 (VBS)",
@@ -135,10 +137,10 @@
   "HighestModeDescription": "启用或禁用显示器的最高模式",
 
   "CompactView": "紧凑视图",
-  "CompactViewDescription": "启用或禁用文件浏览器的紧凑视图",
+  "CompactViewDescription": "启用或禁用文件资源管理器的紧凑视图",
 
   "RemovableDrivesInSidebar": "侧边栏中的可移动驱动器",
-  "RemovableDrivesInSidebarDescription": "显示或隐藏文件浏览器侧边栏中的可移动驱动器",
+  "RemovableDrivesInSidebarDescription": "显示或隐藏文件资源管理器侧边栏中的可移动驱动器",
 
   "BackgroundApps": "后台应用程序",
   "BackgroundAppsDescription": "启用或禁用后台应用程序",
@@ -201,16 +203,16 @@
   "AppIconsThumbnailDescription": "显示或隐藏文件缩略图上的应用程序图标",
 
   "AutomaticFolderDiscovery": "自动文件夹发现",
-  "AutomaticFolderDiscoveryDescription": "启用或禁用文件浏览器中的自动文件夹发现",
+  "AutomaticFolderDiscoveryDescription": "启用或禁用文件资源管理器中的自动文件夹发现",
 
-  "Gallery": "启用库",
-  "GalleryDescription": "启用或禁用文件浏览器中的库",
+  "Gallery": "启用图库",
+  "GalleryDescription": "启用或禁用文件资源管理器中的图库",
 
   "SnapLayout": "启用窗口对齐布局",
   "SnapLayoutDescription": "启用或禁用窗口的对齐布局",
 
-  "RecentItems": "文件浏览器中解锁最近项目",
-  "RecentItemsDescription": "启用或禁用文件浏览器中的最近项目",
+  "RecentItems": "文件资源管理器中解锁最近项目",
+  "RecentItemsDescription": "启用或禁用文件资源管理器中的最近项目",
 
   "VerboseStatusMessage": "详细状态消息",
   "VerboseStatusMessageDescription": "启用或禁用启动和关闭时的详细状态消息",
@@ -239,17 +241,17 @@
   "CpuIdle": "启用 CPU 空闲",
   "CpuIdleDescription": "启用或禁用 CPU 空闲功能",
 
-  "ProcessExplorer": "安装进程浏览器",
-  "ProcessExplorerDescription": "从 Microsoft Sysinternals 安装进程浏览器",
+  "ProcessExplorer": "安装 Process Explorer",
+  "ProcessExplorerDescription": "从 Microsoft Sysinternals 安装 Process Explorer",
 
   "VbsState": "启用 VBS",
   "VbsStateDescription": "启用或禁用基于虚拟化的安全性 (VBS)",
 
-  "GiveAccessToMenu": "授权访问菜单",
-  "GiveAccessToMenuDescription": "为文件和文件夹的上下文菜单添加\"授权访问\"选项",
+  "GiveAccessToMenu": "\"授予访问权限\"菜单",
+  "GiveAccessToMenuDescription": "为文件和文件夹的上下文菜单添加\"授予访问权限\"选项",
 
   "NetworkNavigationPane": "网络导航窗格",
-  "NetworkNavigationPaneDescription": "显示或隐藏文件浏览器中的网络导航窗格",
+  "NetworkNavigationPaneDescription": "显示或隐藏文件资源管理器中的网络导航窗格",
 
   "FileSharing": "文件共享",
   "FileSharingDescription": "启用或禁用文件共享功能",
@@ -335,7 +337,7 @@
   "Tile_KofiDescription": "帮助我们继续这个项目！",
 
   // 菜单项和其他导航文本
-  "SearchPlaceholder": "（开发中）搜索设置...",
+  "SearchPlaceholder": "搜索 AtlasOS 设置...",
 
   "Home": "主页",
   "Software": "软件",
@@ -365,5 +367,5 @@
 
   // 图标实验
   "IconsExperiment": "图标",
-  "IconsExperimentDescription": "在每个设置旁边启用图标，以便更容易识别和视觉效果更好"
+  "IconsExperimentDescription": "在每个设置旁显示图标，便于识别并提升视觉观感。"
 }
